@@ -1,0 +1,12 @@
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\bin\Debug\MediaVF.Common.Communication.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\bin\Debug\MediaVF.Common.Communication.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\obj\Debug\MediaVF.Common.Communication.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\obj\Debug\MediaVF.Common.Communication.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\bin\Debug\MediaVF.Common.Communication.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\bin\Debug\MediaVF.Common.Communication.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\MediaVF.Common.Communication.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\MediaVF.Common.Communication.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\obj\Debug\MediaVF.Common.Communication.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\obj\Debug\MediaVF.Common.Communication.pdb

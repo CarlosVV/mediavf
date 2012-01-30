@@ -1,0 +1,12 @@
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Communication\Bin\Release\MediaVF.Silverlight.Communication.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Communication\Bin\Release\MediaVF.Silverlight.Communication.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\MediaVF.Silverlight.Communication.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\MediaVF.Silverlight.Communication.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Communication\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Communication\obj\Release\MediaVF.Silverlight.Communication.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Communication\obj\Release\MediaVF.Silverlight.Communication.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\Silverlight\MediaVF.Silverlight.Communication.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\Silverlight\MediaVF.Silverlight.Communication.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Communication\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Communication\obj\Release\MediaVF.Silverlight.Communication.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Communication\obj\Release\MediaVF.Silverlight.Communication.pdb

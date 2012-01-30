@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Web Developer Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaVF.UI.Silverlight", "MediaVF.UI.Silverlight\MediaVF.UI.Silverlight.csproj", "{1294E8D1-12B7-4010-B570-493599DABF0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaVF.UI.Core", "MediaVF.UI.Core\MediaVF.UI.Core.csproj", "{E0D0425B-B42A-47CE-9BB6-00544FC5035E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1294E8D1-12B7-4010-B570-493599DABF0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1294E8D1-12B7-4010-B570-493599DABF0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1294E8D1-12B7-4010-B570-493599DABF0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1294E8D1-12B7-4010-B570-493599DABF0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0D0425B-B42A-47CE-9BB6-00544FC5035E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0D0425B-B42A-47CE-9BB6-00544FC5035E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0D0425B-B42A-47CE-9BB6-00544FC5035E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0D0425B-B42A-47CE-9BB6-00544FC5035E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

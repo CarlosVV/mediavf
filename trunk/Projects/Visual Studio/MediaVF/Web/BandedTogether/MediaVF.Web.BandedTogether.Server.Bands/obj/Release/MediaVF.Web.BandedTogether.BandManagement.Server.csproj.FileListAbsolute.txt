@@ -1,0 +1,5 @@
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\BandedTogether\MediaVF.Web.BandedTogether.BandManagement.Server\bin\Release\MediaVF.Web.BandedTogether.BandManagement.Server.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\BandedTogether\MediaVF.Web.BandedTogether.BandManagement.Server\bin\Release\MediaVF.Web.BandedTogether.BandManagement.Server.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\BandedTogether\MediaVF.Web.BandedTogether.BandManagement.Server\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\BandedTogether\MediaVF.Web.BandedTogether.BandManagement.Server\obj\Release\MediaVF.Web.BandedTogether.BandManagement.Server.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\BandedTogether\MediaVF.Web.BandedTogether.BandManagement.Server\obj\Release\MediaVF.Web.BandedTogether.BandManagement.Server.pdb

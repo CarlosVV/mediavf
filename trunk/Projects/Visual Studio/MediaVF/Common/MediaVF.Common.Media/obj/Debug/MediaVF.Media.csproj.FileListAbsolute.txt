@@ -1,0 +1,6 @@
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Media\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Media\bin\Debug\MediaVF.Media.dll
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Media\bin\Debug\MediaVF.Media.pdb
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Media\bin\Debug\taglib-sharp.dll
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Media\obj\Debug\MediaVF.Media.dll
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Media\obj\Debug\MediaVF.Media.pdb

@@ -1,0 +1,15 @@
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\MediaVF.Entities\MediaVF.Entities.ArtistTrack\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\MediaVF.Entities\MediaVF.Entities.ArtistTrack\bin\Debug\MediaVF.Entities.ArtistTrack.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\MediaVF.Entities\MediaVF.Entities.ArtistTrack\bin\Debug\MediaVF.Entities.ArtistTrack.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\MediaVF.Entities\MediaVF.Entities.ArtistTrack\obj\Debug\MediaVF.Entities.ArtistTrack.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\MediaVF.Entities\MediaVF.Entities.ArtistTrack\obj\Debug\MediaVF.Entities.ArtistTrack.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Entities\Build\Desktop\MediaVF.Entities.ArtistTrack.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Entities\Build\Desktop\MediaVF.Entities.ArtistTrack.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Entities\MediaVF.Entities.ArtistTrack\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Entities\MediaVF.Entities.ArtistTrack\obj\Debug\MediaVF.Entities.ArtistTrack.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Entities\MediaVF.Entities.ArtistTrack\obj\Debug\MediaVF.Entities.ArtistTrack.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Entities\Build\Desktop\MediaVF.Entities.ArtistTrack.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Entities\Build\Desktop\MediaVF.Entities.ArtistTrack.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Entities\MediaVF.Entities.ArtistTrack\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Entities\MediaVF.Entities.ArtistTrack\obj\Debug\MediaVF.Entities.ArtistTrack.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Entities\MediaVF.Entities.ArtistTrack\obj\Debug\MediaVF.Entities.ArtistTrack.pdb

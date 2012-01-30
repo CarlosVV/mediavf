@@ -1,0 +1,10 @@
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\UI\Build\MediaVF.UI.Core.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\UI\Build\MediaVF.UI.Core.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\UI\MediaVF.UI.Core\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\UI\MediaVF.UI.Core\obj\Debug\MediaVF.UI.Core.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\UI\MediaVF.UI.Core\obj\Debug\MediaVF.UI.Core.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\UI\MediaVF.UI.Core\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Visual Studio\MediaVF\UI\Build\MediaVF.UI.Core.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\UI\Build\MediaVF.UI.Core.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\UI\MediaVF.UI.Core\obj\Debug\MediaVF.UI.Core.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\UI\MediaVF.UI.Core\obj\Debug\MediaVF.UI.Core.pdb

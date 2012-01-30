@@ -1,0 +1,16 @@
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\Build\Seed.config
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\Build\MediaVF.Services.Polling.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\Build\MediaVF.Services.Polling.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices\obj\Release\MediaVF.Services.Polling.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices\obj\Release\MediaVF.Services.Polling.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Build\MediaVF.Services.Polling.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Build\MediaVF.Services.Polling.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices\obj\Release\MediaVF.Services.Polling.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices\obj\Release\MediaVF.Services.Polling.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\MediaVF.Services.Polling\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\MediaVF.Services.Polling\obj\Release\MediaVF.Services.Polling.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\MediaVF.Services.Polling\obj\Release\MediaVF.Services.Polling.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\Build\MediaVF.Services.Polling.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\Build\MediaVF.Services.Polling.pdb

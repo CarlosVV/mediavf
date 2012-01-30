@@ -1,0 +1,46 @@
+﻿<Window x:Class="MediaVF.CodeSync.FolderSyncWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Folder Sync Options" Height="290" Width="525">
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="40" />
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5" Text="Source Folder:" />
+        <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" Height="28" Text="{Binding SourceFolder, Mode=TwoWay}" />
+        <Button Grid.Row="0" Grid.Column="3" Content="..." Margin="5" Command="{Binding BrowseFolderCommand}" CommandParameter="SourceFolder" />
+
+        <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5" Text="Destination Folder:" />
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" Height="28" Text="{Binding DestinationFolder, Mode=TwoWay}" />
+        <Button Grid.Row="1" Grid.Column="3" Content="..." Margin="5" Command="{Binding BrowseFolderCommand}" CommandParameter="DestinationFolder" />
+
+        <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5" Text="Sync Type:" />
+        <ComboBox Grid.Row="2" Grid.Column="1" Margin="3" Height="28" ItemsSource="{Binding SyncTypes}" SelectedItem="{Binding SyncType, Mode=TwoWay}" />
+
+        <TextBlock Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5" Text="File Types:" />
+        <DataGrid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False"
+                  ItemsSource="{Binding FileTypes}" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="Sync" Width="50" Binding="{Binding ShouldSync, Mode=TwoWay}" />
+                <DataGridTextColumn Header="File Type" Width="3*" IsReadOnly="True" Binding="{Binding FileTypeName}" />
+                <DataGridTextColumn Header="Extensions" Width="4*" IsReadOnly="True" Binding="{Binding FileExtensionsText}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="3,10,3,0">
+            <Button VerticalAlignment="Center" HorizontalAlignment="Right" Content="Save" Width="75" Height="25" Margin="5,0,5,5" Command="{Binding SaveCommand}" />
+            <Button VerticalAlignment="Center" HorizontalAlignment="Right" Content="Cancel" Width="75" Height="25" Margin="5,0,5,5" Command="{Binding CancelCommand}" />
+        </StackPanel>
+    </Grid>
+</Window>

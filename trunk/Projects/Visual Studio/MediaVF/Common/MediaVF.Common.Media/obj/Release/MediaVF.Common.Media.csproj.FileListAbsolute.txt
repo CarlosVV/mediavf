@@ -1,0 +1,15 @@
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Media\bin\Release\MediaVF.Common.Media.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Media\bin\Release\MediaVF.Common.Media.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Media\bin\Release\taglib-sharp.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\MediaVF.Common.Media.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\MediaVF.Common.Media.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Media\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Media\obj\Release\MediaVF.Common.Media.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Media\obj\Release\MediaVF.Common.Media.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\Desktop\MediaVF.Common.Media.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\Desktop\MediaVF.Common.Media.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Media\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Media\obj\Release\MediaVF.Common.Media.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Media\obj\Release\MediaVF.Common.Media.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\Desktop\MediaVF.Common.Media.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\Desktop\MediaVF.Common.Media.pdb

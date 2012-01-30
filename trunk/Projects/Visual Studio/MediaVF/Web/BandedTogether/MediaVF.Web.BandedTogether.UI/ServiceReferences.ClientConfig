@@ -1,0 +1,17 @@
+﻿<configuration>
+  <system.serviceModel>
+    <bindings />
+    <client>
+      <endpoint
+        name="BandedTogetherService"
+        address="http://localhost:50470/BandedTogetherService.svc"
+        binding="basicHttpBinding"
+        contract="MediaVF.UI.Core.IInvocableService" />
+      <endpoint
+        name="ConfigurationService"
+        address="http://localhost:50470/BandedTogetherService.svc/Configuration"
+        binding="basicHttpBinding"
+        contract="MediaVF.UI.Core.Configuration.IConfigurationService" />
+    </client>
+  </system.serviceModel>
+</configuration>

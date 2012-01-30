@@ -1,0 +1,5 @@
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\Build\MediaVF.Services.Polling.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\Build\MediaVF.Services.Polling.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\MediaVF.Services.Polling\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\MediaVF.Services.Polling\obj\Debug\MediaVF.Services.Polling.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\MediaVF.Services.Polling\obj\Debug\MediaVF.Services.Polling.pdb
