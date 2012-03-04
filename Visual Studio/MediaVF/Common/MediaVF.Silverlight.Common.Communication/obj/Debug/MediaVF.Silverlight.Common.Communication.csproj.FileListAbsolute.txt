@@ -1,0 +1,5 @@
+D:\Projects\Visual Studio\MediaVF\Common\Build\Silverlight\MediaVF.Silverlight.Common.Communication.dll
+D:\Projects\Visual Studio\MediaVF\Common\Build\Silverlight\MediaVF.Silverlight.Common.Communication.pdb
+D:\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Communication\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Communication\obj\Debug\MediaVF.Silverlight.Common.Communication.dll
+D:\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Communication\obj\Debug\MediaVF.Silverlight.Common.Communication.pdb

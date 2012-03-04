@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{15262479-6CD2-4F1B-A22D-4723E0690CB1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MediaVF.Web.ArtistTrack.Server</RootNamespace>
+    <AssemblyName>MediaVF.Web.ArtistTrack.Server</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <SilverlightApplicationList>{3E8D5F3B-52B7-42CE-8C9F-349C12A7FBE9}|..\MediaVF.Web.BandedTogether\MediaVF.Web.BandedTogether.csproj|ClientBin|False</SilverlightApplicationList>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Common\Lib\log4net\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaVF.Common">
+      <HintPath>..\..\..\Common\Build\Desktop\MediaVF.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaVF.Common.Communication">
+      <HintPath>..\..\..\Common\Build\Desktop\MediaVF.Common.Communication.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaVF.Common.Facebook">
+      <HintPath>..\..\..\Common\Build\Desktop\MediaVF.Common.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaVF.Common.Media">
+      <HintPath>..\..\..\Common\Build\Desktop\MediaVF.Common.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaVF.Entities.ArtistTrack">
+      <HintPath>..\..\..\Entities\Build\Desktop\MediaVF.Entities.ArtistTrack.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaVF.Services">
+      <HintPath>..\..\..\Services\Core\Build\MediaVF.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\..\..\Common\Lib\Prism\Desktop\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.UnityExtensions">
+      <HintPath>..\..\..\Common\Lib\Prism\Desktop\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\..\Common\Lib\Prism\Desktop\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\..\..\Common\Lib\Prism\Desktop\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.DomainServices.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.DomainServices.Server, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ArtistTrackService.svc" />
+    <Content Include="clientaccesspolicy.xml" />
+    <Content Include="ClientBin\MediaVF.Web.ArtistTrack.UI.xap" />
+    <Content Include="DirectoryBrowser.jar" />
+    <Content Include="DirectoryBrowserApplet.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Default.html" />
+    <Content Include="FacebookAuthorized.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Silverlight.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArtistTrackService.svc.cs">
+      <DependentUpon>ArtistTrackService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="FacebookAuthorized.aspx.cs">
+      <DependentUpon>FacebookAuthorized.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FacebookAuthorized.aspx.designer.cs">
+      <DependentUpon>FacebookAuthorized.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FacebookManager.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="IArtistTrackService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SilverlightFaultBehavior.cs" />
+    <Compile Include="TestPage.aspx.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestPage.aspx.designer.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Seed.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestPage.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50470</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/MediaVF</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

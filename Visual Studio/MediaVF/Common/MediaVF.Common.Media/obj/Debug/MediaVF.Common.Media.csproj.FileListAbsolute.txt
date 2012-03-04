@@ -1,0 +1,17 @@
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\MediaVF.Common.Media.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\MediaVF.Common.Media.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Media\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Media\obj\Debug\MediaVF.Common.Media.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Media\obj\Debug\MediaVF.Common.Media.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\MediaVF.Common.Media.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\MediaVF.Common.Media.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Media\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Media\obj\Debug\MediaVF.Common.Media.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Media\obj\Debug\MediaVF.Common.Media.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\Desktop\MediaVF.Common.Media.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\Desktop\MediaVF.Common.Media.pdb
+D:\Projects\Visual Studio\MediaVF\Common\Build\Desktop\MediaVF.Common.Media.dll
+D:\Projects\Visual Studio\MediaVF\Common\Build\Desktop\MediaVF.Common.Media.pdb
+D:\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Media\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Media\obj\Debug\MediaVF.Common.Media.dll
+D:\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Media\obj\Debug\MediaVF.Common.Media.pdb

@@ -1,0 +1,5 @@
+D:\Projects\Visual Studio\MediaVF\Web\ArtistTrack\MediaVF.Web.BandedTogether.Server\Components\MediaVF.Web.ArtistTrack.Server.Admin.dll
+D:\Projects\Visual Studio\MediaVF\Web\ArtistTrack\MediaVF.Web.BandedTogether.Server\Components\MediaVF.Web.ArtistTrack.Server.Admin.pdb
+D:\Projects\Visual Studio\MediaVF\Web\ArtistTrack\MediaVF.Web.ArtistTrack.Server.Admin\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\Visual Studio\MediaVF\Web\ArtistTrack\MediaVF.Web.ArtistTrack.Server.Admin\obj\Debug\MediaVF.Web.ArtistTrack.Server.Admin.dll
+D:\Projects\Visual Studio\MediaVF\Web\ArtistTrack\MediaVF.Web.ArtistTrack.Server.Admin\obj\Debug\MediaVF.Web.ArtistTrack.Server.Admin.pdb

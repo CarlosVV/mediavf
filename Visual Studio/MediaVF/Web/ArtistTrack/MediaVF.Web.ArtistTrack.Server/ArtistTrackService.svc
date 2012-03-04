@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="MediaVF.Web.ArtistTrack.Server.ArtistTrackService" CodeBehind="ArtistTrackService.svc.cs" %>

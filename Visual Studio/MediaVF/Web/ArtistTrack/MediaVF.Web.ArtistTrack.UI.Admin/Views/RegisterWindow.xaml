@@ -1,0 +1,83 @@
+﻿<controls:ChildWindow x:Class="MediaVF.Web.ArtistTrack.UI.Admin.Views.RegisterWindow"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+           xmlns:ui="clr-namespace:MediaVF.UI.Core;assembly=MediaVF.UI.Silverlight"
+           Width="400" 
+           Title="Register">
+    
+    <Grid x:Name="LayoutRoot" Margin="2">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        
+        <Grid Name="BasicInfo">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="33"/>
+                <RowDefinition Height="33"/>
+                <RowDefinition Height="33"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="33"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="250" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Name="UserNameLabel" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="User Name:" />
+            <TextBox Name="UserNameTextBox" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="5" Text="{Binding UserName, Mode=TwoWay}" />
+
+            <TextBlock Name="PasswordLabel" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Password:"/>
+            <PasswordBox Name="PasswordBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="5"
+                         ui:PasswordService.Attached="True" ui:PasswordService.Password="{Binding Password, Mode=TwoWay}" />
+
+            <TextBlock Name="ConfirmPasswordLabel" Grid.Row="2" Grid.Column="0" Text="Confirm Password:" VerticalAlignment="Center" HorizontalAlignment="Right" />
+            <PasswordBox Name="ConfirmPasswordBox" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="5"
+                         ui:PasswordService.Attached="True" ui:PasswordService.Password="{Binding ConfirmPassword, Mode=TwoWay}" />
+
+            <TextBlock Name="PasswordMismatchTextBlock" Grid.Row="3" Grid.Column="1" Margin="5,0,0,0" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Text="Passwords do not match." Visibility="{Binding PasswordsMismatch, Converter={StaticResource visibilityConverter}}" />
+
+            <TextBlock Name="EmailLabel" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Email:" />
+            <TextBox Name="EmailTextBox" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="5" Text="{Binding Email, Mode=TwoWay}" />
+        </Grid>
+        
+        <Line Grid.Row="1" Stroke="#888888" StrokeThickness="1" StrokeEndLineCap="Triangle" X1="25" X2="350" Y1="10" Y2="10" />
+        
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="33" />
+                <RowDefinition Height="33" />
+                <RowDefinition Height="10" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="250" />
+            </Grid.ColumnDefinitions>
+            <CheckBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Name="SyncWithFacebookCheck" Margin="20,0,0,0" HorizontalAlignment="Left" Content="Sync with Facebook"
+                      IsChecked="{Binding SyncWithFacebook, Mode=TwoWay}"/>
+
+            <TextBlock Name="FacebookEmailLabel" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Email:" />
+            <TextBox Name="FacebookEmailTextBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="5"
+                     IsEnabled="{Binding ElementName=SyncWithFacebookCheck, Path=IsChecked}" Text="{Binding FacebookEmail, Mode=TwoWay}" />
+
+            <TextBlock Name="FacebookPasswordLabel" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Password:"/>
+            <PasswordBox Name="FacebookPasswordBox" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="5"
+                         IsEnabled="{Binding ElementName=SyncWithFacebookCheck, Path=IsChecked}" ui:PasswordService.Attached="True"
+                         ui:PasswordService.Password="{Binding FacebookPassword, Mode=TwoWay}" />
+        </Grid>
+
+        <Button x:Name="OKButton" Grid.Row="3" Width="75" Height="23" Margin="0,0,80,0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="OK"
+                Command="{Binding RegisterCommand}" />
+        <Button x:Name="CancelButton" Grid.Row="3" Width="75" Height="23" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Cancel"
+                Command="{Binding CancelCommand}" />
+        
+        <toolkit:BusyIndicator Grid.RowSpan="4" IsBusy="{Binding IsBusy}" BusyContent="{Binding BusyMessage}" />
+    </Grid>
+</controls:ChildWindow>

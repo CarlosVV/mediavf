@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="MediaVF.Web.ArtistTrack.UI.Artists.Views.AddArtistsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data"
+    xmlns:ctl="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="570">
+
+    <Grid x:Name="LayoutRoot" MinHeight="200">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="27" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="135" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="90" />
+            <ColumnDefinition Width="90" />
+        </Grid.ColumnDefinitions>
+
+        <CheckBox Grid.Row="0" HorizontalAlignment="Left" Margin="15,0,0,0" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                  Command="{Binding ToggleAllCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}"/>
+
+        <Button Grid.Row="0" Grid.Column="3" Width="75" Height="22" HorizontalAlignment="Left" Content="Browse" Command="{Binding BrowseCommand}" />
+        
+        <data:DataGrid Grid.Row="1" Grid.ColumnSpan="4" Margin="10,0,10,0" ItemsSource="{Binding Artists}" AutoGenerateColumns="False">
+            <data:DataGrid.Columns>
+                <data:DataGridCheckBoxColumn Header="Add" Binding="{Binding Add}" />
+                <data:DataGridTextColumn Header="Artist Name" Width="*" Binding="{Binding ArtistName}" />
+            </data:DataGrid.Columns>
+        </data:DataGrid>
+    </Grid>
+</UserControl>

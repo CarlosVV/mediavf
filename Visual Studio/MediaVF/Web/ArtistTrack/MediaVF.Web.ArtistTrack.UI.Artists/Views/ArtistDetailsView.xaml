@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="MediaVF.Web.ArtistTrack.UI.Artists.Views.ArtistDetailsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="500">
+
+    <Grid x:Name="LayoutRoot" Background="White">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="170" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.RowSpan="3" Grid.ColumnSpan="2" Stroke="Black" RadiusX="7" RadiusY="7">
+            <Rectangle.Fill>
+                <LinearGradientBrush>
+                    <GradientStop Color="White" Offset=".1" />
+                    <GradientStop Color="LightGray" Offset=".5" />
+                    <GradientStop Color="White" Offset=".9" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="2" Margin="5">
+            <TextBlock FontFamily="Defused" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,10,0,0" Text="{Binding Artist.Name}" />
+            <Line Margin="5,0,5,0" VerticalAlignment="Bottom" Stroke="Black" Stretch="Fill" Fill="Black" StrokeThickness="2" X1="5" X2="105" />
+        </Grid>
+        
+        <ContentControl Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+            <Image Margin="3" Source="http://www.mtv.com/shared/media/images/artist/b/between_the_buried_and_me/az_official/281x211.jpg" />
+        </ContentControl>
+        
+        <Grid Grid.Row="1" Grid.Column="1" Margin="3,3,5,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="22" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Rectangle Grid.RowSpan="6" Grid.ColumnSpan="2" RadiusX="5" RadiusY="5" Stroke="Black">
+                <Rectangle.Fill>
+                    <LinearGradientBrush>
+                        <GradientStop Offset="0" Color="White" />
+                        <GradientStop Offset=".5" Color="#CCCCCC" />
+                        <GradientStop Offset="1" Color="White" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            
+            <TextBlock Grid.Row="0" Margin="10,5,0,0" FontFamily="Defused" Text="Info" VerticalAlignment="Center" />
+
+            <TextBlock Grid.Row="1" Margin="12,0,0,0" Text="Hometown:" VerticalAlignment="Center" HorizontalAlignment="Right" />
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="3,3,5,3" IsEnabled="False" Text="{Binding Artist.Hometown}" />
+
+            <TextBlock Grid.Row="2" Margin="12,0,0,0" Text="Label:" VerticalAlignment="Center" HorizontalAlignment="Right" />
+            <TextBox Grid.Row="2" Grid.Column="1" Margin="3,3,5,3" IsEnabled="False" Text="{Binding Artist.Label.Name}" />
+
+            <TextBlock Grid.Row="3" Margin="12,0,0,0" Text="Genre(s):" VerticalAlignment="Center" HorizontalAlignment="Right" />
+            <TextBox Grid.Row="3" Grid.Column="1" Margin="3,3,5,3" IsEnabled="False" Text="{Binding Artist.GenresText}" />
+
+            <TextBlock Grid.Row="4" Margin="12,0,0,0" Text="About:" VerticalAlignment="Top" HorizontalAlignment="Right" />
+            <TextBox Grid.Row="4" Grid.Column="1" Margin="3,3,5,5" IsEnabled="False" Text="{Binding Artist.About}" />
+            
+        </Grid>
+        
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="22" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Rectangle Grid.RowSpan="2" RadiusX="5" RadiusY="5" Stroke="Black">
+                <Rectangle.Fill>
+                    <LinearGradientBrush>
+                        <GradientStop Offset="0" Color="White" />
+                        <GradientStop Offset=".5" Color="#CCCCCC" />
+                        <GradientStop Offset="1" Color="White" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <TextBlock Margin="10,10,0,0" FontFamily="Defused" Text="News" VerticalAlignment="Center" />
+            <ListBox Grid.Row="1" Margin="5,5,5,10" />
+        </Grid>
+        
+    </Grid>
+</UserControl>

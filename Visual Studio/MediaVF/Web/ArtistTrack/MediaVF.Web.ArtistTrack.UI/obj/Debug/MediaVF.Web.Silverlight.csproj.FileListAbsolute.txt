@@ -1,0 +1,8 @@
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\MediaVF.Web.Silverlight\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\MediaVF.Web.Silverlight\obj\Debug\App.g.i.cs
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\MediaVF.Web.Silverlight\obj\Debug\MainPage.g.i.cs
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\MediaVF.Web.Silverlight\obj\Debug\Views\BandViewer.g.i.cs
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\MediaVF.Web.Silverlight\obj\Debug\Views\LoginControl.g.i.cs
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\MediaVF.Web.Silverlight\obj\Debug\MediaVF.UI.Silverlight.g.resources
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\MediaVF.Web.Silverlight\obj\Debug\MediaVF.UI.Silverlight.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\MediaVF.Web.Silverlight\obj\Debug\MediaVF.UI.Silverlight.pdb

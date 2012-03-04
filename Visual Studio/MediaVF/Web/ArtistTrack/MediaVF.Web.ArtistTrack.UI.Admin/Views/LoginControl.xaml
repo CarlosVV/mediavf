@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="MediaVF.Web.ArtistTrack.UI.Admin.Views.LoginControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="clr-namespace:MediaVF.UI.Core;assembly=MediaVF.UI.Silverlight"
+    xmlns:ctl="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+    xmlns:tlkt="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"
+    mc:Ignorable="d"
+    Height="60" Width="400">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="70" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="User Name:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3" FontSize="10" FontWeight="SemiBold" />
+        <TextBox Grid.Row="0" Grid.Column="1" Name="EmailEntryBox" Text="{Binding Email, Mode=TwoWay}" VerticalAlignment="Center" Margin="3,5,10,5" KeyUp="TextBox_KeyUp" />
+
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="Password:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3" FontSize="10" FontWeight="SemiBold" />
+        <PasswordBox Grid.Row="0" Grid.Column="3" Name="PasswordEntryBox" VerticalAlignment="Center" Margin="3,5,10,5" ui:PasswordService.Attached="True"
+                     ui:PasswordService.Password="{Binding Password, Mode=TwoWay}" KeyUp="TextBox_KeyUp" />
+
+        <HyperlinkButton Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Content="Not a member? Click here to register!" Foreground="#52A624" FontWeight="Bold"
+                         Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding RegisterCommand}"/>
+
+        <CheckBox Grid.Row="2" Grid.Column="3" Margin="0,0,15,0" VerticalAlignment="Top" HorizontalAlignment="Right" Content="Remember me" FontSize="10" IsChecked="{Binding StoreCredentials, Mode=TwoWay}"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,15 @@
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\GoogleImageSearchPOC.Web\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\GoogleImageSearchPOC.Web\bin\ExternalServicesPOC.Web.dll
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\GoogleImageSearchPOC.Web\bin\ExternalServicesPOC.Web.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\GoogleImageSearchPOC.Web\obj\Debug\ExternalServicesPOC.Web.dll
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\GoogleImageSearchPOC.Web\obj\Debug\ExternalServicesPOC.Web.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\ExternalServicesPOC.Web\bin\ExternalServicesPOC.Web.dll
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\ExternalServicesPOC.Web\bin\ExternalServicesPOC.Web.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\ExternalServicesPOC.Web\bin\MediaVF.Common.Communication.dll
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\ExternalServicesPOC.Web\bin\MediaVF.Common.Entities.dll
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\ExternalServicesPOC.Web\bin\Newtonsoft.Json.Net35.dll
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\ExternalServicesPOC.Web\bin\MediaVF.Common.Communication.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\ExternalServicesPOC.Web\bin\MediaVF.Common.Entities.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\ExternalServicesPOC.Web\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\ExternalServicesPOC.Web\obj\Debug\ExternalServicesPOC.Web.dll
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\ExternalServicesPOC.Web\obj\Debug\ExternalServicesPOC.Web.pdb

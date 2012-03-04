@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MediaVF.Entities.ArtistTrack" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="ArtistTrackEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Artists" EntityType="MediaVF.Entities.ArtistTrack.Artist" />
+    <EntitySet Name="Labels" EntityType="MediaVF.Entities.ArtistTrack.Label" />
+    <EntitySet Name="Users" EntityType="MediaVF.Entities.ArtistTrack.User" />
+    <EntitySet Name="UserArtists" EntityType="MediaVF.Entities.ArtistTrack.UserArtist" />
+    <AssociationSet Name="FK_Band_Label" Association="MediaVF.Entities.ArtistTrack.FK_Band_Label">
+      <End Role="Label" EntitySet="Labels" />
+      <End Role="Artist" EntitySet="Artists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserArtist_Artist" Association="MediaVF.Entities.ArtistTrack.FK_UserArtist_Artist">
+      <End Role="Artist" EntitySet="Artists" />
+      <End Role="UserArtist" EntitySet="UserArtists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserArtist_User" Association="MediaVF.Entities.ArtistTrack.FK_UserArtist_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserArtist" EntitySet="UserArtists" />
+    </AssociationSet>
+    <EntitySet Name="Applications" EntityType="MediaVF.Entities.ArtistTrack.Application" />
+    <EntitySet Name="Modules" EntityType="MediaVF.Entities.ArtistTrack.Module" />
+    <EntitySet Name="ModuleDirectories" EntityType="MediaVF.Entities.ArtistTrack.ModuleDirectory" />
+    <AssociationSet Name="FK_ModuleDirectory_Application" Association="MediaVF.Entities.ArtistTrack.FK_ModuleDirectory_Application">
+      <End Role="Application" EntitySet="Applications" />
+      <End Role="ModuleDirectory" EntitySet="ModuleDirectories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Module_ModuleDirectory" Association="MediaVF.Entities.ArtistTrack.FK_Module_ModuleDirectory">
+      <End Role="ModuleDirectory" EntitySet="ModuleDirectories" />
+      <End Role="Module" EntitySet="Modules" />
+    </AssociationSet>
+    <EntitySet Name="ArtistGenres" EntityType="MediaVF.Entities.ArtistTrack.ArtistGenre" />
+    <EntitySet Name="Cities" EntityType="MediaVF.Entities.ArtistTrack.City" />
+    <EntitySet Name="Countries" EntityType="MediaVF.Entities.ArtistTrack.Country" />
+    <EntitySet Name="Genres" EntityType="MediaVF.Entities.ArtistTrack.Genre" />
+    <EntitySet Name="Regexes" EntityType="MediaVF.Entities.ArtistTrack.Regex" />
+    <EntitySet Name="RegexCaptures" EntityType="MediaVF.Entities.ArtistTrack.RegexCapture" />
+    <EntitySet Name="StateOrProvinces" EntityType="MediaVF.Entities.ArtistTrack.StateOrProvince" />
+    <EntitySet Name="TourDates" EntityType="MediaVF.Entities.ArtistTrack.TourDate" />
+    <EntitySet Name="Venues" EntityType="MediaVF.Entities.ArtistTrack.Venue" />
+    <AssociationSet Name="FK_ArtistGenre_Artist" Association="MediaVF.Entities.ArtistTrack.FK_ArtistGenre_Artist">
+      <End Role="Artist" EntitySet="Artists" />
+      <End Role="ArtistGenre" EntitySet="ArtistGenres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArtistGenre_ArtistGenre" Association="MediaVF.Entities.ArtistTrack.FK_ArtistGenre_ArtistGenre">
+      <End Role="Genre" EntitySet="Genres" />
+      <End Role="ArtistGenre" EntitySet="ArtistGenres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_Country" Association="MediaVF.Entities.ArtistTrack.FK_City_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="City" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_StateOrProvince" Association="MediaVF.Entities.ArtistTrack.FK_City_StateOrProvince">
+      <End Role="StateOrProvince" EntitySet="StateOrProvinces" />
+      <End Role="City" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourDate_City" Association="MediaVF.Entities.ArtistTrack.FK_TourDate_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="TourDate" EntitySet="TourDates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Venue_City" Association="MediaVF.Entities.ArtistTrack.FK_Venue_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Venue" EntitySet="Venues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StateOrProvince_Country" Association="MediaVF.Entities.ArtistTrack.FK_StateOrProvince_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="StateOrProvince" EntitySet="StateOrProvinces" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourDate_Country" Association="MediaVF.Entities.ArtistTrack.FK_TourDate_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="TourDate" EntitySet="TourDates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Regex_Module" Association="MediaVF.Entities.ArtistTrack.FK_Regex_Module">
+      <End Role="Module" EntitySet="Modules" />
+      <End Role="Regex" EntitySet="Regexes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegexCapture_Regex" Association="MediaVF.Entities.ArtistTrack.FK_RegexCapture_Regex">
+      <End Role="Regex" EntitySet="Regexes" />
+      <End Role="RegexCapture" EntitySet="RegexCaptures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourDate_StateOrProvince" Association="MediaVF.Entities.ArtistTrack.FK_TourDate_StateOrProvince">
+      <End Role="StateOrProvince" EntitySet="StateOrProvinces" />
+      <End Role="TourDate" EntitySet="TourDates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourDate_Venue" Association="MediaVF.Entities.ArtistTrack.FK_TourDate_Venue">
+      <End Role="Venue" EntitySet="Venues" />
+      <End Role="TourDate" EntitySet="TourDates" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Artist">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="FacebookID" Type="Int64" />
+    <Property Name="LabelID" Type="Int32" />
+    <Property Name="Hometown" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Label" Relationship="MediaVF.Entities.ArtistTrack.FK_Band_Label" FromRole="Artist" ToRole="Label" />
+    <NavigationProperty Name="UserArtists" Relationship="MediaVF.Entities.ArtistTrack.FK_UserArtist_Artist" FromRole="Artist" ToRole="UserArtist" />
+    <Property Type="DateTime" Name="Created" Nullable="false" />
+    <Property Type="DateTime" Name="Modified" Nullable="false" />
+    <NavigationProperty Name="ArtistGenres" Relationship="MediaVF.Entities.ArtistTrack.FK_ArtistGenre_Artist" FromRole="Artist" ToRole="ArtistGenre" />
+  </EntityType>
+  <EntityType Name="Label">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Artists" Relationship="MediaVF.Entities.ArtistTrack.FK_Band_Label" FromRole="Label" ToRole="Artist" />
+    <Property Type="DateTime" Name="Created" Nullable="false" />
+    <Property Type="DateTime" Name="Modified" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="SyncWithFacebook" Type="Boolean" Nullable="false" />
+    <Property Name="FacebookEmail" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="FacebookPassword" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="FacebookAccessToken" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="UserArtists" Relationship="MediaVF.Entities.ArtistTrack.FK_UserArtist_User" FromRole="User" ToRole="UserArtist" />
+    <Property Type="DateTime" Name="Created" Nullable="false" />
+    <Property Type="DateTime" Name="Modified" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserArtist">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="ArtistID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Artist" Relationship="MediaVF.Entities.ArtistTrack.FK_UserArtist_Artist" FromRole="UserArtist" ToRole="Artist" />
+    <NavigationProperty Name="User" Relationship="MediaVF.Entities.ArtistTrack.FK_UserArtist_User" FromRole="UserArtist" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Band_Label">
+    <End Role="Label" Type="MediaVF.Entities.ArtistTrack.Label" Multiplicity="0..1" />
+    <End Role="Artist" Type="MediaVF.Entities.ArtistTrack.Artist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Label">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Artist">
+        <PropertyRef Name="LabelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserArtist_Artist">
+    <End Role="Artist" Type="MediaVF.Entities.ArtistTrack.Artist" Multiplicity="1" />
+    <End Role="UserArtist" Type="MediaVF.Entities.ArtistTrack.UserArtist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artist">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserArtist">
+        <PropertyRef Name="ArtistID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserArtist_User">
+    <End Role="User" Type="MediaVF.Entities.ArtistTrack.User" Multiplicity="1" />
+    <End Role="UserArtist" Type="MediaVF.Entities.ArtistTrack.UserArtist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserArtist">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Application">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Created" Nullable="false" />
+    <Property Type="DateTime" Name="Modified" Nullable="false" />
+    <NavigationProperty Name="ModuleDirectories" Relationship="MediaVF.Entities.ArtistTrack.FK_ModuleDirectory_Application" FromRole="Application" ToRole="ModuleDirectory" />
+  </EntityType>
+  <EntityType Name="Module">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="ModuleDirectoryID" Nullable="false" />
+    <Property Type="String" Name="AssemblyName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Class" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ModuleName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Active" Nullable="false" />
+    <Property Type="DateTime" Name="Created" Nullable="false" />
+    <Property Type="DateTime" Name="Modified" Nullable="false" />
+    <NavigationProperty Name="ModuleDirectory" Relationship="MediaVF.Entities.ArtistTrack.FK_Module_ModuleDirectory" FromRole="Module" ToRole="ModuleDirectory" />
+    <NavigationProperty Name="Regexes" Relationship="MediaVF.Entities.ArtistTrack.FK_Regex_Module" FromRole="Module" ToRole="Regex" />
+  </EntityType>
+  <EntityType Name="ModuleDirectory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="ApplicationID" Nullable="false" />
+    <Property Type="String" Name="Directory" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="CheckSubFolders" Nullable="false" />
+    <Property Type="DateTime" Name="Created" Nullable="false" />
+    <Property Type="DateTime" Name="Modified" Nullable="false" />
+    <NavigationProperty Name="Application" Relationship="MediaVF.Entities.ArtistTrack.FK_ModuleDirectory_Application" FromRole="ModuleDirectory" ToRole="Application" />
+    <NavigationProperty Name="Modules" Relationship="MediaVF.Entities.ArtistTrack.FK_Module_ModuleDirectory" FromRole="ModuleDirectory" ToRole="Module" />
+  </EntityType>
+  <Association Name="FK_ModuleDirectory_Application">
+    <End Type="MediaVF.Entities.ArtistTrack.Application" Role="Application" Multiplicity="1" />
+    <End Type="MediaVF.Entities.ArtistTrack.ModuleDirectory" Role="ModuleDirectory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ModuleDirectory">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Module_ModuleDirectory">
+    <End Type="MediaVF.Entities.ArtistTrack.ModuleDirectory" Role="ModuleDirectory" Multiplicity="1" />
+    <End Type="MediaVF.Entities.ArtistTrack.Module" Role="Module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleDirectory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Module">
+        <PropertyRef Name="ModuleDirectoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ArtistGenre">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="ArtistID" Nullable="false" />
+    <Property Type="Int32" Name="GenreID" Nullable="false" />
+    <NavigationProperty Name="Artist" Relationship="MediaVF.Entities.ArtistTrack.FK_ArtistGenre_Artist" FromRole="ArtistGenre" ToRole="Artist" />
+    <NavigationProperty Name="Genre" Relationship="MediaVF.Entities.ArtistTrack.FK_ArtistGenre_ArtistGenre" FromRole="ArtistGenre" ToRole="Genre" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="CountryID" />
+    <Property Type="Int32" Name="StateOrProvinceID" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Created" Nullable="false" />
+    <Property Type="DateTime" Name="Modified" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="MediaVF.Entities.ArtistTrack.FK_City_Country" FromRole="City" ToRole="Country" />
+    <NavigationProperty Name="StateOrProvince" Relationship="MediaVF.Entities.ArtistTrack.FK_City_StateOrProvince" FromRole="City" ToRole="StateOrProvince" />
+    <NavigationProperty Name="TourDates" Relationship="MediaVF.Entities.ArtistTrack.FK_TourDate_City" FromRole="City" ToRole="TourDate" />
+    <NavigationProperty Name="Venues" Relationship="MediaVF.Entities.ArtistTrack.FK_Venue_City" FromRole="City" ToRole="Venue" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Created" Nullable="false" />
+    <Property Type="DateTime" Name="Modified" Nullable="false" />
+    <NavigationProperty Name="Cities" Relationship="MediaVF.Entities.ArtistTrack.FK_City_Country" FromRole="Country" ToRole="City" />
+    <NavigationProperty Name="StateOrProvinces" Relationship="MediaVF.Entities.ArtistTrack.FK_StateOrProvince_Country" FromRole="Country" ToRole="StateOrProvince" />
+    <NavigationProperty Name="TourDates" Relationship="MediaVF.Entities.ArtistTrack.FK_TourDate_Country" FromRole="Country" ToRole="TourDate" />
+  </EntityType>
+  <EntityType Name="Genre">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Created" Nullable="false" />
+    <Property Type="DateTime" Name="Modified" Nullable="false" />
+    <NavigationProperty Name="ArtistGenres" Relationship="MediaVF.Entities.ArtistTrack.FK_ArtistGenre_ArtistGenre" FromRole="Genre" ToRole="ArtistGenre" />
+  </EntityType>
+  <EntityType Name="Regex">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="ModuleID" Nullable="false" />
+    <Property Type="String" Name="RegexPattern" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MatchType" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Created" Nullable="false" />
+    <Property Type="DateTime" Name="Modified" Nullable="false" />
+    <NavigationProperty Name="Module" Relationship="MediaVF.Entities.ArtistTrack.FK_Regex_Module" FromRole="Regex" ToRole="Module" />
+    <NavigationProperty Name="RegexCaptures" Relationship="MediaVF.Entities.ArtistTrack.FK_RegexCapture_Regex" FromRole="Regex" ToRole="RegexCapture" />
+  </EntityType>
+  <EntityType Name="RegexCapture">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="RegexID" Nullable="false" />
+    <Property Type="Int32" Name="CaptureIndex" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Created" Nullable="false" />
+    <Property Type="DateTime" Name="Modified" Nullable="false" />
+    <NavigationProperty Name="Regex" Relationship="MediaVF.Entities.ArtistTrack.FK_RegexCapture_Regex" FromRole="RegexCapture" ToRole="Regex" />
+  </EntityType>
+  <EntityType Name="StateOrProvince">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="CountryID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Created" Nullable="false" />
+    <Property Type="DateTime" Name="Modified" Nullable="false" />
+    <NavigationProperty Name="Cities" Relationship="MediaVF.Entities.ArtistTrack.FK_City_StateOrProvince" FromRole="StateOrProvince" ToRole="City" />
+    <NavigationProperty Name="Country" Relationship="MediaVF.Entities.ArtistTrack.FK_StateOrProvince_Country" FromRole="StateOrProvince" ToRole="Country" />
+    <NavigationProperty Name="TourDates" Relationship="MediaVF.Entities.ArtistTrack.FK_TourDate_StateOrProvince" FromRole="StateOrProvince" ToRole="TourDate" />
+  </EntityType>
+  <EntityType Name="TourDate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="ArtistID" Nullable="false" />
+    <Property Type="Int32" Name="VenueID" />
+    <Property Type="String" Name="VenueName" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="CityID" />
+    <Property Type="String" Name="CityName" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="StateOrProvinceID" />
+    <Property Type="String" Name="StateOrProvince" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="CountryID" />
+    <Property Type="String" Name="Country" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Date" Nullable="false" />
+    <Property Type="DateTime" Name="DoorsOpen" />
+    <Property Type="String" Name="ShowStarts" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="City" Relationship="MediaVF.Entities.ArtistTrack.FK_TourDate_City" FromRole="TourDate" ToRole="City" />
+    <NavigationProperty Name="Country1" Relationship="MediaVF.Entities.ArtistTrack.FK_TourDate_Country" FromRole="TourDate" ToRole="Country" />
+    <NavigationProperty Name="StateOrProvince1" Relationship="MediaVF.Entities.ArtistTrack.FK_TourDate_StateOrProvince" FromRole="TourDate" ToRole="StateOrProvince" />
+    <NavigationProperty Name="Venue" Relationship="MediaVF.Entities.ArtistTrack.FK_TourDate_Venue" FromRole="TourDate" ToRole="Venue" />
+  </EntityType>
+  <EntityType Name="Venue">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Address1" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Address2" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CityName" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="CityID" />
+    <Property Type="String" Name="ZipCode" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Created" Nullable="false" />
+    <Property Type="DateTime" Name="Modified" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="MediaVF.Entities.ArtistTrack.FK_Venue_City" FromRole="Venue" ToRole="City" />
+    <NavigationProperty Name="TourDates" Relationship="MediaVF.Entities.ArtistTrack.FK_TourDate_Venue" FromRole="Venue" ToRole="TourDate" />
+  </EntityType>
+  <Association Name="FK_ArtistGenre_Artist">
+    <End Type="MediaVF.Entities.ArtistTrack.Artist" Role="Artist" Multiplicity="1" />
+    <End Type="MediaVF.Entities.ArtistTrack.ArtistGenre" Role="ArtistGenre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artist">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ArtistGenre">
+        <PropertyRef Name="ArtistID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArtistGenre_ArtistGenre">
+    <End Type="MediaVF.Entities.ArtistTrack.Genre" Role="Genre" Multiplicity="1" />
+    <End Type="MediaVF.Entities.ArtistTrack.ArtistGenre" Role="ArtistGenre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ArtistGenre">
+        <PropertyRef Name="GenreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_Country">
+    <End Type="MediaVF.Entities.ArtistTrack.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="MediaVF.Entities.ArtistTrack.City" Role="City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_StateOrProvince">
+    <End Type="MediaVF.Entities.ArtistTrack.StateOrProvince" Role="StateOrProvince" Multiplicity="0..1" />
+    <End Type="MediaVF.Entities.ArtistTrack.City" Role="City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateOrProvince">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="StateOrProvinceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourDate_City">
+    <End Type="MediaVF.Entities.ArtistTrack.City" Role="City" Multiplicity="0..1" />
+    <End Type="MediaVF.Entities.ArtistTrack.TourDate" Role="TourDate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TourDate">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Venue_City">
+    <End Type="MediaVF.Entities.ArtistTrack.City" Role="City" Multiplicity="0..1" />
+    <End Type="MediaVF.Entities.ArtistTrack.Venue" Role="Venue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Venue">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StateOrProvince_Country">
+    <End Type="MediaVF.Entities.ArtistTrack.Country" Role="Country" Multiplicity="1" />
+    <End Type="MediaVF.Entities.ArtistTrack.StateOrProvince" Role="StateOrProvince" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StateOrProvince">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourDate_Country">
+    <End Type="MediaVF.Entities.ArtistTrack.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="MediaVF.Entities.ArtistTrack.TourDate" Role="TourDate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TourDate">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Regex_Module">
+    <End Type="MediaVF.Entities.ArtistTrack.Module" Role="Module" Multiplicity="1" />
+    <End Type="MediaVF.Entities.ArtistTrack.Regex" Role="Regex" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Module">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Regex">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegexCapture_Regex">
+    <End Type="MediaVF.Entities.ArtistTrack.Regex" Role="Regex" Multiplicity="1" />
+    <End Type="MediaVF.Entities.ArtistTrack.RegexCapture" Role="RegexCapture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Regex">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RegexCapture">
+        <PropertyRef Name="RegexID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourDate_StateOrProvince">
+    <End Type="MediaVF.Entities.ArtistTrack.StateOrProvince" Role="StateOrProvince" Multiplicity="0..1" />
+    <End Type="MediaVF.Entities.ArtistTrack.TourDate" Role="TourDate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateOrProvince">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TourDate">
+        <PropertyRef Name="StateOrProvinceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourDate_Venue">
+    <End Type="MediaVF.Entities.ArtistTrack.Venue" Role="Venue" Multiplicity="0..1" />
+    <End Type="MediaVF.Entities.ArtistTrack.TourDate" Role="TourDate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venue">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TourDate">
+        <PropertyRef Name="VenueID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

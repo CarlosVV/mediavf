@@ -1,0 +1,5 @@
+D:\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Facebook\Bin\Debug\MediaVF.Silverlight.Common.Facebook.dll
+D:\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Facebook\Bin\Debug\MediaVF.Silverlight.Common.Facebook.pdb
+D:\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Facebook\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Facebook\obj\Debug\MediaVF.Silverlight.Common.Facebook.dll
+D:\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Facebook\obj\Debug\MediaVF.Silverlight.Common.Facebook.pdb

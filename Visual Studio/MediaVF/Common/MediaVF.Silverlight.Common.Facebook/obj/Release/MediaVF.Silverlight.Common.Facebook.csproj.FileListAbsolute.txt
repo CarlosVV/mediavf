@@ -1,0 +1,12 @@
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Facebook\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Facebook\Bin\Release\MediaVF.Silverlight.Common.Facebook.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Facebook\Bin\Release\MediaVF.Silverlight.Common.Facebook.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Facebook\obj\Release\MediaVF.Silverlight.Common.Facebook.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Facebook\obj\Release\MediaVF.Silverlight.Common.Facebook.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\Silverlight\MediaVF.Silverlight.Common.Facebook.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\Silverlight\MediaVF.Silverlight.Common.Facebook.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\Silverlight\MediaVF.Silverlight.Common.Facebook.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\Silverlight\MediaVF.Silverlight.Common.Facebook.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Facebook\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Facebook\obj\Release\MediaVF.Silverlight.Common.Facebook.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common.Facebook\obj\Release\MediaVF.Silverlight.Common.Facebook.pdb

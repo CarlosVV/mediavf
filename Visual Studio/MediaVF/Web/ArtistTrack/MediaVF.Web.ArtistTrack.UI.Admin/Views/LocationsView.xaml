@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="MediaVF.Web.ArtistTrack.UI.Admin.Views.LocationsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+
+    <Grid x:Name="LayoutRoot" Background="White">
+
+        <Grid Name="LocationInfo" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <CheckBox Name="AllowLocationsCheck" Grid.Row="0" Margin="8,2,2,2" Content="Add location(s)" />
+
+            <ContentControl Grid.Row="1" IsEnabled="{Binding ElementName=AllowLocationsCheck, Path=IsChecked}" HorizontalContentAlignment="Stretch">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="13"/>
+                        <RowDefinition Height="33"/>
+                        <RowDefinition Height="33"/>
+                        <RowDefinition Height="33"/>
+                        <RowDefinition Height="33"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="95" />
+                        <ColumnDefinition Width="130" />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="80" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Name="Address1Label" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Address:" />
+                    <TextBox Name="Address1TextBox" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="5" Text="{Binding Address1, Mode=TwoWay}" />
+
+                    <TextBox Name="Address2TextBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="5" Text="{Binding Address2, Mode=TwoWay}" />
+
+                    <TextBlock Name="CityLabel" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="City:" />
+                    <TextBox Name="CityTextBox" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="5" Text="{Binding City, Mode=TwoWay}" />
+
+                    <TextBlock Name="StateLabel" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="State/ Province:" />
+                    <TextBox Name="StateTextBox" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="5" Text="{Binding State, Mode=TwoWay}" />
+                    <TextBlock Name="ZipCodeLabel" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Zip:" />
+                    <TextBox Name="ZipCodeTextBox" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Margin="5" Text="{Binding State, Mode=TwoWay}" />
+
+                    <TextBlock Name="CountryLabel" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Country:" />
+                    <TextBox Name="CountryTextBox" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Margin="5" Text="{Binding Country, Mode=TwoWay}" />
+                    <Button Name="AddButton" Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" Margin="5" Content="Add" />
+
+                    <TextBlock Grid.Row="0" Grid.Column="4" VerticalAlignment="Bottom" Margin="5,5,0,0" Text="Locations:" />
+                    <ListBox Grid.Row="1" Grid.RowSpan="5" Grid.Column="4" Margin="10,5,5,5" />
+                </Grid>
+
+            </ContentControl>
+        </Grid>
+
+    </Grid>
+</UserControl>

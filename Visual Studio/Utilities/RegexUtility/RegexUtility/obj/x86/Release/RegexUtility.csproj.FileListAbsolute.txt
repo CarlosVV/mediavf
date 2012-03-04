@@ -1,0 +1,13 @@
+C:\Users\Evan\Projects\Utilities\RegexUtility\RegexUtility\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Utilities\RegexUtility\RegexUtility\obj\x86\Release\RegexTester.baml
+C:\Users\Evan\Projects\Utilities\RegexUtility\RegexUtility\obj\x86\Release\RegexTester.g.cs
+C:\Users\Evan\Projects\Utilities\RegexUtility\RegexUtility\obj\x86\Release\App.g.cs
+C:\Users\Evan\Projects\Utilities\RegexUtility\RegexUtility\obj\x86\Release\RegexUtility_MarkupCompile.cache
+C:\Users\Evan\Projects\Utilities\RegexUtility\RegexUtility\obj\x86\Release\RegexUtility.g.resources
+C:\Users\Evan\Projects\Utilities\RegexUtility\RegexUtility\obj\x86\Release\RegexUtility.Properties.Resources.resources
+C:\Users\Evan\Projects\Utilities\RegexUtility\RegexUtility\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Users\Evan\Projects\Utilities\RegexUtility\RegexUtility\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\Evan\Projects\Utilities\RegexUtility\RegexUtility\bin\Release\RegexUtility.exe
+C:\Users\Evan\Projects\Utilities\RegexUtility\RegexUtility\bin\Release\RegexUtility.pdb
+C:\Users\Evan\Projects\Utilities\RegexUtility\RegexUtility\obj\x86\Release\RegexUtility.exe
+C:\Users\Evan\Projects\Utilities\RegexUtility\RegexUtility\obj\x86\Release\RegexUtility.pdb

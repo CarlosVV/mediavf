@@ -1,0 +1,17 @@
+﻿<configuration>
+  <system.serviceModel>
+    <bindings />
+    <client>
+      <endpoint
+        name="ArtistTrackService"
+        address="http://localhost:50470/ArtistTrackService.svc"
+        binding="basicHttpBinding"
+        contract="MediaVF.UI.Core.IInvocableService" />
+      <endpoint
+        name="ConfigurationService"
+        address="http://localhost:50470/ArtistTrackService.svc/Configuration"
+        binding="basicHttpBinding"
+        contract="MediaVF.UI.Core.Configuration.IConfigurationService" />
+    </client>
+  </system.serviceModel>
+</configuration>

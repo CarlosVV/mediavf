@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.swing.tree.DefaultMutableTreeNode"/>
+<fullyQualifiedTypeName name="javax.swing.event.TreeExpansionListener"/>
+<fullyQualifiedTypeName name="java.util.Enumeration"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.awt.GridBagConstraints"/>
+<fullyQualifiedTypeName name="org.farng.mp3.id3.ID3v2_4"/>
+<fullyQualifiedTypeName name="java.net.URL"/>
+<fullyQualifiedTypeName name="java.net.MalformedURLException"/>
+<fullyQualifiedTypeName name="java.util.Collection"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="javax.swing.SwingWorker"/>
+</qualifiedTypeNameHistroy>

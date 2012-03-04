@@ -1,0 +1,6 @@
+C:\Users\Evan\Projects\BandAlerts\Build\Service.svccfg
+C:\Users\Evan\Projects\BandAlerts\Build\BandAlerts.Services.ListenerServices.dll
+C:\Users\Evan\Projects\BandAlerts\Build\BandAlerts.Services.ListenerServices.pdb
+C:\Users\Evan\Projects\BandAlerts\BandAlerts.Services.ListenerServices\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\BandAlerts\BandAlerts.Services.ListenerServices\obj\Debug\BandAlerts.Services.ListenerServices.dll
+C:\Users\Evan\Projects\BandAlerts\BandAlerts.Services.ListenerServices\obj\Debug\BandAlerts.Services.ListenerServices.pdb
