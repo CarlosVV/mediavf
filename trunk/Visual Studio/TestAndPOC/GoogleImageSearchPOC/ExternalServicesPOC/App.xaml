@@ -1,0 +1,19 @@
+﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:cfg="clr-namespace:ExternalServicesPOC.Configuration"
+             x:Class="ExternalServicesPOC.App"
+             >
+    <Application.Resources>
+        
+        <cfg:FacebookSettings x:Key="facebookSettings"
+                              EncryptionKey="19b293d5-48d6-46bc-bc76-a0aa1247c80c"
+                              AuthorizationUrl="https://www.facebook.com/dialog/oauth"
+                              AccessTokenUrl="https://graph.facebook.com/oauth/access_token"
+                              RedirectUrl="http://localhost/ExternalServicesPOC/FacebookAuthorized.aspx"
+                              ApplicationID="137102866376097"
+                              ApplicationSecret="57e98fd2bc3d67f106ce3368c5172b09"
+                              Scope="user_about_me,offline_access" />
+        
+    </Application.Resources>
+</Application>

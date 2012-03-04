@@ -1,0 +1,10 @@
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\Silverlight\MediaVF.Silverlight.Common.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\Silverlight\MediaVF.Silverlight.Common.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common\obj\Debug\MediaVF.Silverlight.Common.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common\obj\Debug\MediaVF.Silverlight.Common.pdb
+D:\Projects\Visual Studio\MediaVF\Common\Build\Silverlight\MediaVF.Silverlight.Common.dll
+D:\Projects\Visual Studio\MediaVF\Common\Build\Silverlight\MediaVF.Silverlight.Common.pdb
+D:\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common\obj\Debug\MediaVF.Silverlight.Common.dll
+D:\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Common\obj\Debug\MediaVF.Silverlight.Common.pdb

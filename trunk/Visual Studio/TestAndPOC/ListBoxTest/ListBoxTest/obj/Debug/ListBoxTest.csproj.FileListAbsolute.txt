@@ -1,0 +1,13 @@
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest\Bin\Debug\ListBoxTest.dll
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest\Bin\Debug\ListBoxTest.pdb
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest\Bin\Debug\AppManifest.xaml
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest\Bin\Debug\ListBoxTest.xap
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest\Bin\Debug\ListBoxTestTestPage.html
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest\obj\Debug\App.g.i.cs
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest\obj\Debug\MainPage.g.i.cs
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest\obj\Debug\ListBoxTest.g.resources
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest\obj\Debug\ListBoxTest.dll
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest\obj\Debug\ListBoxTest.pdb
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest\obj\Debug\XapCacheFile.xml
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest\obj\Debug\SearchTextBox.g.i.cs

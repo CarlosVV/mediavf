@@ -1,0 +1,5 @@
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest.Web\bin\ListBoxTest.Web.dll
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest.Web\bin\ListBoxTest.Web.pdb
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest.Web\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest.Web\obj\Debug\ListBoxTest.Web.dll
+D:\Projects\Visual Studio\TestAndPOC\ListBoxTest\ListBoxTest.Web\obj\Debug\ListBoxTest.Web.pdb

@@ -1,0 +1,2 @@
+C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\GoogleImageSearchPOC
+Generated_Code\GoogleImageSearchPOC.Web.g.cs

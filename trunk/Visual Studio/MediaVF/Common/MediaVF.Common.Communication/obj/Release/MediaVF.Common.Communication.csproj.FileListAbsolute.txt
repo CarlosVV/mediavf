@@ -1,0 +1,14 @@
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\bin\Release\MediaVF.Common.Communication.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\bin\Release\MediaVF.Common.Communication.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\MediaVF.Common.Communication.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\MediaVF.Common.Communication.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\obj\Release\MediaVF.Common.Communication.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\obj\Release\MediaVF.Common.Communication.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\Desktop\MediaVF.Common.Communication.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\Desktop\MediaVF.Common.Communication.pdb
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\obj\Release\MediaVF.Common.Communication.dll
+C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Communication\obj\Release\MediaVF.Common.Communication.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\Desktop\MediaVF.Common.Communication.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\Desktop\MediaVF.Common.Communication.pdb

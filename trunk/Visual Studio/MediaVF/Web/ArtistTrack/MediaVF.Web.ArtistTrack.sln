@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Web Developer Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaVF.Web.ArtistTrack.UI", "MediaVF.Web.ArtistTrack.UI\MediaVF.Web.ArtistTrack.UI.csproj", "{3E8D5F3B-52B7-42CE-8C9F-349C12A7FBE9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{15262479-6CD2-4F1B-A22D-4723E0690CB1} = {15262479-6CD2-4F1B-A22D-4723E0690CB1}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaVF.Web.ArtistTrack.UI.Artists", "MediaVF.Web.ArtistTrack.UI.Artists\MediaVF.Web.ArtistTrack.UI.Artists.csproj", "{73A7E452-2AA2-409D-BBCF-428B238C720B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaVF.Web.ArtistTrack.UI.Admin", "MediaVF.Web.ArtistTrack.UI.Admin\MediaVF.Web.ArtistTrack.UI.Admin.csproj", "{7E1ECCC9-F474-4A76-8900-D35D3F50A05E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F38A0CAC-398E-4591-A597-40C41260577C} = {F38A0CAC-398E-4591-A597-40C41260577C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaVF.Web.ArtistTrack.Server", "MediaVF.Web.ArtistTrack.Server\MediaVF.Web.ArtistTrack.Server.csproj", "{15262479-6CD2-4F1B-A22D-4723E0690CB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaVF.Web.ArtistTrack.Server.Artists", "MediaVF.Web.ArtistTrack.Server.Artists\MediaVF.Web.ArtistTrack.Server.Artists.csproj", "{E49FAFD1-1FE8-4218-8236-6D1342E34C6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaVF.Web.ArtistTrack.Server.Admin", "MediaVF.Web.ArtistTrack.Server.Admin\MediaVF.Web.ArtistTrack.Server.Admin.csproj", "{F38A0CAC-398E-4591-A597-40C41260577C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E8D5F3B-52B7-42CE-8C9F-349C12A7FBE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E8D5F3B-52B7-42CE-8C9F-349C12A7FBE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E8D5F3B-52B7-42CE-8C9F-349C12A7FBE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E8D5F3B-52B7-42CE-8C9F-349C12A7FBE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73A7E452-2AA2-409D-BBCF-428B238C720B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73A7E452-2AA2-409D-BBCF-428B238C720B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73A7E452-2AA2-409D-BBCF-428B238C720B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73A7E452-2AA2-409D-BBCF-428B238C720B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E1ECCC9-F474-4A76-8900-D35D3F50A05E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E1ECCC9-F474-4A76-8900-D35D3F50A05E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E1ECCC9-F474-4A76-8900-D35D3F50A05E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E1ECCC9-F474-4A76-8900-D35D3F50A05E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15262479-6CD2-4F1B-A22D-4723E0690CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15262479-6CD2-4F1B-A22D-4723E0690CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15262479-6CD2-4F1B-A22D-4723E0690CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15262479-6CD2-4F1B-A22D-4723E0690CB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E49FAFD1-1FE8-4218-8236-6D1342E34C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E49FAFD1-1FE8-4218-8236-6D1342E34C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E49FAFD1-1FE8-4218-8236-6D1342E34C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E49FAFD1-1FE8-4218-8236-6D1342E34C6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F38A0CAC-398E-4591-A597-40C41260577C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F38A0CAC-398E-4591-A597-40C41260577C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F38A0CAC-398E-4591-A597-40C41260577C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F38A0CAC-398E-4591-A597-40C41260577C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,5 @@
+D:\Projects\Visual Studio\MediaVF\Services\Build\Components\MediaVF.Services.PollingServices.RSS.dll
+D:\Projects\Visual Studio\MediaVF\Services\Build\Components\MediaVF.Services.PollingServices.RSS.pdb
+D:\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices.RSS\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices.RSS\obj\Debug\MediaVF.Services.PollingServices.RSS.dll
+D:\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices.RSS\obj\Debug\MediaVF.Services.PollingServices.RSS.pdb

@@ -1,0 +1,6 @@
+D:\Projects\Visual Studio\MediaVF\Services\Build\Seed.config
+D:\Projects\Visual Studio\MediaVF\Services\Build\MediaVF.Services.Polling.dll
+D:\Projects\Visual Studio\MediaVF\Services\Build\MediaVF.Services.Polling.pdb
+D:\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices\obj\Debug\MediaVF.Services.Polling.dll
+D:\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices\obj\Debug\MediaVF.Services.Polling.pdb

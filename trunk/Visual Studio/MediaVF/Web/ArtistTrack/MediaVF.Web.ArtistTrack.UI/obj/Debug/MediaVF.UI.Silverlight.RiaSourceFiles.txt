@@ -1,0 +1,1 @@
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\MediaVF.UI.Silverlight.Web\MediaVF.UI.Silverlight.Web.csproj,634428873437856029,Properties\AssemblyInfo.cs,

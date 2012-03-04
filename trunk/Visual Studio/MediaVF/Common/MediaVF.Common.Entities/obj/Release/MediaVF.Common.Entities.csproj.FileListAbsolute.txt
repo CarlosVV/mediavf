@@ -1,0 +1,5 @@
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\MediaVF.Common.Entities.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\MediaVF.Common.Entities.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Entities\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Entities\obj\Release\MediaVF.Common.Entities.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Entities\obj\Release\MediaVF.Common.Entities.pdb

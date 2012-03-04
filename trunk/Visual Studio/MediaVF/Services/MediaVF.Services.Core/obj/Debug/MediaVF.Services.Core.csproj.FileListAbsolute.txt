@@ -1,0 +1,47 @@
+C:\Users\Evan\Projects\MediaVF\MediaVF.Services.Core\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\MediaVF\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.Properties.Resources.resources
+C:\Users\Evan\Projects\MediaVF\MediaVF.Services.Core\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Evan\Projects\MediaVF\MediaVF.Services.Core\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Evan\Projects\MediaVF\Build\Service.svccfg
+C:\Users\Evan\Projects\MediaVF\Build\MediaVF.Services.Core.exe
+C:\Users\Evan\Projects\MediaVF\Build\MediaVF.Services.Core.pdb
+C:\Users\Evan\Projects\MediaVF\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.exe
+C:\Users\Evan\Projects\MediaVF\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.pdb
+C:\Users\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.exe
+C:\Users\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.pdb
+C:\Users\Evan\Projects\WinForms\MediaVF\MediaVF Services\Build\Service.config
+C:\Users\Evan\Projects\WinForms\MediaVF\MediaVF Services\Build\MediaVF.Services.Core.exe
+C:\Users\Evan\Projects\WinForms\MediaVF\MediaVF Services\Build\MediaVF.Services.Core.pdb
+C:\Users\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.Core\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.Properties.Resources.resources
+C:\Users\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.Core\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.Core\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.exe
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.pdb
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.Core\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.Properties.Resources.resources
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.Core\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.Core\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\Build\Service.config
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\Build\MediaVF.Services.Core.exe
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\Build\MediaVF.Services.Core.pdb
+C:\Users\Evan\HP Backup\Evan\Projects\MediaVF\MediaVF Services\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.exe
+C:\Users\Evan\HP Backup\Evan\Projects\MediaVF\MediaVF Services\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\Build\Seed.config
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\Build\MediaVF.Services.Core.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\Build\MediaVF.Services.Core.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.Core\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.Properties.Resources.resources
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.Core\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.Core\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.pdb
+D:\Projects\Visual Studio\MediaVF\Services\Build\Seed.config
+D:\Projects\Visual Studio\MediaVF\Services\Build\MediaVF.Services.Core.dll
+D:\Projects\Visual Studio\MediaVF\Services\Build\MediaVF.Services.Core.pdb
+D:\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.Core\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.Properties.Resources.resources
+D:\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.Core\obj\Debug\GenerateResource.read.1.tlog
+D:\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.Core\obj\Debug\GenerateResource.write.1.tlog
+D:\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.dll
+D:\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.Core\obj\Debug\MediaVF.Services.Core.pdb

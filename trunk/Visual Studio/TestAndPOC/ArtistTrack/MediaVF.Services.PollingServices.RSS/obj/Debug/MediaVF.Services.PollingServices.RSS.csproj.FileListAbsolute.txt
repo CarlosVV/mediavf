@@ -1,0 +1,15 @@
+C:\Users\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.PollingServices.RSS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\WinForms\MediaVF\MediaVF Services\Build\Components\MediaVF.Services.PollingServices.RSS.dll
+C:\Users\Evan\Projects\WinForms\MediaVF\MediaVF Services\Build\Components\MediaVF.Services.PollingServices.RSS.pdb
+C:\Users\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.PollingServices.RSS\obj\Debug\MediaVF.Services.PollingServices.RSS.dll
+C:\Users\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.PollingServices.RSS\obj\Debug\MediaVF.Services.PollingServices.RSS.pdb
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.PollingServices.RSS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.PollingServices.RSS\obj\Debug\MediaVF.Services.PollingServices.RSS.dll
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\Build\Components\MediaVF.Services.PollingServices.RSS.dll
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\Build\Components\MediaVF.Services.PollingServices.RSS.pdb
+C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF Services\MediaVF.Services.PollingServices.RSS\obj\Debug\MediaVF.Services.PollingServices.RSS.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices.RSS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices.RSS\obj\Debug\MediaVF.Services.PollingServices.RSS.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices.RSS\obj\Debug\MediaVF.Services.PollingServices.RSS.pdb
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\Build\Components\MediaVF.Services.PollingServices.RSS.dll
+C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\Build\Components\MediaVF.Services.PollingServices.RSS.pdb

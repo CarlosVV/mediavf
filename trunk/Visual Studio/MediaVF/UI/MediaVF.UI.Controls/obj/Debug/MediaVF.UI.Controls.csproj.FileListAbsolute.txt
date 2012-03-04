@@ -1,0 +1,9 @@
+D:\Projects\Visual Studio\MediaVF\UI\MediaVF.UI.Controls\Bin\Debug\MediaVF.UI.Controls.dll
+D:\Projects\Visual Studio\MediaVF\UI\MediaVF.UI.Controls\Bin\Debug\MediaVF.UI.Controls.pdb
+D:\Projects\Visual Studio\MediaVF\UI\MediaVF.UI.Controls\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\Visual Studio\MediaVF\UI\MediaVF.UI.Controls\obj\Debug\SearchTextBox.g.i.cs
+D:\Projects\Visual Studio\MediaVF\UI\MediaVF.UI.Controls\obj\Debug\MediaVF.UI.Controls.g.resources
+D:\Projects\Visual Studio\MediaVF\UI\MediaVF.UI.Controls\obj\Debug\MediaVF.UI.Controls.dll
+D:\Projects\Visual Studio\MediaVF\UI\MediaVF.UI.Controls\obj\Debug\MediaVF.UI.Controls.pdb
+D:\Projects\Visual Studio\MediaVF\UI\Build\MediaVF.UI.Controls.dll
+D:\Projects\Visual Studio\MediaVF\UI\Build\MediaVF.UI.Controls.pdb
