@@ -1,2 +1,0 @@
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\MediaVF.UI.Silverlight
-Generated_Code\MediaVF.UI.Silverlight.Web.g.cs

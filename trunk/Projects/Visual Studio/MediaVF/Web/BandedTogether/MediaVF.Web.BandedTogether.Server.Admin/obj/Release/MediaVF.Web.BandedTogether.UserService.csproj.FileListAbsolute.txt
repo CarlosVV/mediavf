@@ -1,5 +1,0 @@
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\BandedTogether\MediaVF.Web.BandedTogether.Server\Components\MediaVF.Web.BandedTogether.UserService.dll
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\BandedTogether\MediaVF.Web.BandedTogether.Server\Components\MediaVF.Web.BandedTogether.UserService.pdb
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\BandedTogether\MediaVF.Web.BandedTogether.UserService\obj\Release\ResolveAssemblyReference.cache
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\BandedTogether\MediaVF.Web.BandedTogether.UserService\obj\Release\MediaVF.Web.BandedTogether.UserService.dll
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\BandedTogether\MediaVF.Web.BandedTogether.UserService\obj\Release\MediaVF.Web.BandedTogether.UserService.pdb

@@ -1,6 +1,0 @@
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\Build\MediaVF.Services.PollingServices.dll
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\Build\MediaVF.Services.PollingServices.pdb
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices\obj\Release\ResolveAssemblyReference.cache
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices\obj\Release\MediaVF.Services.PollingServices.dll
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\MediaVF.Services.PollingServices\obj\Release\MediaVF.Services.PollingServices.pdb
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Services\Build\Seed.config

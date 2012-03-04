@@ -1,5 +1,0 @@
-C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\GoogleImageSearchPOC.Web\bin\GoogleImageSearchPOC.Web.dll
-C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\GoogleImageSearchPOC.Web\bin\GoogleImageSearchPOC.Web.pdb
-C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\GoogleImageSearchPOC.Web\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\GoogleImageSearchPOC.Web\obj\Debug\GoogleImageSearchPOC.Web.dll
-C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\GoogleImageSearchPOC.Web\obj\Debug\GoogleImageSearchPOC.Web.pdb

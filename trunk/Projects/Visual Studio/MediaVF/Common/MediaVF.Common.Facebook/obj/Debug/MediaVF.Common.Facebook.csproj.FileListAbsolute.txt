@@ -1,9 +1,0 @@
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Facebook\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Facebook\bin\Debug\MediaVF.Common.Facebook.dll
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Facebook\bin\Debug\MediaVF.Common.Facebook.pdb
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Facebook\bin\Debug\MediaVF.Common.Communication.dll
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Facebook\bin\Debug\MediaVF.Common.Communication.pdb
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Facebook\obj\Debug\MediaVF.Common.Facebook.dll
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\MediaVF.Common.Facebook\obj\Debug\MediaVF.Common.Facebook.pdb
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\Desktop\MediaVF.Common.Facebook.dll
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Common\Build\Desktop\MediaVF.Common.Facebook.pdb

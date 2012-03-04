@@ -1,5 +1,0 @@
-C:\Users\Evan\Projects\BandAlerts\Build\Components\BandAlerts.Services.ListenerServices.RSS.dll
-C:\Users\Evan\Projects\BandAlerts\Build\Components\BandAlerts.Services.ListenerServices.RSS.pdb
-C:\Users\Evan\Projects\BandAlerts\BandAlerts.Services.ListenerServices.RSS\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Evan\Projects\BandAlerts\BandAlerts.Services.ListenerServices.RSS\obj\Debug\BandAlerts.Services.ListenerServices.RSS.dll
-C:\Users\Evan\Projects\BandAlerts\BandAlerts.Services.ListenerServices.RSS\obj\Debug\BandAlerts.Services.ListenerServices.RSS.pdb

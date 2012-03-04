@@ -1,6 +1,0 @@
-C:\Users\Evan\Projects\MediaVF\MediaVF.Services.ListenerServices\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Evan\Projects\MediaVF\Build\Service.svccfg
-C:\Users\Evan\Projects\MediaVF\Build\MediaVF.Services.ListenerServices.dll
-C:\Users\Evan\Projects\MediaVF\Build\MediaVF.Services.ListenerServices.pdb
-C:\Users\Evan\Projects\MediaVF\MediaVF.Services.ListenerServices\obj\Debug\MediaVF.Services.ListenerServices.dll
-C:\Users\Evan\Projects\MediaVF\MediaVF.Services.ListenerServices\obj\Debug\MediaVF.Services.ListenerServices.pdb

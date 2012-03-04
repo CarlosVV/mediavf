@@ -1,2 +1,0 @@
-C:\Users\Evan\Projects\Current\Visual Studio\TestAndPOC\GoogleImageSearchPOC\ExternalServicesPOC
-Generated_Code\ExternalServicesPOC.Web.g.cs

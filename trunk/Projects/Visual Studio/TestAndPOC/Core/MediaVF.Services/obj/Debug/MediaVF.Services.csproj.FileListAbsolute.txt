@@ -1,8 +1,0 @@
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\Build\MediaVF.Services.dll
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\Build\MediaVF.Services.pdb
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\MediaVF.Services\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\MediaVF.Services\obj\Debug\MediaVF.Services.Properties.Resources.resources
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\MediaVF.Services\obj\Debug\GenerateResource.read.1.tlog
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\MediaVF.Services\obj\Debug\GenerateResource.write.1.tlog
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\MediaVF.Services\obj\Debug\MediaVF.Services.dll
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\Core\MediaVF.Services\obj\Debug\MediaVF.Services.pdb

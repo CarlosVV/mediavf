@@ -1,8 +1,0 @@
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\ArtistTrack\MediaVF.Services.ArtistTrack.Console\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\ArtistTrack\MediaVF.Services.ArtistTrack.Console\obj\x86\Debug\MediaVF.Services.Console.exe
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\ArtistTrack\MediaVF.Services.ArtistTrack.Console\obj\x86\Debug\MediaVF.Services.Console.pdb
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\ArtistTrack\Build\MediaVF.Services.Console.exe.config
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\ArtistTrack\Build\app.config
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\ArtistTrack\Build\Seed.config
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\ArtistTrack\Build\MediaVF.Services.Console.exe
-C:\Users\Evan\Projects\Current\Visual Studio\MediaVF\Services\ArtistTrack\Build\MediaVF.Services.Console.pdb

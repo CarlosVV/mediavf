@@ -1,5 +1,0 @@
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\MediaVF.Web.Server\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\MediaVF.Web.Server\bin\MediaVF.Web.Server.dll
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\MediaVF.Web.Server\bin\MediaVF.Web.Server.pdb
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\MediaVF.Web.Server\obj\Debug\MediaVF.Web.Server.dll
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Web\MediaVF.Web.Server\obj\Debug\MediaVF.Web.Server.pdb

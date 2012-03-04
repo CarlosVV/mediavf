@@ -1,5 +1,0 @@
-C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF UI\MediaVF.UI\MediaVF.UI.Silverlight.Web\bin\MediaVF.UI.Silverlight.Web.dll
-C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF UI\MediaVF.UI\MediaVF.UI.Silverlight.Web\bin\MediaVF.UI.Silverlight.Web.pdb
-C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF UI\MediaVF.UI\MediaVF.UI.Silverlight.Web\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF UI\MediaVF.UI\MediaVF.UI.Silverlight.Web\obj\Debug\MediaVF.UI.Silverlight.Web.dll
-C:\Users\Evan\HP Backup\Evan\Projects\WinForms\MediaVF\MediaVF UI\MediaVF.UI\MediaVF.UI.Silverlight.Web\obj\Debug\MediaVF.UI.Silverlight.Web.pdb

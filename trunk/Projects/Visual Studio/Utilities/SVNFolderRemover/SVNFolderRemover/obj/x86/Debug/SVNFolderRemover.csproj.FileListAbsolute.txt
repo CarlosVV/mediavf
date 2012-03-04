@@ -1,9 +1,0 @@
-C:\Users\Evan\AppData\Local\Temporary Projects\SVNFolderRemover\bin\Debug\SVNFolderRemover.exe.config
-C:\Users\Evan\AppData\Local\Temporary Projects\SVNFolderRemover\bin\Debug\SVNFolderRemover.exe
-C:\Users\Evan\AppData\Local\Temporary Projects\SVNFolderRemover\bin\Debug\SVNFolderRemover.pdb
-C:\Users\Evan\AppData\Local\Temporary Projects\SVNFolderRemover\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Evan\AppData\Local\Temporary Projects\SVNFolderRemover\obj\x86\Debug\SVNFolderRemover.exe
-C:\Users\Evan\AppData\Local\Temporary Projects\SVNFolderRemover\obj\x86\Debug\SVNFolderRemover.pdb
-C:\Users\Evan\Projects\Visual Studio\Utilities\SVNFolderRemover\SVNFolderRemover\bin\Debug\SVNFolderRemover.exe.config
-C:\Users\Evan\Projects\Visual Studio\Utilities\SVNFolderRemover\SVNFolderRemover\obj\x86\Debug\SVNFolderRemover.exe
-C:\Users\Evan\Projects\Visual Studio\Utilities\SVNFolderRemover\SVNFolderRemover\obj\x86\Debug\SVNFolderRemover.pdb

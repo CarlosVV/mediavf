@@ -1,5 +1,0 @@
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Entities\Bin\Release\MediaVF.Silverlight.Entities.dll
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Entities\Bin\Release\MediaVF.Silverlight.Entities.pdb
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Entities\obj\Release\ResolveAssemblyReference.cache
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Entities\obj\Release\MediaVF.Silverlight.Entities.dll
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Entities\obj\Release\MediaVF.Silverlight.Entities.pdb

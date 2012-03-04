@@ -1,5 +1,0 @@
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\MediaVF.Silverlight.Modularity.dll
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\MediaVF.Silverlight.Modularity.pdb
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Modularity\obj\Release\ResolveAssemblyReference.cache
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Modularity\obj\Release\MediaVF.Silverlight.Modularity.dll
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Silverlight.Modularity\obj\Release\MediaVF.Silverlight.Modularity.pdb

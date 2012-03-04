@@ -1,5 +1,0 @@
-C:\Users\Evan\Projects\MediaVF\MediaVF.Services.ListenerServices.RSS\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Evan\Projects\MediaVF\MediaVF.Services.ListenerServices.RSS\obj\Debug\MediaVF.Services.ListenerServices.RSS.dll
-C:\Users\Evan\Projects\MediaVF\Build\Components\MediaVF.Services.ListenerServices.RSS.dll
-C:\Users\Evan\Projects\MediaVF\Build\Components\MediaVF.Services.ListenerServices.RSS.pdb
-C:\Users\Evan\Projects\MediaVF\MediaVF.Services.ListenerServices.RSS\obj\Debug\MediaVF.Services.ListenerServices.RSS.pdb

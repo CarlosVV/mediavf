@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="MediaVF.Web.BandedTogether.Server.BandedTogetherService" CodeBehind="BandedTogetherService.svc.cs" %>

@@ -1,5 +1,0 @@
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\MediaVF.Common.Modularity.dll
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\Build\MediaVF.Common.Modularity.pdb
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Modularity\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Modularity\obj\Debug\MediaVF.Common.Modularity.dll
-C:\Users\Evan\Projects\Visual Studio\MediaVF\Common\MediaVF.Common.Modularity\obj\Debug\MediaVF.Common.Modularity.pdb

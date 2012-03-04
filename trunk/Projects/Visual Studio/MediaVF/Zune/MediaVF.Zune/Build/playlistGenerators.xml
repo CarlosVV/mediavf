@@ -1,3 +1,0 @@
-<playlistGenerators>
-  <playlistGenerator Name="Test" MediaFolder="C:\Users\Evan\Music" OutputFolder="C:\Users\Evan\Music\Playlists" ScanInterval="00:15:00" PlaylistCreationInterval="1.00:00:00" />
-</playlistGenerators>
