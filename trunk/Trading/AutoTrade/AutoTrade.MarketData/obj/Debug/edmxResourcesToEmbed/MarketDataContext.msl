@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AutoTradeModelStoreContainer" CdmEntityContainer="AutoTradeEntities">
+    <EntitySetMapping Name="Stocks">
+      <EntityTypeMapping TypeName="AutoTradeModel.Stock">
+        <MappingFragment StoreEntitySet="Stock">
+          <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Sector" ColumnName="Sector" />
+          <ScalarProperty Name="Industry" ColumnName="Industry" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StockQuotes">
+      <EntityTypeMapping TypeName="AutoTradeModel.StockQuote">
+        <MappingFragment StoreEntitySet="StockQuote">
+          <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+          <ScalarProperty Name="QuoteDateTime" ColumnName="QuoteDateTime" />
+          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+          <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
+          <ScalarProperty Name="Change" ColumnName="Change" />
+          <ScalarProperty Name="OpenPrice" ColumnName="OpenPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subscriptions">
+      <EntityTypeMapping TypeName="AutoTradeModel.Subscription">
+        <MappingFragment StoreEntitySet="Subscription">
+          <ScalarProperty Name="UpdateInterval" ColumnName="UpdateInterval" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="SubscriptionStock" TypeName="AutoTradeModel.SubscriptionStock" StoreEntitySet="SubscriptionStock">
+      <EndProperty Name="Subscription">
+        <ScalarProperty Name="ID" ColumnName="SubscriptionID" />
+      </EndProperty>
+      <EndProperty Name="Stock">
+        <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

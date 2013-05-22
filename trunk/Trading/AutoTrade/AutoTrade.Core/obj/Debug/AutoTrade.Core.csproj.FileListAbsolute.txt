@@ -1,0 +1,9 @@
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\AutoTrade.Core.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\AutoTrade.Core.pdb
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\log4net.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\log4net.xml
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.csprojResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.pdb
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.Properties.Resources.resources
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.csproj.GenerateResource.Cache
