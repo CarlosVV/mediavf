@@ -1,0 +1,14 @@
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\AutoTrade.MarketData.dll.config
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\AutoTrade.MarketData.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\AutoTrade.MarketData.pdb
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\AutoTrade.Core.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\EntityFramework.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\log4net.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\AutoTrade.Core.pdb
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\EntityFramework.xml
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\log4net.xml
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\obj\Debug\AutoTrade.MarketData.csprojResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\obj\Debug\AutoTrade.MarketData.Properties.Resources.resources
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\obj\Debug\AutoTrade.MarketData.csproj.GenerateResource.Cache
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\obj\Debug\AutoTrade.MarketData.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\obj\Debug\AutoTrade.MarketData.pdb

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AutoTradeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AutoTradeModelStoreContainer">
+    <EntitySet Name="Stock" EntityType="AutoTradeModel.Store.Stock" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StockQuote" EntityType="AutoTradeModel.Store.StockQuote" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subscription" EntityType="AutoTradeModel.Store.Subscription" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SubscriptionStock" EntityType="AutoTradeModel.Store.SubscriptionStock" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_StockQuote_Stock" Association="AutoTradeModel.Store.FK_StockQuote_Stock">
+      <End Role="Stock" EntitySet="Stock" />
+      <End Role="StockQuote" EntitySet="StockQuote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubscriptionStock_Stock" Association="AutoTradeModel.Store.FK_SubscriptionStock_Stock">
+      <End Role="Stock" EntitySet="Stock" />
+      <End Role="SubscriptionStock" EntitySet="SubscriptionStock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubscriptionStock_Subscription" Association="AutoTradeModel.Store.FK_SubscriptionStock_Subscription">
+      <End Role="Subscription" EntitySet="Subscription" />
+      <End Role="SubscriptionStock" EntitySet="SubscriptionStock" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="Symbol" />
+    </Key>
+    <Property Name="Symbol" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Sector" Type="int" />
+    <Property Name="Industry" Type="int" />
+  </EntityType>
+  <EntityType Name="StockQuote">
+    <Key>
+      <PropertyRef Name="Symbol" />
+      <PropertyRef Name="QuoteDateTime" />
+    </Key>
+    <Property Name="Symbol" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="QuoteDateTime" Type="datetime" Nullable="false" />
+    <Property Name="BidPrice" Type="decimal" Nullable="false" Scale="2" />
+    <Property Name="AskPrice" Type="decimal" Nullable="false" Scale="2" />
+    <Property Name="Change" Type="decimal" Nullable="false" Scale="2" />
+    <Property Name="OpenPrice" Type="decimal" Nullable="false" Scale="2" />
+  </EntityType>
+  <EntityType Name="Subscription">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UpdateInterval" Type="time" Nullable="false" Precision="3" />
+    <Property Name="LastUpdated" Type="datetime" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubscriptionStock">
+    <Key>
+      <PropertyRef Name="SubscriptionID" />
+      <PropertyRef Name="Symbol" />
+    </Key>
+    <Property Name="SubscriptionID" Type="int" Nullable="false" />
+    <Property Name="Symbol" Type="nvarchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK_StockQuote_Stock">
+    <End Role="Stock" Type="AutoTradeModel.Store.Stock" Multiplicity="1" />
+    <End Role="StockQuote" Type="AutoTradeModel.Store.StockQuote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock">
+        <PropertyRef Name="Symbol" />
+      </Principal>
+      <Dependent Role="StockQuote">
+        <PropertyRef Name="Symbol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubscriptionStock_Stock">
+    <End Role="Stock" Type="AutoTradeModel.Store.Stock" Multiplicity="1" />
+    <End Role="SubscriptionStock" Type="AutoTradeModel.Store.SubscriptionStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock">
+        <PropertyRef Name="Symbol" />
+      </Principal>
+      <Dependent Role="SubscriptionStock">
+        <PropertyRef Name="Symbol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubscriptionStock_Subscription">
+    <End Role="Subscription" Type="AutoTradeModel.Store.Subscription" Multiplicity="1" />
+    <End Role="SubscriptionStock" Type="AutoTradeModel.Store.SubscriptionStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subscription">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SubscriptionStock">
+        <PropertyRef Name="SubscriptionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

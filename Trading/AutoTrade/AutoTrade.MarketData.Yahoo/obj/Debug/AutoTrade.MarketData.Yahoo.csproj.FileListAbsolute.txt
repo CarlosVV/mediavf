@@ -1,0 +1,15 @@
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\bin\Debug\AutoTrade.MarketData.Yahoo.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\bin\Debug\AutoTrade.MarketData.Yahoo.pdb
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\bin\Debug\AutoTrade.Core.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\bin\Debug\AutoTrade.MarketData.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\bin\Debug\log4net.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\bin\Debug\EntityFramework.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\bin\Debug\AutoTrade.Core.pdb
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\bin\Debug\AutoTrade.MarketData.pdb
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\bin\Debug\log4net.xml
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\bin\Debug\EntityFramework.xml
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\obj\Debug\AutoTrade.MarketData.Yahoo.csprojResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\obj\Debug\AutoTrade.MarketData.Yahoo.Properties.Resources.resources
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\obj\Debug\AutoTrade.MarketData.Yahoo.csproj.GenerateResource.Cache
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\obj\Debug\AutoTrade.MarketData.Yahoo.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\obj\Debug\AutoTrade.MarketData.Yahoo.pdb
