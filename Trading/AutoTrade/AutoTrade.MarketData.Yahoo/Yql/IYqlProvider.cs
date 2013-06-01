@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AutoTrade.MarketData.Yahoo
+namespace AutoTrade.MarketData.Yahoo.Yql
 {
     public interface IYqlProvider
     {

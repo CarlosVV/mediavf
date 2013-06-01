@@ -2,30 +2,14 @@
 using System.IO;
 using System.Net;
 using System.Web;
-using AutoTrade.Core;
 using AutoTrade.MarketData.Yahoo.Exceptions;
+using AutoTrade.MarketData.Yahoo.Yql.Exceptions;
 
-namespace AutoTrade.MarketData.Yahoo
+namespace AutoTrade.MarketData.Yahoo.Yql
 {
     public class YqlExecutor : IYqlExecutor
     {
         #region Constants
-
-        /// <summary>
-        /// The name of the setting in config for the YQL endpoint
-        /// </summary>
-        private const string YqlEndpointSettingName = "YqlEndpoint";
-
-        /// <summary>
-        /// The default endpoint to use for executing YQL queires
-        /// </summary>
-        private const string DefaultYqlEndpoint =
-            "http://query.yahooapis.com/v1/public/yql?q={0}&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
-
-        /// <summary>
-        /// The name of the setting that indicates whether or not to include diagnostic information in the query results
-        /// </summary>
-        private const string IncludeDiagnosticsSettingName = "YqlIncludeDiagnostics";
 
         /// <summary>
         /// The url part for including diagnostics in the results of the query
@@ -39,7 +23,7 @@ namespace AutoTrade.MarketData.Yahoo
         /// <summary>
         /// The app settings provider
         /// </summary>
-        private readonly IAppSettingsProvider _appSettingsProvider;
+        private readonly IYahooMarketDataSettings _settings;
 
         #endregion
 
@@ -48,22 +32,11 @@ namespace AutoTrade.MarketData.Yahoo
         /// <summary>
         /// Instantiates a <see cref="YqlExecutor"/>
         /// </summary>
-        /// <param name="appSettingsProvider"></param>
-        public YqlExecutor(IAppSettingsProvider appSettingsProvider)
+        /// <param name="settings"></param>
+        public YqlExecutor(IYahooMarketDataSettings settings)
         {
-            _appSettingsProvider = appSettingsProvider;
-        }
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Gets flag indicating whether or not to include diagnostic information in the YQL response
-        /// </summary>
-        private bool IncludeDiagnostics
-        {
-            get { return _appSettingsProvider.GetSetting(IncludeDiagnosticsSettingName, false); }
+            if (settings == null) throw new ArgumentNullException("settings");
+            _settings = settings;
         }
 
         #endregion
@@ -78,7 +51,7 @@ namespace AutoTrade.MarketData.Yahoo
         public string ExecuteYqlQuery(string yql)
         {
             // get the url
-            Uri yqlUrl = GetYqlUrl(yql);
+            string yqlUrl = GetYqlUrl(yql);
 
             try
             {
@@ -115,18 +88,14 @@ namespace AutoTrade.MarketData.Yahoo
         /// </summary>
         /// <param name="yql"></param>
         /// <returns></returns>
-        private Uri GetYqlUrl(string yql)
+        private string GetYqlUrl(string yql)
         {
-            // get the format of the endpoint url
-            string endpointFormat = _appSettingsProvider.GetSetting(YqlEndpointSettingName, DefaultYqlEndpoint);
-            if (string.IsNullOrWhiteSpace(endpointFormat))
-                throw new YqlEndpointFormatNotFoundException();
 
             // create the endpoint to use by encoding the yql and inserting it into the format string
-            var endpoint = string.Format(endpointFormat, HttpUtility.UrlEncode(yql));
+            var endpoint = string.Format(_settings.YqlUrlFormat, HttpUtility.UrlPathEncode(yql).Replace("\"", "%22").Replace(",", "%2C"));
 
             // add diagnostics url part, if indicated
-            if (IncludeDiagnostics)
+            if (_settings.YqlIncludeDiagnostics)
                 endpoint += IncludeDiagnosticsUrlPart;
 
             // parse to uri
@@ -134,7 +103,7 @@ namespace AutoTrade.MarketData.Yahoo
             if (!Uri.TryCreate(endpoint, UriKind.Absolute, out uri))
                 throw new InvalidYqlUrlException(endpoint);
 
-            return uri;
+            return endpoint;
         }
 
         #endregion

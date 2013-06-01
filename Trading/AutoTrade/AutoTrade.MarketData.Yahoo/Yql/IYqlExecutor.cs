@@ -1,4 +1,4 @@
-﻿namespace AutoTrade.MarketData.Yahoo
+﻿namespace AutoTrade.MarketData.Yahoo.Yql
 {
     public interface IYqlExecutor
     {

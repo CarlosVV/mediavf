@@ -4,8 +4,9 @@ using System.Linq;
 using System.Xml;
 using AutoTrade.Core;
 using AutoTrade.MarketData.Yahoo.Exceptions;
+using AutoTrade.MarketData.Yahoo.Yql.Exceptions;
 
-namespace AutoTrade.MarketData.Yahoo
+namespace AutoTrade.MarketData.Yahoo.Yql
 {
     class YqlResultTranslator : IYqlResultTranslator
     {

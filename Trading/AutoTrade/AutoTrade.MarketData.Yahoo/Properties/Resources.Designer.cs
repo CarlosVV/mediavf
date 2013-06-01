@@ -79,6 +79,15 @@ namespace AutoTrade.MarketData.Yahoo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No format for the url was provided (url name = {0})..
+        /// </summary>
+        internal static string EndpointFormatNotFoundMessageFormat {
+            get {
+                return ResourceManager.GetString("EndpointFormatNotFoundMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to create absolute YQL execution url from {0}..
         /// </summary>
         internal static string InvalidYqlEndpointFormat {
@@ -97,20 +106,29 @@ namespace AutoTrade.MarketData.Yahoo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No tags were provided to specify columns in the CSV..
+        /// </summary>
+        internal static string NoCsvTagsProvidedMessage {
+            get {
+                return ResourceManager.GetString("NoCsvTagsProvidedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No symbols were provided for the query..
+        /// </summary>
+        internal static string NoSymbolsProvidedMessage {
+            get {
+                return ResourceManager.GetString("NoSymbolsProvidedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The response object returned by the request to the YQL endpoint returned null..
         /// </summary>
         internal static string NullYqlResponseMessage {
             get {
                 return ResourceManager.GetString("NullYqlResponseMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No format for the YQL url was provided..
-        /// </summary>
-        internal static string YqlEndpointFormatNotFoundMessage {
-            get {
-                return ResourceManager.GetString("YqlEndpointFormatNotFoundMessage", resourceCulture);
             }
         }
         
