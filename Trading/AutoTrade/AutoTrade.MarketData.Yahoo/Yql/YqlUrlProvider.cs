@@ -1,13 +1,11 @@
 ﻿using System;
-using System.IO;
-using System.Net;
+using System.Collections.Generic;
 using System.Web;
-using AutoTrade.MarketData.Yahoo.Exceptions;
 using AutoTrade.MarketData.Yahoo.Yql.Exceptions;
 
 namespace AutoTrade.MarketData.Yahoo.Yql
 {
-    public class YqlExecutor : IYqlExecutor
+    public class YqlUrlProvider : IUrlProvider
     {
         #region Constants
 
@@ -25,18 +23,29 @@ namespace AutoTrade.MarketData.Yahoo.Yql
         /// </summary>
         private readonly IYahooMarketDataSettings _settings;
 
+        /// <summary>
+        /// Provides YQL queries for execution
+        /// </summary>
+        private readonly IYqlQueryProvider _queryProvider;
+
         #endregion
 
         #region Constructors
 
         /// <summary>
-        /// Instantiates a <see cref="YqlExecutor"/>
+        /// Instantiates a <see cref="YqlUrlProvider"/>
         /// </summary>
         /// <param name="settings"></param>
-        public YqlExecutor(IYahooMarketDataSettings settings)
+        /// <param name="queryProvider"></param>
+        public YqlUrlProvider(IYahooMarketDataSettings settings, IYqlQueryProvider queryProvider)
         {
-            if (settings == null) throw new ArgumentNullException("settings");
+            if (settings == null)
+                throw new ArgumentNullException("settings");
+            if (queryProvider == null)
+                throw new ArgumentNullException("queryProvider");
+
             _settings = settings;
+            _queryProvider = queryProvider;
         }
 
         #endregion
@@ -46,41 +55,17 @@ namespace AutoTrade.MarketData.Yahoo.Yql
         /// <summary>
         /// Executes a YQL query and returns the raw xml result
         /// </summary>
-        /// <param name="yql"></param>
+        /// <param name="symbols"></param>
         /// <returns></returns>
-        public string ExecuteYqlQuery(string yql)
+        public string GetUrl(IEnumerable<string> symbols)
         {
-            // get the url
-            string yqlUrl = GetYqlUrl(yql);
+            // get the yql to execute
+            string yql = _queryProvider.GetMultiStockQuoteSelect(symbols);
+            if (string.IsNullOrWhiteSpace(yql))
+                throw new EmptyYqlQueryException();
 
-            try
-            {
-                // create web request for url
-                var request = WebRequest.Create(yqlUrl);
-
-                // read response
-                using (var response = request.GetResponse())
-                {
-                    // get the response stream
-                    var responseStream = response.GetResponseStream();
-                    if (responseStream == null)
-                        throw new NullYqlResponseException();
-
-                    // read the stream to the end
-                    using (var reader = new StreamReader(responseStream))
-                    {
-                        return reader.ReadToEnd();
-                    }
-                }
-            }
-            catch (NullYqlResponseException)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                throw new YqlQueryFailedException(ex);
-            }
+            // get the url for executing the yql
+            return GetYqlUrl(yql);
         }
 
         /// <summary>
@@ -90,7 +75,6 @@ namespace AutoTrade.MarketData.Yahoo.Yql
         /// <returns></returns>
         private string GetYqlUrl(string yql)
         {
-
             // create the endpoint to use by encoding the yql and inserting it into the format string
             var endpoint = string.Format(_settings.YqlUrlFormat, HttpUtility.UrlPathEncode(yql).Replace("\"", "%22").Replace(",", "%2C"));
 

@@ -2,7 +2,7 @@
 
 namespace AutoTrade.MarketData.Yahoo.Yql
 {
-    public interface IYqlProvider
+    public interface IYqlQueryProvider
     {
         /// <summary>
         /// Gets the YQL used to selected data for multiple stock quotes

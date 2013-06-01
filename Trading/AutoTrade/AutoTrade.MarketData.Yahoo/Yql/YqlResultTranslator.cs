@@ -8,7 +8,7 @@ using AutoTrade.MarketData.Yahoo.Yql.Exceptions;
 
 namespace AutoTrade.MarketData.Yahoo.Yql
 {
-    class YqlResultTranslator : IYqlResultTranslator
+    public class YqlResultTranslator : IResultTranslator
     {
         #region Constants
 

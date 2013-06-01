@@ -68,5 +68,14 @@ namespace AutoTrade.Core.Properties {
                 return ResourceManager.GetString("AppSettingMissingMessageFormat", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The response object returned by the request to the url {0} returned null..
+        /// </summary>
+        internal static string NullWebResponseStreamMessageFormat {
+            get {
+                return ResourceManager.GetString("NullWebResponseStreamMessageFormat", resourceCulture);
+            }
+        }
     }
 }

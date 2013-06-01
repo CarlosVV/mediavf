@@ -6,7 +6,7 @@ using AutoTrade.MarketData.Yahoo.Exceptions;
 
 namespace AutoTrade.MarketData.Yahoo.Csv
 {
-    public class CsvUrlProvider : ICsvUrlProvider
+    public class CsvUrlProvider : IUrlProvider
     {
         #region Fields
 
