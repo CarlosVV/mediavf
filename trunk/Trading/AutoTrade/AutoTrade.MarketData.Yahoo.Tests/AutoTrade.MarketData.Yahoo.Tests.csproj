@@ -35,7 +35,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FakeItEasy">
+      <HintPath>..\packages\FakeItEasy.1.11.0\lib\net40\FakeItEasy.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions">
+      <HintPath>..\packages\FluentAssertions.2.0.1\lib\net45\FluentAssertions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -55,6 +63,27 @@
     <Compile Include="YqlProviderTest.cs" />
     <Compile Include="YqlExecutorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AutoTrade.Core\AutoTrade.Core.csproj">
+      <Project>{7F9BF6A2-D154-44D8-9966-07312970279A}</Project>
+      <Name>AutoTrade.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AutoTrade.MarketData.Yahoo\AutoTrade.MarketData.Yahoo.csproj">
+      <Project>{562005A5-00BD-44B3-AB9F-77615E46A678}</Project>
+      <Name>AutoTrade.MarketData.Yahoo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AutoTrade.MarketData\AutoTrade.MarketData.csproj">
+      <Project>{05415541-66F1-49DA-B271-BB0B04EC396B}</Project>
+      <Name>AutoTrade.MarketData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AutoTrade.Tests\AutoTrade.Tests.csproj">
+      <Project>{51977e8c-20f6-4313-a9a8-a2d03f64db17}</Project>
+      <Name>AutoTrade.Tests</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

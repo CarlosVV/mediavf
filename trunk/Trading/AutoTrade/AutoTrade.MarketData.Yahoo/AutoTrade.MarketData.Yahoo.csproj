@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -40,27 +41,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\YqlQueryFailedException.cs" />
-    <Compile Include="Exceptions\EmptyYqlResponseException.cs" />
-    <Compile Include="Exceptions\EmptyYqlQueryException.cs" />
-    <Compile Include="Exceptions\InvalidYqlUrlException.cs" />
-    <Compile Include="Exceptions\InvalidYqlResponseException.cs" />
-    <Compile Include="IYqlExecutor.cs" />
-    <Compile Include="IYqlProvider.cs" />
-    <Compile Include="IYqlResultTranslator.cs" />
+    <Compile Include="Csv\Configuration\CsvQueryTagElement.cs" />
+    <Compile Include="Csv\Configuration\CsvQueryTagElementCollection.cs" />
+    <Compile Include="Csv\CsvUrlProvider.cs" />
+    <Compile Include="Csv\Exceptions\NoCsvTagsProvidedException.cs" />
+    <Compile Include="Exceptions\NoSymbolsProvidedException.cs" />
+    <Compile Include="Yql\Exceptions\YqlQueryFailedException.cs" />
+    <Compile Include="Yql\Exceptions\EmptyYqlResponseException.cs" />
+    <Compile Include="Yql\Exceptions\EmptyYqlQueryException.cs" />
+    <Compile Include="Yql\Exceptions\InvalidYqlUrlException.cs" />
+    <Compile Include="Yql\Exceptions\InvalidYqlResponseException.cs" />
+    <Compile Include="Csv\ICsvUrlProvider.cs" />
+    <Compile Include="Csv\ICsvTagProvider.cs" />
+    <Compile Include="IYahooMarketDataSettings.cs" />
+    <Compile Include="Yql\IYqlExecutor.cs" />
+    <Compile Include="Yql\IYqlProvider.cs" />
+    <Compile Include="Yql\IYqlResultTranslator.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Csv\Configuration\CsvQueryConfiguration.cs" />
+    <Compile Include="YahooMarketDataAppSettings.cs" />
     <Compile Include="YahooMarketDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Exceptions\YqlEndpointFormatNotFoundException.cs" />
-    <Compile Include="YqlExecutor.cs" />
-    <Compile Include="YqlProvider.cs" />
-    <Compile Include="Exceptions\NullYqlResponseException.cs" />
-    <Compile Include="Exceptions\YqlResponseNodeMissingException.cs" />
-    <Compile Include="YqlResultTranslator.cs" />
+    <Compile Include="Exceptions\EndpointFormatNotFoundException.cs" />
+    <Compile Include="Yql\YqlExecutor.cs" />
+    <Compile Include="Yql\YqlProvider.cs" />
+    <Compile Include="Yql\Exceptions\NullYqlResponseException.cs" />
+    <Compile Include="Yql\Exceptions\YqlResponseNodeMissingException.cs" />
+    <Compile Include="Yql\YqlResultTranslator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AutoTrade.Core\AutoTrade.Core.csproj">
@@ -77,6 +88,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Csv\Configuration\App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

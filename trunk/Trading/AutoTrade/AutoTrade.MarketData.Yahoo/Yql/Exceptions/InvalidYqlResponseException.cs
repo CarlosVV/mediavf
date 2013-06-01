@@ -1,7 +1,7 @@
 ﻿using System;
 using AutoTrade.MarketData.Yahoo.Properties;
 
-namespace AutoTrade.MarketData.Yahoo.Exceptions
+namespace AutoTrade.MarketData.Yahoo.Yql.Exceptions
 {
     public class InvalidYqlResponseException : Exception
     {

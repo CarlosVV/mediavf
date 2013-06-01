@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoTrade.Core;
 
-namespace AutoTrade.MarketData.Yahoo
+namespace AutoTrade.MarketData.Yahoo.Yql
 {
     class YqlProvider : IYqlProvider
     {
@@ -47,15 +48,19 @@ namespace AutoTrade.MarketData.Yahoo
         /// <summary>
         /// Gets the YQL used to selected data for multiple stock quotes
         /// </summary>
-        /// <param name="tickers"></param>
+        /// <param name="symbols"></param>
         /// <returns></returns>
-        public string GetMultiStockQuoteSelect(IEnumerable<string> tickers)
+        public string GetMultiStockQuoteSelect(IEnumerable<string> symbols)
         {
+            // ensure symbols are not null
+            if (symbols == null)
+                throw new ArgumentNullException("symbols");
+
             // get the format for the query to select quotes
             string stockQuoteSelectFormat = _appSettingsProvider.GetSetting(MultiQuoteStockSelectSettingName, DefaultMultiStockQuoteSelectFormat);
 
             // create select
-            return string.Format(stockQuoteSelectFormat, string.Join(", ", tickers.Select(t => string.Format("\"{0}\"", t))));
+            return string.Format(stockQuoteSelectFormat, string.Join(",", symbols.Select(t => string.Format("\"{0}\"", t))));
         }
 
         #endregion

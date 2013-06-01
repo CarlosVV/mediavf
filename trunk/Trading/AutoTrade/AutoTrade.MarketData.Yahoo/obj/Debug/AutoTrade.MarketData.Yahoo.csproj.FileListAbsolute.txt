@@ -13,3 +13,4 @@ C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\obj\Debug\Au
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\obj\Debug\AutoTrade.MarketData.Yahoo.csproj.GenerateResource.Cache
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\obj\Debug\AutoTrade.MarketData.Yahoo.dll
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\obj\Debug\AutoTrade.MarketData.Yahoo.pdb
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Yahoo\bin\Debug\AutoTrade.MarketData.Yahoo.dll.config

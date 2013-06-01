@@ -132,13 +132,19 @@
   <data name="NullYqlResponseMessage" xml:space="preserve">
     <value>The response object returned by the request to the YQL endpoint returned null.</value>
   </data>
-  <data name="YqlEndpointFormatNotFoundMessage" xml:space="preserve">
-    <value>No format for the YQL url was provided.</value>
+  <data name="EndpointFormatNotFoundMessageFormat" xml:space="preserve">
+    <value>No format for the url was provided (url name = {0}).</value>
   </data>
   <data name="YqlQueryFailedMessage" xml:space="preserve">
     <value>The YQL query failed. Please see inner exception for details.</value>
   </data>
   <data name="YqlResultNodeMissingFormat" xml:space="preserve">
     <value>A required node is missing in YQL response: {0}.</value>
+  </data>
+  <data name="NoCsvTagsProvidedMessage" xml:space="preserve">
+    <value>No tags were provided to specify columns in the CSV.</value>
+  </data>
+  <data name="NoSymbolsProvidedMessage" xml:space="preserve">
+    <value>No symbols were provided for the query.</value>
   </data>
 </root>

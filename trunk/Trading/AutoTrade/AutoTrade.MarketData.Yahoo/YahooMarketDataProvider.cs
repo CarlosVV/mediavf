@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AutoTrade.MarketData.Yahoo.Exceptions;
+using AutoTrade.MarketData.Yahoo.Yql;
+using AutoTrade.MarketData.Yahoo.Yql.Exceptions;
 
 namespace AutoTrade.MarketData.Yahoo
 {
