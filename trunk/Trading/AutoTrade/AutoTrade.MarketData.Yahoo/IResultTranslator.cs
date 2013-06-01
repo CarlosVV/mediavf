@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace AutoTrade.MarketData.Yahoo.Yql
+namespace AutoTrade.MarketData.Yahoo
 {
-    public interface IYqlResultTranslator
+    public interface IResultTranslator
     {
         /// <summary>
         /// Translates the results of a YQL query to StockQuotes

@@ -129,9 +129,6 @@
   <data name="InvalidYqlResponseMessage" xml:space="preserve">
     <value>Failed to parse the YQL response xml. See inner exception for details.</value>
   </data>
-  <data name="NullYqlResponseMessage" xml:space="preserve">
-    <value>The response object returned by the request to the YQL endpoint returned null.</value>
-  </data>
   <data name="EndpointFormatNotFoundMessageFormat" xml:space="preserve">
     <value>No format for the url was provided (url name = {0}).</value>
   </data>
@@ -146,5 +143,11 @@
   </data>
   <data name="NoSymbolsProvidedMessage" xml:space="preserve">
     <value>No symbols were provided for the query.</value>
+  </data>
+  <data name="QueryResultsAreEmptyMessage" xml:space="preserve">
+    <value>The results returned by the query are null or blank.</value>
+  </data>
+  <data name="QueryUrlNotProvidedMessage" xml:space="preserve">
+    <value>The url for the query is null or blank.</value>
   </data>
 </root>

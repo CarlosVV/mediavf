@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AutoTrade.MarketData.Yahoo.Yql;
-using AutoTrade.MarketData.Yahoo.Yql.Exceptions;
+using AutoTrade.Core.Web;
+using AutoTrade.MarketData.Yahoo.Exceptions;
 
 namespace AutoTrade.MarketData.Yahoo
 {
@@ -10,19 +10,19 @@ namespace AutoTrade.MarketData.Yahoo
         #region Fields
 
         /// <summary>
-        /// The provider for getting YQL queries
+        /// The urlProvider of YQL queries
         /// </summary>
-        private readonly IYqlProvider _yqlProvider;
+        private readonly IUrlProvider _urlProvider;
 
         /// <summary>
-        /// The executor of YQL queries
+        /// The urlProvider of web requests
         /// </summary>
-        private readonly IYqlExecutor _yqlExecutor;
+        private readonly IWebRequestExecutor _webRequestExecutor;
 
         /// <summary>
         /// The translator for interpreting YQL responses
         /// </summary>
-        private readonly IYqlResultTranslator _yqlResultTranslator;
+        private readonly IResultTranslator _resultTranslator;
 
         #endregion
 
@@ -31,14 +31,16 @@ namespace AutoTrade.MarketData.Yahoo
         /// <summary>
         /// Instantiates a <see cref="YahooMarketDataProvider"/>
         /// </summary>
-        /// <param name="yqlProvider"></param>
-        /// <param name="yqlExecutor"></param>
-        /// <param name="yqlResultTranslator"></param>
-        public YahooMarketDataProvider(IYqlProvider yqlProvider, IYqlExecutor yqlExecutor, IYqlResultTranslator yqlResultTranslator)
+        /// <param name="urlProvider"></param>
+        /// <param name="webRequestExecutor"></param>
+        /// <param name="resultTranslator"></param>
+        public YahooMarketDataProvider(IUrlProvider urlProvider,
+            IWebRequestExecutor webRequestExecutor,
+            IResultTranslator resultTranslator)
         {
-            _yqlProvider = yqlProvider;
-            _yqlExecutor = yqlExecutor;
-            _yqlResultTranslator = yqlResultTranslator;
+            _urlProvider = urlProvider;
+            _webRequestExecutor = webRequestExecutor;
+            _resultTranslator = resultTranslator;
         }
 
         #endregion
@@ -61,18 +63,18 @@ namespace AutoTrade.MarketData.Yahoo
             if (stockList.Count == 0)
                 return new List<StockQuote>();
 
-            // get the yql to execute
-            string yql = _yqlProvider.GetMultiStockQuoteSelect(stockList.Select(s => s.Symbol));
-            if (string.IsNullOrWhiteSpace(yql))
-                throw new EmptyYqlQueryException();
+            // get url for query
+            string queryUrl = _urlProvider.GetUrl(stockList.Select(s => s.Symbol));
+            if (string.IsNullOrWhiteSpace(queryUrl))
+                throw new QueryUrlNotProvidedException();
 
-            // execute yql
-            string yqlResponse = _yqlExecutor.ExecuteYqlQuery(yql);
-            if (string.IsNullOrWhiteSpace(yqlResponse))
-                throw new EmptyYqlResponseException();
+            // get results of query
+            string results = _webRequestExecutor.ExecuteRequest(queryUrl);
+            if (string.IsNullOrWhiteSpace(results))
+                throw new QueryResultsAreEmptyException();
 
             // interpret response and return
-            return _yqlResultTranslator.TranslateResultsToQuotes(yqlResponse);
+            return _resultTranslator.TranslateResultsToQuotes(results);
         }
 
         #endregion

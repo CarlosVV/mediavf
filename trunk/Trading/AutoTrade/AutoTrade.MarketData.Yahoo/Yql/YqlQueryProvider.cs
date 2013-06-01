@@ -5,7 +5,7 @@ using AutoTrade.Core;
 
 namespace AutoTrade.MarketData.Yahoo.Yql
 {
-    class YqlProvider : IYqlProvider
+    class YqlQueryProvider : IYqlQueryProvider
     {
         #region Constants
 
@@ -33,10 +33,10 @@ namespace AutoTrade.MarketData.Yahoo.Yql
         #region Constructors
 
         /// <summary>
-        /// Instantiates a <see cref="YqlProvider"/>
+        /// Instantiates a <see cref="YqlQueryProvider"/>
         /// </summary>
         /// <param name="appSettingsProvider"></param>
-        public YqlProvider(IAppSettingsProvider appSettingsProvider)
+        public YqlQueryProvider(IAppSettingsProvider appSettingsProvider)
         {
             _appSettingsProvider = appSettingsProvider;
         }

@@ -124,11 +124,20 @@ namespace AutoTrade.MarketData.Yahoo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The response object returned by the request to the YQL endpoint returned null..
+        ///   Looks up a localized string similar to The results returned by the query are null or blank..
         /// </summary>
-        internal static string NullYqlResponseMessage {
+        internal static string QueryResultsAreEmptyMessage {
             get {
-                return ResourceManager.GetString("NullYqlResponseMessage", resourceCulture);
+                return ResourceManager.GetString("QueryResultsAreEmptyMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The url for the query is null or blank..
+        /// </summary>
+        internal static string QueryUrlNotProvidedMessage {
+            get {
+                return ResourceManager.GetString("QueryUrlNotProvidedMessage", resourceCulture);
             }
         }
         

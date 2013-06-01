@@ -45,18 +45,19 @@
     <Compile Include="Csv\Configuration\CsvQueryTagElementCollection.cs" />
     <Compile Include="Csv\CsvUrlProvider.cs" />
     <Compile Include="Csv\Exceptions\NoCsvTagsProvidedException.cs" />
+    <Compile Include="Exceptions\QueryUrlNotProvidedException.cs" />
     <Compile Include="Exceptions\NoSymbolsProvidedException.cs" />
+    <Compile Include="Exceptions\QueryResultsAreEmptyException.cs" />
     <Compile Include="Yql\Exceptions\YqlQueryFailedException.cs" />
     <Compile Include="Yql\Exceptions\EmptyYqlResponseException.cs" />
     <Compile Include="Yql\Exceptions\EmptyYqlQueryException.cs" />
     <Compile Include="Yql\Exceptions\InvalidYqlUrlException.cs" />
     <Compile Include="Yql\Exceptions\InvalidYqlResponseException.cs" />
-    <Compile Include="Csv\ICsvUrlProvider.cs" />
     <Compile Include="Csv\ICsvTagProvider.cs" />
     <Compile Include="IYahooMarketDataSettings.cs" />
-    <Compile Include="Yql\IYqlExecutor.cs" />
-    <Compile Include="Yql\IYqlProvider.cs" />
-    <Compile Include="Yql\IYqlResultTranslator.cs" />
+    <Compile Include="IUrlProvider.cs" />
+    <Compile Include="Yql\IYqlQueryProvider.cs" />
+    <Compile Include="IResultTranslator.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -67,9 +68,8 @@
     <Compile Include="YahooMarketDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Exceptions\EndpointFormatNotFoundException.cs" />
-    <Compile Include="Yql\YqlExecutor.cs" />
-    <Compile Include="Yql\YqlProvider.cs" />
-    <Compile Include="Yql\Exceptions\NullYqlResponseException.cs" />
+    <Compile Include="Yql\YqlUrlProvider.cs" />
+    <Compile Include="Yql\YqlQueryProvider.cs" />
     <Compile Include="Yql\Exceptions\YqlResponseNodeMissingException.cs" />
     <Compile Include="Yql\YqlResultTranslator.cs" />
   </ItemGroup>
@@ -90,7 +90,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
     <None Include="Csv\Configuration\App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

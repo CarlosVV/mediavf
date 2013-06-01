@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace AutoTrade.MarketData.Yahoo.Csv
+namespace AutoTrade.MarketData.Yahoo
 {
-    public interface ICsvUrlProvider
+    public interface IUrlProvider
     {
         /// <summary>
-        /// Gets the url for a csv of quotes from Yahoo
+        /// Executes a YQL query and returns the raw xml result
         /// </summary>
         /// <param name="symbols"></param>
         /// <returns></returns>

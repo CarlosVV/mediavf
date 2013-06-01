@@ -54,6 +54,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="StringExtensions.cs" />
+    <Compile Include="Web\IWebRequestExecutor.cs" />
+    <Compile Include="Web\NullWebResponseStreamException.cs" />
+    <Compile Include="Web\WebRequestExecutor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
