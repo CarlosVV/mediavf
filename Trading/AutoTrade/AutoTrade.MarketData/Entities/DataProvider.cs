@@ -7,25 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AutoTrade.MarketData
+namespace AutoTrade.MarketData.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Stock
+    public partial class DataProvider
     {
-        public Stock()
+        public DataProvider()
         {
-            this.StockQuotes = new HashSet<StockQuote>();
             this.Subscriptions = new HashSet<Subscription>();
         }
     
-        public string Symbol { get; set; }
-        public string CompanyName { get; set; }
-        public Nullable<int> Sector { get; set; }
-        public Nullable<int> Industry { get; set; }
+        public int ID { get; set; }
+        public int ModuleID { get; set; }
+        public string Type { get; set; }
+        public bool Active { get; set; }
+        public System.DateTime Created { get; set; }
+        public System.DateTime Modified { get; set; }
     
-        public virtual ICollection<StockQuote> StockQuotes { get; set; }
+        public virtual Module Module { get; set; }
         public virtual ICollection<Subscription> Subscriptions { get; set; }
     }
 }

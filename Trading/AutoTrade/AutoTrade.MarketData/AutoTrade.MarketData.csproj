@@ -49,61 +49,77 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMarketDataRepository.cs" />
+    <Compile Include="Entities\DataProvider.cs">
+      <DependentUpon>MarketDataRepository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IMarketDataRepository.cs" />
+    <Compile Include="Entities\Module.ext.cs" />
+    <Compile Include="Exceptions\SubscriptionNotFoundException.cs" />
     <Compile Include="IMarketDataProvider.cs" />
     <Compile Include="IMarketDataSubscription.cs" />
-    <Compile Include="MarketDataContext.Context.cs">
+    <Compile Include="Entities\MarketDataRepository.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MarketDataContext.Context.tt</DependentUpon>
+      <DependentUpon>MarketDataRepository.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="MarketDataContext.cs">
+    <Compile Include="Entities\MarketDataRepository.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MarketDataContext.tt</DependentUpon>
+      <DependentUpon>MarketDataRepository.tt</DependentUpon>
     </Compile>
-    <Compile Include="MarketDataContext.Designer.cs">
+    <Compile Include="Entities\MarketDataRepository.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MarketDataContext.edmx</DependentUpon>
+      <DependentUpon>MarketDataRepository.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\MarketDataRepository.ext.cs" />
+    <Compile Include="ISubscriptionFactory.cs" />
+    <Compile Include="ISubscriptionManager.cs" />
     <Compile Include="MarketDataSubscription.cs" />
+    <Compile Include="Entities\Module.cs">
+      <DependentUpon>MarketDataRepository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ModuleDependency.cs">
+      <DependentUpon>MarketDataRepository.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Stock.cs">
-      <DependentUpon>MarketDataContext.tt</DependentUpon>
+    <Compile Include="Entities\Stock.cs">
+      <DependentUpon>MarketDataRepository.tt</DependentUpon>
     </Compile>
-    <Compile Include="StockQuote.cs">
-      <DependentUpon>MarketDataContext.tt</DependentUpon>
+    <Compile Include="Entities\StockQuote.cs">
+      <DependentUpon>MarketDataRepository.tt</DependentUpon>
     </Compile>
-    <Compile Include="Subscription.cs">
-      <DependentUpon>MarketDataContext.tt</DependentUpon>
+    <Compile Include="Entities\Subscription.cs">
+      <DependentUpon>MarketDataRepository.tt</DependentUpon>
     </Compile>
+    <Compile Include="SubscriptionManager.cs" />
+    <Compile Include="SubscriptionStatus.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="MarketDataContext.edmx">
+    <EntityDeploy Include="Entities\MarketDataRepository.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MarketDataContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>MarketDataRepository.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="MarketDataContext.Context.tt">
+    <None Include="Entities\MarketDataRepository.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MarketDataContext.edmx</DependentUpon>
-      <LastGenOutput>MarketDataContext.Context.cs</LastGenOutput>
+      <LastGenOutput>MarketDataRepository.Context.cs</LastGenOutput>
+      <DependentUpon>MarketDataRepository.edmx</DependentUpon>
     </None>
-    <None Include="MarketDataContext.edmx.diagram">
-      <DependentUpon>MarketDataContext.edmx</DependentUpon>
+    <None Include="Entities\MarketDataRepository.edmx.diagram">
+      <DependentUpon>MarketDataRepository.edmx</DependentUpon>
     </None>
-    <None Include="MarketDataContext.tt">
+    <None Include="Entities\MarketDataRepository.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MarketDataContext.edmx</DependentUpon>
-      <LastGenOutput>MarketDataContext.cs</LastGenOutput>
+      <LastGenOutput>MarketDataRepository.cs</LastGenOutput>
+      <DependentUpon>MarketDataRepository.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -122,6 +138,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

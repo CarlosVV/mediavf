@@ -71,6 +71,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AutoTrade.Core\AutoTrade.Core.csproj">
+      <Project>{7F9BF6A2-D154-44D8-9966-07312970279A}</Project>
+      <Name>AutoTrade.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AutoTrade.MarketData\AutoTrade.MarketData.csproj">
       <Project>{05415541-66F1-49DA-B271-BB0B04EC396B}</Project>
       <Name>AutoTrade.MarketData</Name>

@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoTrade.Core;
+using AutoTrade.Core.Settings;
 using AutoTrade.MarketData.Yahoo.Exceptions;
 
 namespace AutoTrade.MarketData.Yahoo

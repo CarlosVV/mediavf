@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using AutoTrade.Core;
+using AutoTrade.MarketData.Entities;
 using AutoTrade.MarketData.Properties;
-using log4net.Core;
+using log4net;
 
 namespace AutoTrade.MarketData
 {
-    public class MarketDataSubscription
+    public class MarketDataSubscription : IMarketDataSubscription
     {
         #region Fields
 
         /// <summary>
         /// The logger
         /// </summary>
-        private readonly ILogger _logger;
+        private readonly ILog _logger;
 
         /// <summary>
         /// The repository for storing and retrieving market data
@@ -27,14 +27,19 @@ namespace AutoTrade.MarketData
         private readonly IMarketDataProvider _marketDataProvider;
 
         /// <summary>
-        /// The subscription containing data for which to 
+        /// The lock for regulating access to subscriptionData data
         /// </summary>
-        private readonly Subscription _subscription;
+        private readonly object _subscriptionDataLock = new object();
 
         /// <summary>
         /// The timer to perform periodic updates of data
         /// </summary>
         private readonly Timer _timer;
+
+        /// <summary>
+        /// The data for the subscription
+        /// </summary>
+        private Subscription _subscriptionData;
 
         #endregion
 
@@ -46,30 +51,79 @@ namespace AutoTrade.MarketData
         /// <param name="logger">The logger</param>
         /// <param name="marketDataRepository">The repository to store and retrieve market data</param>
         /// <param name="marketDataProvider">The provider for refreshing market data</param>
-        /// <param name="subscription">The subscription data for determining</param>
-        public MarketDataSubscription(ILogger logger,
+        /// <param name="subscriptionData">The subscriptionData data for determining</param>
+        public MarketDataSubscription(ILog logger,
             IMarketDataRepository marketDataRepository,
             IMarketDataProvider marketDataProvider,
-            Subscription subscription)
+            Subscription subscriptionData)
         {
+            // perform null checks
+            if (logger == null)
+                throw new ArgumentNullException("logger");
+            if (marketDataRepository == null)
+                throw new ArgumentNullException("marketDataRepository");
+            if (marketDataProvider == null)
+                throw new ArgumentNullException("marketDataProvider");
+            if (subscriptionData == null)
+                throw new ArgumentNullException("subscriptionData");
+
+            // set dependencies
             _logger = logger;
             _marketDataRepository = marketDataRepository;
             _marketDataProvider = marketDataProvider;
-            _subscription = subscription;
+            _subscriptionData = subscriptionData;
 
+            // set up timer
             _timer = new Timer(obj => GetLatestData());
+
+            // status initialized to idle
+            Status = SubscriptionStatus.Idle;
         }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the current status of the subscriptionData
+        /// </summary>
+        public SubscriptionStatus Status { get; private set; }
 
         #endregion
 
         #region Methods
 
         /// <summary>
+        /// Updates the data of the subscriptionData
+        /// </summary>
+        public void UpdateData(Subscription subscriptionData)
+        {
+            lock (_subscriptionDataLock)
+            {
+                // stop the timer
+                StopTimer();
+                
+                // set new subscription data
+                _subscriptionData = subscriptionData;
+
+                // start timer with new data
+                StartTimer();
+            }
+        }
+
+        /// <summary>
         /// Starts regular updates of data
         /// </summary>
         public void Start()
         {
-            _timer.Change(_subscription.UpdateInterval, _subscription.UpdateInterval);
+            lock (_subscriptionDataLock)
+            {
+                // set status
+                Status = SubscriptionStatus.Running;
+
+                // stop the timer
+                StartTimer();
+            }
         }
 
         /// <summary>
@@ -77,6 +131,31 @@ namespace AutoTrade.MarketData
         /// </summary>
         public void Stop()
         {
+            lock (_subscriptionDataLock)
+            {
+                // set status
+                Status = SubscriptionStatus.Idle;
+
+                // stop the timer
+                StopTimer();
+            }
+        }
+
+        /// <summary>
+        /// Starts running the timer
+        /// </summary>
+        private void StartTimer()
+        {
+            // start running timer
+            _timer.Change(_subscriptionData.UpdateInterval, _subscriptionData.UpdateInterval);
+        }
+
+        /// <summary>
+        /// Stops running the timer
+        /// </summary>
+        private void StopTimer()
+        {
+            // stop running timer
             _timer.Change(Timeout.Infinite, Timeout.Infinite);
         }
 
@@ -85,31 +164,35 @@ namespace AutoTrade.MarketData
         /// </summary>
         private void GetLatestData()
         {
-            // stop timer while data is retrieved
-            Stop();
-
-            try
+            lock (_subscriptionDataLock)
             {
-                // get quotes from provider
-                IEnumerable<StockQuote> quotes = _marketDataProvider.GetQuotes(_subscription.Stocks);
+                // stop timer while data is retrieved
+                Stop();
 
-                // add quotes to repository
-                if (quotes != null)
+                try
                 {
-                    foreach (StockQuote quote in quotes)
-                        _marketDataRepository.StockQuotes.Add(quote);
+                    // get quotes from provider
+                    var quotes = _marketDataProvider.GetQuotes(_subscriptionData.Stocks);
 
-                    _marketDataRepository.SaveChanges();
+                    if (quotes != null)
+                    {
+                        // add quotes to repository
+                        foreach (StockQuote quote in quotes)
+                            _marketDataRepository.StockQuotes.Add(quote);
+
+                        // save
+                        _marketDataRepository.SaveChanges();
+                    }
                 }
-            }
-            catch (Exception exception)
-            {
-                // log the exception
-                _logger.LogException(Resources.SubscriptionUpdateFailure, exception);
-            }
+                catch (Exception exception)
+                {
+                    // log the exception
+                    _logger.Error(Resources.SubscriptionUpdateException, exception);
+                }
 
-            // restart the timer now 
-            Start();
+                // restart the timer now 
+                Start();
+            }
         }
 
         #endregion

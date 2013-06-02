@@ -59,5 +59,59 @@ namespace AutoTrade.MarketData.CollectionService.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press any key to start service, or [ESC] to quit..
+        /// </summary>
+        internal static string AnyKeyToStartEscToQuitMessage {
+            get {
+                return ResourceManager.GetString("AnyKeyToStartEscToQuitMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press any key to stop..
+        /// </summary>
+        internal static string AnyKeyToStopMessage {
+            get {
+                return ResourceManager.GetString("AnyKeyToStopMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Service started..
+        /// </summary>
+        internal static string ServiceStartedMessage {
+            get {
+                return ResourceManager.GetString("ServiceStartedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting service....
+        /// </summary>
+        internal static string ServiceStartMessage {
+            get {
+                return ResourceManager.GetString("ServiceStartMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Service stopped..
+        /// </summary>
+        internal static string ServiceStoppedMessage {
+            get {
+                return ResourceManager.GetString("ServiceStoppedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stopping service....
+        /// </summary>
+        internal static string StoppingServiceMessage {
+            get {
+                return ResourceManager.GetString("StoppingServiceMessage", resourceCulture);
+            }
+        }
     }
 }
