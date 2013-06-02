@@ -98,4 +98,22 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
+  <data name="ServiceStartMessage" xml:space="preserve">
+    <value>Starting service...</value>
+  </data>
+  <data name="ServiceStartedMessage" xml:space="preserve">
+    <value>Service started.</value>
+  </data>
+  <data name="AnyKeyToStopMessage" xml:space="preserve">
+    <value>Press any key to stop.</value>
+  </data>
+  <data name="StoppingServiceMessage" xml:space="preserve">
+    <value>Stopping service...</value>
+  </data>
+  <data name="ServiceStoppedMessage" xml:space="preserve">
+    <value>Service stopped.</value>
+  </data>
+  <data name="AnyKeyToStartEscToQuitMessage" xml:space="preserve">
+    <value>Press any key to start service, or [ESC] to quit.</value>
+  </data>
 </root>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoTrade.Core;
+using AutoTrade.Core.Settings;
 
 namespace AutoTrade.MarketData.Yahoo.Yql
 {

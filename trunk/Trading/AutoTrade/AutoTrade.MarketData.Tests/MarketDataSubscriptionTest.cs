@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using AutoTrade.MarketData.Entities;
 using AutoTrade.Tests;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using FakeItEasy;
-using log4net.Core;
+using log4net;
 
 namespace AutoTrade.MarketData.Tests
 {
@@ -17,14 +18,14 @@ namespace AutoTrade.MarketData.Tests
         public void GetLatestData()
         {
             // create fakes
-            var logger = A.Fake<ILogger>();
+            var logger = A.Fake<ILog>();
             var marketDataProvider = A.Fake<IMarketDataProvider>();
             var marketDataRepository = A.Fake<IMarketDataRepository>();
 
             var stockQuoteSet = A.Fake<IDbSet<StockQuote>>();
             marketDataRepository.StockQuotes = stockQuoteSet;
 
-            // create subscription
+            // create subscriptionData
             var stocks = new List<Stock>();
             var subscription = new Subscription { Stocks = stocks, UpdateInterval = TimeSpan.FromMilliseconds(int.MaxValue) };
 
@@ -44,7 +45,7 @@ namespace AutoTrade.MarketData.Tests
             A.CallTo(() => stockQuoteSet.Add(A<StockQuote>.Ignored))
              .Invokes((StockQuote quote) => repositoryQuotes.Add(quote));
 
-            // create subscription
+            // create subscriptionData
             var marketDataSubscription = new MarketDataSubscription(logger, marketDataRepository, marketDataProvider, subscription);
 
             // call get latest data

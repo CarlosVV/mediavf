@@ -100,7 +100,7 @@
       <Name>AutoTrade.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\AutoTrade.MarketData\AutoTrade.MarketData.csproj">
-      <Project>{05415541-66F1-49DA-B271-BB0B04EC396B}</Project>
+      <Project>{05415541-66f1-49da-b271-bb0b04ec396b}</Project>
       <Name>AutoTrade.MarketData</Name>
     </ProjectReference>
   </ItemGroup>

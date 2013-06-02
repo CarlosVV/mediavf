@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoTrade.MarketData.Entities;
 using FakeItEasy;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using log4net.Core;
+using log4net;
 
 namespace AutoTrade.MarketData.Yahoo.Tests
 {
@@ -22,7 +23,7 @@ namespace AutoTrade.MarketData.Yahoo.Tests
             var expectedQuotes = new[] { new StockQuote { Symbol = "MSFT" }, new StockQuote { Symbol = "YHOO" } };
 
             // set up fake logger
-            var logger = A.Fake<ILogger>();
+            var logger = A.Fake<ILog>();
 
             // set up first fake data provider
             var marketDataProvider1 = A.Fake<IYahooMarketDataProvider>();
@@ -44,7 +45,7 @@ namespace AutoTrade.MarketData.Yahoo.Tests
             A.CallTo(() => marketDataProvider1.GetQuotes(stocks)).MustHaveHappened();
             A.CallTo(() => marketDataProvider2.GetQuotes(stocks)).MustHaveHappened();
 
-            A.CallTo(() => logger.Log(A<LoggingEvent>.Ignored)).MustHaveHappened();
+            A.CallTo(() => logger.WarnFormat(A<string>.Ignored, A<Exception>.Ignored)).MustHaveHappened();
 
             // check that quotes returned are the same as the quotes returned by the result translator
             actualQuotes.Should().OnlyContain(q => expectedQuotes.Contains(q));

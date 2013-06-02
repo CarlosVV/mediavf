@@ -117,7 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SubscriptionUpdateFailure" xml:space="preserve">
+  <data name="NoSubscriptionsFoundWarning" xml:space="preserve">
+    <value>No subscriptions are currently active.</value>
+  </data>
+  <data name="SubscriptionNotFoundExceptionFormat" xml:space="preserve">
+    <value>Subscription not found: {0}.</value>
+  </data>
+  <data name="SubscriptionNotLoadedWarningFormat" xml:space="preserve">
+    <value>No subscription with id {0} is loaded in the subscription manager.</value>
+  </data>
+  <data name="SubscriptionUpdateException" xml:space="preserve">
     <value>An exception occurred trying to retrieve or update subscription data.</value>
   </data>
 </root>

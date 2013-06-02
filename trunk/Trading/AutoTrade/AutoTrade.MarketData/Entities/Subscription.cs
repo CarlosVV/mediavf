@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AutoTrade.MarketData
+namespace AutoTrade.MarketData.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -25,7 +25,10 @@ namespace AutoTrade.MarketData
         public Nullable<System.DateTime> LastUpdated { get; set; }
         public System.DateTime Created { get; set; }
         public System.TimeSpan UpdateInterval { get; set; }
+        public int DataProviderID { get; set; }
+        public System.DateTime Modified { get; set; }
     
         public virtual ICollection<Stock> Stocks { get; set; }
+        public virtual DataProvider DataProvider { get; set; }
     }
 }

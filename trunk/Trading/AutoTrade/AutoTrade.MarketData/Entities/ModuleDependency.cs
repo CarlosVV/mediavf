@@ -7,20 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AutoTrade.MarketData
+namespace AutoTrade.MarketData.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class StockQuote
+    public partial class ModuleDependency
     {
-        public string Symbol { get; set; }
-        public System.DateTime QuoteDateTime { get; set; }
-        public decimal BidPrice { get; set; }
-        public decimal AskPrice { get; set; }
-        public decimal Change { get; set; }
-        public decimal OpenPrice { get; set; }
+        public int ID { get; set; }
+        public int ModuleID { get; set; }
+        public int DependentOnModuleID { get; set; }
+        public System.DateTime Created { get; set; }
     
-        public virtual Stock Stock { get; set; }
+        public virtual Module DependentOnModule { get; set; }
     }
 }

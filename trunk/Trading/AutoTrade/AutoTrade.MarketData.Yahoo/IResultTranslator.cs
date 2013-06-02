@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AutoTrade.MarketData.Entities;
 
 namespace AutoTrade.MarketData.Yahoo
 {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoTrade.MarketData.Entities;
 using AutoTrade.MarketData.Yahoo.Exceptions;
 using AutoTrade.MarketData.Yahoo.Properties;
-using log4net.Core;
-using AutoTrade.Core;
+using log4net;
 
 namespace AutoTrade.MarketData.Yahoo
 {
@@ -15,7 +15,7 @@ namespace AutoTrade.MarketData.Yahoo
         /// <summary>
         /// The logger
         /// </summary>
-        private readonly ILogger _logger;
+        private readonly ILog _logger;
 
         /// <summary>
         /// The providers to use for retrieving market data
@@ -31,7 +31,7 @@ namespace AutoTrade.MarketData.Yahoo
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="providers"></param>
-        public YahooMarketDataProvider(ILogger logger, IEnumerable<IYahooMarketDataProvider> providers)
+        public YahooMarketDataProvider(ILog logger, IEnumerable<IYahooMarketDataProvider> providers)
         {
             _logger = logger;
             _providers = providers;
@@ -56,7 +56,9 @@ namespace AutoTrade.MarketData.Yahoo
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogWarning(Resources.FailedToRetrieveFromProviderMessageFormat, ex, provider.GetType().FullName);
+                    _logger.Warn(
+                        string.Format(Resources.FailedToRetrieveFromProviderMessageFormat,provider.GetType().FullName), ex);
+
                 }
             }
 

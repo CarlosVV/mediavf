@@ -25,9 +25,14 @@ namespace AutoTrade.MarketData.CollectionService
         /// <param name="args"></param>
         protected override void OnStart(string[] args)
         {
+            StartService();
+        }
+
+        public void StartService()
+        {
             // create bootstrapper
             var bootstrapper = new ConfigurationBootstrapper();
-            
+
             // run bootstrapper and get back DI container
             _container = bootstrapper.Run();
         }
@@ -36,6 +41,11 @@ namespace AutoTrade.MarketData.CollectionService
         /// Handles stopping of the service
         /// </summary>
         protected override void OnStop()
+        {
+            StopService();
+        }
+
+        public void StopService()
         {
             if (_container != null)
                 _container.Dispose();

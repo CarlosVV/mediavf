@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AutoTrade.MarketData
+namespace AutoTrade.MarketData.Entities
 {
     using System;
     using System.Data.Entity;
@@ -15,17 +15,20 @@ namespace AutoTrade.MarketData
     
     public partial interface IMarketDataRepository
     {
-        IDbSet<Stock> Stocks { get; set; }
-        IDbSet<StockQuote> StockQuotes { get; set; }
-        IDbSet<Subscription> Subscriptions { get; set; }
+         IDbSet<Stock> Stocks { get; set; }
+         IDbSet<StockQuote> StockQuotes { get; set; }
+         IDbSet<Subscription> Subscriptions { get; set; }
+         IDbSet<DataProvider> DataProviders { get; set; }
+         IDbSet<Module> Modules { get; set; }
+         IDbSet<ModuleDependency> ModuleDependencies { get; set; }
     
     	int SaveChanges();
     }
     
-    public partial class AutoTradeEntities : DbContext, IMarketDataRepository
+    public partial class MarketDataRepository : DbContext, IMarketDataRepository
     {
-        public AutoTradeEntities()
-            : base("name=AutoTradeEntities")
+        public MarketDataRepository()
+            : base("name=MarketDataRepository")
         {
         }
     
@@ -37,5 +40,8 @@ namespace AutoTrade.MarketData
         public IDbSet<Stock> Stocks { get; set; }
         public IDbSet<StockQuote> StockQuotes { get; set; }
         public IDbSet<Subscription> Subscriptions { get; set; }
+        public IDbSet<DataProvider> DataProviders { get; set; }
+        public IDbSet<Module> Modules { get; set; }
+        public IDbSet<ModuleDependency> ModuleDependencies { get; set; }
     }
 }

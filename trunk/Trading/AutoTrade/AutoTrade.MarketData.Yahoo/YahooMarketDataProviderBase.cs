@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoTrade.Core.Web;
+using AutoTrade.MarketData.Entities;
 using AutoTrade.MarketData.Yahoo.Exceptions;
 
 namespace AutoTrade.MarketData.Yahoo

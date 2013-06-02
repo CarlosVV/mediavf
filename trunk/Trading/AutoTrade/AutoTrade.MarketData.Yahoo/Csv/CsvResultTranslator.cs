@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoTrade.Core;
+using AutoTrade.MarketData.Entities;
 using AutoTrade.MarketData.Yahoo.Csv.Exceptions;
 using AutoTrade.MarketData.Yahoo.Exceptions;
 using AutoTrade.MarketData.Yahoo.Properties;

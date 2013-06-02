@@ -61,11 +61,38 @@ namespace AutoTrade.MarketData.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No subscriptions are currently active..
+        /// </summary>
+        internal static string NoSubscriptionsFoundWarning {
+            get {
+                return ResourceManager.GetString("NoSubscriptionsFoundWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscription not found: {0}..
+        /// </summary>
+        internal static string SubscriptionNotFoundExceptionFormat {
+            get {
+                return ResourceManager.GetString("SubscriptionNotFoundExceptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No subscription with id {0} is loaded in the subscription manager..
+        /// </summary>
+        internal static string SubscriptionNotLoadedWarningFormat {
+            get {
+                return ResourceManager.GetString("SubscriptionNotLoadedWarningFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An exception occurred trying to retrieve or update subscription data..
         /// </summary>
-        internal static string SubscriptionUpdateFailure {
+        internal static string SubscriptionUpdateException {
             get {
-                return ResourceManager.GetString("SubscriptionUpdateFailure", resourceCulture);
+                return ResourceManager.GetString("SubscriptionUpdateException", resourceCulture);
             }
         }
     }
