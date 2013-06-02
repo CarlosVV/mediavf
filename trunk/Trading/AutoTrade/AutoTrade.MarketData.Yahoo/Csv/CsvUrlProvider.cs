@@ -6,7 +6,7 @@ using AutoTrade.MarketData.Yahoo.Exceptions;
 
 namespace AutoTrade.MarketData.Yahoo.Csv
 {
-    public class CsvUrlProvider : IUrlProvider
+    public class CsvUrlProvider : ICsvUrlProvider
     {
         #region Fields
 
@@ -18,7 +18,7 @@ namespace AutoTrade.MarketData.Yahoo.Csv
         /// <summary>
         /// The provider of tags for the CSV query
         /// </summary>
-        private readonly ICsvTagProvider _tagProvider;
+        private readonly ICsvColumnProvider _columnProvider;
 
         #endregion
 
@@ -28,11 +28,11 @@ namespace AutoTrade.MarketData.Yahoo.Csv
         /// Instantiates a <see cref="CsvUrlProvider"/>
         /// </summary>
         /// <param name="settings"></param>
-        /// <param name="tagProvider"></param>
-        public CsvUrlProvider(IYahooMarketDataSettings settings, ICsvTagProvider tagProvider)
+        /// <param name="columnProvider"></param>
+        public CsvUrlProvider(IYahooMarketDataSettings settings, ICsvColumnProvider columnProvider)
         {
             _settings = settings;
-            _tagProvider = tagProvider;
+            _columnProvider = columnProvider;
         }
 
         #endregion
@@ -56,14 +56,12 @@ namespace AutoTrade.MarketData.Yahoo.Csv
                 throw new NoSymbolsProvidedException();
 
             // get tags for query
-            List<string> tagList = _tagProvider.GetTags().ToList();
-            if (tagList.Count < 1)
+            string tagsString = _columnProvider.GetTagsString();
+            if (string.IsNullOrWhiteSpace(tagsString))
                 throw new NoCsvTagsProvidedException();
 
             // get the url for retrieving the csv
-            return string.Format(_settings.CsvUrlFormat,
-                string.Join("+", symbolList),
-                string.Join(string.Empty, _tagProvider.GetTags()));
+            return string.Format(_settings.CsvUrlFormat, string.Join("+", symbolList), tagsString);
         }
 
         #endregion

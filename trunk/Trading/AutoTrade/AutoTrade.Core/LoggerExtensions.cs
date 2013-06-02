@@ -19,6 +19,17 @@ namespace AutoTrade.Core
         }
 
         /// <summary>
+        /// Logs an info message
+        /// </summary>
+        /// <param name="logger">The logger to use to log the message</param>
+        /// <param name="message"></param>
+        /// <param name="parameters"></param>
+        public static void LogInfo(this ILogger logger, string message, Exception ex, params object[] parameters)
+        {
+            Log(logger, Level.Info, message, ex, parameters);
+        }
+
+        /// <summary>
         /// Logs a warning message
         /// </summary>
         /// <param name="logger"></param>
@@ -30,6 +41,17 @@ namespace AutoTrade.Core
         }
 
         /// <summary>
+        /// Logs a warning message
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="message"></param>
+        /// <param name="parameters"></param>
+        public static void LogWarning(this ILogger logger, string message, Exception ex, params object[] parameters)
+        {
+            Log(logger, Level.Warn, message, ex, parameters);
+        }
+
+        /// <summary>
         /// Logs an error message
         /// </summary>
         /// <param name="logger"></param>
@@ -38,6 +60,17 @@ namespace AutoTrade.Core
         public static void LogError(this ILogger logger, string message, params object[] parameters)
         {
             Log(logger, Level.Error, message, null, parameters);
+        }
+
+        /// <summary>
+        /// Logs an error message
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="message"></param>
+        /// <param name="parameters"></param>
+        public static void LogError(this ILogger logger, string message, Exception ex, params object[] parameters)
+        {
+            Log(logger, Level.Error, message, ex, parameters);
         }
 
         /// <summary>

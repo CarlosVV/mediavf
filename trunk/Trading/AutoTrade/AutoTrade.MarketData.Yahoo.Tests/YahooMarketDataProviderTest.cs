@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using AutoTrade.Core.Web;
-using AutoTrade.MarketData.Yahoo.Yql;
 using FakeItEasy;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using log4net.Core;
 
 namespace AutoTrade.MarketData.Yahoo.Tests
 {
@@ -21,28 +21,30 @@ namespace AutoTrade.MarketData.Yahoo.Tests
             var stocks = new[] { new Stock { Symbol = "MSFT" }, new Stock { Symbol = "YHOO" } };
             var expectedQuotes = new[] { new StockQuote { Symbol = "MSFT" }, new StockQuote { Symbol = "YHOO" } };
 
-            // set up fake urlProvider
-            var urlProvider = A.Fake<IUrlProvider>();
-            A.CallTo(() => urlProvider.GetUrl(A<IEnumerable<string>>.Ignored)).Returns("TestUrl");
+            // set up fake logger
+            var logger = A.Fake<ILogger>();
 
-            // set up fake request executor
-            var webRequestExecutor = A.Fake<IWebRequestExecutor>();
-            A.CallTo(() => webRequestExecutor.ExecuteRequest(A<string>.Ignored)).Returns("TestResult");
+            // set up first fake data provider
+            var marketDataProvider1 = A.Fake<IYahooMarketDataProvider>();
+            A.CallTo(() => marketDataProvider1.GetQuotes(A<IEnumerable<Stock>>.Ignored))
+             .Throws<Exception>();
 
-            // set up fake translator
-            var yqlResultTranslator = A.Fake<IResultTranslator>();
-            A.CallTo(() => yqlResultTranslator.TranslateResultsToQuotes("TestResult")).Returns(expectedQuotes);
+            // set up second fake data provider
+            var marketDataProvider2 = A.Fake<IYahooMarketDataProvider>();
+            A.CallTo(() => marketDataProvider2.GetQuotes(A<IEnumerable<Stock>>.Ignored))
+             .Returns(expectedQuotes);
 
             // create Yahoo market data provider
-            var yahooMarketDataProvider = new YahooMarketDataProvider(urlProvider, webRequestExecutor, yqlResultTranslator);
+            var yahooMarketDataProvider = new YahooMarketDataProvider(logger, new[] { marketDataProvider1, marketDataProvider2 });
 
             // get quotes from provider
             IEnumerable<StockQuote> actualQuotes = yahooMarketDataProvider.GetQuotes(stocks);
 
             // check that a call was made to get the stock quote select
-            A.CallTo(() => urlProvider.GetUrl(A<IEnumerable<string>>.Ignored)).MustHaveHappened();
-            A.CallTo(() => webRequestExecutor.ExecuteRequest("TestUrl")).MustHaveHappened();
-            A.CallTo(() => yqlResultTranslator.TranslateResultsToQuotes("TestResult")).MustHaveHappened();
+            A.CallTo(() => marketDataProvider1.GetQuotes(stocks)).MustHaveHappened();
+            A.CallTo(() => marketDataProvider2.GetQuotes(stocks)).MustHaveHappened();
+
+            A.CallTo(() => logger.Log(A<LoggingEvent>.Ignored)).MustHaveHappened();
 
             // check that quotes returned are the same as the quotes returned by the result translator
             actualQuotes.Should().OnlyContain(q => expectedQuotes.Contains(q));

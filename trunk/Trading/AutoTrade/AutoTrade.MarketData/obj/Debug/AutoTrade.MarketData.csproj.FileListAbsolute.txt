@@ -12,3 +12,12 @@ C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\obj\Debug\AutoTrad
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\obj\Debug\AutoTrade.MarketData.csproj.GenerateResource.Cache
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\obj\Debug\AutoTrade.MarketData.dll
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\obj\Debug\AutoTrade.MarketData.pdb
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.Unity.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.Prism.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.Unity.xml
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.Prism.xml
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.ServiceLocation.xml
