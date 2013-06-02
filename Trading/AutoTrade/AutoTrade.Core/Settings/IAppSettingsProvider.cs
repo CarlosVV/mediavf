@@ -1,4 +1,4 @@
-﻿namespace AutoTrade.Core
+﻿namespace AutoTrade.Core.Settings
 {
     public interface IAppSettingsProvider
     {

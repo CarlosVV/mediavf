@@ -10,6 +10,8 @@ namespace AutoTrade.Core.Bootstrapping
 {
     public class ConfigurationBootstrapper
     {
+        #region Properties
+
         /// <summary>
         /// The unity container
         /// </summary>
@@ -24,6 +26,10 @@ namespace AutoTrade.Core.Bootstrapping
         /// The module catalog
         /// </summary>
         protected IModuleCatalog ModuleCatalog { get; private set; }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Gets the logger
@@ -55,8 +61,14 @@ namespace AutoTrade.Core.Bootstrapping
         /// <returns></returns>
         protected virtual IModuleCatalog CreateModuleCatalog()
         {
-            var moduleCatalog = new ConfigurationModuleCatalog();
-            moduleCatalog.Load();
+            // resolve module catalog
+            var moduleCatalog = Container.Resolve<IModuleCatalog>();
+
+            // load the catalog, if possible
+            if (moduleCatalog is ModuleCatalog)
+                ((ModuleCatalog)moduleCatalog).Load();
+
+            // return catalog
             return moduleCatalog;
         }
 
@@ -74,7 +86,7 @@ namespace AutoTrade.Core.Bootstrapping
         /// <summary>
         /// Runs the configuration bootstrapper
         /// </summary>
-        public IDisposable Run()
+        public virtual IDisposable Run()
         {
             // create logger
             Logger = CreateLogger();
@@ -106,5 +118,7 @@ namespace AutoTrade.Core.Bootstrapping
 
             return Container;
         }
+
+        #endregion
     }
 }
