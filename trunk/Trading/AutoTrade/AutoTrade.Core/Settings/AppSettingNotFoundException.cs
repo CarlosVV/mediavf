@@ -1,14 +1,20 @@
 ﻿using System;
 using AutoTrade.Core.Properties;
 
-namespace AutoTrade.Core
+namespace AutoTrade.Core.Settings
 {
     public class AppSettingNotFoundException : Exception
     {
+        #region Fields
+
         /// <summary>
         /// The setting name
         /// </summary>
         private readonly string _settingName;
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         /// Instantiates a <see cref="AppSettingNotFoundException"/>
@@ -19,6 +25,10 @@ namespace AutoTrade.Core
             _settingName = settingName;
         }
 
+        #endregion
+
+        #region Properties
+
         /// <summary>
         /// Gets the message for the exception
         /// </summary>
@@ -26,5 +36,7 @@ namespace AutoTrade.Core
         {
             get { return string.Format(Resources.AppSettingMissingMessageFormat, _settingName); }
         }
+
+        #endregion
     }
 }

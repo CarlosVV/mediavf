@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Threading;
 using log4net.Core;
 
-namespace AutoTrade.Core
+namespace AutoTrade.Core.Logging
 {
     public static class LoggerExtensions
     {
@@ -23,6 +23,7 @@ namespace AutoTrade.Core
         /// </summary>
         /// <param name="logger">The logger to use to log the message</param>
         /// <param name="message"></param>
+        /// <param name="ex"></param>
         /// <param name="parameters"></param>
         public static void LogInfo(this ILogger logger, string message, Exception ex, params object[] parameters)
         {
@@ -45,6 +46,7 @@ namespace AutoTrade.Core
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="message"></param>
+        /// <param name="ex"></param>
         /// <param name="parameters"></param>
         public static void LogWarning(this ILogger logger, string message, Exception ex, params object[] parameters)
         {
@@ -67,6 +69,7 @@ namespace AutoTrade.Core
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="message"></param>
+        /// <param name="ex"></param>
         /// <param name="parameters"></param>
         public static void LogError(this ILogger logger, string message, Exception ex, params object[] parameters)
         {

@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace AutoTrade.Core
+namespace AutoTrade.Core.Settings
 {
     public class AppSettingsProvider : IAppSettingsProvider
     {
