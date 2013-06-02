@@ -61,6 +61,15 @@ namespace AutoTrade.MarketData.Yahoo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CSV does not have the correct number of columns..
+        /// </summary>
+        internal static string CsvMissingColumnsMessage {
+            get {
+                return ResourceManager.GetString("CsvMissingColumnsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to YQL query provided is null or empty..
         /// </summary>
         internal static string EmptyYqlQueryMessage {
@@ -84,6 +93,33 @@ namespace AutoTrade.MarketData.Yahoo.Properties {
         internal static string EndpointFormatNotFoundMessageFormat {
             get {
                 return ResourceManager.GetString("EndpointFormatNotFoundMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to retrieve data from all registered Yahoo market data providers..
+        /// </summary>
+        internal static string FailedToRetrieveFromAllProvidersMessage {
+            get {
+                return ResourceManager.GetString("FailedToRetrieveFromAllProvidersMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred retrieving data from the following provider type: {0}..
+        /// </summary>
+        internal static string FailedToRetrieveFromProviderMessageFormat {
+            get {
+                return ResourceManager.GetString("FailedToRetrieveFromProviderMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred parsing the CSV response: {0}.
+        /// </summary>
+        internal static string InvalidCsvFormatMessageFormat {
+            get {
+                return ResourceManager.GetString("InvalidCsvFormatMessageFormat", resourceCulture);
             }
         }
         

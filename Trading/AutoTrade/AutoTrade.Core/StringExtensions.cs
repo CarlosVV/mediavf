@@ -5,7 +5,6 @@ namespace AutoTrade.Core
 {
     public static class StringExtensions
     {
-
         /// <summary>
         /// Converts the text value of a setting to a type
         /// </summary>
@@ -14,13 +13,26 @@ namespace AutoTrade.Core
         /// <returns>The value as the given type</returns>
         public static T ConvertTo<T>(this string value)
         {
+            var obj = ConvertTo(value, typeof(T));
+
+            return obj != null ? (T)obj : default(T);
+        }
+
+        /// <summary>
+        /// Converts the text value of a setting to a type
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static object ConvertTo(this string value, Type type)
+        {
             object returnValue = null;
 
-            Type t = typeof(T);
+            Type t = type;
             if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 if (string.IsNullOrEmpty(value))
-                    return default(T);
+                    return null;
 
                 t = t.GetGenericArguments().First();
             }
@@ -80,7 +92,7 @@ namespace AutoTrade.Core
             else
                 throw new InvalidCastException("Type conversion not supported for type " + t.FullName);
 
-            return returnValue != null ? (T)returnValue : default(T);
+            return returnValue;
         }
     }
 }

@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using AutoTrade.Core.Web;
 using AutoTrade.MarketData.Yahoo.Exceptions;
+using AutoTrade.MarketData.Yahoo.Properties;
+using log4net.Core;
+using AutoTrade.Core;
 
 namespace AutoTrade.MarketData.Yahoo
 {
@@ -10,19 +13,14 @@ namespace AutoTrade.MarketData.Yahoo
         #region Fields
 
         /// <summary>
-        /// The urlProvider of YQL queries
+        /// The logger
         /// </summary>
-        private readonly IUrlProvider _urlProvider;
+        private readonly ILogger _logger;
 
         /// <summary>
-        /// The urlProvider of web requests
+        /// The providers to use for retrieving market data
         /// </summary>
-        private readonly IWebRequestExecutor _webRequestExecutor;
-
-        /// <summary>
-        /// The translator for interpreting YQL responses
-        /// </summary>
-        private readonly IResultTranslator _resultTranslator;
+        private readonly IEnumerable<IYahooMarketDataProvider> _providers;
 
         #endregion
 
@@ -31,16 +29,12 @@ namespace AutoTrade.MarketData.Yahoo
         /// <summary>
         /// Instantiates a <see cref="YahooMarketDataProvider"/>
         /// </summary>
-        /// <param name="urlProvider"></param>
-        /// <param name="webRequestExecutor"></param>
-        /// <param name="resultTranslator"></param>
-        public YahooMarketDataProvider(IUrlProvider urlProvider,
-            IWebRequestExecutor webRequestExecutor,
-            IResultTranslator resultTranslator)
+        /// <param name="logger"></param>
+        /// <param name="providers"></param>
+        public YahooMarketDataProvider(ILogger logger, IEnumerable<IYahooMarketDataProvider> providers)
         {
-            _urlProvider = urlProvider;
-            _webRequestExecutor = webRequestExecutor;
-            _resultTranslator = resultTranslator;
+            _logger = logger;
+            _providers = providers;
         }
 
         #endregion
@@ -48,33 +42,25 @@ namespace AutoTrade.MarketData.Yahoo
         #region Methods
 
         /// <summary>
-        /// Gets quotes by executing queries against Yahoo Finance using YQL
+        /// Gets quotes using the first provider that successfully returns quotes
         /// </summary>
         /// <param name="stocks"></param>
         /// <returns></returns>
         public IEnumerable<StockQuote> GetQuotes(IEnumerable<Stock> stocks)
         {
-            // if no stocks provided, return empty list
-            if (stocks == null)
-                return new List<StockQuote>();
+            foreach (var provider in _providers.OrderBy(p => p.Precedence))
+            {
+                try
+                {
+                    return provider.GetQuotes(stocks);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(Resources.FailedToRetrieveFromProviderMessageFormat, ex, provider.GetType().FullName);
+                }
+            }
 
-            // enumerate and check count; if no stocks provided, return empty list
-            var stockList = stocks.ToList();
-            if (stockList.Count == 0)
-                return new List<StockQuote>();
-
-            // get url for query
-            string queryUrl = _urlProvider.GetUrl(stockList.Select(s => s.Symbol));
-            if (string.IsNullOrWhiteSpace(queryUrl))
-                throw new QueryUrlNotProvidedException();
-
-            // get results of query
-            string results = _webRequestExecutor.ExecuteRequest(queryUrl);
-            if (string.IsNullOrWhiteSpace(results))
-                throw new QueryResultsAreEmptyException();
-
-            // interpret response and return
-            return _resultTranslator.TranslateResultsToQuotes(results);
+            throw new FailedToRetrieveQuotesException();
         }
 
         #endregion

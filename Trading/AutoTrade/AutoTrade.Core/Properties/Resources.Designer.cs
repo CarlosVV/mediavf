@@ -70,6 +70,78 @@ namespace AutoTrade.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bootstrapper completed successfully..
+        /// </summary>
+        internal static string BootstrapperCompletedMessage {
+            get {
+                return ResourceManager.GetString("BootstrapperCompletedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully created Unity container..
+        /// </summary>
+        internal static string ContainerCreatedMessage {
+            get {
+                return ResourceManager.GetString("ContainerCreatedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initializing modules....
+        /// </summary>
+        internal static string InitializingModulesMessage {
+            get {
+                return ResourceManager.GetString("InitializingModulesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully created log4net logger..
+        /// </summary>
+        internal static string LoggerCreatedMessage {
+            get {
+                return ResourceManager.GetString("LoggerCreatedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully created module catalog..
+        /// </summary>
+        internal static string ModuleCatalogCreatedMessage {
+            get {
+                return ResourceManager.GetString("ModuleCatalogCreatedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to create Unity container. Container is null..
+        /// </summary>
+        internal static string NullContainerMessage {
+            get {
+                return ResourceManager.GetString("NullContainerMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to create logger. Logger is null..
+        /// </summary>
+        internal static string NullLoggerMessage {
+            get {
+                return ResourceManager.GetString("NullLoggerMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to create module catalog. Catalog is null..
+        /// </summary>
+        internal static string NullModuleCatalogMessage {
+            get {
+                return ResourceManager.GetString("NullModuleCatalogMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The response object returned by the request to the url {0} returned null..
         /// </summary>
         internal static string NullWebResponseStreamMessageFormat {

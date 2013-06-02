@@ -138,6 +138,18 @@
   <data name="YqlResultNodeMissingFormat" xml:space="preserve">
     <value>A required node is missing in YQL response: {0}.</value>
   </data>
+  <data name="CsvMissingColumnsMessage" xml:space="preserve">
+    <value>CSV does not have the correct number of columns.</value>
+  </data>
+  <data name="FailedToRetrieveFromAllProvidersMessage" xml:space="preserve">
+    <value>Failed to retrieve data from all registered Yahoo market data providers.</value>
+  </data>
+  <data name="FailedToRetrieveFromProviderMessageFormat" xml:space="preserve">
+    <value>An error occurred retrieving data from the following provider type: {0}.</value>
+  </data>
+  <data name="InvalidCsvFormatMessageFormat" xml:space="preserve">
+    <value>An error occurred parsing the CSV response: {0}</value>
+  </data>
   <data name="NoCsvTagsProvidedMessage" xml:space="preserve">
     <value>No tags were provided to specify columns in the CSV.</value>
   </data>
