@@ -4,7 +4,7 @@ using Microsoft.Practices.Unity;
 
 namespace AutoTrade.MarketData.CollectionService
 {
-    public class CollectionServiceBootstrapper : ConfigurationBootstrapper
+    public class CollectionServiceBootstrapper : ConfigurationBootstrapper<CollectionService>
     {
         /// <summary>
         /// Runs all data subscriptions

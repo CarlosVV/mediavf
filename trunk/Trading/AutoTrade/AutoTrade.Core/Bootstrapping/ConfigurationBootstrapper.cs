@@ -8,7 +8,7 @@ using log4net;
 
 namespace AutoTrade.Core.Bootstrapping
 {
-    public class ConfigurationBootstrapper
+    public class ConfigurationBootstrapper<T>
     {
         #region Properties
 
@@ -37,7 +37,7 @@ namespace AutoTrade.Core.Bootstrapping
         /// <returns></returns>
         protected virtual ILog CreateLogger()
         {
-            return LogManager.GetLogger(typeof(ConfigurationBootstrapper));
+            return LogManager.GetLogger(typeof(T));
         }
 
         /// <summary>
@@ -65,8 +65,9 @@ namespace AutoTrade.Core.Bootstrapping
             var moduleCatalog = Container.Resolve<IModuleCatalog>();
 
             // load the catalog, if possible
-            if (moduleCatalog is ModuleCatalog)
-                ((ModuleCatalog)moduleCatalog).Load();
+            var catalog = moduleCatalog as ModuleCatalog;
+            if (catalog != null)
+                catalog.Load();
 
             // return catalog
             return moduleCatalog;
@@ -99,6 +100,9 @@ namespace AutoTrade.Core.Bootstrapping
             if (Container == null)
                 throw new InvalidOperationException(Resources.NullContainerMessage);
             Logger.Debug(Resources.ContainerCreatedMessage);
+
+            // registers the logger for access throughout the application
+            Container.RegisterInstance(Logger);
 
             // create module catalog
             ModuleCatalog = CreateModuleCatalog();

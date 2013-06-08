@@ -61,6 +61,33 @@ namespace AutoTrade.MarketData.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The data provider on the subscription is null..
+        /// </summary>
+        internal static string DataProviderNullException {
+            get {
+                return ResourceManager.GetString("DataProviderNullException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The data provider type {0} was not found registered in the dependency container..
+        /// </summary>
+        internal static string DataProviderTypeNotRegisteredExceptionFormat {
+            get {
+                return ResourceManager.GetString("DataProviderTypeNotRegisteredExceptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to create market data subscription. {0}.
+        /// </summary>
+        internal static string FailedToCreateSubscriptionExceptionFormat {
+            get {
+                return ResourceManager.GetString("FailedToCreateSubscriptionExceptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No subscriptions are currently active..
         /// </summary>
         internal static string NoSubscriptionsFoundWarning {

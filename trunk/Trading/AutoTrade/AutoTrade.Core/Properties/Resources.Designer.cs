@@ -70,6 +70,24 @@ namespace AutoTrade.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An assembly with the name {0} has not been loaded into the application domain..
+        /// </summary>
+        internal static string AssemblyNotFoundExceptionMessage {
+            get {
+                return ResourceManager.GetString("AssemblyNotFoundExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The attribute {0} on element {1} does not have a value..
+        /// </summary>
+        internal static string AttributeValueNullExceptionMessage {
+            get {
+                return ResourceManager.GetString("AttributeValueNullExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bootstrapper completed successfully..
         /// </summary>
         internal static string BootstrapperCompletedMessage {
@@ -97,6 +115,15 @@ namespace AutoTrade.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The format of the type name {0} is invalid. The type name should be a fully-qualified assembly name..
+        /// </summary>
+        internal static string InvalidTypeNameFormatExceptionMessage {
+            get {
+                return ResourceManager.GetString("InvalidTypeNameFormatExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Successfully created log4net logger..
         /// </summary>
         internal static string LoggerCreatedMessage {
@@ -106,11 +133,29 @@ namespace AutoTrade.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An attribute with the name {0} was expected to be found on the element {1}..
+        /// </summary>
+        internal static string MissingAttributeExceptionMessage {
+            get {
+                return ResourceManager.GetString("MissingAttributeExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Successfully created module catalog..
         /// </summary>
         internal static string ModuleCatalogCreatedMessage {
             get {
                 return ResourceManager.GetString("ModuleCatalogCreatedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred loading registrations for the module. Details: {0}.
+        /// </summary>
+        internal static string ModuleRegistrationsExceptionMessage {
+            get {
+                return ResourceManager.GetString("ModuleRegistrationsExceptionMessage", resourceCulture);
             }
         }
         
@@ -147,6 +192,33 @@ namespace AutoTrade.Core.Properties {
         internal static string NullWebResponseStreamMessageFormat {
             get {
                 return ResourceManager.GetString("NullWebResponseStreamMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A type with the name {0} was not found in the assembly {1}..
+        /// </summary>
+        internal static string TypeNotFoundExceptionMessage {
+            get {
+                return ResourceManager.GetString("TypeNotFoundExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unexpected node was found in the module registrations xml - Expected = {0}, Actual = {1}..
+        /// </summary>
+        internal static string UnexpectedNodeExceptionMessage {
+            get {
+                return ResourceManager.GetString("UnexpectedNodeExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The alias {0} is not recognized as an alias for a lifetime manager..
+        /// </summary>
+        internal static string UnrecognizedLifetimeManagerAliasExceptionMessage {
+            get {
+                return ResourceManager.GetString("UnrecognizedLifetimeManagerAliasExceptionMessage", resourceCulture);
             }
         }
     }
