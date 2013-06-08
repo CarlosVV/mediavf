@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ServiceProcess;
-using AutoTrade.Core.Bootstrapping;
 
 namespace AutoTrade.MarketData.CollectionService
 {
@@ -28,10 +27,13 @@ namespace AutoTrade.MarketData.CollectionService
             StartService();
         }
 
+        /// <summary>
+        /// Starts the collection service
+        /// </summary>
         public void StartService()
         {
             // create bootstrapper
-            var bootstrapper = new ConfigurationBootstrapper();
+            var bootstrapper = new CollectionServiceBootstrapper();
 
             // run bootstrapper and get back DI container
             _container = bootstrapper.Run();
@@ -45,6 +47,9 @@ namespace AutoTrade.MarketData.CollectionService
             StopService();
         }
 
+        /// <summary>
+        /// Stops the collection service
+        /// </summary>
         public void StopService()
         {
             if (_container != null)

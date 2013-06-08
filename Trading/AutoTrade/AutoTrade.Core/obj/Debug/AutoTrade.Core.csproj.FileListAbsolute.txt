@@ -21,3 +21,4 @@ C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Prac
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Practices.ServiceLocation.xml
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Practices.Unity.xml
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.csprojResolveAssemblyReference.cache

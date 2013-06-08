@@ -9,3 +9,4 @@ C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Tests\obj\Debug\AutoTrade.Tes
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Tests\obj\Debug\AutoTrade.Tests.csproj.GenerateResource.Cache
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Tests\obj\Debug\AutoTrade.Tests.dll
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Tests\obj\Debug\AutoTrade.Tests.pdb
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Tests\obj\Debug\AutoTrade.Tests.csprojResolveAssemblyReference.cache
