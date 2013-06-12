@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using AutoTrade.Core.Properties;
+using AutoTrade.Core.UnityExtensions;
 using Microsoft.Practices.Unity;
 
-namespace AutoTrade.Core.Modularity.Configuration
+namespace AutoTrade.Core.Modularity.Configuration.Xml
 {
-    class ModuleRegistrationConfiguration
+    public class AssemblyConfigurationRegistrations
     {
         #region Constants
 
         /// <summary>
-        /// The name of the root element
+        /// The name of the registrations collection element
         /// </summary>
-        private const string RootName = "registrations";
+        public const string RegistrationsCollectionName = "registrations";
 
         /// <summary>
         /// The name of the child elements
@@ -22,21 +23,24 @@ namespace AutoTrade.Core.Modularity.Configuration
         private const string RegistrationElementName = "registration";
 
         /// <summary>
+        /// The name of the name attribute
+        /// </summary>
+        private const string RegistrationNameAttributeName = "name";
+
+        /// <summary>
         /// The name of the type attribute
         /// </summary>
-        private const string TypeAttributeName = "type";
+        private const string RegistrationTypeAttributeName = "type";
 
         /// <summary>
         /// The name of the mapTo attribute
         /// </summary>
-        private const string MapToAttributeName = "mapTo";
+        private const string RegistrationMapToAttributeName = "mapTo";
 
         /// <summary>
         /// The name of the lifetime attribute
         /// </summary>
-        private const string LifetimeAttributeName = "lifetime";
-
-        #region Aliases
+        private const string RegistrationLifetimeAttributeName = "lifetime";
 
         /// <summary>
         /// The alias for a <see cref="ContainerControlledLifetimeManager" />
@@ -50,8 +54,6 @@ namespace AutoTrade.Core.Modularity.Configuration
 
         #endregion
 
-        #endregion
-
         #region Nested
 
         /// <summary>
@@ -60,6 +62,11 @@ namespace AutoTrade.Core.Modularity.Configuration
         private class Registration
         {
             #region Fields
+
+            /// <summary>
+            /// The name of the registration
+            /// </summary>
+            private readonly string _name;
 
             /// <summary>
             /// The type to register
@@ -86,16 +93,26 @@ namespace AutoTrade.Core.Modularity.Configuration
             /// <param name="type"></param>
             /// <param name="mapTo"></param>
             /// <param name="lifetime"></param>
-            public Registration(Type type, Type mapTo, LifetimeManager lifetime)
+            /// <param name="name"></param>
+            public Registration(Type type, Type mapTo, LifetimeManager lifetime, string name)
             {
                 _type = type;
                 _mapTo = mapTo;
                 _lifetime = lifetime;
+                _name = name;
             }
 
             #endregion
 
             #region Properties
+
+            /// <summary>
+            /// Gets the name of the registration
+            /// </summary>
+            public string Name
+            {
+                get { return _name; }
+            }
 
             /// <summary>
             /// Gets the type to map
@@ -148,35 +165,20 @@ namespace AutoTrade.Core.Modularity.Configuration
         #region Constructors
 
         /// <summary>
-        /// Instantiates a <see cref="ModuleRegistrationConfiguration"/>
+        /// Instantiates a <see cref="AssemblyConfigurationRegistrations"/>
         /// </summary>
-        private ModuleRegistrationConfiguration(IEnumerable<Registration> registrations)
+        public AssemblyConfigurationRegistrations(XmlNode node)
         {
-            _registrations = registrations;
+            // validate root element
+            node.ShouldBeNamed(RegistrationsCollectionName);
+
+            // get registrations from child nodes
+            _registrations = node.ChildNodes.OfType<XmlElement>().Select(CreateRegistration);
         }
 
         #endregion
 
         #region Static
-
-        /// <summary>
-        /// Create registrations from xml
-        /// </summary>
-        /// <param name="xml"></param>
-        /// <returns></returns>
-        public static ModuleRegistrationConfiguration Create(string xml)
-        {
-            // create xml document from xml
-            var xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(xml);
-
-            // validate root element
-            ValidateNode(xmlDoc.FirstChild, RootName);
-
-            // get registrations from child nodes
-            return new ModuleRegistrationConfiguration(
-                xmlDoc.FirstChild.ChildNodes.OfType<XmlElement>().Select(CreateRegistration));
-        }
 
         /// <summary>
         /// Gets a registration from an xml element
@@ -185,11 +187,12 @@ namespace AutoTrade.Core.Modularity.Configuration
         /// <returns></returns>
         private static Registration CreateRegistration(XmlElement registrationElement)
         {
-            ValidateNode(registrationElement, RegistrationElementName);
+            registrationElement.ShouldBeNamed(RegistrationElementName);
 
-            return new Registration(GetTypeFromAttribute(registrationElement, TypeAttributeName),
-                GetTypeFromAttribute(registrationElement, MapToAttributeName),
-                GetLifetimeManager(registrationElement, LifetimeAttributeName));
+            return new Registration(registrationElement.GetTypeFromAttribute(RegistrationTypeAttributeName),
+                registrationElement.GetTypeFromAttribute(RegistrationMapToAttributeName),
+                GetLifetimeManager(registrationElement, RegistrationLifetimeAttributeName),
+                registrationElement.GetAttributeValue(RegistrationNameAttributeName, false));
         }
 
         /// <summary>
@@ -200,7 +203,7 @@ namespace AutoTrade.Core.Modularity.Configuration
         /// <returns></returns>
         private static LifetimeManager GetLifetimeManager(XmlElement element, string attributeName)
         {
-            return GetLifetimeManager(GetAttributeValue(element, attributeName));
+            return GetLifetimeManager(element.GetAttributeValue(attributeName));
         }
 
         /// <summary>
@@ -213,86 +216,8 @@ namespace AutoTrade.Core.Modularity.Configuration
             if (LifetimeManagerTypeAliases.ContainsKey(lifetimeManagerAlias))
                 return Activator.CreateInstance(LifetimeManagerTypeAliases[lifetimeManagerAlias]) as LifetimeManager;
 
-            throw new ModuleRegistrationException(Resources.UnrecognizedLifetimeManagerAliasExceptionMessage,
+            throw new AssemblyConfigurationException(Resources.UnrecognizedLifetimeManagerAliasExceptionMessage,
                 lifetimeManagerAlias);
-        }
-
-        /// <summary>
-        /// Validates a node
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="expectedName"></param>
-        private static void ValidateNode(XmlNode node, string expectedName)
-        {
-            // verify root node
-            if (StringComparer.OrdinalIgnoreCase.Compare(node.Name, expectedName) != 0)
-                throw new ModuleRegistrationException(Resources.UnexpectedNodeExceptionMessage,
-                    expectedName,
-                    node.Name);
-        }
-
-        /// <summary>
-        /// Gets a type from an attribute on an element
-        /// </summary>
-        /// <param name="element"></param>
-        /// <param name="attributeName"></param>
-        /// <returns></returns>
-        private static Type GetTypeFromAttribute(XmlElement element, string attributeName)
-        {
-            return GetType(GetAttributeValue(element, attributeName));
-        }
-
-        /// <summary>
-        /// Gets the value of an attribute
-        /// </summary>
-        /// <param name="element"></param>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        private static string GetAttributeValue(XmlElement element, string name)
-        {
-            // get the attribute
-            var attribute = element.GetAttributeNode(name);
-            if (attribute == null)
-                throw new ModuleRegistrationException(Resources.MissingAttributeExceptionMessage, name, element.Name);
-
-            // check that the attribute is populated
-            if (string.IsNullOrWhiteSpace(attribute.Value))
-                throw new ModuleRegistrationException(Resources.AttributeValueNullExceptionMessage, name, element.Name);
-
-            return attribute.Value;
-        }
-
-        /// <summary>
-        /// Gets a type from a type name string
-        /// </summary>
-        /// <param name="assemblyQualifiedTypeName"></param>
-        /// <returns></returns>
-        private static Type GetType(string assemblyQualifiedTypeName)
-        {
-            // split into 2 parts - full type name and assembly name
-            var typeNameParts = assemblyQualifiedTypeName.Split(',');
-            if (typeNameParts.Length != 2)
-                throw new InvalidOperationException(string.Format(Resources.InvalidTypeNameFormatExceptionMessage,
-                    assemblyQualifiedTypeName));
-
-            // get the type and assembly names out of the split text
-            var fullNamePart = typeNameParts[0];
-            var assemblyNamePart = typeNameParts[1];
-
-            // get the assembly
-            var assembly =
-                AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.FullName == assemblyNamePart);
-            if (assembly == null)
-                throw new TypeLoadException(string.Format(Resources.AssemblyNotFoundExceptionMessage, assemblyNamePart));
-
-            // get the type
-            var type = assembly.GetType(fullNamePart, false);
-            if (type == null)
-                throw new TypeLoadException(string.Format(Resources.TypeNotFoundExceptionMessage,
-                    fullNamePart,
-                    assemblyNamePart));
-
-            return type;
         }
 
         #endregion
@@ -305,7 +230,13 @@ namespace AutoTrade.Core.Modularity.Configuration
         /// <param name="container"></param>
         public void AddRegistrationsToContainer(IUnityContainer container)
         {
-            _registrations.ForEach(r => container.RegisterType(r.Type, r.MapTo, r.Lifetime));
+            _registrations.ForEach(r =>
+                {
+                    if (string.IsNullOrWhiteSpace(r.Name))
+                        container.RegisterTypeIfMissing(r.Type, r.MapTo, r.Lifetime);
+                    else
+                        container.RegisterTypeIfMissing(r.Type, r.MapTo, r.Name, r.Lifetime);
+                });
         }
 
         #endregion

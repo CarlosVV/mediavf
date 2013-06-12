@@ -1,6 +1,5 @@
 ﻿using System;
-using AutoTrade.Core;
-using AutoTrade.Core.Settings;
+using AutoTrade.Core.Modularity.Configuration;
 using AutoTrade.MarketData.Yahoo.Exceptions;
 
 namespace AutoTrade.MarketData.Yahoo
@@ -24,6 +23,26 @@ namespace AutoTrade.MarketData.Yahoo
         /// The name of the setting that indicates whether or not to include diagnostic information in the query results
         /// </summary>
         private const string IncludeDiagnosticsSettingName = "YqlIncludeDiagnostics";
+
+        /// <summary>
+        /// The name of the setting that provides the message returned by a YQL query that indicates the table is blocked
+        /// </summary>
+        private const string YqlTableBlockedMessageSettingName = "YqlTableBlockedMessage";
+
+        /// <summary>
+        /// The default message indicating that a YQL table is blocked
+        /// </summary>
+        private const string DefaultYqlTableBlockedMessage = "The current table 'yahoo.finance.quotes' has been blocked.";
+
+        /// <summary>
+        /// The name of the setting for getting the YQL query for quotes for multiple stocks
+        /// </summary>
+        private const string YqlMultiQuoteStockSelectSettingName = "YqlMultiQuoteStockSelect";
+
+        /// <summary>
+        /// The format for creating YQL query for getting quotes for multiple stocks
+        /// </summary>
+        private const string DefaultYqlMultiStockQuoteSelectFormat = @"select * from yahoo.finance.quotes where symbol in ({0})";
 
         /// <summary>
         /// The name of the setting in config for the CSV endpoint
@@ -50,6 +69,16 @@ namespace AutoTrade.MarketData.Yahoo
         private readonly string _yqlUrlFormat;
 
         /// <summary>
+        /// The format for the url to execute YQL queries
+        /// </summary>
+        private readonly string _yqlTableBlockedMessage;
+
+        /// <summary>
+        /// The YQL query for retrieving quotes
+        /// </summary>
+        private readonly string _yqlMultiQuoteStockSelect;
+
+        /// <summary>
         /// The format for the url to retrieve CSVs
         /// </summary>
         private readonly string _csvUrlFormat;
@@ -61,25 +90,47 @@ namespace AutoTrade.MarketData.Yahoo
         /// <summary>
         /// Instantiates a <see cref="YahooMarketDataAppSettings"/>
         /// </summary>
-        /// <param name="appSettingsProvider"></param>
-        public YahooMarketDataAppSettings(IAppSettingsProvider appSettingsProvider)
+        /// <param name="assemblyConfigurationManager"></param>
+        public YahooMarketDataAppSettings(IAssemblyConfigurationManager assemblyConfigurationManager)
         {
             // check that the app settings provider is set
-            if (appSettingsProvider == null)
-                throw new ArgumentNullException("appSettingsProvider");
+            if (assemblyConfigurationManager == null)
+                throw new ArgumentNullException("assemblyConfigurationManager");
 
-            // get the format of the yql url
-            _yqlUrlFormat = appSettingsProvider.GetSetting(YqlEndpointSettingName, DefaultYqlEndpoint);
-            if (string.IsNullOrWhiteSpace(_yqlUrlFormat))
-                throw new EndpointFormatNotFoundException("YQL");
+            var assemblyConfig = assemblyConfigurationManager.GetAssemblyConfiguration(GetType());
+            if (assemblyConfig != null)
+            {
+                // get the format of the yql url
+                _yqlUrlFormat = assemblyConfig.Settings.GetSetting(YqlEndpointSettingName, DefaultYqlEndpoint);
+                if (string.IsNullOrWhiteSpace(_yqlUrlFormat))
+                    throw new EndpointFormatNotFoundException("YQL");
 
-            // get flag indicating whether or not to include diagnostics data in the results of a YQL query
-            _yqlIncludeDiagnostics = appSettingsProvider.GetSetting(IncludeDiagnosticsSettingName, false);
+                // get flag indicating whether or not to include diagnostics data in the results of a YQL query
+                _yqlIncludeDiagnostics = assemblyConfig.Settings.GetSetting(IncludeDiagnosticsSettingName, true);
 
-            // get the format of the csv url
-            _csvUrlFormat = appSettingsProvider.GetSetting(CsvEndpointSettingName, DefaultCsvEndpoint);
-            if (string.IsNullOrWhiteSpace(_csvUrlFormat))
-                throw new EndpointFormatNotFoundException("CSV");
+                // get flag indicating whether or not to include diagnostics data in the results of a YQL query
+                _yqlTableBlockedMessage =
+                    assemblyConfig.Settings.GetSetting(YqlTableBlockedMessageSettingName,
+                                                       DefaultYqlTableBlockedMessage);
+
+                // get the YQL select
+                _yqlMultiQuoteStockSelect =
+                    assemblyConfig.Settings.GetSetting(YqlMultiQuoteStockSelectSettingName,
+                                                       DefaultYqlMultiStockQuoteSelectFormat);
+
+                // get the format of the csv url
+                _csvUrlFormat = assemblyConfig.Settings.GetSetting(CsvEndpointSettingName, DefaultCsvEndpoint);
+                if (string.IsNullOrWhiteSpace(_csvUrlFormat))
+                    throw new EndpointFormatNotFoundException("CSV");
+            }
+            else
+            {
+                // use defaults for all settings
+                _yqlUrlFormat = DefaultYqlEndpoint;
+                _yqlIncludeDiagnostics = true;
+                _yqlTableBlockedMessage = DefaultYqlTableBlockedMessage;
+                _csvUrlFormat = DefaultCsvEndpoint;
+            }
         }
 
         #endregion
@@ -100,6 +151,22 @@ namespace AutoTrade.MarketData.Yahoo
         public string YqlUrlFormat
         {
             get { return _yqlUrlFormat; }
+        }
+
+        /// <summary>
+        /// Gets the message indicating the YQL table is blocked
+        /// </summary>
+        public string YqlTableBlockedMessage
+        {
+            get { return _yqlTableBlockedMessage; }
+        }
+
+        /// <summary>
+        /// Gets the YQL for selecting quotes for multiple stocks
+        /// </summary>
+        public string YqlMultiQuoteStockSelect
+        {
+            get { return _yqlMultiQuoteStockSelect; }
         }
 
         /// <summary>

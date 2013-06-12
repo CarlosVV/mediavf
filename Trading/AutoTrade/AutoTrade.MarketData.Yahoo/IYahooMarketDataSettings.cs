@@ -13,6 +13,16 @@
         string YqlUrlFormat { get; }
 
         /// <summary>
+        /// Gets the message returned by a YQL query indicating the table is blocked
+        /// </summary>
+        string YqlTableBlockedMessage { get; }
+
+        /// <summary>
+        /// Gets the YQL for selecting quotes
+        /// </summary>
+        string YqlMultiQuoteStockSelect { get; }
+
+        /// <summary>
         /// Gets the url format for retrieving a CSV from Yahoo Finance
         /// </summary>
         string CsvUrlFormat { get; }

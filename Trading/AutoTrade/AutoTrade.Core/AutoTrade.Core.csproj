@@ -68,12 +68,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnumerableExtensions.cs" />
-    <Compile Include="Modularity\Configuration\ModuleRegistrationException.cs" />
-    <Compile Include="Modularity\Configuration\ModuleRegistrationConfiguration.cs" />
+    <Compile Include="Logging\Log4NetWrapper.cs" />
+    <Compile Include="Modularity\ConfigurableModule.cs" />
+    <Compile Include="Modularity\Configuration\AssemblyConfigurationFactory.cs" />
+    <Compile Include="Modularity\Configuration\AssemblyConfigurationManager.cs" />
+    <Compile Include="Modularity\Configuration\Xml\AssemblyConfiguration.cs" />
+    <Compile Include="Modularity\Configuration\Xml\AssemblyConfigurationSettings.cs" />
+    <Compile Include="Modularity\Configuration\IAssemblyConfigurationManager.cs" />
+    <Compile Include="Modularity\Configuration\IAssemblyConfigurationSection.cs" />
+    <Compile Include="Modularity\Configuration\AssemblyConfigurationException.cs" />
+    <Compile Include="Modularity\Configuration\Xml\AssemblyConfigurationRegistrations.cs" />
+    <Compile Include="Modularity\Configuration\IAssemblyConfigurationFactory.cs" />
+    <Compile Include="Modularity\Configuration\Xml\XmlNodeExtensions.cs" />
     <Compile Include="Settings\AppSettingNotFoundException.cs" />
     <Compile Include="Settings\AppSettingsProvider.cs" />
     <Compile Include="Bootstrapping\ConfigurationBootstrapper.cs" />
-    <Compile Include="Settings\IAppSettingsProvider.cs" />
+    <Compile Include="Settings\ISettingsProvider.cs" />
     <Compile Include="Logging\LoggerExtensions.cs" />
     <Compile Include="Modularity\RepositoryModuleCatalog.cs" />
     <Compile Include="Modularity\IModuleData.cs" />
@@ -86,6 +96,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="StringExtensions.cs" />
+    <Compile Include="UnityExtensions\UnityContainerExtensions.cs" />
     <Compile Include="Web\IWebRequestExecutor.cs" />
     <Compile Include="Web\NullWebResponseStreamException.cs" />
     <Compile Include="Web\WebRequestExecutor.cs" />
@@ -99,7 +110,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

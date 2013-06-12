@@ -25,10 +25,10 @@ namespace AutoTrade.MarketData.Yahoo.Csv
         /// <summary>
         /// Instantiates a <see cref="CsvResultTranslator"/>
         /// </summary>
-        /// <param name="columnProvider"></param>
-        public CsvResultTranslator(ICsvColumnProvider columnProvider)
+        /// <param name="columnProviderFactory"></param>
+        public CsvResultTranslator(ICsvColumnProviderFactory columnProviderFactory)
         {
-            _columnProvider = columnProvider;
+            _columnProvider = columnProviderFactory.GetColumnProvider();
         }
 
         #endregion
@@ -92,7 +92,8 @@ namespace AutoTrade.MarketData.Yahoo.Csv
         /// <param name="values"></param>
         /// <param name="columnPropertyMappings"></param>
         /// <returns></returns>
-        private static StockQuote CreateQuoteFromRow(List<string> values, Dictionary<int, string> columnPropertyMappings)
+        private static StockQuote CreateQuoteFromRow(IList<string> values,
+            IReadOnlyDictionary<int, string> columnPropertyMappings)
         {
             // create new quote
             var quote = new StockQuote();

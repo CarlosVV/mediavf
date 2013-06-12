@@ -1,10 +1,26 @@
 ﻿using System;
 using System.Linq;
+using AutoTrade.Core.Properties;
 
 namespace AutoTrade.Core
 {
     public static class StringExtensions
     {
+        /// <summary>
+        /// Gets a type from a type name string
+        /// </summary>
+        /// <param name="assemblyQualifiedTypeName"></param>
+        /// <returns></returns>
+        public static Type ParseType(this string assemblyQualifiedTypeName)
+        {
+            // get the type
+            var type = Type.GetType(assemblyQualifiedTypeName);
+            if (type == null)
+                throw new TypeLoadException(String.Format(Resources.TypeNotFoundExceptionMessage, assemblyQualifiedTypeName));
+
+            return type;
+        }
+
         /// <summary>
         /// Converts the text value of a setting to a type
         /// </summary>
@@ -31,7 +47,7 @@ namespace AutoTrade.Core
             Type t = type;
             if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>))
             {
-                if (string.IsNullOrEmpty(value))
+                if (String.IsNullOrEmpty(value))
                     return null;
 
                 t = t.GetGenericArguments().First();
@@ -44,37 +60,37 @@ namespace AutoTrade.Core
             else if (t == typeof(int))
             {
                 int x;
-                if (int.TryParse(value, out x))
+                if (Int32.TryParse(value, out x))
                     returnValue = x;
             }
             else if (t == typeof(long))
             {
                 long x;
-                if (long.TryParse(value, out x))
+                if (Int64.TryParse(value, out x))
                     returnValue = x;
             }
             else if (t == typeof(decimal))
             {
                 decimal x;
-                if (decimal.TryParse(value, out x))
+                if (Decimal.TryParse(value, out x))
                     returnValue = x;
             }
             else if (t == typeof(double))
             {
                 double x;
-                if (double.TryParse(value, out x))
+                if (Double.TryParse(value, out x))
                     returnValue = x;
             }
             else if (t == typeof(float))
             {
                 float x;
-                if (float.TryParse(value, out x))
+                if (Single.TryParse(value, out x))
                     returnValue = x;
             }
             else if (t == typeof(bool))
             {
                 bool x;
-                if (bool.TryParse(value, out x))
+                if (Boolean.TryParse(value, out x))
                     returnValue = x;
             }
             else if (t == typeof(DateTime))

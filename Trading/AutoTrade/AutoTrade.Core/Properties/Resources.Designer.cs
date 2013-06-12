@@ -70,6 +70,15 @@ namespace AutoTrade.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred loading the configuration for an assembly. Details: {0}.
+        /// </summary>
+        internal static string AssemblyConfigurationExceptionMessage {
+            get {
+                return ResourceManager.GetString("AssemblyConfigurationExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An assembly with the name {0} has not been loaded into the application domain..
         /// </summary>
         internal static string AssemblyNotFoundExceptionMessage {
@@ -151,15 +160,6 @@ namespace AutoTrade.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred loading registrations for the module. Details: {0}.
-        /// </summary>
-        internal static string ModuleRegistrationsExceptionMessage {
-            get {
-                return ResourceManager.GetString("ModuleRegistrationsExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Failed to create Unity container. Container is null..
         /// </summary>
         internal static string NullContainerMessage {
@@ -196,7 +196,7 @@ namespace AutoTrade.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A type with the name {0} was not found in the assembly {1}..
+        ///   Looks up a localized string similar to A type with the name {0} was not found..
         /// </summary>
         internal static string TypeNotFoundExceptionMessage {
             get {

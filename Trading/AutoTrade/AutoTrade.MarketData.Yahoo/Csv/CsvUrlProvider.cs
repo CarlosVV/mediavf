@@ -28,11 +28,14 @@ namespace AutoTrade.MarketData.Yahoo.Csv
         /// Instantiates a <see cref="CsvUrlProvider"/>
         /// </summary>
         /// <param name="settings"></param>
-        /// <param name="columnProvider"></param>
-        public CsvUrlProvider(IYahooMarketDataSettings settings, ICsvColumnProvider columnProvider)
+        /// <param>
+        ///     <name>columnProvider</name>
+        /// </param>
+        /// <param name="columnProviderFactory"></param>
+        public CsvUrlProvider(IYahooMarketDataSettings settings, ICsvColumnProviderFactory columnProviderFactory)
         {
             _settings = settings;
-            _columnProvider = columnProvider;
+            _columnProvider = columnProviderFactory.GetColumnProvider();
         }
 
         #endregion

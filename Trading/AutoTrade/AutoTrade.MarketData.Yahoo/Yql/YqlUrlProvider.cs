@@ -5,7 +5,7 @@ using AutoTrade.MarketData.Yahoo.Yql.Exceptions;
 
 namespace AutoTrade.MarketData.Yahoo.Yql
 {
-    public class YqlUrlProvider : IUrlProvider
+    public class YqlUrlProvider : IYqlUrlProvider
     {
         #region Constants
 

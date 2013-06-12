@@ -1,33 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoTrade.Core;
-using AutoTrade.Core.Settings;
 
 namespace AutoTrade.MarketData.Yahoo.Yql
 {
     class YqlQueryProvider : IYqlQueryProvider
     {
-        #region Constants
-
-        /// <summary>
-        /// The name of the setting for getting the YQL query for quotes for multiple stocks
-        /// </summary>
-        private const string MultiQuoteStockSelectSettingName = "YqlMultiQuoteStockSelect";
-
-        /// <summary>
-        /// The format for creating YQL query for getting quotes for multiple stocks
-        /// </summary>
-        private const string DefaultMultiStockQuoteSelectFormat = @"select * from yahoo.finance.quotes where symbol in ({0})";
-
-        #endregion
-
         #region Fields
 
         /// <summary>
-        /// The app settings provider
+        /// The Yahoo market data settings
         /// </summary>
-        private readonly IAppSettingsProvider _appSettingsProvider;
+        private readonly IYahooMarketDataSettings _marketDataSettings;
 
         #endregion
 
@@ -36,10 +20,9 @@ namespace AutoTrade.MarketData.Yahoo.Yql
         /// <summary>
         /// Instantiates a <see cref="YqlQueryProvider"/>
         /// </summary>
-        /// <param name="appSettingsProvider"></param>
-        public YqlQueryProvider(IAppSettingsProvider appSettingsProvider)
+        public YqlQueryProvider(IYahooMarketDataSettings marketDataSettings)
         {
-            _appSettingsProvider = appSettingsProvider;
+            _marketDataSettings = marketDataSettings;
         }
 
         #endregion
@@ -57,11 +40,9 @@ namespace AutoTrade.MarketData.Yahoo.Yql
             if (symbols == null)
                 throw new ArgumentNullException("symbols");
 
-            // get the format for the query to select quotes
-            string stockQuoteSelectFormat = _appSettingsProvider.GetSetting(MultiQuoteStockSelectSettingName, DefaultMultiStockQuoteSelectFormat);
-
             // create select
-            return string.Format(stockQuoteSelectFormat, string.Join(",", symbols.Select(t => string.Format("\"{0}\"", t))));
+            return string.Format(_marketDataSettings.YqlMultiQuoteStockSelect,
+                string.Join(",", symbols.Select(t => string.Format("\"{0}\"", t))));
         }
 
         #endregion

@@ -1,6 +1,6 @@
 ﻿namespace AutoTrade.Core.Settings
 {
-    public interface IAppSettingsProvider
+    public interface ISettingsProvider
     {
         /// <summary>
         /// Gets the value for a setting from config
