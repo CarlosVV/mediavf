@@ -20,3 +20,7 @@ C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsof
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.Prism.xml
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.Unity.pdb
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.Prism.UnityExtensions.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData\bin\Debug\Microsoft.Practices.Prism.UnityExtensions.xml

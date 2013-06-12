@@ -50,8 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Csv\Configuration\CsvQueryColumnElement.cs" />
-    <Compile Include="Csv\Configuration\CsvQueryColumnElementCollection.cs" />
+    <Compile Include="Csv\Configuration\CsvQueryColumnConfiguration.cs" />
+    <Compile Include="Csv\CsvColumnProviderFactory.cs" />
     <Compile Include="Csv\CsvMarketDataProvider.cs" />
     <Compile Include="Csv\CsvResultTranslator.cs" />
     <Compile Include="Csv\CsvUrlProvider.cs" />
@@ -63,6 +63,7 @@
     <Compile Include="Exceptions\QueryUrlNotProvidedException.cs" />
     <Compile Include="Exceptions\NoSymbolsProvidedException.cs" />
     <Compile Include="Exceptions\QueryResultsAreEmptyException.cs" />
+    <Compile Include="Csv\ICsvColumnProviderFactory.cs" />
     <Compile Include="IYahooMarketDataProvider.cs" />
     <Compile Include="YahooMarketDataModule.cs" />
     <Compile Include="YahooMarketDataProviderBase.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Csv\ICsvColumnProvider.cs" />
     <Compile Include="IYahooMarketDataSettings.cs" />
     <Compile Include="IUrlProvider.cs" />
+    <Compile Include="Yql\Exceptions\YqlTableBlockedException.cs" />
     <Compile Include="Yql\IYqlQueryProvider.cs" />
     <Compile Include="IResultTranslator.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -81,7 +83,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Csv\Configuration\CsvQueryConfiguration.cs" />
+    <Compile Include="Csv\Configuration\CsvQueryConfigurationSection.cs" />
     <Compile Include="YahooMarketDataAppSettings.cs" />
     <Compile Include="YahooMarketDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,9 +114,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="AutoTrade.MarketData.Yahoo.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Csv\Configuration\App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist $(SolutionDir)AutoTrade.MarketData.CollectionService\bin\$(Configuration)\Modules mkdir $(SolutionDir)AutoTrade.MarketData.CollectionService\bin\$(Configuration)\Modules
+xcopy /e /y /r $(TargetPath) $(SolutionDir)AutoTrade.MarketData.CollectionService\bin\$(Configuration)\Modules
+xcopy /e /y /r $(TargetPath).config $(SolutionDir)AutoTrade.MarketData.CollectionService\bin\$(Configuration)\Modules</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

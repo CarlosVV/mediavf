@@ -1,20 +1,20 @@
-﻿using Microsoft.Practices.Prism.Modularity;
+﻿using AutoTrade.Core.Modularity;
+using AutoTrade.Core.Modularity.Configuration;
 using Microsoft.Practices.Unity;
 
 namespace AutoTrade.MarketData.Yahoo
 {
-    class YahooMarketDataModule : IModule
+    class YahooMarketDataModule : ConfigurableModule
     {
-        private readonly IUnityContainer _container;
-
-        public YahooMarketDataModule(IUnityContainer container)
+        /// <summary>
+        /// Instantiates a <see cref="YahooMarketDataModule"/>
+        /// </summary>
+        /// <param name="unityContainer"></param>
+        /// <param name="assemblyConfigurationManager"></param>
+        public YahooMarketDataModule(IUnityContainer unityContainer,
+            IAssemblyConfigurationManager assemblyConfigurationManager)
+            : base(unityContainer, assemblyConfigurationManager)
         {
-            _container = container;
-        }
-
-        public void Initialize()
-        {
-            //_container.RegisterType()
         }
     }
 }

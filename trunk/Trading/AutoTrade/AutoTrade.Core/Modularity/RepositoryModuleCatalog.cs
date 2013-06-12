@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using Microsoft.Practices.Prism.Modularity;
 
@@ -53,11 +54,21 @@ namespace AutoTrade.Core.Modularity
         {
             AddModule(moduleData.ModuleName,
              moduleData.ModuleType,
-             moduleData.AssemblyPath,
+             CreateFileUri(moduleData.AssemblyPath),
              moduleData.IsLoadedOnStartup
-                 ? InitializationMode.OnDemand
-                 : InitializationMode.WhenAvailable,
+                 ? InitializationMode.WhenAvailable
+                 : InitializationMode.OnDemand,
              moduleData.DependsOn.ToArray());
+        }
+
+        /// <summary>
+        /// Creates a file uri
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        private static string CreateFileUri(string path)
+        {
+            return new Uri(Path.GetFullPath(path)).AbsoluteUri;
         }
 
         #endregion

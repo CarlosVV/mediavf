@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using AutoTrade.MarketData.Entities;
 using AutoTrade.MarketData.Properties;
@@ -176,9 +175,14 @@ namespace AutoTrade.MarketData
 
                     if (quotes != null)
                     {
-                        // add quotes to repository
-                        foreach (StockQuote quote in quotes)
+                        foreach (var quote in quotes)
+                        {
+                            // set created date
+                            quote.Created = DateTime.Now;
+
+                            // add to repository
                             _marketDataRepository.StockQuotes.Add(quote);
+                        }
 
                         // save
                         _marketDataRepository.SaveChanges();

@@ -31,7 +31,15 @@ namespace AutoTrade.MarketData
 
         #region Constructors
 
-        public SubscriptionFactory(ILog logger, IMarketDataRepository marketDataRepository, IEnumerable<IMarketDataProvider> marketDataProviders)
+        /// <summary>
+        /// Instantiates a <see cref="SubscriptionFactory"/>
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="marketDataRepository"></param>
+        /// <param name="marketDataProviders"></param>
+        public SubscriptionFactory(ILog logger,
+            IMarketDataRepository marketDataRepository,
+            IEnumerable<IMarketDataProvider> marketDataProviders)
         {
             _logger = logger;
             _marketDataRepository = marketDataRepository;
@@ -59,7 +67,7 @@ namespace AutoTrade.MarketData
 
             // create the data provider
             var marketDataProvider =
-                _marketDataProviders.FirstOrDefault(mdp => mdp.GetType().FullName == subscription.DataProvider.Type);
+                _marketDataProviders.FirstOrDefault(mdp => mdp.GetType() == Type.GetType(subscription.DataProvider.Type));
             if (marketDataProvider == null)
                 throw new SubscriptionCreationException(Resources.DataProviderTypeNotRegisteredExceptionFormat,
                     subscription.DataProvider.Type);

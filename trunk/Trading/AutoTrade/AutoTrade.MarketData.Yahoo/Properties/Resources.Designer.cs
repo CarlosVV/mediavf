@@ -70,6 +70,15 @@ namespace AutoTrade.MarketData.Yahoo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The configuration section {0} was not found..
+        /// </summary>
+        internal static string CsvQueryConfigurationSectionMissingMessage {
+            get {
+                return ResourceManager.GetString("CsvQueryConfigurationSectionMissingMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to YQL query provided is null or empty..
         /// </summary>
         internal static string EmptyYqlQueryMessage {
@@ -192,6 +201,15 @@ namespace AutoTrade.MarketData.Yahoo.Properties {
         internal static string YqlResultNodeMissingFormat {
             get {
                 return ResourceManager.GetString("YqlResultNodeMissingFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The YQL table is currently blocked. The message returned by Yahoo is: &quot;{0}&quot;..
+        /// </summary>
+        internal static string YqlTableBlockedMessageFormat {
+            get {
+                return ResourceManager.GetString("YqlTableBlockedMessageFormat", resourceCulture);
             }
         }
     }

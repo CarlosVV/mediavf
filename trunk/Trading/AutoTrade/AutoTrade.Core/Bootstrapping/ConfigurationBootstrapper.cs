@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Configuration;
+using AutoTrade.Core.Modularity.Configuration;
 using AutoTrade.Core.Properties;
+using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Modularity;
+using Microsoft.Practices.Prism.UnityExtensions;
+using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using log4net;
@@ -41,10 +45,25 @@ namespace AutoTrade.Core.Bootstrapping
         }
 
         /// <summary>
-        /// Creates the dependency injection container for the application
+        /// Creates the container
         /// </summary>
         /// <returns></returns>
         protected virtual IUnityContainer CreateContainer()
+        {
+            // register basic types
+            return new UnityContainer()
+                .RegisterInstance(Logger)
+                .RegisterType<IServiceLocator, UnityServiceLocatorAdapter>(new ContainerControlledLifetimeManager())
+                .RegisterType<IModuleInitializer, ModuleInitializer>(new ContainerControlledLifetimeManager())
+                .RegisterType<IModuleManager, ModuleManager>(new ContainerControlledLifetimeManager())
+                .RegisterType<IEventAggregator, EventAggregator>(new ContainerControlledLifetimeManager());
+        }
+
+        /// <summary>
+        /// Creates the dependency injection container for the application
+        /// </summary>
+        /// <returns></returns>
+        protected virtual void ConfigureContainer()
         {
             // get unity config section
             var configSection = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
@@ -52,7 +71,7 @@ namespace AutoTrade.Core.Bootstrapping
                 throw new Exception("Unity section not found.");
 
             // configure container
-            return configSection.Configure(new UnityContainer());
+            configSection.Configure(Container);
         }
 
         /// <summary>
@@ -62,15 +81,7 @@ namespace AutoTrade.Core.Bootstrapping
         protected virtual IModuleCatalog CreateModuleCatalog()
         {
             // resolve module catalog
-            var moduleCatalog = Container.Resolve<IModuleCatalog>();
-
-            // load the catalog, if possible
-            var catalog = moduleCatalog as ModuleCatalog;
-            if (catalog != null)
-                catalog.Load();
-
-            // return catalog
-            return moduleCatalog;
+            return Container.Resolve<IModuleCatalog>();
         }
 
         /// <summary>
@@ -101,8 +112,13 @@ namespace AutoTrade.Core.Bootstrapping
                 throw new InvalidOperationException(Resources.NullContainerMessage);
             Logger.Debug(Resources.ContainerCreatedMessage);
 
-            // registers the logger for access throughout the application
-            Container.RegisterInstance(Logger);
+            // configures the container
+            ConfigureContainer();
+
+            // get the assembly config manager
+            var assemblyConfigManager = Container.Resolve<IAssemblyConfigurationManager>();
+            if (assemblyConfigManager != null)
+                assemblyConfigManager.StartMonitoringLoadedAssemblies();
 
             // create module catalog
             ModuleCatalog = CreateModuleCatalog();

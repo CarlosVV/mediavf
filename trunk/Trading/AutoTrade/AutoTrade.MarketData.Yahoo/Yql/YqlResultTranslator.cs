@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using AutoTrade.Core;
+using AutoTrade.Core.Modularity.Configuration.Xml;
 using AutoTrade.MarketData.Entities;
-using AutoTrade.MarketData.Yahoo.Exceptions;
 using AutoTrade.MarketData.Yahoo.Yql.Exceptions;
 
 namespace AutoTrade.MarketData.Yahoo.Yql
 {
-    public class YqlResultTranslator : IResultTranslator
+    public class YqlResultTranslator : IYqlResultTranslator
     {
         #region Constants
 
@@ -43,6 +43,33 @@ namespace AutoTrade.MarketData.Yahoo.Yql
         /// </summary>
         private const string OpenPriceElementName = "OpenPrice";
 
+        /// <summary>
+        /// The XPath used to get the javascript element
+        /// </summary>
+        private const string JavascriptXPath = "//javascript";
+
+        #endregion
+
+        #region Fields
+
+        /// <summary>
+        /// The settings for Yahoo market data
+        /// </summary>
+        private readonly IYahooMarketDataSettings _settings;
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Instantiates a <see cref="YqlResultTranslator"/>
+        /// </summary>
+        /// <param name="settings"></param>
+        public YqlResultTranslator(IYahooMarketDataSettings settings)
+        {
+            _settings = settings;
+        }
+
         #endregion
 
         #region Methods
@@ -67,6 +94,9 @@ namespace AutoTrade.MarketData.Yahoo.Yql
                 throw new InvalidYqlResponseException(ex);
             }
 
+            // check for any errors in the xml doc
+            CheckForErrors(xmlDoc);
+
             // if no quote elements were found, return an empty list
             var quoteElements = xmlDoc.SelectNodes(QuoteXPath);
             if (quoteElements == null)
@@ -74,6 +104,41 @@ namespace AutoTrade.MarketData.Yahoo.Yql
 
             // convert quote elements to quotes
             return quoteElements.Cast<XmlElement>().Select(TranslateToQuote);
+        }
+
+        /// <summary>
+        /// Checks if any errors were returned in the xml
+        /// </summary>
+        /// <param name="node"></param>
+        private void CheckForErrors(XmlNode node)
+        {
+            // get message for table blocking
+            var tableBlockingMessage = GetTableBlockingMessage(node);
+
+            // if a table-blocking message was found, throw an error
+            if (!string.IsNullOrWhiteSpace(tableBlockingMessage))
+                throw new YqlTableBlockedException(tableBlockingMessage);
+        }
+
+        /// <summary>
+        /// Checks for the blocked table message in the results
+        /// </summary>
+        /// <param name="xmlDocument"></param>
+        /// <returns></returns>
+        private string GetTableBlockingMessage(XmlNode xmlDocument)
+        {
+            // get the javascript node from diagnostics
+            var javaScriptNode = xmlDocument.SelectSingleNode(JavascriptXPath);
+
+            // if javascript node was not present, no issues
+            if (javaScriptNode == null)
+                return string.Empty;
+
+            // get inner text without CData tags
+            var innerText = javaScriptNode.ExtractInnerTextFromCData();
+
+            // if the text contains the YQL table blocked message, return it
+            return innerText.Contains(_settings.YqlTableBlockedMessage) ? innerText : string.Empty;
         }
 
         /// <summary>

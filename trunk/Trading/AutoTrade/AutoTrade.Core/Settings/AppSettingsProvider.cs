@@ -2,7 +2,7 @@
 
 namespace AutoTrade.Core.Settings
 {
-    public class AppSettingsProvider : IAppSettingsProvider
+    public class AppSettingsProvider : ISettingsProvider
     {
         #region Methods
 
