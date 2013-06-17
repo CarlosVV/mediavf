@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoTrade.Core;
-using AutoTrade.MarketData.Entities;
+using AutoTrade.MarketData.Data;
 using AutoTrade.MarketData.Yahoo.Csv.Exceptions;
 using AutoTrade.MarketData.Yahoo.Exceptions;
 using AutoTrade.MarketData.Yahoo.Properties;
@@ -96,11 +96,23 @@ namespace AutoTrade.MarketData.Yahoo.Csv
             IReadOnlyDictionary<int, string> columnPropertyMappings)
         {
             // create new quote
-            var quote = new StockQuote();
+            var quote = new StockQuote { QuoteDateTime = DateTime.Now };
 
             // go through all values that are mapped to a property and populate the property from the value in the list
-            foreach (var value in values.Where(v => columnPropertyMappings.ContainsKey(values.IndexOf(v))))
-                PopulatePropertyWithValue(quote, columnPropertyMappings[values.IndexOf(value)], value);
+            for (var i = 0; i < values.Count; i++)
+            {
+                // ensure dictionary contains this index
+                if (!columnPropertyMappings.ContainsKey(i)) continue;
+
+                // get the property name
+                var propertyName = columnPropertyMappings[i];
+
+                // check that property name is populated
+                if (string.IsNullOrWhiteSpace(propertyName)) continue;
+
+                // populate property with value from list
+                PopulatePropertyWithValue(quote, columnPropertyMappings[i], values[i]);
+            }
 
             return quote;
         }
@@ -113,6 +125,10 @@ namespace AutoTrade.MarketData.Yahoo.Csv
         /// <param name="value"></param>
         private static void PopulatePropertyWithValue(StockQuote quote, string propertyName, string value)
         {
+            // trim quotes on text fields
+            if (!string.IsNullOrWhiteSpace(value))
+                value = value.Trim('"');
+
             // get the property
             var property = quote.GetType().GetProperty(propertyName);
 

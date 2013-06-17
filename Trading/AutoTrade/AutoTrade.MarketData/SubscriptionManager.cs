@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using AutoTrade.Core;
-using AutoTrade.MarketData.Entities;
+using AutoTrade.MarketData.Data;
 using AutoTrade.MarketData.Exceptions;
 using AutoTrade.MarketData.Properties;
 using log4net;
@@ -32,6 +34,11 @@ namespace AutoTrade.MarketData
         /// </summary>
         private readonly Dictionary<int, IMarketDataSubscription> _subscriptions = new Dictionary<int, IMarketDataSubscription>();
 
+        /// <summary>
+        /// The timer for updating subscription data at regular intervals
+        /// </summary>
+        private readonly Timer _dataUpdateTimer;
+
         #endregion
 
         #region Constructors
@@ -47,11 +54,23 @@ namespace AutoTrade.MarketData
             _logger = logger;
             _repository = repository;
             _subscriptionFactory = subscriptionFactory;
+
+            // set up timer - wait five minutes, then update data every minute
+            _dataUpdateTimer = new Timer(UpdateSubscriptionData);
         }
 
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Updates subscription data at regular intervals
+        /// </summary>
+        /// <param name="state"></param>
+        private void UpdateSubscriptionData(object state)
+        {
+            _subscriptions.Values.AsParallel().ForAll(s => s.UpdateData());
+        }
 
         /// <summary>
         /// Starts all subscriptions in the manager
@@ -69,7 +88,8 @@ namespace AutoTrade.MarketData
                 // start all subscriptions that are not already running
                 _subscriptions.Where(kvp => activeSubscriptions.ContainsKey(kvp.Key) &&
                                             kvp.Value.Status != SubscriptionStatus.Running)
-                              .ForEach(kvp =>
+                              .AsParallel()
+                              .ForAll(kvp =>
                               {
                                   // update data for the subscription
                                   kvp.Value.UpdateData(activeSubscriptions[kvp.Key]);
@@ -77,6 +97,9 @@ namespace AutoTrade.MarketData
                                   // start running the subscription
                                   kvp.Value.Start();
                               });
+
+                // start updating data for subscriptions regularly
+                _dataUpdateTimer.Change(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(1));
             }
             else
                 _logger.WarnFormat(Resources.NoSubscriptionsFoundWarning);
@@ -97,7 +120,10 @@ namespace AutoTrade.MarketData
         /// </summary>
         public void StopAllSubscriptions()
         {
-            _subscriptions.Values.ForEach(s => s.Stop());
+            _subscriptions.Values.AsParallel().ForAll(s => s.Stop());
+
+            // start updating data for subscriptions regularly
+            _dataUpdateTimer.Change(Timeout.InfiniteTimeSpan, Timeout.InfiniteTimeSpan);
         }
 
         /// <summary>

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoTrade.MarketData.Entities;
+using AutoTrade.Core;
+using AutoTrade.MarketData.Data;
 using AutoTrade.MarketData.Exceptions;
 using AutoTrade.MarketData.Properties;
 using log4net;
@@ -27,6 +28,11 @@ namespace AutoTrade.MarketData
         /// </summary>
         private readonly IEnumerable<IMarketDataProvider> _marketDataProviders;
 
+        /// <summary>
+        /// The list of registered stock list providers
+        /// </summary>
+        private readonly IEnumerable<IStockListProvider> _stockListProviders;
+
         #endregion
 
         #region Constructors
@@ -37,13 +43,16 @@ namespace AutoTrade.MarketData
         /// <param name="logger"></param>
         /// <param name="marketDataRepository"></param>
         /// <param name="marketDataProviders"></param>
+        /// <param name="stockListProviders"></param>
         public SubscriptionFactory(ILog logger,
             IMarketDataRepository marketDataRepository,
-            IEnumerable<IMarketDataProvider> marketDataProviders)
+            IEnumerable<IMarketDataProvider> marketDataProviders,
+            IEnumerable<IStockListProvider> stockListProviders)
         {
             _logger = logger;
             _marketDataRepository = marketDataRepository;
             _marketDataProviders = marketDataProviders;
+            _stockListProviders = stockListProviders;
         }
 
         #endregion
@@ -61,18 +70,53 @@ namespace AutoTrade.MarketData
             if (subscription == null)
                 throw new ArgumentNullException("subscription");
 
+            return new MarketDataSubscription(_logger,
+                _marketDataRepository,
+                GetDataProvider(subscription),
+                GetStockListProvider(subscription),
+                subscription);
+        }
+
+        /// <summary>
+        /// Gets the stock list provider for the subscription
+        /// </summary>
+        /// <param name="subscription"></param>
+        /// <returns></returns>
+        private IStockListProvider GetStockListProvider(Subscription subscription)
+        {
+            // ensure data provider is not null
+            if (subscription.StockListProvider == null)
+                throw new SubscriptionCreationException(Resources.StockListProviderNullException);
+
+            // create the data provider
+            var stockListProvider =
+                _stockListProviders.FirstOrDefault(slp => slp.GetType() == subscription.StockListProvider.Type.ParseType());
+            if (stockListProvider == null)
+                throw new SubscriptionCreationException(Resources.StockListProviderTypeNotRegisteredExceptionMessage,
+                    subscription.StockListProvider.Type);
+
+            return stockListProvider;
+        }
+
+        /// <summary>
+        /// Gets the market data provider for the subscription
+        /// </summary>
+        /// <param name="subscription"></param>
+        /// <returns></returns>
+        private IMarketDataProvider GetDataProvider(Subscription subscription)
+        {
             // ensure data provider is not null
             if (subscription.DataProvider == null)
                 throw new SubscriptionCreationException(Resources.DataProviderNullException);
 
             // create the data provider
             var marketDataProvider =
-                _marketDataProviders.FirstOrDefault(mdp => mdp.GetType() == Type.GetType(subscription.DataProvider.Type));
+                _marketDataProviders.FirstOrDefault(mdp => mdp.GetType() == subscription.DataProvider.Type.ParseType());
             if (marketDataProvider == null)
                 throw new SubscriptionCreationException(Resources.DataProviderTypeNotRegisteredExceptionFormat,
                     subscription.DataProvider.Type);
 
-            return new MarketDataSubscription(_logger, _marketDataRepository, marketDataProvider, subscription);
+            return marketDataProvider;
         }
 
         #endregion

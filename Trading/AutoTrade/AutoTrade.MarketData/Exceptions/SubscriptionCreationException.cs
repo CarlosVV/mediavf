@@ -14,6 +14,7 @@ namespace AutoTrade.MarketData.Exceptions
         /// Instantiates a <see cref="SubscriptionCreationException"/>
         /// </summary>
         /// <param name="details"></param>
+        /// <param name="args"></param>
         public SubscriptionCreationException(string details, params object[] args)
         {
             _details = string.Format(details, args);

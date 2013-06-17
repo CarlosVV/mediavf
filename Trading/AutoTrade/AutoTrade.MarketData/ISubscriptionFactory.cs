@@ -1,4 +1,4 @@
-﻿using AutoTrade.MarketData.Entities;
+﻿using AutoTrade.MarketData.Data;
 
 namespace AutoTrade.MarketData
 {

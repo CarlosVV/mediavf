@@ -5,8 +5,8 @@ C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Tests\bin\Debug\FluentAsserti
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Tests\bin\Debug\FakeItEasy.xml
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Tests\bin\Debug\FluentAssertions.pdb
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Tests\bin\Debug\FluentAssertions.xml
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Tests\obj\Debug\AutoTrade.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Tests\obj\Debug\AutoTrade.Tests.Properties.Resources.resources
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Tests\obj\Debug\AutoTrade.Tests.csproj.GenerateResource.Cache
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Tests\obj\Debug\AutoTrade.Tests.dll
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Tests\obj\Debug\AutoTrade.Tests.pdb
-C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Tests\obj\Debug\AutoTrade.Tests.csprojResolveAssemblyReference.cache

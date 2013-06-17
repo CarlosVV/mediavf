@@ -1,0 +1,575 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AutoTradeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="AutoTradeModelStoreContainer">
+          <EntitySet Name="DataProvider" EntityType="AutoTradeModel.Store.DataProvider" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Module" EntityType="AutoTradeModel.Store.Module" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ModuleDependency" EntityType="AutoTradeModel.Store.ModuleDependency" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Stock" EntityType="AutoTradeModel.Store.Stock" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StockListProvider" EntityType="AutoTradeModel.Store.StockListProvider" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StockQuote" EntityType="AutoTradeModel.Store.StockQuote" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Subscription" EntityType="AutoTradeModel.Store.Subscription" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SubscriptionStock" EntityType="AutoTradeModel.Store.SubscriptionStock" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ModuleDependency_Module" Association="AutoTradeModel.Store.FK_ModuleDependency_Module">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="ModuleDependency" EntitySet="ModuleDependency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleDependency_Module1" Association="AutoTradeModel.Store.FK_ModuleDependency_Module1">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="ModuleDependency" EntitySet="ModuleDependency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockQuote_Stock" Association="AutoTradeModel.Store.FK_StockQuote_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="StockQuote" EntitySet="StockQuote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockQuote_Subscription" Association="AutoTradeModel.Store.FK_StockQuote_Subscription">
+            <End Role="Subscription" EntitySet="Subscription" />
+            <End Role="StockQuote" EntitySet="StockQuote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subscription_DataProvider" Association="AutoTradeModel.Store.FK_Subscription_DataProvider">
+            <End Role="DataProvider" EntitySet="DataProvider" />
+            <End Role="Subscription" EntitySet="Subscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subscription_StockListProvider" Association="AutoTradeModel.Store.FK_Subscription_StockListProvider">
+            <End Role="StockListProvider" EntitySet="StockListProvider" />
+            <End Role="Subscription" EntitySet="Subscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionStock_Stock" Association="AutoTradeModel.Store.FK_SubscriptionStock_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="SubscriptionStock" EntitySet="SubscriptionStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionStock_Subscription" Association="AutoTradeModel.Store.FK_SubscriptionStock_Subscription">
+            <End Role="Subscription" EntitySet="Subscription" />
+            <End Role="SubscriptionStock" EntitySet="SubscriptionStock" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DataProvider">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="AssemblyPath" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="IsLoadedOnStartup" Type="bit" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ModuleDependency">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleID" Type="int" Nullable="false" />
+          <Property Name="DependentOnModuleID" Type="int" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Symbol" />
+          </Key>
+          <Property Name="Symbol" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Sector" Type="int" />
+          <Property Name="Industry" Type="int" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StockListProvider">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StockQuote">
+          <Key>
+            <PropertyRef Name="Symbol" />
+            <PropertyRef Name="SubscriptionID" />
+            <PropertyRef Name="QuoteDateTime" />
+          </Key>
+          <Property Name="Symbol" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="SubscriptionID" Type="int" Nullable="false" />
+          <Property Name="QuoteDateTime" Type="datetime" Nullable="false" />
+          <Property Name="LastTradePrice" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="BidPrice" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="AskPrice" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="Change" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="OpenPrice" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subscription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="TimeOfDayStart" Type="time" Nullable="false" Precision="3" />
+          <Property Name="TimeOfDayEnd" Type="time" Nullable="false" Precision="3" />
+          <Property Name="UpdateInterval" Type="time" Nullable="false" Precision="3" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="DataProviderID" Type="int" Nullable="false" />
+          <Property Name="StockListProviderID" Type="int" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubscriptionStock">
+          <Key>
+            <PropertyRef Name="SubscriptionID" />
+            <PropertyRef Name="Symbol" />
+          </Key>
+          <Property Name="SubscriptionID" Type="int" Nullable="false" />
+          <Property Name="Symbol" Type="nvarchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_ModuleDependency_Module">
+          <End Role="Module" Type="AutoTradeModel.Store.Module" Multiplicity="1" />
+          <End Role="ModuleDependency" Type="AutoTradeModel.Store.ModuleDependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModuleDependency">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleDependency_Module1">
+          <End Role="Module" Type="AutoTradeModel.Store.Module" Multiplicity="1" />
+          <End Role="ModuleDependency" Type="AutoTradeModel.Store.ModuleDependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModuleDependency">
+              <PropertyRef Name="DependentOnModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockQuote_Stock">
+          <End Role="Stock" Type="AutoTradeModel.Store.Stock" Multiplicity="1" />
+          <End Role="StockQuote" Type="AutoTradeModel.Store.StockQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Symbol" />
+            </Principal>
+            <Dependent Role="StockQuote">
+              <PropertyRef Name="Symbol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockQuote_Subscription">
+          <End Role="Subscription" Type="AutoTradeModel.Store.Subscription" Multiplicity="1" />
+          <End Role="StockQuote" Type="AutoTradeModel.Store.StockQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscription">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StockQuote">
+              <PropertyRef Name="SubscriptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subscription_DataProvider">
+          <End Role="DataProvider" Type="AutoTradeModel.Store.DataProvider" Multiplicity="1" />
+          <End Role="Subscription" Type="AutoTradeModel.Store.Subscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataProvider">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subscription">
+              <PropertyRef Name="DataProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subscription_StockListProvider">
+          <End Role="StockListProvider" Type="AutoTradeModel.Store.StockListProvider" Multiplicity="1" />
+          <End Role="Subscription" Type="AutoTradeModel.Store.Subscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockListProvider">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subscription">
+              <PropertyRef Name="StockListProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionStock_Stock">
+          <End Role="Stock" Type="AutoTradeModel.Store.Stock" Multiplicity="1" />
+          <End Role="SubscriptionStock" Type="AutoTradeModel.Store.SubscriptionStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Symbol" />
+            </Principal>
+            <Dependent Role="SubscriptionStock">
+              <PropertyRef Name="Symbol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionStock_Subscription">
+          <End Role="Subscription" Type="AutoTradeModel.Store.Subscription" Multiplicity="1" />
+          <End Role="SubscriptionStock" Type="AutoTradeModel.Store.SubscriptionStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscription">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SubscriptionStock">
+              <PropertyRef Name="SubscriptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AutoTradeModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MarketDataRepository" p1:LazyLoadingEnabled="false">
+          <EntitySet Name="DataProviders" EntityType="AutoTradeModel.DataProvider" />
+          <EntitySet Name="Modules" EntityType="AutoTradeModel.Module" />
+          <EntitySet Name="ModuleDependencies" EntityType="AutoTradeModel.ModuleDependency" />
+          <EntitySet Name="Stocks" EntityType="AutoTradeModel.Stock" />
+          <EntitySet Name="StockListProviders" EntityType="AutoTradeModel.StockListProvider" />
+          <EntitySet Name="StockQuotes" EntityType="AutoTradeModel.StockQuote" />
+          <EntitySet Name="Subscriptions" EntityType="AutoTradeModel.Subscription" />
+          <AssociationSet Name="FK_Subscription_DataProvider" Association="AutoTradeModel.FK_Subscription_DataProvider">
+            <End Role="DataProvider" EntitySet="DataProviders" />
+            <End Role="Subscription" EntitySet="Subscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleDependency_Module" Association="AutoTradeModel.FK_ModuleDependency_Module">
+            <End Role="Module" EntitySet="Modules" />
+            <End Role="ModuleDependency" EntitySet="ModuleDependencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleDependency_Module1" Association="AutoTradeModel.FK_ModuleDependency_Module1">
+            <End Role="Module" EntitySet="Modules" />
+            <End Role="ModuleDependency" EntitySet="ModuleDependencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockQuote_Stock" Association="AutoTradeModel.FK_StockQuote_Stock">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="StockQuote" EntitySet="StockQuotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subscription_StockListProvider" Association="AutoTradeModel.FK_Subscription_StockListProvider">
+            <End Role="StockListProvider" EntitySet="StockListProviders" />
+            <End Role="Subscription" EntitySet="Subscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="SubscriptionStock" Association="AutoTradeModel.SubscriptionStock">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="Subscription" EntitySet="Subscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockQuote_Subscription" Association="AutoTradeModel.FK_StockQuote_Subscription">
+            <End Role="Subscription" EntitySet="Subscriptions" />
+            <End Role="StockQuote" EntitySet="StockQuotes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DataProvider">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AssemblyPath" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsLoadedOnStartup" Nullable="false" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DependentOnModules" Relationship="AutoTradeModel.FK_ModuleDependency_Module" FromRole="Module" ToRole="ModuleDependency" />
+        </EntityType>
+        <EntityType Name="ModuleDependency">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ModuleID" Nullable="false" />
+          <Property Type="Int32" Name="DependentOnModuleID" Nullable="false" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DependentOnModule" Relationship="AutoTradeModel.FK_ModuleDependency_Module1" FromRole="ModuleDependency" ToRole="Module" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Symbol" />
+          </Key>
+          <Property Type="String" Name="Symbol" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CompanyName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Sector" />
+          <Property Type="Int32" Name="Industry" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <NavigationProperty Name="StockQuotes" Relationship="AutoTradeModel.FK_StockQuote_Stock" FromRole="Stock" ToRole="StockQuote" />
+        </EntityType>
+        <EntityType Name="StockListProvider">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="StockQuote">
+          <Key>
+            <PropertyRef Name="Symbol" />
+            <PropertyRef Name="QuoteDateTime" />
+            <PropertyRef Name="SubscriptionID" />
+          </Key>
+          <Property Type="String" Name="Symbol" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="QuoteDateTime" Nullable="false" Precision="3" />
+          <Property Type="Decimal" Name="BidPrice" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="AskPrice" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Change" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="OpenPrice" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="SubscriptionID" Nullable="false" />
+          <NavigationProperty Name="Subscription" Relationship="AutoTradeModel.FK_StockQuote_Subscription" FromRole="StockQuote" ToRole="Subscription" />
+          <Property Type="Decimal" Name="LastTradePrice" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Subscription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="Time" Name="UpdateInterval" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="LastUpdated" Precision="3" />
+          <Property Type="Int32" Name="DataProviderID" Nullable="false" />
+          <Property Type="Int32" Name="StockListProviderID" Nullable="false" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DataProvider" Relationship="AutoTradeModel.FK_Subscription_DataProvider" FromRole="Subscription" ToRole="DataProvider" />
+          <NavigationProperty Name="StockListProvider" Relationship="AutoTradeModel.FK_Subscription_StockListProvider" FromRole="Subscription" ToRole="StockListProvider" />
+          <NavigationProperty Name="Stocks" Relationship="AutoTradeModel.SubscriptionStock" FromRole="Subscription" ToRole="Stock" />
+          <Property Type="Time" Name="TimeOfDayStart" Nullable="false" Precision="3" />
+          <Property Type="Time" Name="TimeOfDayEnd" Nullable="false" Precision="3" />
+          <NavigationProperty Name="StockQuotes" Relationship="AutoTradeModel.FK_StockQuote_Subscription" FromRole="Subscription" ToRole="StockQuote" />
+        </EntityType>
+        <Association Name="FK_Subscription_DataProvider">
+          <End Type="AutoTradeModel.DataProvider" Role="DataProvider" Multiplicity="1" />
+          <End Type="AutoTradeModel.Subscription" Role="Subscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataProvider">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subscription">
+              <PropertyRef Name="DataProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleDependency_Module">
+          <End Type="AutoTradeModel.Module" Role="Module" Multiplicity="1" />
+          <End Type="AutoTradeModel.ModuleDependency" Role="ModuleDependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModuleDependency">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleDependency_Module1">
+          <End Type="AutoTradeModel.Module" Role="Module" Multiplicity="1" />
+          <End Type="AutoTradeModel.ModuleDependency" Role="ModuleDependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModuleDependency">
+              <PropertyRef Name="DependentOnModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockQuote_Stock">
+          <End Type="AutoTradeModel.Stock" Role="Stock" Multiplicity="1" />
+          <End Type="AutoTradeModel.StockQuote" Role="StockQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Symbol" />
+            </Principal>
+            <Dependent Role="StockQuote">
+              <PropertyRef Name="Symbol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subscription_StockListProvider">
+          <End Type="AutoTradeModel.StockListProvider" Role="StockListProvider" Multiplicity="1" />
+          <End Type="AutoTradeModel.Subscription" Role="Subscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockListProvider">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subscription">
+              <PropertyRef Name="StockListProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SubscriptionStock">
+          <End Type="AutoTradeModel.Stock" Role="Stock" Multiplicity="*" />
+          <End Type="AutoTradeModel.Subscription" Role="Subscription" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_StockQuote_Subscription">
+          <End Type="AutoTradeModel.Subscription" Role="Subscription" Multiplicity="1" />
+          <End Type="AutoTradeModel.StockQuote" Role="StockQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscription">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StockQuote">
+              <PropertyRef Name="SubscriptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AutoTradeModelStoreContainer" CdmEntityContainer="MarketDataRepository">
+          <EntitySetMapping Name="DataProviders">
+            <EntityTypeMapping TypeName="AutoTradeModel.DataProvider">
+              <MappingFragment StoreEntitySet="DataProvider">
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="AutoTradeModel.Module">
+              <MappingFragment StoreEntitySet="Module">
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="IsLoadedOnStartup" ColumnName="IsLoadedOnStartup" />
+                <ScalarProperty Name="AssemblyPath" ColumnName="AssemblyPath" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModuleDependencies">
+            <EntityTypeMapping TypeName="AutoTradeModel.ModuleDependency">
+              <MappingFragment StoreEntitySet="ModuleDependency">
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="DependentOnModuleID" ColumnName="DependentOnModuleID" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="AutoTradeModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Industry" ColumnName="Industry" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockListProviders">
+            <EntityTypeMapping TypeName="AutoTradeModel.StockListProvider">
+              <MappingFragment StoreEntitySet="StockListProvider">
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockQuotes">
+            <EntityTypeMapping TypeName="AutoTradeModel.StockQuote">
+              <MappingFragment StoreEntitySet="StockQuote">
+                <ScalarProperty Name="LastTradePrice" ColumnName="LastTradePrice" />
+                <ScalarProperty Name="SubscriptionID" ColumnName="SubscriptionID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="OpenPrice" ColumnName="OpenPrice" />
+                <ScalarProperty Name="Change" ColumnName="Change" />
+                <ScalarProperty Name="AskPrice" ColumnName="AskPrice" />
+                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+                <ScalarProperty Name="QuoteDateTime" ColumnName="QuoteDateTime" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subscriptions">
+            <EntityTypeMapping TypeName="AutoTradeModel.Subscription">
+              <MappingFragment StoreEntitySet="Subscription">
+                <ScalarProperty Name="TimeOfDayEnd" ColumnName="TimeOfDayEnd" />
+                <ScalarProperty Name="TimeOfDayStart" ColumnName="TimeOfDayStart" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="StockListProviderID" ColumnName="StockListProviderID" />
+                <ScalarProperty Name="DataProviderID" ColumnName="DataProviderID" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="UpdateInterval" ColumnName="UpdateInterval" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="SubscriptionStock" TypeName="AutoTradeModel.SubscriptionStock" StoreEntitySet="SubscriptionStock">
+            <EndProperty Name="Subscription">
+              <ScalarProperty Name="ID" ColumnName="SubscriptionID" />
+            </EndProperty>
+            <EndProperty Name="Stock">
+              <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

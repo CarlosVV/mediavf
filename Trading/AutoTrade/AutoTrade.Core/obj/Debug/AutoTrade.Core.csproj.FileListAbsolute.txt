@@ -1,11 +1,6 @@
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\AutoTrade.Core.dll
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\AutoTrade.Core.pdb
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\log4net.dll
-C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\log4net.xml
-C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.dll
-C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.pdb
-C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.Properties.Resources.resources
-C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.csproj.GenerateResource.Cache
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Expression.Interactions.dll
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Practices.Prism.dll
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Practices.Prism.Interactivity.dll
@@ -14,6 +9,7 @@ C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Prac
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Practices.Unity.dll
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\log4net.xml
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Practices.Prism.xml
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Practices.Prism.Interactivity.xml
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Practices.Prism.UnityExtensions.xml
@@ -21,4 +17,8 @@ C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Prac
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Practices.ServiceLocation.xml
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Practices.Unity.xml
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.Properties.Resources.resources
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.csproj.GenerateResource.Cache
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.pdb
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.csprojResolveAssemblyReference.cache

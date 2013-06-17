@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/AutoTrade.MarketData.Data" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AutoTrade.MarketData.Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:61865/MarketDataService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfSubscription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Subscription" nillable="true" type="tns:Subscription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubscription" nillable="true" type="tns:ArrayOfSubscription" />
+  <xs:complexType name="Subscription">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DataProvider" nillable="true" type="tns:DataProvider" />
+      <xs:element minOccurs="0" name="DataProviderID" type="xs:int" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="LastUpdated" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Modified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StockListProvider" nillable="true" type="tns:StockListProvider" />
+      <xs:element minOccurs="0" name="StockListProviderID" type="xs:int" />
+      <xs:element minOccurs="0" name="Stocks" nillable="true" type="tns:ArrayOfStock" />
+      <xs:element minOccurs="0" name="TimeOfDayEnd" type="ser:duration" />
+      <xs:element minOccurs="0" name="TimeOfDayStart" type="ser:duration" />
+      <xs:element minOccurs="0" name="UpdateInterval" type="ser:duration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Subscription" nillable="true" type="tns:Subscription" />
+  <xs:complexType name="DataProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Modified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Subscriptions" nillable="true" type="tns:ArrayOfSubscription" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DataProvider" nillable="true" type="tns:DataProvider" />
+  <xs:complexType name="StockListProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Modified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Subscriptions" nillable="true" type="tns:ArrayOfSubscription" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StockListProvider" nillable="true" type="tns:StockListProvider" />
+  <xs:complexType name="ArrayOfStock">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Stock" nillable="true" type="tns:Stock" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStock" nillable="true" type="tns:ArrayOfStock" />
+  <xs:complexType name="Stock">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Industry" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Modified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Sector" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StockQuotes" nillable="true" type="tns:ArrayOfStockQuote" />
+      <xs:element minOccurs="0" name="Subscriptions" nillable="true" type="tns:ArrayOfSubscription" />
+      <xs:element minOccurs="0" name="Symbol" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Stock" nillable="true" type="tns:Stock" />
+  <xs:complexType name="ArrayOfStockQuote">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StockQuote" nillable="true" type="tns:StockQuote" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStockQuote" nillable="true" type="tns:ArrayOfStockQuote" />
+  <xs:complexType name="StockQuote">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AskPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BidPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Change" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OpenPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="QuoteDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Stock" nillable="true" type="tns:Stock" />
+      <xs:element minOccurs="0" name="Symbol" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StockQuote" nillable="true" type="tns:StockQuote" />
+</xs:schema>

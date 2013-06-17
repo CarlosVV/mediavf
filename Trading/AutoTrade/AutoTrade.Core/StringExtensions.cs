@@ -16,7 +16,7 @@ namespace AutoTrade.Core
             // get the type
             var type = Type.GetType(assemblyQualifiedTypeName);
             if (type == null)
-                throw new TypeLoadException(String.Format(Resources.TypeNotFoundExceptionMessage, assemblyQualifiedTypeName));
+                throw new TypeLoadException(string.Format(Resources.TypeNotFoundExceptionMessage, assemblyQualifiedTypeName));
 
             return type;
         }

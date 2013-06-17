@@ -70,7 +70,7 @@ namespace AutoTrade.MarketData.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The data provider type {0} was not found registered in the dependency container..
+        ///   Looks up a localized string similar to The data provider type {0} was not registered in the dependency container..
         /// </summary>
         internal static string DataProviderTypeNotRegisteredExceptionFormat {
             get {
@@ -93,6 +93,24 @@ namespace AutoTrade.MarketData.Properties {
         internal static string NoSubscriptionsFoundWarning {
             get {
                 return ResourceManager.GetString("NoSubscriptionsFoundWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The stock list provider on the subscription is null..
+        /// </summary>
+        internal static string StockListProviderNullException {
+            get {
+                return ResourceManager.GetString("StockListProviderNullException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The stock list provider type {0} was not registered in the dependency container..
+        /// </summary>
+        internal static string StockListProviderTypeNotRegisteredExceptionMessage {
+            get {
+                return ResourceManager.GetString("StockListProviderTypeNotRegisteredExceptionMessage", resourceCulture);
             }
         }
         
