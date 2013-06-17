@@ -14,6 +14,7 @@ namespace AutoTrade.Core.Modularity.Configuration
         /// Instantiates a <see cref="AssemblyConfigurationException"/>
         /// </summary>
         /// <param name="details"></param>
+        /// <param name="args"></param>
         public AssemblyConfigurationException(string details, params object[] args)
         {
             _details = string.Format(details, args);

@@ -9,6 +9,7 @@ using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using log4net;
+using log4net.Config;
 
 namespace AutoTrade.Core.Bootstrapping
 {
@@ -41,6 +42,10 @@ namespace AutoTrade.Core.Bootstrapping
         /// <returns></returns>
         protected virtual ILog CreateLogger()
         {
+            // configure log4net
+            XmlConfigurator.Configure();
+
+            // create log4net logger
             return LogManager.GetLogger(typeof(T));
         }
 

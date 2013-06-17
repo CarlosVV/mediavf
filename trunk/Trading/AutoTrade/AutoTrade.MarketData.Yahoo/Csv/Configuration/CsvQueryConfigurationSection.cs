@@ -96,8 +96,18 @@ namespace AutoTrade.MarketData.Yahoo.Csv.Configuration
         /// <returns></returns>
         public Dictionary<int, string> GetProperties()
         {
-            return EnabledColumns.Where(c => !string.IsNullOrWhiteSpace(c.MappedProperty))
-                                 .ToDictionary(c => EnabledColumns.IndexOf(c), c => c.MappedProperty);
+            // get enabled columns that are mapped to properties
+            var enabledColumns = EnabledColumns.ToList();
+
+            // create dictionary mapping column indexes to properties
+            var propertiesByIndex = new Dictionary<int, string>();
+
+            // map indexes to properties
+            for (var i = 0; i < enabledColumns.Count; i++)
+                propertiesByIndex.Add(i, enabledColumns[i].MappedProperty);
+
+            // return mapped properties
+            return propertiesByIndex;
         }
 
         #endregion

@@ -75,7 +75,7 @@ namespace AutoTrade.MarketData.Yahoo.Csv.Configuration
             // get attribute values
             _tag = xmlElement.GetAttributeValue(TagAttributeName);
             _description = xmlElement.GetAttributeValue(DescriptionAttributeName);
-            _mappedProperty = xmlElement.GetAttributeValue(MappedPropertyAttributeName);
+            _mappedProperty = xmlElement.GetAttributeValue(MappedPropertyAttributeName, false);
             _enabled = bool.Parse(xmlElement.GetAttributeValue(EnabledAttributeName));
         }
 

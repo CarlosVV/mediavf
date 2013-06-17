@@ -73,13 +73,17 @@
       <Project>{7F9BF6A2-D154-44D8-9966-07312970279A}</Project>
       <Name>AutoTrade.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AutoTrade.MarketData.Data\AutoTrade.MarketData.Data.csproj">
+      <Project>{a1ce9bd6-8dd7-492b-bed4-e8e408b95674}</Project>
+      <Name>AutoTrade.MarketData.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AutoTrade.MarketData.Yahoo\AutoTrade.MarketData.Yahoo.csproj">
       <Project>{562005A5-00BD-44B3-AB9F-77615E46A678}</Project>
       <Name>AutoTrade.MarketData.Yahoo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AutoTrade.MarketData\AutoTrade.MarketData.csproj">
+    <ProjectReference Include="..\AutoTrade.MarketData\AutoTrade.MarketData.Collection.csproj">
       <Project>{05415541-66F1-49DA-B271-BB0B04EC396B}</Project>
-      <Name>AutoTrade.MarketData</Name>
+      <Name>AutoTrade.MarketData.Collection</Name>
     </ProjectReference>
     <ProjectReference Include="..\AutoTrade.Tests\AutoTrade.Tests.csproj">
       <Project>{51977e8c-20f6-4313-a9a8-a2d03f64db17}</Project>

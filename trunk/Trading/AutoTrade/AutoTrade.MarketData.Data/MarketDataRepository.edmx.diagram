@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="59977eaf5f4b49798f732d0fae6b887f" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="AutoTradeModel.DataProvider" Width="1.5" PointX="0.5" PointY="4.625" />
+        <EntityTypeShape EntityType="AutoTradeModel.Module" Width="1.875" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="AutoTradeModel.ModuleDependency" Width="2.125" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="AutoTradeModel.Stock" Width="1.5" PointX="2.625" PointY="4.625" />
+        <EntityTypeShape EntityType="AutoTradeModel.StockListProvider" Width="1.5" PointX="4.75" PointY="8.375" />
+        <EntityTypeShape EntityType="AutoTradeModel.StockQuote" Width="1.5" PointX="5.25" PointY="4.75" />
+        <EntityTypeShape EntityType="AutoTradeModel.Subscription" Width="1.5" PointX="2.375" PointY="8.25" />
+        <AssociationConnector Association="AutoTradeModel.FK_Subscription_DataProvider" />
+        <AssociationConnector Association="AutoTradeModel.FK_ModuleDependency_Module" />
+        <AssociationConnector Association="AutoTradeModel.FK_ModuleDependency_Module1" />
+        <AssociationConnector Association="AutoTradeModel.FK_StockQuote_Stock" />
+        <AssociationConnector Association="AutoTradeModel.FK_Subscription_StockListProvider" />
+        <AssociationConnector Association="AutoTradeModel.SubscriptionStock" />
+        <AssociationConnector Association="AutoTradeModel.FK_StockQuote_Subscription" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

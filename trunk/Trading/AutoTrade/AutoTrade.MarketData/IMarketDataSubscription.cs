@@ -1,4 +1,4 @@
-using AutoTrade.MarketData.Entities;
+using AutoTrade.MarketData.Data;
 
 namespace AutoTrade.MarketData
 {
@@ -8,6 +8,11 @@ namespace AutoTrade.MarketData
         /// Gets the status of the subscriptionData
         /// </summary>
         SubscriptionStatus Status { get; }
+
+        /// <summary>
+        /// Updates data for a subscription
+        /// </summary>
+        void UpdateData();
 
         /// <summary>
         /// Updates the data of the subscriptionData

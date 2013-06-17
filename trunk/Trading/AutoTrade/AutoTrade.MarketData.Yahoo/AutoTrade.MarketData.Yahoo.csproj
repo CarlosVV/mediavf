@@ -67,6 +67,8 @@
     <Compile Include="IYahooMarketDataProvider.cs" />
     <Compile Include="YahooMarketDataModule.cs" />
     <Compile Include="YahooMarketDataProviderBase.cs" />
+    <Compile Include="Yql\Configuration\YqlPropertyMappingElement.cs" />
+    <Compile Include="Yql\Configuration\YqlQueryConfigurationSection.cs" />
     <Compile Include="Yql\Exceptions\YqlQueryFailedException.cs" />
     <Compile Include="Yql\Exceptions\EmptyYqlResponseException.cs" />
     <Compile Include="Yql\Exceptions\EmptyYqlQueryException.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="IYahooMarketDataSettings.cs" />
     <Compile Include="IUrlProvider.cs" />
     <Compile Include="Yql\Exceptions\YqlTableBlockedException.cs" />
+    <Compile Include="Yql\IYqlPropertyMapperFactory.cs" />
     <Compile Include="Yql\IYqlQueryProvider.cs" />
     <Compile Include="IResultTranslator.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -90,7 +93,9 @@
     <Compile Include="Exceptions\EndpointFormatNotFoundException.cs" />
     <Compile Include="Yql\IYqlResultTranslator.cs" />
     <Compile Include="Yql\IYqlUrlProvider.cs" />
+    <Compile Include="Yql\IYqlPropertyMapper.cs" />
     <Compile Include="Yql\YqlMarketDataProvider.cs" />
+    <Compile Include="Yql\YqlPropertyMapperFactory.cs" />
     <Compile Include="Yql\YqlUrlProvider.cs" />
     <Compile Include="Yql\YqlQueryProvider.cs" />
     <Compile Include="Yql\Exceptions\YqlResponseNodeMissingException.cs" />
@@ -101,9 +106,13 @@
       <Project>{7F9BF6A2-D154-44D8-9966-07312970279A}</Project>
       <Name>AutoTrade.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AutoTrade.MarketData\AutoTrade.MarketData.csproj">
+    <ProjectReference Include="..\AutoTrade.MarketData.Data\AutoTrade.MarketData.Data.csproj">
+      <Project>{a1ce9bd6-8dd7-492b-bed4-e8e408b95674}</Project>
+      <Name>AutoTrade.MarketData.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AutoTrade.MarketData\AutoTrade.MarketData.Collection.csproj">
       <Project>{05415541-66f1-49da-b271-bb0b04ec396b}</Project>
-      <Name>AutoTrade.MarketData</Name>
+      <Name>AutoTrade.MarketData.Collection</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

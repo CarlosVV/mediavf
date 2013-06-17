@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using AutoTrade.MarketData.Entities;
+using AutoTrade.MarketData.Data;
 using AutoTrade.Tests;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -20,6 +20,7 @@ namespace AutoTrade.MarketData.Tests
             // create fakes
             var logger = A.Fake<ILog>();
             var marketDataProvider = A.Fake<IMarketDataProvider>();
+            var stockListProvider = A.Fake<IStockListProvider>();
             var marketDataRepository = A.Fake<IMarketDataRepository>();
 
             var stockQuoteSet = A.Fake<IDbSet<StockQuote>>();
@@ -27,7 +28,7 @@ namespace AutoTrade.MarketData.Tests
 
             // create subscriptionData
             var stocks = new List<Stock>();
-            var subscription = new Subscription { Stocks = stocks, UpdateInterval = TimeSpan.FromMilliseconds(int.MaxValue) };
+            var subscription = new Subscription { UpdateInterval = TimeSpan.FromMilliseconds(int.MaxValue) };
 
             // create fake return value
             var stockQuotes = new List<StockQuote>
@@ -41,12 +42,14 @@ namespace AutoTrade.MarketData.Tests
             var repositoryQuotes = new List<StockQuote>();
 
             // handle calls to fakes
+            A.CallTo(() => stockListProvider.GetStocks(subscription)).Returns(stocks);
             A.CallTo(() => marketDataProvider.GetQuotes(subscription.Stocks)).Returns(stockQuotes);
             A.CallTo(() => stockQuoteSet.Add(A<StockQuote>.Ignored))
              .Invokes((StockQuote quote) => repositoryQuotes.Add(quote));
 
             // create subscriptionData
-            var marketDataSubscription = new MarketDataSubscription(logger, marketDataRepository, marketDataProvider, subscription);
+            var marketDataSubscription =
+                new MarketDataSubscription(logger, marketDataRepository, marketDataProvider, stockListProvider, subscription);
 
             // call get latest data
             marketDataSubscription.InvokeMethod("GetLatestData");

@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
-using AutoTrade.MarketData.Entities;
+using AutoTrade.MarketData.Data;
 using AutoTrade.MarketData.Properties;
 using log4net;
 
@@ -24,6 +25,8 @@ namespace AutoTrade.MarketData
         /// The provider for market data
         /// </summary>
         private readonly IMarketDataProvider _marketDataProvider;
+
+        private readonly IStockListProvider _stockListProvider;
 
         /// <summary>
         /// The lock for regulating access to subscriptionData data
@@ -50,10 +53,12 @@ namespace AutoTrade.MarketData
         /// <param name="logger">The logger</param>
         /// <param name="marketDataRepository">The repository to store and retrieve market data</param>
         /// <param name="marketDataProvider">The provider for refreshing market data</param>
+        /// <param name="stockListProvider">The provider for lists of stocks for which to retrieve data</param>
         /// <param name="subscriptionData">The subscriptionData data for determining</param>
         public MarketDataSubscription(ILog logger,
             IMarketDataRepository marketDataRepository,
             IMarketDataProvider marketDataProvider,
+            IStockListProvider stockListProvider,
             Subscription subscriptionData)
         {
             // perform null checks
@@ -70,6 +75,7 @@ namespace AutoTrade.MarketData
             _logger = logger;
             _marketDataRepository = marketDataRepository;
             _marketDataProvider = marketDataProvider;
+            _stockListProvider = stockListProvider;
             _subscriptionData = subscriptionData;
 
             // set up timer
@@ -93,7 +99,21 @@ namespace AutoTrade.MarketData
         #region Methods
 
         /// <summary>
-        /// Updates the data of the subscriptionData
+        /// Updates data for the subscription by retrieving the latest data
+        /// </summary>
+        public void UpdateData()
+        {
+            // get the latest data from the database
+            Subscription subscriptionData;
+            lock (_subscriptionDataLock)
+                subscriptionData = _marketDataRepository.Subscriptions.FirstOrDefault(s => s.ID == _subscriptionData.ID);
+
+            // update the data
+            UpdateData(subscriptionData);
+        }
+
+        /// <summary>
+        /// Updates the data for the subscription for a subscription data object
         /// </summary>
         public void UpdateData(Subscription subscriptionData)
         {
@@ -168,30 +188,36 @@ namespace AutoTrade.MarketData
                 // stop timer while data is retrieved
                 Stop();
 
-                try
+                if (_subscriptionData.IsActiveForCurrentTimeOfDay)
                 {
-                    // get quotes from provider
-                    var quotes = _marketDataProvider.GetQuotes(_subscriptionData.Stocks);
-
-                    if (quotes != null)
+                    try
                     {
-                        foreach (var quote in quotes)
+                        // get the list of stocks for which to get quotes
+                        var stocks = _stockListProvider.GetStocks(_subscriptionData);
+
+                        // get quotes from provider
+                        var quotes = _marketDataProvider.GetQuotes(stocks);
+
+                        if (quotes != null)
                         {
-                            // set created date
-                            quote.Created = DateTime.Now;
+                            foreach (var quote in quotes)
+                            {
+                                // set created date
+                                quote.Created = DateTime.Now;
 
-                            // add to repository
-                            _marketDataRepository.StockQuotes.Add(quote);
+                                // add to repository
+                                _marketDataRepository.StockQuotes.Add(quote);
+                            }
+
+                            // save
+                            _marketDataRepository.SaveChanges();
                         }
-
-                        // save
-                        _marketDataRepository.SaveChanges();
                     }
-                }
-                catch (Exception exception)
-                {
-                    // log the exception
-                    _logger.Error(Resources.SubscriptionUpdateException, exception);
+                    catch (Exception exception)
+                    {
+                        // log the exception
+                        _logger.Error(Resources.SubscriptionUpdateException, exception);
+                    }
                 }
 
                 // restart the timer now 

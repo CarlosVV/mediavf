@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoTrade.MarketData.Entities;
+using AutoTrade.MarketData.Data;
 using AutoTrade.MarketData.Yahoo.Exceptions;
 using AutoTrade.MarketData.Yahoo.Properties;
 using log4net;
