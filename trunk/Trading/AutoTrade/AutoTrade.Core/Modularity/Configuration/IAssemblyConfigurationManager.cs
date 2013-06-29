@@ -24,5 +24,10 @@ namespace AutoTrade.Core.Modularity.Configuration
         /// <param name="assembly"></param>
         /// <returns></returns>
         AssemblyConfiguration GetAssemblyConfiguration(Assembly assembly);
+
+        /// <summary>
+        /// Throws an exception if any assembly configuration errors occurred
+        /// </summary>
+        void ThrowIfAnyConfigurationErrors();
     }
 }

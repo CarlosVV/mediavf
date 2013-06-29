@@ -59,7 +59,11 @@ namespace AutoTrade.MarketData.Yahoo.Yql.Configuration
             // get attribute values
             _xmlElementName = xmlElement.GetAttributeValue(XmlElementNameAttributeName);
             _propertyName = xmlElement.GetAttributeValue(PropertyNameAttributeName);
-            _enabled = bool.Parse(xmlElement.GetAttributeValue(EnabledAttributeName));
+
+            // set enabled, with a default value of false
+            bool enabled;
+            if (bool.TryParse(xmlElement.GetAttributeValue(EnabledAttributeName, false), out enabled))
+                _enabled = enabled;
         }
 
         #endregion

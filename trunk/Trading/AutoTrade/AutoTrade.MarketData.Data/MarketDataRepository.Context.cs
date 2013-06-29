@@ -15,13 +15,27 @@ namespace AutoTrade.MarketData.Data
     
     public partial interface IMarketDataRepository
     {
-         IDbSet<DataProvider> DataProviders { get; set; }
-         IDbSet<Module> Modules { get; set; }
-         IDbSet<ModuleDependency> ModuleDependencies { get; set; }
-         IDbSet<Stock> Stocks { get; set; }
-         IDbSet<StockListProvider> StockListProviders { get; set; }
-         IDbSet<StockQuote> StockQuotes { get; set; }
-         IDbSet<Subscription> Subscriptions { get; set; }
+        IDbSet<DataProvider> DataProviders { get; set; }
+        DbQuery<DataProvider> DataProvidersQuery { get; }
+    
+        IDbSet<Module> Modules { get; set; }
+        DbQuery<Module> ModulesQuery { get; }
+    
+        IDbSet<ModuleDependency> ModuleDependencies { get; set; }
+        DbQuery<ModuleDependency> ModuleDependenciesQuery { get; }
+    
+        IDbSet<Stock> Stocks { get; set; }
+        DbQuery<Stock> StocksQuery { get; }
+    
+        IDbSet<StockListProvider> StockListProviders { get; set; }
+        DbQuery<StockListProvider> StockListProvidersQuery { get; }
+    
+        IDbSet<StockQuote> StockQuotes { get; set; }
+        DbQuery<StockQuote> StockQuotesQuery { get; }
+    
+        IDbSet<Subscription> Subscriptions { get; set; }
+        DbQuery<Subscription> SubscriptionsQuery { get; }
+    
     
     	int SaveChanges();
     }
@@ -40,11 +54,25 @@ namespace AutoTrade.MarketData.Data
         }
     
         public IDbSet<DataProvider> DataProviders { get; set; }
+        public DbQuery<DataProvider> DataProvidersQuery { get { return DataProviders as DbQuery<DataProvider>; } }
+    
         public IDbSet<Module> Modules { get; set; }
+        public DbQuery<Module> ModulesQuery { get { return Modules as DbQuery<Module>; } }
+    
         public IDbSet<ModuleDependency> ModuleDependencies { get; set; }
+        public DbQuery<ModuleDependency> ModuleDependenciesQuery { get { return ModuleDependencies as DbQuery<ModuleDependency>; } }
+    
         public IDbSet<Stock> Stocks { get; set; }
+        public DbQuery<Stock> StocksQuery { get { return Stocks as DbQuery<Stock>; } }
+    
         public IDbSet<StockListProvider> StockListProviders { get; set; }
+        public DbQuery<StockListProvider> StockListProvidersQuery { get { return StockListProviders as DbQuery<StockListProvider>; } }
+    
         public IDbSet<StockQuote> StockQuotes { get; set; }
+        public DbQuery<StockQuote> StockQuotesQuery { get { return StockQuotes as DbQuery<StockQuote>; } }
+    
         public IDbSet<Subscription> Subscriptions { get; set; }
+        public DbQuery<Subscription> SubscriptionsQuery { get { return Subscriptions as DbQuery<Subscription>; } }
+    
     }
 }

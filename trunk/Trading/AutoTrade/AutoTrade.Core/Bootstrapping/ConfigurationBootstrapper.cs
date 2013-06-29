@@ -138,6 +138,10 @@ namespace AutoTrade.Core.Bootstrapping
                 InitializeModules();
             }
 
+            var assemblyConfigurationManager = Container.Resolve<IAssemblyConfigurationManager>();
+            if (assemblyConfigurationManager != null)
+                assemblyConfigurationManager.ThrowIfAnyConfigurationErrors();
+
             // log completion
             Logger.Debug(Resources.BootstrapperCompletedMessage);
 

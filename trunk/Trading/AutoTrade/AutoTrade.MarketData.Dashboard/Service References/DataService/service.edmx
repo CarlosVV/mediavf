@@ -1,0 +1,100 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices m:DataServiceVersion="1.0" m:MaxDataServiceVersion="3.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+    <Schema Namespace="AutoTradeModel" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityType Name="DataProvider">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+        <Property Name="Active" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Created" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="Modified" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+      </EntityType>
+      <EntityType Name="StockListProvider">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+        <Property Name="Active" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Created" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="Modified" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+      </EntityType>
+      <EntityType Name="Subscription">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        <Property Name="Active" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="UpdateInterval" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="LastUpdated" Type="Edm.DateTime" Precision="3" />
+        <Property Name="DataProviderID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="StockListProviderID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Created" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="Modified" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="TimeOfDayStart" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="TimeOfDayEnd" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <NavigationProperty Name="DataProvider" Relationship="AutoTradeModel.FK_Subscription_DataProvider" ToRole="DataProvider" FromRole="Subscription" />
+        <NavigationProperty Name="StockListProvider" Relationship="AutoTradeModel.FK_Subscription_StockListProvider" ToRole="StockListProvider" FromRole="Subscription" />
+      </EntityType>
+      <ComplexType Name="SubscriptionQuoteSummary">
+        <Property Name="SubscriptionId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Symbol" Type="Edm.String" Nullable="false" />
+        <Property Name="QuoteCount" Type="Edm.Int32" Nullable="false" />
+        <Property Name="FirstQuoted" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastQuoted" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LatestPrice" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="LatestBid" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="LatestAsk" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="LatestChange" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="LatestOpen" Type="Edm.Decimal" Nullable="false" />
+      </ComplexType>
+      <Association Name="FK_Subscription_DataProvider">
+        <End Type="AutoTradeModel.DataProvider" Role="DataProvider" Multiplicity="1" />
+        <End Type="AutoTradeModel.Subscription" Role="Subscription" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="DataProvider">
+            <PropertyRef Name="ID" />
+          </Principal>
+          <Dependent Role="Subscription">
+            <PropertyRef Name="DataProviderID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Subscription_StockListProvider">
+        <End Type="AutoTradeModel.StockListProvider" Role="StockListProvider" Multiplicity="1" />
+        <End Type="AutoTradeModel.Subscription" Role="Subscription" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="StockListProvider">
+            <PropertyRef Name="ID" />
+          </Principal>
+          <Dependent Role="Subscription">
+            <PropertyRef Name="StockListProviderID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+    </Schema>
+    <Schema Namespace="AutoTrade.MarketData.Data" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityContainer Name="MarketDataRepository" m:IsDefaultEntityContainer="true" p6:LazyLoadingEnabled="false" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntitySet Name="DataProviders" EntityType="AutoTradeModel.DataProvider" />
+        <EntitySet Name="StockListProviders" EntityType="AutoTradeModel.StockListProvider" />
+        <EntitySet Name="Subscriptions" EntityType="AutoTradeModel.Subscription" />
+        <FunctionImport Name="GetQuoteSummaries" ReturnType="Collection(AutoTradeModel.SubscriptionQuoteSummary)" m:HttpMethod="GET">
+          <Parameter Name="subscriptionId" Type="Edm.Int32" Nullable="false" />
+        </FunctionImport>
+        <AssociationSet Name="FK_Subscription_DataProvider" Association="AutoTradeModel.FK_Subscription_DataProvider">
+          <End Role="Subscription" EntitySet="Subscriptions" />
+          <End Role="DataProvider" EntitySet="DataProviders" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Subscription_StockListProvider" Association="AutoTradeModel.FK_Subscription_StockListProvider">
+          <End Role="Subscription" EntitySet="Subscriptions" />
+          <End Role="StockListProvider" EntitySet="StockListProviders" />
+        </AssociationSet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

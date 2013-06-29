@@ -52,6 +52,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="500" />
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="Created" Type="datetime" Nullable="false" />
@@ -95,6 +96,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="500" />
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="Created" Type="datetime" Nullable="false" />
@@ -123,9 +125,9 @@
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Active" Type="bit" Nullable="false" />
-          <Property Name="TimeOfDayStart" Type="time" Nullable="false" Precision="3" />
-          <Property Name="TimeOfDayEnd" Type="time" Nullable="false" Precision="3" />
-          <Property Name="UpdateInterval" Type="time" Nullable="false" Precision="3" />
+          <Property Name="TimeOfDayStart" Type="datetime" Nullable="false" />
+          <Property Name="TimeOfDayEnd" Type="datetime" Nullable="false" />
+          <Property Name="UpdateInterval" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
           <Property Name="DataProviderID" Type="int" Nullable="false" />
           <Property Name="StockListProviderID" Type="int" Nullable="false" />
@@ -286,6 +288,7 @@
           <Property Type="Boolean" Name="Active" Nullable="false" />
           <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Module">
           <Key>
@@ -332,6 +335,7 @@
           <Property Type="Boolean" Name="Active" Nullable="false" />
           <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="StockQuote">
           <Key>
@@ -357,7 +361,7 @@
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="Active" Nullable="false" />
-          <Property Type="Time" Name="UpdateInterval" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="UpdateInterval" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
           <Property Type="Int32" Name="DataProviderID" Nullable="false" />
           <Property Type="Int32" Name="StockListProviderID" Nullable="false" />
@@ -366,8 +370,8 @@
           <NavigationProperty Name="DataProvider" Relationship="AutoTradeModel.FK_Subscription_DataProvider" FromRole="Subscription" ToRole="DataProvider" />
           <NavigationProperty Name="StockListProvider" Relationship="AutoTradeModel.FK_Subscription_StockListProvider" FromRole="Subscription" ToRole="StockListProvider" />
           <NavigationProperty Name="Stocks" Relationship="AutoTradeModel.SubscriptionStock" FromRole="Subscription" ToRole="Stock" />
-          <Property Type="Time" Name="TimeOfDayStart" Nullable="false" Precision="3" />
-          <Property Type="Time" Name="TimeOfDayEnd" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="TimeOfDayStart" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="TimeOfDayEnd" Nullable="false" Precision="3" />
           <NavigationProperty Name="StockQuotes" Relationship="AutoTradeModel.FK_StockQuote_Subscription" FromRole="Subscription" ToRole="StockQuote" />
         </EntityType>
         <Association Name="FK_Subscription_DataProvider">
@@ -446,6 +450,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="SubscriptionQuoteSummary" >
+          <Property Type="Int32" Name="SubscriptionId" Nullable="false" />
+          <Property Type="String" Name="Symbol" Nullable="false" />
+          <Property Type="Int32" Name="QuoteCount" Nullable="false" />
+          <Property Type="DateTime" Name="FirstQuoted" Nullable="false" />
+          <Property Type="DateTime" Name="LastQuoted" Nullable="false" />
+          <Property Type="Decimal" Name="LatestPrice" Nullable="false" />
+          <Property Type="Decimal" Name="LatestBid" Nullable="false" />
+          <Property Type="Decimal" Name="LatestAsk" Nullable="false" />
+          <Property Type="Decimal" Name="LatestChange" Nullable="false" />
+          <Property Type="Decimal" Name="LatestOpen" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -455,6 +471,7 @@
           <EntitySetMapping Name="DataProviders">
             <EntityTypeMapping TypeName="AutoTradeModel.DataProvider">
               <MappingFragment StoreEntitySet="DataProvider">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Modified" ColumnName="Modified" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
@@ -502,6 +519,7 @@
           <EntitySetMapping Name="StockListProviders">
             <EntityTypeMapping TypeName="AutoTradeModel.StockListProvider">
               <MappingFragment StoreEntitySet="StockListProvider">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Modified" ColumnName="Modified" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="Active" ColumnName="Active" />

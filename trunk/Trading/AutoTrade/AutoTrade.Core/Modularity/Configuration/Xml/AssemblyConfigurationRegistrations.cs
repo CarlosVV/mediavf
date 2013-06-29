@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Xml;
 using AutoTrade.Core.Properties;
@@ -173,7 +174,7 @@ namespace AutoTrade.Core.Modularity.Configuration.Xml
             node.ShouldBeNamed(RegistrationsCollectionName);
 
             // get registrations from child nodes
-            _registrations = node.ChildNodes.OfType<XmlElement>().Select(CreateRegistration);
+            _registrations = node.ChildNodes.OfType<XmlElement>().Select(CreateRegistration).ToList();
         }
 
         #endregion

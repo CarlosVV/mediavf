@@ -10,7 +10,7 @@ using log4net;
 
 namespace AutoTrade.MarketData
 {
-    public class SubscriptionManager : ISubscriptionManager
+    public class SubscriptionManager : ISubscriptionManager, IDisposable
     {
         #region Fields
 
@@ -78,7 +78,7 @@ namespace AutoTrade.MarketData
         public void StartAllSubscriptions()
         {
             // get list of active subscriptions
-            var activeSubscriptions = _repository.Subscriptions.Where(s => s.Active).ToDictionary(s => s.ID, s => s);
+            var activeSubscriptions = _repository.GetAllActiveSubscriptions().ToDictionary(s => s.ID, s => s);
 
             if (activeSubscriptions.Count > 0)
             {
@@ -133,7 +133,7 @@ namespace AutoTrade.MarketData
         public void StartSubcription(int subscriptionId)
         {
             // get subscription data
-            var subscriptionData = _repository.Subscriptions.FirstOrDefault(s => s.ID == subscriptionId);
+            var subscriptionData = _repository.GetSubscription(subscriptionId);
 
             // if data was not found, throw an exception
             if (subscriptionData == null)
@@ -160,6 +160,14 @@ namespace AutoTrade.MarketData
                 _subscriptions[subscriptionId].Stop();
             else
                 _logger.WarnFormat(Resources.SubscriptionNotLoadedWarningFormat, subscriptionId);
+        }
+
+        /// <summary>
+        /// Stops all subscriptions
+        /// </summary>
+        public void Dispose()
+        {
+            StopAllSubscriptions();
         }
 
         #endregion

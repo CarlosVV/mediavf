@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Xml;
 
@@ -112,16 +113,25 @@ namespace AutoTrade.Core.Modularity.Configuration.Xml
         /// <returns></returns>
         private static IAssemblyConfigurationSection CreateCustomSection(XmlElement xmlElement)
         {
-            // get the section type from its type attribute
-            var sectionType = xmlElement.GetTypeFromAttribute(CustomSectionTypeAttributeName);
+            try
+            {
+                // get the section type from its type attribute
+                var sectionType = xmlElement.GetTypeFromAttribute(CustomSectionTypeAttributeName);
 
-            // create an instance of the section's type
-            var customSection = (IAssemblyConfigurationSection)Activator.CreateInstance(sectionType);
-            
-            // load the section from xml
-            customSection.Load(xmlElement);
+                // create an instance of the section's type
+                var customSection = (IAssemblyConfigurationSection)Activator.CreateInstance(sectionType);
 
-            return customSection;
+                // load the section from xml
+                customSection.Load(xmlElement);
+
+                return customSection;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+
+                throw;
+            }
         }
 
         #endregion

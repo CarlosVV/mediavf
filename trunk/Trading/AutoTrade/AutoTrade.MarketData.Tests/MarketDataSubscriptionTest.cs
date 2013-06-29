@@ -28,7 +28,11 @@ namespace AutoTrade.MarketData.Tests
 
             // create subscriptionData
             var stocks = new List<Stock>();
-            var subscription = new Subscription { UpdateInterval = TimeSpan.FromMilliseconds(int.MaxValue) };
+            var updateIntervalTime = TimeSpan.FromMilliseconds(int.MaxValue);
+            var subscription = new Subscription
+                {
+                    UpdateInterval = new DateTime(1900, 1, 1, updateIntervalTime.Hours, updateIntervalTime.Minutes, updateIntervalTime.Seconds)
+                };
 
             // create fake return value
             var stockQuotes = new List<StockQuote>

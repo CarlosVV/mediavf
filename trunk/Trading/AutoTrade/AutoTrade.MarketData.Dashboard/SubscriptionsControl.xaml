@@ -4,8 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:dashboard="clr-namespace:AutoTrade.MarketData.Dashboard"
+             xmlns:converters="clr-namespace:AutoTrade.Core.UI.Converters;assembly=AutoTrade.Core.UI"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="800">
+             d:DesignHeight="400" d:DesignWidth="1000"
+             d:DataContext="{d:DesignInstance dashboard:SubscriptionsViewModel}">
+    
+    <UserControl.Resources>
+        <converters:SecondsToTimeSpanConverter x:Key="SecondsToTimeSpanConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -22,7 +29,8 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="5" FontWeight="Bold" FontSize="14"
                        Text="Data Subscription:" />
-            <ComboBox Grid.Column="1" Margin="3" Width="200" />
+            <ComboBox Grid.Column="1" Margin="3" Width="200" ItemsSource="{Binding Subscriptions}" DisplayMemberPath="Subscription.Name"
+                      SelectedItem="{Binding SelectedSubscription, Mode=TwoWay}"/>
         </Grid>
 
         <Grid Grid.Row="1" Margin="10,5">
@@ -39,19 +47,23 @@
                 <RowDefinition Height="15" />
                 <RowDefinition Height="35" />
             </Grid.RowDefinitions>
-            <CheckBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="5,0,0,0" Content="Active" />
-            
-            <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="15,0,3,0"
-                       HorizontalAlignment="Right" Text="Start Time:" />
-            <xctk:TimePicker Grid.Row="1" Grid.Column="3" Margin="5" Width="150" Background="White" />
-            
-            <TextBlock Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" Margin="15,0,3,0"
-                       HorizontalAlignment="Right" Text="End Time:" />
-            <xctk:TimePicker Grid.Row="1" Grid.Column="5" Margin="5" Width="150" Background="White" />
+            <CheckBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="5,0,0,0" Content="Active"
+                      IsChecked="{Binding SelectedSubscription.Subscription.Active, Mode=TwoWay}"/>
 
             <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="15,0,3,0"
                        HorizontalAlignment="Right" Text="Interval (in secs):" />
-            <xctk:IntegerUpDown Grid.Row="1" Grid.Column="1" Width="100" Margin="5" />
+            <xctk:IntegerUpDown Grid.Row="1" Grid.Column="1" Width="100" Margin="5"
+                                Value="{Binding SelectedSubscription.Subscription.UpdateInterval, Converter={StaticResource SecondsToTimeSpanConverter}}" />
+            
+            <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="15,0,3,0"
+                       HorizontalAlignment="Right" Text="Start Time:" />
+            <xctk:TimePicker Grid.Row="1" Grid.Column="3" Margin="5" Width="150" Background="White"
+                             Value="{Binding SelectedSubscription.Subscription.TimeOfDayStart, Mode=TwoWay}" />
+            
+            <TextBlock Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" Margin="15,0,3,0"
+                       HorizontalAlignment="Right" Text="End Time:" />
+            <xctk:TimePicker Grid.Row="1" Grid.Column="5" Margin="5" Width="150" Background="White"
+                             Value="{Binding SelectedSubscription.Subscription.TimeOfDayEnd, Mode=TwoWay}" />
         </Grid>
 
         <Grid Grid.Row="2" Margin="15,3">
@@ -66,13 +78,27 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="3" Text="Quote Provider:" />
-            <ComboBox Grid.Row="0" Grid.Column="1" Margin="5,5" Height="24" Width="200" />
+            <ComboBox Grid.Row="0" Grid.Column="1" Margin="5,5" Height="24" Width="200" ItemsSource="{Binding DataProviders}"
+                      SelectedItem="{Binding SelectedSubscription.Subscription.DataProvider, Mode=TwoWay}" DisplayMemberPath="Name"/>
+            <Button Grid.Row="0" Grid.Column="2" Width="24" Height="24">
+                <Button.Content>
+                    <Image Source="Images/settings.png" />
+                </Button.Content>
+            </Button>
 
-            <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="13,3,3,3" Text="Stock Provider:" />
-            <ComboBox Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Margin="5,5" Height="24" Width="200" />
+            <TextBlock Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Margin="13,3,3,3" Text="Stock Provider:" />
+            <ComboBox Grid.Row="0" Grid.Column="4" Margin="5,5" Height="24" Width="200" ItemsSource="{Binding StockListProviders}"
+                      SelectedItem="{Binding SelectedSubscription.Subscription.StockListProvider, Mode=TwoWay}" DisplayMemberPath="Name"/>
+            <Button Grid.Row="0" Grid.Column="5" Width="24" Height="24">
+                <Button.Content>
+                    <Image Source="Images/settings.png" />
+                </Button.Content>
+            </Button>
         </Grid>
 
         <Grid Grid.Row="3" Margin="10">
@@ -82,19 +108,24 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" FontWeight="Bold" Text="Quotes" />
             <Border Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="3" VerticalAlignment="Stretch">
-                <DataGrid>
+                <DataGrid IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding SelectedSubscription.QuoteSummaries}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Symbol" Width="100" />
-                        <DataGridTextColumn Header="Count" Width="75" />
-                        <DataGridTextColumn Header="First Quoted" Width="150" />
-                        <DataGridTextColumn Header="Last Quoted" Width="150" />
-                        <DataGridTextColumn Header="Bid" Width="75" />
-                        <DataGridTextColumn Header="Ask" Width="75" />
-                        <DataGridTextColumn Header="Change" Width="75" />
-                        <DataGridTextColumn Header="Open" Width="75" />
+                        <DataGridTextColumn Header="Symbol" Width="100" Binding="{Binding Symbol}" />
+                        <DataGridTextColumn Header="Count" Width="75" Binding="{Binding QuoteCount}" />
+                        <DataGridTextColumn Header="First Quoted" Width="150" Binding="{Binding FirstQuoted}" />
+                        <DataGridTextColumn Header="Last Quoted" Width="150" Binding="{Binding LastQuoted}" />
+                        <DataGridTextColumn Header="Latest Price" Width="85" Binding="{Binding LatestPrice}" />
+                        <DataGridTextColumn Header="Latest Bid" Width="85" Binding="{Binding LatestBid}" />
+                        <DataGridTextColumn Header="Latest Ask" Width="85" Binding="{Binding LatestAsk}" />
+                        <DataGridTextColumn Header="Latest Change" Width="85" Binding="{Binding LatestChange}" />
+                        <DataGridTextColumn Header="Latest Open" Width="85" Binding="{Binding LatestOpen}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>
+            <xctk:BusyIndicator Grid.RowSpan="2" IsBusy="{Binding SelectedSubscription.IsBusy}"
+                                BusyContent="{Binding SelectedSubscription.BusyMessage}" />
         </Grid>
+        
+        <xctk:BusyIndicator Grid.RowSpan="4" IsBusy="{Binding IsBusy}" BusyContent="{Binding BusyMessage}"  />
     </Grid>
 </UserControl>

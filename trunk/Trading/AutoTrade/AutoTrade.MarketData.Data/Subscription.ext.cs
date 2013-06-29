@@ -9,7 +9,7 @@ namespace AutoTrade.MarketData.Data
         /// </summary>
         public bool IsActiveForCurrentTimeOfDay
         {
-            get { return DateTime.Now.TimeOfDay >= TimeOfDayStart && DateTime.Now.TimeOfDay <= TimeOfDayEnd; }
+            get { return DateTime.Now.TimeOfDay >= TimeOfDayStart.TimeOfDay && DateTime.Now.TimeOfDay <= TimeOfDayEnd.TimeOfDay; }
         }
     }
 }

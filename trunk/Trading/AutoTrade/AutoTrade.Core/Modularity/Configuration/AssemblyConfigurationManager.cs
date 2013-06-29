@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Reflection;
 using AutoTrade.Core.Modularity.Configuration.Xml;
 
@@ -10,15 +11,20 @@ namespace AutoTrade.Core.Modularity.Configuration
         #region Fields
 
         /// <summary>
+        /// The assembly configurations, by assembly
+        /// </summary>
+        private static readonly Dictionary<Assembly, AssemblyConfiguration> AssemblyConfigurations =
+            new Dictionary<Assembly, AssemblyConfiguration>();
+
+        /// <summary>
         /// The factory for creating assembly configuration
         /// </summary>
         private readonly IAssemblyConfigurationFactory _configurationFactory;
 
         /// <summary>
-        /// The assembly configurations, by assembly
+        /// The list of exceptions encountered when handling loading of configuration for assemblies
         /// </summary>
-        private static readonly Dictionary<Assembly, AssemblyConfiguration> AssemblyConfigurations =
-            new Dictionary<Assembly, AssemblyConfiguration>();
+        private readonly List<Exception> _configurationLoadExceptions = new List<Exception>(); 
 
         /// <summary>
         /// Flag indicating if the AssemblyLoad event is attached
@@ -79,23 +85,39 @@ namespace AutoTrade.Core.Modularity.Configuration
         }
 
         /// <summary>
+        /// Throws exceptions encountered while trying to load assemblies, if any
+        /// </summary>
+        public void ThrowIfAnyConfigurationErrors()
+        {
+            if (_configurationLoadExceptions.Count > 0)
+                throw new AggregateException(_configurationLoadExceptions);
+        }
+
+        /// <summary>
         /// Handles loading of an assembly
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
         private void CurrentDomainOnAssemblyLoad(object sender, AssemblyLoadEventArgs args)
         {
-            // try to create the configuration for the assembly
-            var assemblyConfiguration = _configurationFactory.CreateAssemblyConfiguration(args.LoadedAssembly);
+            try
+            {
+                // try to create the configuration for the assembly
+                var assemblyConfiguration = _configurationFactory.CreateAssemblyConfiguration(args.LoadedAssembly);
 
-            // if configuration was created, map it to the assembly
-            if (assemblyConfiguration == null) return;
+                // if configuration was created, map it to the assembly
+                if (assemblyConfiguration == null) return;
 
-            // if the assembly has not been added to the collection, add it
-            if (!AssemblyConfigurations.ContainsKey(args.LoadedAssembly))
-                AssemblyConfigurations.Add(args.LoadedAssembly, null);
+                // if the assembly has not been added to the collection, add it
+                if (!AssemblyConfigurations.ContainsKey(args.LoadedAssembly))
+                    AssemblyConfigurations.Add(args.LoadedAssembly, null);
 
-            AssemblyConfigurations[args.LoadedAssembly] = assemblyConfiguration;
+                AssemblyConfigurations[args.LoadedAssembly] = assemblyConfiguration;
+            }
+            catch (Exception ex)
+            {
+                _configurationLoadExceptions.Add(ex);
+            }
         }
 
         #endregion
