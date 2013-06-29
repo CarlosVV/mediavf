@@ -59,14 +59,5 @@ namespace AutoTrade.MarketData.DataService.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The unity section was not found in the Web.config..
-        /// </summary>
-        internal static string UnitySectionNotFoundMessage {
-            get {
-                return ResourceManager.GetString("UnitySectionNotFoundMessage", resourceCulture);
-            }
-        }
     }
 }

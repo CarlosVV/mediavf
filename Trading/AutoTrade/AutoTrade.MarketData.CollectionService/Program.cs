@@ -27,29 +27,43 @@ namespace AutoTrade.MarketData.CollectionService
             // create service
             var service = new CollectionService();
 
-            while (true)
+            try
             {
-                // start service
-                Console.WriteLine(Resources.ServiceStartMessage);
-                service.StartService();
-                Console.WriteLine(Resources.ServiceStartedMessage);
+                while (true)
+                {
+                    // start service
+                    Console.WriteLine(Resources.ServiceStartMessage);
+                    service.StartService();
+                    Console.WriteLine(Resources.ServiceStartedMessage);
 
-                // read key to stop service
-                Console.WriteLine(Resources.AnyKeyToStopMessage);
+                    // read key to stop service
+                    Console.WriteLine(Resources.AnyKeyToStopMessage);
+                    Console.ReadKey();
+
+                    // stop service
+                    Console.WriteLine(Resources.StoppingServiceMessage);
+                    service.StopService();
+                    Console.WriteLine(Resources.ServiceStoppedMessage);
+
+                    // read key to stop service
+                    Console.WriteLine(Resources.AnyKeyToStartEscToQuitMessage);
+
+                    // read key and perform action
+                    var key = Console.ReadKey();
+                    if (key.Key == ConsoleKey.Escape)
+                        break;
+                }
+            }
+            catch (Exception exception)
+            {
+                // write error message to the console
+                Console.WriteLine(Resources.ServiceErrorMessage);
+                Console.WriteLine(exception.ToString());
+                Console.WriteLine();
+
+                // indicate any key to exit
+                Console.WriteLine(Resources.AnyKeyToExitMessage);
                 Console.ReadKey();
-
-                // stop service
-                Console.WriteLine(Resources.StoppingServiceMessage);
-                service.StopService();
-                Console.WriteLine(Resources.ServiceStoppedMessage);
-
-                // read key to stop service
-                Console.WriteLine(Resources.AnyKeyToStartEscToQuitMessage);
-                
-                // read key and perform action
-                var key = Console.ReadKey();
-                if (key.Key == ConsoleKey.Escape)
-                    break;
             }
         }
     }

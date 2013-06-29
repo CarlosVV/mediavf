@@ -29,7 +29,7 @@ namespace AutoTrade.MarketData.Data
     	[DataMember]
         public bool Active { get; set; }
     	[DataMember]
-        public System.TimeSpan UpdateInterval { get; set; }
+        public System.DateTime UpdateInterval { get; set; }
     	[DataMember]
         public Nullable<System.DateTime> LastUpdated { get; set; }
     	[DataMember]
@@ -41,9 +41,9 @@ namespace AutoTrade.MarketData.Data
     	[DataMember]
         public System.DateTime Modified { get; set; }
     	[DataMember]
-        public System.TimeSpan TimeOfDayStart { get; set; }
+        public System.DateTime TimeOfDayStart { get; set; }
     	[DataMember]
-        public System.TimeSpan TimeOfDayEnd { get; set; }
+        public System.DateTime TimeOfDayEnd { get; set; }
     
     	[DataMember]
         public virtual DataProvider DataProvider { get; set; }

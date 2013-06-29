@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows;
 
-namespace AutoTrade.Core.UI
+namespace AutoTrade.Core.UI.Converters 
 {
     public class VisibilityConverter : IValueConverter
     {

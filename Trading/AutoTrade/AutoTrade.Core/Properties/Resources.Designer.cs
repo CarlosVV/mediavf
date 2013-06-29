@@ -214,6 +214,15 @@ namespace AutoTrade.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The unity section was not found in the Web.config..
+        /// </summary>
+        internal static string UnitySectionNotFoundMessage {
+            get {
+                return ResourceManager.GetString("UnitySectionNotFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The alias {0} is not recognized as an alias for a lifetime manager..
         /// </summary>
         internal static string UnrecognizedLifetimeManagerAliasExceptionMessage {

@@ -1,4 +1,3 @@
 ﻿<%@ ServiceHost Language="C#"
-                Debug="true"
-                Service="AutoTrade.MarketData.DataService.MarketDataService"
-                Factory="AutoTrade.MarketData.DataService.DataServiceHostFactory" %>
+                Factory="AutoTrade.Core.Web.DataServices.Unity.UnityDataServiceHostFactory"
+                Service="AutoTrade.MarketData.DataService.MarketDataService" %>

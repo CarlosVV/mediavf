@@ -78,7 +78,7 @@ namespace AutoTrade.MarketData.Yahoo.Csv.Configuration
 
             // create column configurations
             _columnConfigurations =
-                xmlElement.FirstChild.ChildNodes.OfType<XmlElement>().Select(e => new CsvQueryColumnConfiguration(e));
+                xmlElement.FirstChild.ChildNodes.OfType<XmlElement>().Select(e => new CsvQueryColumnConfiguration(e)).ToList();
         }
 
         /// <summary>

@@ -30,18 +30,8 @@ namespace AutoTrade.MarketData
         {
             if (subscription == null) throw new ArgumentNullException("subscription");
 
-            // get the id from the subscription
-            var subscriptionId = subscription.ID;
-
             // get the latest data for the subscription
-            subscription = _marketDataRepository.Subscriptions.FirstOrDefault(s => s.ID == subscriptionId);
-            
-            // check that the subscription was found
-            if (subscription == null)
-                throw new SubscriptionNotFoundException(subscriptionId);
-
-            // return the stocks for that subscription
-            return subscription.Stocks;
+            return _marketDataRepository.GetStaticStocksForSubscription(subscription.ID);
         }
     }
 }

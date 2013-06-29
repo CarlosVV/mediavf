@@ -1,11 +1,34 @@
 ﻿using System;
+using System.Configuration;
 using System.Linq;
+using AutoTrade.Core.Properties;
 using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
 
 namespace AutoTrade.Core.UnityExtensions
 {
     public static class UnityContainerExtensions
     {
+        /// <summary>
+        /// The name of the Unity config section
+        /// </summary>
+        private const string UnitySectionName = "unity";
+
+        /// <summary>
+        /// Configures a <see cref="IUnityContainer"/> from a <see cref="UnityConfigurationSection"/>
+        /// </summary>
+        /// <param name="container"></param>
+        public static void ConfigureFromConfigurationSection(this IUnityContainer container)
+        {
+            // get unity config section
+            var configSection = (UnityConfigurationSection)ConfigurationManager.GetSection(UnitySectionName);
+            if (configSection == null)
+                throw new ConfigurationErrorsException(Resources.UnitySectionNotFoundMessage);
+
+            // configure container
+            configSection.Configure(container);
+        }
+
         /// <summary>
         /// Registers a type only if it has not already been registered
         /// </summary>

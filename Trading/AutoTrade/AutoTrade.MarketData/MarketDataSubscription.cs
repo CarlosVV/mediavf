@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading;
 using AutoTrade.MarketData.Data;
 using AutoTrade.MarketData.Properties;
@@ -106,7 +105,7 @@ namespace AutoTrade.MarketData
             // get the latest data from the database
             Subscription subscriptionData;
             lock (_subscriptionDataLock)
-                subscriptionData = _marketDataRepository.Subscriptions.FirstOrDefault(s => s.ID == _subscriptionData.ID);
+                subscriptionData = _marketDataRepository.GetSubscription(_subscriptionData.ID);
 
             // update the data
             UpdateData(subscriptionData);
@@ -166,7 +165,7 @@ namespace AutoTrade.MarketData
         private void StartTimer()
         {
             // start running timer
-            _timer.Change(_subscriptionData.UpdateInterval, _subscriptionData.UpdateInterval);
+            _timer.Change(_subscriptionData.UpdateInterval.TimeOfDay, _subscriptionData.UpdateInterval.TimeOfDay);
         }
 
         /// <summary>
@@ -203,6 +202,7 @@ namespace AutoTrade.MarketData
                             foreach (var quote in quotes)
                             {
                                 // set created date
+                                quote.SubscriptionID = _subscriptionData.ID;
                                 quote.Created = DateTime.Now;
 
                                 // add to repository

@@ -26,5 +26,7 @@ namespace AutoTrade.MarketData.Data
         public System.DateTime Created { get; set; }
     	[DataMember]
         public System.DateTime Modified { get; set; }
+    	[DataMember]
+        public string Name { get; set; }
     }
 }

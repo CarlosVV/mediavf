@@ -3,7 +3,7 @@ using AutoTrade.MarketData.Data;
 
 namespace AutoTrade.MarketData.DataService
 {
-    public class MarketDataService : IMarketDataService
+    public class OldService : IOldService
     {
         /// <summary>
         /// The repository to access for data
@@ -11,10 +11,10 @@ namespace AutoTrade.MarketData.DataService
         private readonly IMarketDataRepository _marketDataRepository;
 
         /// <summary>
-        /// Instantiates a <see cref="MarketDataService"/>
+        /// Instantiates a <see cref="OldService"/>
         /// </summary>
         /// <param name="marketDataRepository"></param>
-        public MarketDataService(IMarketDataRepository marketDataRepository)
+        public OldService(IMarketDataRepository marketDataRepository)
         {
             _marketDataRepository = marketDataRepository;
         }

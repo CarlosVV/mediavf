@@ -8,6 +8,8 @@
         public SubscriptionsControl()
         {
             InitializeComponent();
+
+            DataContext = new SubscriptionsViewModel();
         }
     }
 }

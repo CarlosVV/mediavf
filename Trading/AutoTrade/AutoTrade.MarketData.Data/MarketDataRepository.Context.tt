@@ -61,6 +61,8 @@ public partial interface I<#=code.Escape(container)#>
     {
 #>
     <#=codeStringGenerator.DbSet(entitySet, string.Empty)#>
+    <#=codeStringGenerator.DbQueryInterface(entitySet)#>
+
 <#
     }
 #>
@@ -93,6 +95,8 @@ if (!loader.IsLazyLoadingEnabled(container))
     {
 #>
     <#=codeStringGenerator.DbSet(entitySet)#>
+    <#=codeStringGenerator.DbQueryImplementation(entitySet)#>
+
 <#
     }
 
@@ -309,20 +313,35 @@ public class CodeStringGenerator
     
     public string DbSet(EntitySet entitySet)
     {
-        return string.Format(
-            CultureInfo.InvariantCulture,
-            "{0} IDbSet<{1}> {2} {{ get; set; }}",
-            Accessibility.ForReadOnlyProperty(entitySet),
-            _typeMapper.GetTypeName(entitySet.ElementType),
-            _code.Escape(entitySet));
+		return DbSet(entitySet, Accessibility.ForReadOnlyProperty(entitySet));
     }
     
     public string DbSet(EntitySet entitySet, string accessibility)
     {
         return string.Format(
             CultureInfo.InvariantCulture,
-            "{0} IDbSet<{1}> {2} {{ get; set; }}",
-            accessibility,
+            "{0}{1}IDbSet<{2}> {3} {{ get; set; }}",
+			accessibility,
+			!string.IsNullOrWhiteSpace(accessibility) ? " " : string.Empty,
+            _typeMapper.GetTypeName(entitySet.ElementType),
+            _code.Escape(entitySet));
+    }
+    
+    public string DbQueryInterface(EntitySet entitySet)
+    {
+        return string.Format(
+            CultureInfo.InvariantCulture,
+            "DbQuery<{0}> {1}Query {{ get; }}",
+            _typeMapper.GetTypeName(entitySet.ElementType),
+            _code.Escape(entitySet));
+    }
+    
+    public string DbQueryImplementation(EntitySet entitySet)
+    {
+        return string.Format(
+            CultureInfo.InvariantCulture,
+            "{0} DbQuery<{1}> {2}Query {{ get {{ return {2} as DbQuery<{1}>; }} }}",
+			Accessibility.ForReadOnlyProperty(entitySet),
             _typeMapper.GetTypeName(entitySet.ElementType),
             _code.Escape(entitySet));
     }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace AutoTrade.Core.UI
+namespace AutoTrade.Core.UI.Display
 {
-    public class DialogService : IDialogService
+    public class FolderSelector : IFolderSelector
     {
         /// <summary>
         /// Shows a folder dialog and returns the path to the selected folder

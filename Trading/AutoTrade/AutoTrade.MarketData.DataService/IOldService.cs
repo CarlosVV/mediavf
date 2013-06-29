@@ -10,10 +10,14 @@ namespace AutoTrade.MarketData.DataService
     /// Service for interacting with market data
     /// </summary>
     [ServiceContract]
-    public interface IMarketDataService
+    public interface IOldService
     {
         [OperationContract]
         [DataContractResolver(typeof(ProxyDataContractResolver))]
         IEnumerable<Subscription> GetSubscriptions();
+
+        [OperationContract]
+        [DataContractResolver(typeof(ProxyDataContractResolver))]
+        void UpdateSubscriptions(IEnumerable<Subscription> subscriptions);
     }
 }

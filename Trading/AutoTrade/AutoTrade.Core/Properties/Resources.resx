@@ -168,6 +168,9 @@
   <data name="UnexpectedNodeExceptionMessage" xml:space="preserve">
     <value>An unexpected node was found in the module registrations xml - Expected = {0}, Actual = {1}.</value>
   </data>
+  <data name="UnitySectionNotFoundMessage" xml:space="preserve">
+    <value>The unity section was not found in the Web.config.</value>
+  </data>
   <data name="UnrecognizedLifetimeManagerAliasExceptionMessage" xml:space="preserve">
     <value>The alias {0} is not recognized as an alias for a lifetime manager.</value>
   </data>

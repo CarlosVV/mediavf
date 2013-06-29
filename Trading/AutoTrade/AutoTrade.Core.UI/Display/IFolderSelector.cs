@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace AutoTrade.Core.UI
+namespace AutoTrade.Core.UI.Display
 {
-    public interface IDialogService
+    public interface IFolderSelector
     {
         /// <summary>
         /// Allows a user to select a folder

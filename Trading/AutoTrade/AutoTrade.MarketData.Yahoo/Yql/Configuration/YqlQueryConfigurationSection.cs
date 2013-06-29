@@ -19,7 +19,7 @@ namespace AutoTrade.MarketData.Yahoo.Yql.Configuration
         /// <summary>
         /// The name of the section
         /// </summary>
-        public const string SectionName = "yahoo";
+        public const string SectionName = "yahooYqlQueries";
 
         /// <summary>
         /// The name of the tags element
@@ -81,7 +81,7 @@ namespace AutoTrade.MarketData.Yahoo.Yql.Configuration
 
             // create column configurations
             _propertyMappings =
-                xmlElement.FirstChild.ChildNodes.OfType<XmlElement>().Select(e => new YqlPropertyMappingElement(e));
+                xmlElement.FirstChild.ChildNodes.OfType<XmlElement>().Select(e => new YqlPropertyMappingElement(e)).ToList();
         }
 
         /// <summary>

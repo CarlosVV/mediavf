@@ -33,6 +33,7 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
@@ -86,6 +87,10 @@
       <DependentUpon>MarketDataRepository.tt</DependentUpon>
     </Compile>
     <Compile Include="Subscription.ext.cs" />
+    <Compile Include="SubscriptionQuoteSummary.cs">
+      <DependentUpon>MarketDataRepository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubscriptionQuoteSummary.ext.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="MarketDataRepository.edmx">

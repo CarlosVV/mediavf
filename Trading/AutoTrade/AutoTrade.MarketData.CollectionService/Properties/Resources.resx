@@ -116,4 +116,10 @@
   <data name="AnyKeyToStartEscToQuitMessage" xml:space="preserve">
     <value>Press any key to start service, or [ESC] to quit.</value>
   </data>
+  <data name="AnyKeyToExitMessage" xml:space="preserve">
+    <value>Press any key to exit.</value>
+  </data>
+  <data name="ServiceErrorMessage" xml:space="preserve">
+    <value>An error occurred in the service.</value>
+  </data>
 </root>
