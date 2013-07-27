@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using AutoTrade.MarketData.Data;
-using AutoTrade.MarketData.Exceptions;
 
 namespace AutoTrade.MarketData
 {

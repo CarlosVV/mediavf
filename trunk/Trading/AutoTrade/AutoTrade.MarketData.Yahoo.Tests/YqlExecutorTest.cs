@@ -27,7 +27,7 @@ namespace AutoTrade.MarketData.Yahoo.Tests
             var yqlExecutor = new YqlUrlProvider(settings, queryProvider);
 
             // execute query
-            string result = yqlExecutor.GetUrl(A<IEnumerable<string>>.Ignored);
+            string result = yqlExecutor.GetQuotesUrl(A<IEnumerable<string>>.Ignored);
 
             // check that a result was returned
             result.Should().NotBeBlank();

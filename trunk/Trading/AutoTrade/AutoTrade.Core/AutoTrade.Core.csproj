@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ImapX">
+      <HintPath>..\packages\ImapX.2.0.0.9\lib\net40\ImapX.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -65,9 +68,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Email\GmailManager.cs" />
+    <Compile Include="Email\EmailManagerFactory.cs" />
+    <Compile Include="Email\EmailSearchCriteria.cs" />
+    <Compile Include="Email\FolderNotFoundException.cs" />
+    <Compile Include="Email\IEmailManagerFactory.cs" />
+    <Compile Include="Email\ImapManager.cs" />
     <Compile Include="Email\IEmail.cs" />
     <Compile Include="Email\IEmailManager.cs" />
+    <Compile Include="Email\ImapMessage.cs" />
+    <Compile Include="Email\LogInException.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="Logging\Log4NetWrapper.cs" />
     <Compile Include="Modularity\ConfigurableModule.cs" />

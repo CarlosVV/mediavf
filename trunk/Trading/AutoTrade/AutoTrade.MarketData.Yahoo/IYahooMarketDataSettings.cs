@@ -18,9 +18,14 @@
         string YqlTableBlockedMessage { get; }
 
         /// <summary>
+        /// Gets the YQL for selecting stock data
+        /// </summary>
+        string YqlStockSelect { get; }
+
+        /// <summary>
         /// Gets the YQL for selecting quotes
         /// </summary>
-        string YqlMultiQuoteStockSelect { get; }
+        string YqlMultiStockQuoteSelect { get; }
 
         /// <summary>
         /// Gets the url format for retrieving a CSV from Yahoo Finance

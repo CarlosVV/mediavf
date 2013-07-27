@@ -3,7 +3,7 @@ using AutoTrade.MarketData.Data;
 
 namespace AutoTrade.MarketData.Yahoo
 {
-    public interface IResultTranslator
+    public interface IQuotesResultTranslator
     {
         /// <summary>
         /// Translates the results of a YQL query to StockQuotes

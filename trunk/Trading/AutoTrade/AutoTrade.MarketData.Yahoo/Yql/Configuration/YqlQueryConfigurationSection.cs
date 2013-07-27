@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+
 using AutoTrade.Core;
 using AutoTrade.Core.Modularity.Configuration;
 using AutoTrade.Core.Modularity.Configuration.Xml;
-using AutoTrade.MarketData.Data;
-using System;
 
 namespace AutoTrade.MarketData.Yahoo.Yql.Configuration
 {
@@ -26,14 +26,14 @@ namespace AutoTrade.MarketData.Yahoo.Yql.Configuration
         /// </summary>
         private const string PropertyMappingsElementName = "propertyMappings";
 
+        /// <summary>
+        /// The name of the type attribute
+        /// </summary>
+        private const string TypeAttributeName = "type";
+
         #endregion
 
         #region Fields
-
-        /// <summary>
-        /// The column configurations
-        /// </summary>
-        private IEnumerable<YqlPropertyMappingElement> _propertyMappings; 
 
         #endregion
 
@@ -42,25 +42,16 @@ namespace AutoTrade.MarketData.Yahoo.Yql.Configuration
         /// <summary>
         /// Gets or sets the collection of tags
         /// </summary>
-        public IEnumerable<YqlPropertyMappingElement> PropertyMappings
-        {
-            get { return _propertyMappings; }
-        }
+        private Dictionary<Type, IEnumerable<YqlPropertyMappingElement>> PropertyMappings { get; set; }
 
         /// <summary>
         /// Gets the collection of columns currently enabled for the csv
         /// </summary>
-        private List<YqlPropertyMappingElement> EnabledPropertyMappings
+        private IEnumerable<YqlPropertyMappingElement> GetEnabledPropertyMappings<T>()
         {
-            get { return _propertyMappings.Where(t => t.Enabled).ToList(); }
-        }
-
-        /// <summary>
-        /// Gets the number of columns currently enabled
-        /// </summary>
-        public int EnabledColumnCount
-        {
-            get { return EnabledPropertyMappings.Count; }
+            return PropertyMappings.ContainsKey(typeof(T))
+                ? PropertyMappings[typeof(T)].Where(t => t.Enabled).ToList()
+                : new List<YqlPropertyMappingElement>();
         }
 
         #endregion
@@ -79,28 +70,31 @@ namespace AutoTrade.MarketData.Yahoo.Yql.Configuration
             // validate name of columns collection
             xmlElement.FirstChild.ShouldBeNamed(PropertyMappingsElementName);
 
-            // create column configurations
-            _propertyMappings =
-                xmlElement.FirstChild.ChildNodes.OfType<XmlElement>().Select(e => new YqlPropertyMappingElement(e)).ToList();
+            // instantiate dictionary
+            PropertyMappings = xmlElement.ChildNodes
+                                         .OfType<XmlElement>()
+                                         .ToDictionary(e => Type.GetType(e.GetAttributeValue(TypeAttributeName)),
+                                                       e => e.ChildNodes.OfType<XmlElement>().Select(e2 => new YqlPropertyMappingElement(e2)));
         }
 
         /// <summary>
-        /// Sets properties on a quote
+        /// Sets properties on a quote from a Yql result
         /// </summary>
-        /// <param name="quote"></param>
-        /// <param name="elements"></param>
-        public void SetPropertiesOnQuote(StockQuote quote, IEnumerable<XmlElement> elements)
+        /// <typeparam name="T">The type of item to populate</typeparam>
+        /// <param name="item">The item to populate</param>
+        /// <param name="elements">The xml elements from which to populate properties</param>
+        public void SetPropertiesFromXml<T>(T item, IEnumerable<XmlElement> elements)
         {
-            foreach (var propertyMapping in EnabledPropertyMappings)
+            foreach (var propertyMapping in GetEnabledPropertyMappings<T>())
             {
                 // get the property from the mapping
-                var property = typeof(StockQuote).GetProperty(propertyMapping.PropertyName);
+                var property = typeof(T).GetProperty(propertyMapping.PropertyName);
 
                 // if the property does not exist on the StockQuote type, skip it
                 if (property == null) continue;
 
                 // set the value on the property from the value of the element
-                property.SetValue(quote, GetElementValue(property.PropertyType, elements, propertyMapping.XmlElementName));
+                property.SetValue(item, GetElementValue(property.PropertyType, elements, propertyMapping.XmlElementName));
             }
         }
 

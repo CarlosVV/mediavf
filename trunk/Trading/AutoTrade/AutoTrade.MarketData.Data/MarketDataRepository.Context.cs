@@ -36,6 +36,15 @@ namespace AutoTrade.MarketData.Data
         IDbSet<Subscription> Subscriptions { get; set; }
         DbQuery<Subscription> SubscriptionsQuery { get; }
     
+        IDbSet<EmailFeedConfiguration> EmailFeedConfigurations { get; set; }
+        DbQuery<EmailFeedConfiguration> EmailFeedConfigurationsQuery { get; }
+    
+        IDbSet<Industry> Industries { get; set; }
+        DbQuery<Industry> IndustriesQuery { get; }
+    
+        IDbSet<Sector> Sectors { get; set; }
+        DbQuery<Sector> SectorsQuery { get; }
+    
     
     	int SaveChanges();
     }
@@ -73,6 +82,15 @@ namespace AutoTrade.MarketData.Data
     
         public IDbSet<Subscription> Subscriptions { get; set; }
         public DbQuery<Subscription> SubscriptionsQuery { get { return Subscriptions as DbQuery<Subscription>; } }
+    
+        public IDbSet<EmailFeedConfiguration> EmailFeedConfigurations { get; set; }
+        public DbQuery<EmailFeedConfiguration> EmailFeedConfigurationsQuery { get { return EmailFeedConfigurations as DbQuery<EmailFeedConfiguration>; } }
+    
+        public IDbSet<Industry> Industries { get; set; }
+        public DbQuery<Industry> IndustriesQuery { get { return Industries as DbQuery<Industry>; } }
+    
+        public IDbSet<Sector> Sectors { get; set; }
+        public DbQuery<Sector> SectorsQuery { get { return Sectors as DbQuery<Sector>; } }
     
     }
 }

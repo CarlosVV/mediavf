@@ -53,14 +53,30 @@ namespace AutoTrade.MarketData.Yahoo.Yql
         #region Methods
 
         /// <summary>
+        /// Gets the url for selecting stock data
+        /// </summary>
+        /// <param name="symbols"></param>
+        /// <returns></returns>
+        public string GetStockUrl(IEnumerable<string> symbols)
+        {
+            // get the yql to execute
+            var yql = _queryProvider.GetStockSelect(symbols);
+            if (string.IsNullOrWhiteSpace(yql))
+                throw new EmptyYqlQueryException();
+
+            // get the url for executing the yql
+            return GetYqlUrl(yql);
+        }
+
+        /// <summary>
         /// Executes a YQL query and returns the raw xml result
         /// </summary>
         /// <param name="symbols"></param>
         /// <returns></returns>
-        public string GetUrl(IEnumerable<string> symbols)
+        public string GetQuotesUrl(IEnumerable<string> symbols)
         {
             // get the yql to execute
-            string yql = _queryProvider.GetMultiStockQuoteSelect(symbols);
+            var yql = _queryProvider.GetMultiStockQuoteSelect(symbols);
             if (string.IsNullOrWhiteSpace(yql))
                 throw new EmptyYqlQueryException();
 

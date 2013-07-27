@@ -26,15 +26,19 @@ namespace AutoTrade.MarketData.Data
     	[DataMember]
         public string CompanyName { get; set; }
     	[DataMember]
-        public Nullable<int> Sector { get; set; }
-    	[DataMember]
-        public Nullable<int> Industry { get; set; }
-    	[DataMember]
         public System.DateTime Created { get; set; }
     	[DataMember]
         public System.DateTime Modified { get; set; }
+    	[DataMember]
+        public string SectorName { get; set; }
+    	[DataMember]
+        public string IndustryName { get; set; }
     
     	[DataMember]
         public virtual ICollection<StockQuote> StockQuotes { get; set; }
+    	[DataMember]
+        public virtual Industry Industry { get; set; }
+    	[DataMember]
+        public virtual Sector Sector { get; set; }
     }
 }

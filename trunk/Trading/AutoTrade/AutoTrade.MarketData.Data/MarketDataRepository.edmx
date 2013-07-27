@@ -7,8 +7,11 @@
     <Schema Namespace="AutoTradeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="AutoTradeModelStoreContainer">
           <EntitySet Name="DataProvider" EntityType="AutoTradeModel.Store.DataProvider" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailFeedConfiguration" EntityType="AutoTradeModel.Store.EmailFeedConfiguration" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Industry" EntityType="AutoTradeModel.Store.Industry" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Module" EntityType="AutoTradeModel.Store.Module" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ModuleDependency" EntityType="AutoTradeModel.Store.ModuleDependency" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sector" EntityType="AutoTradeModel.Store.Sector" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Stock" EntityType="AutoTradeModel.Store.Stock" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="StockListProvider" EntityType="AutoTradeModel.Store.StockListProvider" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="StockQuote" EntityType="AutoTradeModel.Store.StockQuote" store:Type="Tables" Schema="dbo" />
@@ -21,6 +24,14 @@
           <AssociationSet Name="FK_ModuleDependency_Module1" Association="AutoTradeModel.Store.FK_ModuleDependency_Module1">
             <End Role="Module" EntitySet="Module" />
             <End Role="ModuleDependency" EntitySet="ModuleDependency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Industry" Association="AutoTradeModel.Store.FK_Stock_Industry">
+            <End Role="Industry" EntitySet="Industry" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Sector" Association="AutoTradeModel.Store.FK_Stock_Sector">
+            <End Role="Sector" EntitySet="Sector" />
+            <End Role="Stock" EntitySet="Stock" />
           </AssociationSet>
           <AssociationSet Name="FK_StockQuote_Stock" Association="AutoTradeModel.Store.FK_StockQuote_Stock">
             <End Role="Stock" EntitySet="Stock" />
@@ -58,6 +69,35 @@
           <Property Name="Created" Type="datetime" Nullable="false" />
           <Property Name="Modified" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="EmailFeedConfiguration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Protocol" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Host" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Folder" Type="nvarchar" MaxLength="100" />
+          <Property Name="From" Type="nvarchar" MaxLength="250" />
+          <Property Name="After" Type="datetime" />
+          <Property Name="Before" Type="datetime" />
+          <Property Name="SubjectKeywords" Type="nvarchar" />
+          <Property Name="BodyKeywords" Type="nvarchar" />
+          <Property Name="PollingInterval" Type="time" Nullable="false" />
+          <Property Name="EmailLifetime" Type="time" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Industry">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Module">
           <Key>
             <PropertyRef Name="ID" />
@@ -80,14 +120,22 @@
           <Property Name="DependentOnModuleID" Type="int" Nullable="false" />
           <Property Name="Created" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Sector">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Stock">
           <Key>
             <PropertyRef Name="Symbol" />
           </Key>
           <Property Name="Symbol" Type="nvarchar" Nullable="false" MaxLength="10" />
           <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
-          <Property Name="Sector" Type="int" />
-          <Property Name="Industry" Type="int" />
+          <Property Name="SectorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IndustryName" Type="nvarchar" MaxLength="50" />
           <Property Name="Created" Type="datetime" Nullable="false" />
           <Property Name="Modified" Type="datetime" Nullable="false" />
         </EntityType>
@@ -163,6 +211,30 @@
             </Principal>
             <Dependent Role="ModuleDependency">
               <PropertyRef Name="DependentOnModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Industry">
+          <End Role="Industry" Type="AutoTradeModel.Store.Industry" Multiplicity="0..1" />
+          <End Role="Stock" Type="AutoTradeModel.Store.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Industry">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="IndustryName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Sector">
+          <End Role="Sector" Type="AutoTradeModel.Store.Sector" Multiplicity="0..1" />
+          <End Role="Stock" Type="AutoTradeModel.Store.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sector">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="SectorName" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -278,7 +350,18 @@
             <End Role="Subscription" EntitySet="Subscriptions" />
             <End Role="StockQuote" EntitySet="StockQuotes" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="EmailFeedConfigurations" EntityType="AutoTradeModel.EmailFeedConfiguration" />
+          <EntitySet Name="Industries" EntityType="AutoTradeModel.Industry" />
+          <EntitySet Name="Sectors" EntityType="AutoTradeModel.Sector" />
+          <AssociationSet Name="FK_Stock_Industry" Association="AutoTradeModel.FK_Stock_Industry">
+            <End Role="Industry" EntitySet="Industries" />
+            <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Sector" Association="AutoTradeModel.FK_Stock_Sector">
+            <End Role="Sector" EntitySet="Sectors" />
+            <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="DataProvider">
           <Key>
             <PropertyRef Name="ID" />
@@ -320,12 +403,14 @@
           </Key>
           <Property Type="String" Name="Symbol" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="CompanyName" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Sector" />
-          <Property Type="Int32" Name="Industry" />
           <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
           <NavigationProperty Name="StockQuotes" Relationship="AutoTradeModel.FK_StockQuote_Stock" FromRole="Stock" ToRole="StockQuote" />
-        </EntityType>
+          <Property Type="String" Name="SectorName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IndustryName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Industry" Relationship="AutoTradeModel.FK_Stock_Industry" FromRole="Stock" ToRole="Industry" />
+          <NavigationProperty Name="Sector" Relationship="AutoTradeModel.FK_Stock_Sector" FromRole="Stock" ToRole="Sector" />
+          </EntityType>
         <EntityType Name="StockListProvider">
           <Key>
             <PropertyRef Name="ID" />
@@ -462,6 +547,69 @@
           <Property Type="Decimal" Name="LatestChange" Nullable="false" />
           <Property Type="Decimal" Name="LatestOpen" Nullable="false" />
         </ComplexType>
+        <EntityType Name="EmailFeedConfiguration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Host" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="From" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="After" Precision="3" />
+          <Property Type="DateTime" Name="Before" Precision="3" />
+          <Property Type="String" Name="SubjectKeywords" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BodyKeywords" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="Time" Name="PollingInterval" Nullable="false" Precision="7" />
+          <Property Type="Time" Name="EmailLifetime" Nullable="false" Precision="7" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Folder" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Protocol" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Industry">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Stocks" Relationship="AutoTradeModel.FK_Stock_Industry" FromRole="Industry" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Sector">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Stocks" Relationship="AutoTradeModel.FK_Stock_Sector" FromRole="Sector" ToRole="Stock" />
+        </EntityType>
+        <Association Name="FK_Stock_Industry">
+          <End Type="AutoTradeModel.Industry" Role="Industry" Multiplicity="0..1" />
+          <End Type="AutoTradeModel.Stock" Role="Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Industry">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="IndustryName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Sector">
+          <End Type="AutoTradeModel.Sector" Role="Sector" Multiplicity="0..1" />
+          <End Type="AutoTradeModel.Stock" Role="Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sector">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="SectorName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -507,10 +655,10 @@
           <EntitySetMapping Name="Stocks">
             <EntityTypeMapping TypeName="AutoTradeModel.Stock">
               <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
+                <ScalarProperty Name="SectorName" ColumnName="SectorName" />
                 <ScalarProperty Name="Modified" ColumnName="Modified" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
-                <ScalarProperty Name="Industry" ColumnName="Industry" />
-                <ScalarProperty Name="Sector" ColumnName="Sector" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="Symbol" ColumnName="Symbol" />
               </MappingFragment>
@@ -568,7 +716,47 @@
               <ScalarProperty Name="Symbol" ColumnName="Symbol" />
             </EndProperty>
           </AssociationSetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="EmailFeedConfigurations">
+            <EntityTypeMapping TypeName="AutoTradeModel.EmailFeedConfiguration">
+              <MappingFragment StoreEntitySet="EmailFeedConfiguration">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Protocol" ColumnName="Protocol" />
+                <ScalarProperty Name="Folder" ColumnName="Folder" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="EmailLifetime" ColumnName="EmailLifetime" />
+                <ScalarProperty Name="PollingInterval" ColumnName="PollingInterval" />
+                <ScalarProperty Name="BodyKeywords" ColumnName="BodyKeywords" />
+                <ScalarProperty Name="SubjectKeywords" ColumnName="SubjectKeywords" />
+                <ScalarProperty Name="Before" ColumnName="Before" />
+                <ScalarProperty Name="After" ColumnName="After" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Host" ColumnName="Host" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Industries">
+            <EntityTypeMapping TypeName="AutoTradeModel.Industry">
+              <MappingFragment StoreEntitySet="Industry">
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sectors">
+            <EntityTypeMapping TypeName="AutoTradeModel.Sector">
+              <MappingFragment StoreEntitySet="Sector">
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

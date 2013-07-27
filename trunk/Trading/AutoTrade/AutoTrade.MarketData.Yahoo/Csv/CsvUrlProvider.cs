@@ -42,26 +42,40 @@ namespace AutoTrade.MarketData.Yahoo.Csv
 
         #region Methods
 
+        public string GetStockUrl(IEnumerable<string> symbols)
+        {
+            // ensure symbols are not null
+            if (symbols == null) throw new ArgumentNullException("symbols");
+
+            // enumerate collection
+            var symbolList = symbols.ToList();
+            if (symbolList.Count < 1) throw new NoSymbolsProvidedException();
+
+            // get tags for query
+            var tagsString = _columnProvider.GetTagsString();
+            if (string.IsNullOrWhiteSpace(tagsString)) throw new NoCsvTagsProvidedException();
+
+            // get the url for retrieving the csv
+            return string.Format(_settings.CsvUrlFormat, string.Join("+", symbolList), tagsString);
+        }
+
         /// <summary>
         /// Gets the url for a csv of quotes from Yahoo
         /// </summary>
         /// <param name="symbols"></param>
         /// <returns></returns>
-        public string GetUrl(IEnumerable<string> symbols)
+        public string GetQuotesUrl(IEnumerable<string> symbols)
         {
             // ensure symbols are not null
-            if (symbols == null)
-                throw new ArgumentNullException("symbols");
+            if (symbols == null) throw new ArgumentNullException("symbols");
 
             // enumerate collection
-            List<string> symbolList = symbols.ToList();
-            if (symbolList.Count < 1)
-                throw new NoSymbolsProvidedException();
+            var symbolList = symbols.ToList();
+            if (symbolList.Count < 1) throw new NoSymbolsProvidedException();
 
             // get tags for query
-            string tagsString = _columnProvider.GetTagsString();
-            if (string.IsNullOrWhiteSpace(tagsString))
-                throw new NoCsvTagsProvidedException();
+            var tagsString = _columnProvider.GetTagsString();
+            if (string.IsNullOrWhiteSpace(tagsString)) throw new NoCsvTagsProvidedException();
 
             // get the url for retrieving the csv
             return string.Format(_settings.CsvUrlFormat, string.Join("+", symbolList), tagsString);
