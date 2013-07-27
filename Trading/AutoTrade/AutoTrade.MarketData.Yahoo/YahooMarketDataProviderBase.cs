@@ -23,7 +23,7 @@ namespace AutoTrade.MarketData.Yahoo
         /// <summary>
         /// The translator for interpreting YQL responses
         /// </summary>
-        private readonly IResultTranslator _resultTranslator;
+        private readonly IQuotesResultTranslator _quotesResultTranslator;
 
         #endregion
 
@@ -34,14 +34,14 @@ namespace AutoTrade.MarketData.Yahoo
         /// </summary>
         /// <param name="urlProvider"></param>
         /// <param name="webRequestExecutor"></param>
-        /// <param name="resultTranslator"></param>
+        /// <param name="quotesResultTranslator"></param>
         protected YahooMarketDataProviderBase(IUrlProvider urlProvider,
             IWebRequestExecutor webRequestExecutor,
-            IResultTranslator resultTranslator)
+            IQuotesResultTranslator quotesResultTranslator)
         {
             _urlProvider = urlProvider;
             _webRequestExecutor = webRequestExecutor;
-            _resultTranslator = resultTranslator;
+            _quotesResultTranslator = quotesResultTranslator;
         }
 
         #endregion
@@ -74,7 +74,7 @@ namespace AutoTrade.MarketData.Yahoo
                 return new List<StockQuote>();
 
             // get url for query
-            string queryUrl = _urlProvider.GetUrl(stockList.Select(s => s.Symbol));
+            string queryUrl = _urlProvider.GetQuotesUrl(stockList.Select(s => s.Symbol));
             if (string.IsNullOrWhiteSpace(queryUrl))
                 throw new QueryUrlNotProvidedException();
 
@@ -84,7 +84,7 @@ namespace AutoTrade.MarketData.Yahoo
                 throw new QueryResultsAreEmptyException();
 
             // interpret response and return
-            return _resultTranslator.TranslateResultsToQuotes(results);
+            return _quotesResultTranslator.TranslateResultsToQuotes(results);
         }
 
         #endregion

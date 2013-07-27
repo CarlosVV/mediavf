@@ -49,7 +49,14 @@
     <Compile Include="DataProvider.cs">
       <DependentUpon>MarketDataRepository.tt</DependentUpon>
     </Compile>
+    <Compile Include="EmailFeedConfiguration.cs">
+      <DependentUpon>MarketDataRepository.tt</DependentUpon>
+    </Compile>
     <Compile Include="IMarketDataRepository.cs" />
+    <Compile Include="Industry.cs">
+      <DependentUpon>MarketDataRepository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IStockRetriever.cs" />
     <Compile Include="MarketDataRepository.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -74,15 +81,20 @@
       <DependentUpon>MarketDataRepository.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sector.cs">
+      <DependentUpon>MarketDataRepository.tt</DependentUpon>
+    </Compile>
     <Compile Include="Stock.cs">
       <DependentUpon>MarketDataRepository.tt</DependentUpon>
     </Compile>
+    <Compile Include="StockDataExtensions.cs" />
     <Compile Include="StockListProvider.cs">
       <DependentUpon>MarketDataRepository.tt</DependentUpon>
     </Compile>
     <Compile Include="StockQuote.cs">
       <DependentUpon>MarketDataRepository.tt</DependentUpon>
     </Compile>
+    <Compile Include="StockRetriever.cs" />
     <Compile Include="Subscription.cs">
       <DependentUpon>MarketDataRepository.tt</DependentUpon>
     </Compile>
@@ -115,6 +127,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AutoTrade.Core.StockData\AutoTrade.Core.StockData.csproj">
+      <Project>{B3CFA6D8-FC30-4955-BBEC-1B8FA4BCF77B}</Project>
+      <Name>AutoTrade.Core.StockData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AutoTrade.Core\AutoTrade.Core.csproj">
       <Project>{7f9bf6a2-d154-44d8-9966-07312970279a}</Project>
       <Name>AutoTrade.Core</Name>

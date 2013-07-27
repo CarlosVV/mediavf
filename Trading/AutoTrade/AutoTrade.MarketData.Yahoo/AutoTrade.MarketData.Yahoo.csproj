@@ -75,6 +75,7 @@
     <Compile Include="Exceptions\NoSymbolsProvidedException.cs" />
     <Compile Include="Exceptions\QueryResultsAreEmptyException.cs" />
     <Compile Include="Csv\ICsvColumnProviderFactory.cs" />
+    <Compile Include="IStockDataResultTranslator.cs" />
     <Compile Include="IYahooMarketDataProvider.cs" />
     <Compile Include="YahooMarketDataModule.cs" />
     <Compile Include="YahooMarketDataProviderBase.cs" />
@@ -91,7 +92,7 @@
     <Compile Include="Yql\Exceptions\YqlTableBlockedException.cs" />
     <Compile Include="Yql\IYqlPropertyMapperFactory.cs" />
     <Compile Include="Yql\IYqlQueryProvider.cs" />
-    <Compile Include="IResultTranslator.cs" />
+    <Compile Include="IQuotesResultTranslator.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -107,12 +108,17 @@
     <Compile Include="Yql\IYqlPropertyMapper.cs" />
     <Compile Include="Yql\YqlMarketDataProvider.cs" />
     <Compile Include="Yql\YqlPropertyMapperFactory.cs" />
+    <Compile Include="Yql\YqlStockDataProvider.cs" />
     <Compile Include="Yql\YqlUrlProvider.cs" />
     <Compile Include="Yql\YqlQueryProvider.cs" />
     <Compile Include="Yql\Exceptions\YqlResponseNodeMissingException.cs" />
     <Compile Include="Yql\YqlResultTranslator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AutoTrade.Core.StockData\AutoTrade.Core.StockData.csproj">
+      <Project>{b3cfa6d8-fc30-4955-bbec-1b8fa4bcf77b}</Project>
+      <Name>AutoTrade.Core.StockData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AutoTrade.Core\AutoTrade.Core.csproj">
       <Project>{7F9BF6A2-D154-44D8-9966-07312970279A}</Project>
       <Name>AutoTrade.Core</Name>

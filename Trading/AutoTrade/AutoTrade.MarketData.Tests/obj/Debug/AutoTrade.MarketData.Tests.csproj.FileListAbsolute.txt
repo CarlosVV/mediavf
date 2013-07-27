@@ -30,3 +30,6 @@ C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Tests\bin\Debug\Mi
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Tests\obj\Debug\AutoTrade.MarketData.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Tests\obj\Debug\AutoTrade.MarketData.Tests.dll
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Tests\obj\Debug\AutoTrade.MarketData.Tests.pdb
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Tests\bin\Debug\ImapX.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Tests\bin\Debug\AutoTrade.Core.StockData.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.MarketData.Tests\bin\Debug\AutoTrade.Core.StockData.pdb

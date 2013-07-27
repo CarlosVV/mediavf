@@ -30,6 +30,21 @@ namespace AutoTrade.MarketData.Yahoo.Yql
         #region Methods
 
         /// <summary>
+        /// Gets the select for getting stock data
+        /// </summary>
+        /// <param name="symbols"></param>
+        /// <returns></returns>
+        public string GetStockSelect(IEnumerable<string> symbols)
+        {
+            // ensure symbols are not null
+            if (symbols == null) throw new ArgumentNullException("symbols");
+
+            // create select
+            return string.Format(_marketDataSettings.YqlStockSelect,
+                string.Join(",", symbols.Select(t => string.Format("\"{0}\"", t))));
+        }
+
+        /// <summary>
         /// Gets the YQL used to selected data for multiple stock quotes
         /// </summary>
         /// <param name="symbols"></param>
@@ -37,11 +52,10 @@ namespace AutoTrade.MarketData.Yahoo.Yql
         public string GetMultiStockQuoteSelect(IEnumerable<string> symbols)
         {
             // ensure symbols are not null
-            if (symbols == null)
-                throw new ArgumentNullException("symbols");
+            if (symbols == null) throw new ArgumentNullException("symbols");
 
             // create select
-            return string.Format(_marketDataSettings.YqlMultiQuoteStockSelect,
+            return string.Format(_marketDataSettings.YqlMultiStockQuoteSelect,
                 string.Join(",", symbols.Select(t => string.Format("\"{0}\"", t))));
         }
 

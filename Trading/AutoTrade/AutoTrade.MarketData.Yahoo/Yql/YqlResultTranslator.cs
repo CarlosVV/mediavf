@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using AutoTrade.Core.Modularity.Configuration.Xml;
+using AutoTrade.Core.StockData;
 using AutoTrade.MarketData.Data;
 using AutoTrade.MarketData.Yahoo.Yql.Exceptions;
 
@@ -93,6 +94,36 @@ namespace AutoTrade.MarketData.Yahoo.Yql
         }
 
         /// <summary>
+        /// Translates the results of a YQL query to StockData
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
+        public IEnumerable<StockData> TranslateResultsToStockData(string response)
+        {
+            // create xml doc
+            var xmlDoc = new XmlDocument();
+
+            // load xml into doc
+            try
+            {
+                xmlDoc.LoadXml(response);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidYqlResponseException(ex);
+            }
+
+            // check for any errors in the xml doc
+            CheckForErrors(xmlDoc);
+
+            // if no quote elements were found, return an empty list
+            var quoteElements = xmlDoc.SelectNodes(QuoteXPath);
+
+            // convert quote elements to quotes
+            return quoteElements != null ? quoteElements.Cast<XmlElement>().Select(TranslateToStockData) : new List<StockData>();
+        }
+
+        /// <summary>
         /// Checks if any errors were returned in the xml
         /// </summary>
         /// <param name="node"></param>
@@ -146,9 +177,32 @@ namespace AutoTrade.MarketData.Yahoo.Yql
             var propertyMapper = _yqlPropertyMapperFactory.GetPropertyMapper();
 
             // set properties on the quote 
-            propertyMapper.SetPropertiesOnQuote(quote, quoteElement.ChildNodes.OfType<XmlElement>());
+            propertyMapper.SetPropertiesFromXml(quote, quoteElement.ChildNodes.OfType<XmlElement>());
 
             return quote;
+        }
+
+        /// <summary>
+        /// Translates a quote element into a <see cref="StockQuote"/>
+        /// </summary>
+        /// <param name="quoteElement"></param>
+        /// <returns></returns>
+        private StockData TranslateToStockData(XmlElement quoteElement)
+        {
+            // get the symbol
+            var symbol = quoteElement.GetAttribute(SymbolAttributeName);
+            if (string.IsNullOrWhiteSpace(symbol)) throw new YqlResponseNodeMissingException(SymbolAttributeName);
+            
+            // create quote
+            var stockData = new StockData { Symbol = symbol };
+
+            // get a property mapper
+            var propertyMapper = _yqlPropertyMapperFactory.GetPropertyMapper();
+
+            // set properties on the quote 
+            propertyMapper.SetPropertiesFromXml(stockData, quoteElement.ChildNodes.OfType<XmlElement>());
+
+            return stockData;
         }
 
         #endregion

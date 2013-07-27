@@ -5,10 +5,17 @@ namespace AutoTrade.MarketData.Yahoo
     public interface IUrlProvider
     {
         /// <summary>
-        /// Executes a YQL query and returns the raw xml result
+        /// Gets the url for selecting a stock
         /// </summary>
         /// <param name="symbols"></param>
         /// <returns></returns>
-        string GetUrl(IEnumerable<string> symbols);
+        string GetStockUrl(IEnumerable<string> symbols);
+
+        /// <summary>
+        /// Gets the url for selecting quotes for a collection of symbols
+        /// </summary>
+        /// <param name="symbols"></param>
+        /// <returns></returns>
+        string GetQuotesUrl(IEnumerable<string> symbols);
     }
 }

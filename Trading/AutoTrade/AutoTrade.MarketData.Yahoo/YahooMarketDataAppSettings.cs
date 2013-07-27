@@ -35,9 +35,19 @@ namespace AutoTrade.MarketData.Yahoo
         private const string DefaultYqlTableBlockedMessage = "The current table 'yahoo.finance.quotes' has been blocked.";
 
         /// <summary>
+        /// The name of the setting for getting the YQL query for getting stock data
+        /// </summary>
+        private const string YqlStockSelectSettingName = "YqlStockSelect";
+
+        /// <summary>
+        /// The format for creating YQL query for getting stock data
+        /// </summary>
+        private const string DefaultYqlStockSelectFormat = @"select * from yahoo.finance.stocks where symbol in ({0})";
+
+        /// <summary>
         /// The name of the setting for getting the YQL query for quotes for multiple stocks
         /// </summary>
-        private const string YqlMultiQuoteStockSelectSettingName = "YqlMultiQuoteStockSelect";
+        private const string YqlMultiQuoteStockSelectSettingName = "YqlMultiStockQuoteSelect";
 
         /// <summary>
         /// The format for creating YQL query for getting quotes for multiple stocks
@@ -74,9 +84,14 @@ namespace AutoTrade.MarketData.Yahoo
         private readonly string _yqlTableBlockedMessage;
 
         /// <summary>
+        /// The YQL query for retrieving stock data
+        /// </summary>
+        private readonly string _yqlStockSelect;
+
+        /// <summary>
         /// The YQL query for retrieving quotes
         /// </summary>
-        private readonly string _yqlMultiQuoteStockSelect;
+        private readonly string _yqlMultiStockQuoteSelect;
 
         /// <summary>
         /// The format for the url to retrieve CSVs
@@ -113,8 +128,13 @@ namespace AutoTrade.MarketData.Yahoo
                     assemblyConfig.Settings.GetSetting(YqlTableBlockedMessageSettingName,
                                                        DefaultYqlTableBlockedMessage);
 
-                // get the YQL select
-                _yqlMultiQuoteStockSelect =
+                // get the YQL select for stocks
+                _yqlStockSelect =
+                    assemblyConfig.Settings.GetSetting(YqlStockSelectSettingName,
+                                                       DefaultYqlStockSelectFormat);
+
+                // get the YQL select for quotes
+                _yqlMultiStockQuoteSelect =
                     assemblyConfig.Settings.GetSetting(YqlMultiQuoteStockSelectSettingName,
                                                        DefaultYqlMultiStockQuoteSelectFormat);
 
@@ -162,11 +182,19 @@ namespace AutoTrade.MarketData.Yahoo
         }
 
         /// <summary>
+        /// Gets the YQL for selecting stock data
+        /// </summary>
+        public string YqlStockSelect
+        {
+            get { return _yqlStockSelect; }
+        }
+
+        /// <summary>
         /// Gets the YQL for selecting quotes for multiple stocks
         /// </summary>
-        public string YqlMultiQuoteStockSelect
+        public string YqlMultiStockQuoteSelect
         {
-            get { return _yqlMultiQuoteStockSelect; }
+            get { return _yqlMultiStockQuoteSelect; }
         }
 
         /// <summary>
