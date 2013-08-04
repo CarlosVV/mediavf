@@ -18,13 +18,16 @@ namespace AutoTrade.MarketData
         /// <summary>
         /// The repository for storing and retrieving market data
         /// </summary>
-        private readonly IMarketDataRepository _marketDataRepository;
+        private readonly IMarketDataRepositoryFactory _repositoryFactory;
 
         /// <summary>
         /// The provider for market data
         /// </summary>
         private readonly IMarketDataProvider _marketDataProvider;
 
+        /// <summary>
+        /// The provider of the list of stocks for the subscription
+        /// </summary>
         private readonly IStockListProvider _stockListProvider;
 
         /// <summary>
@@ -50,12 +53,12 @@ namespace AutoTrade.MarketData
         /// Instantiates a <see cref="MarketDataSubscription"/>
         /// </summary>
         /// <param name="logger">The logger</param>
-        /// <param name="marketDataRepository">The repository to store and retrieve market data</param>
+        /// <param name="repositoryFactory">The repository to store and retrieve market data</param>
         /// <param name="marketDataProvider">The provider for refreshing market data</param>
         /// <param name="stockListProvider">The provider for lists of stocks for which to retrieve data</param>
         /// <param name="subscriptionData">The subscriptionData data for determining</param>
         public MarketDataSubscription(ILog logger,
-            IMarketDataRepository marketDataRepository,
+            IMarketDataRepositoryFactory repositoryFactory,
             IMarketDataProvider marketDataProvider,
             IStockListProvider stockListProvider,
             Subscription subscriptionData)
@@ -63,8 +66,8 @@ namespace AutoTrade.MarketData
             // perform null checks
             if (logger == null)
                 throw new ArgumentNullException("logger");
-            if (marketDataRepository == null)
-                throw new ArgumentNullException("marketDataRepository");
+            if (repositoryFactory == null)
+                throw new ArgumentNullException("repositoryFactory");
             if (marketDataProvider == null)
                 throw new ArgumentNullException("marketDataProvider");
             if (subscriptionData == null)
@@ -72,13 +75,13 @@ namespace AutoTrade.MarketData
 
             // set dependencies
             _logger = logger;
-            _marketDataRepository = marketDataRepository;
+            _repositoryFactory = repositoryFactory;
             _marketDataProvider = marketDataProvider;
             _stockListProvider = stockListProvider;
             _subscriptionData = subscriptionData;
 
             // set up timer
-            _timer = new Timer(obj => GetLatestData());
+            _timer = new Timer(obj => GetLatestQuotes());
 
             // status initialized to idle
             Status = SubscriptionStatus.Idle;
@@ -100,21 +103,28 @@ namespace AutoTrade.MarketData
         /// <summary>
         /// Updates data for the subscription by retrieving the latest data
         /// </summary>
-        public void UpdateData()
+        public void UpdateSubscriptionData()
+        {
+            // update the data
+            UpdateSubscriptionData(GetLatestSubscriptionData());
+        }
+
+        /// <summary>
+        /// Gets the latest subscription data
+        /// </summary>
+        /// <returns></returns>
+        private Subscription GetLatestSubscriptionData()
         {
             // get the latest data from the database
-            Subscription subscriptionData;
             lock (_subscriptionDataLock)
-                subscriptionData = _marketDataRepository.GetSubscription(_subscriptionData.ID);
-
-            // update the data
-            UpdateData(subscriptionData);
+                using (var repository = _repositoryFactory.CreateRepository())
+                    return repository.GetSubscription(_subscriptionData.ID);
         }
 
         /// <summary>
         /// Updates the data for the subscription for a subscription data object
         /// </summary>
-        public void UpdateData(Subscription subscriptionData)
+        public void UpdateSubscriptionData(Subscription subscriptionData)
         {
             lock (_subscriptionDataLock)
             {
@@ -180,7 +190,7 @@ namespace AutoTrade.MarketData
         /// <summary>
         /// Refreshes data using the market data provider
         /// </summary>
-        private void GetLatestData()
+        private void GetLatestQuotes()
         {
             lock (_subscriptionDataLock)
             {
@@ -199,18 +209,21 @@ namespace AutoTrade.MarketData
 
                         if (quotes != null)
                         {
-                            foreach (var quote in quotes)
+                            using (var repository = _repositoryFactory.CreateRepository())
                             {
-                                // set created date
-                                quote.SubscriptionID = _subscriptionData.ID;
-                                quote.Created = DateTime.Now;
+                                foreach (var quote in quotes)
+                                {
+                                    // set created date
+                                    quote.SubscriptionID = _subscriptionData.ID;
+                                    quote.Created = DateTime.Now;
 
-                                // add to repository
-                                _marketDataRepository.StockQuotes.Add(quote);
+                                    // add to repository
+                                    repository.StockQuotes.Add(quote);
+                                }
+
+                                // save
+                                repository.SaveChanges();
                             }
-
-                            // save
-                            _marketDataRepository.SaveChanges();
                         }
                     }
                     catch (Exception exception)

@@ -21,7 +21,7 @@ namespace AutoTrade.MarketData
         /// <summary>
         /// The repository for market data
         /// </summary>
-        private readonly IMarketDataRepository _marketDataRepository;
+        private readonly IMarketDataRepositoryFactory _repositoryFactory;
 
         /// <summary>
         /// The list of registered market data providers
@@ -41,16 +41,16 @@ namespace AutoTrade.MarketData
         /// Instantiates a <see cref="SubscriptionFactory"/>
         /// </summary>
         /// <param name="logger"></param>
-        /// <param name="marketDataRepository"></param>
+        /// <param name="repositoryFactory"></param>
         /// <param name="marketDataProviders"></param>
         /// <param name="stockListProviders"></param>
         public SubscriptionFactory(ILog logger,
-            IMarketDataRepository marketDataRepository,
+            IMarketDataRepositoryFactory repositoryFactory,
             IEnumerable<IMarketDataProvider> marketDataProviders,
             IEnumerable<IStockListProvider> stockListProviders)
         {
             _logger = logger;
-            _marketDataRepository = marketDataRepository;
+            _repositoryFactory = repositoryFactory;
             _marketDataProviders = marketDataProviders;
             _stockListProviders = stockListProviders;
         }
@@ -67,11 +67,10 @@ namespace AutoTrade.MarketData
         public IMarketDataSubscription CreateSubscription(Subscription subscription)
         {
             // ensure subscription is not null
-            if (subscription == null)
-                throw new ArgumentNullException("subscription");
+            if (subscription == null) throw new ArgumentNullException("subscription");
 
             return new MarketDataSubscription(_logger,
-                _marketDataRepository,
+                _repositoryFactory,
                 GetDataProvider(subscription),
                 GetStockListProvider(subscription),
                 subscription);

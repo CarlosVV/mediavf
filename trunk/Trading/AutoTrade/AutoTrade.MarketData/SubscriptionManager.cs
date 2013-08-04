@@ -69,7 +69,7 @@ namespace AutoTrade.MarketData
         /// <param name="state"></param>
         private void UpdateSubscriptionData(object state)
         {
-            _subscriptions.Values.AsParallel().ForAll(s => s.UpdateData());
+            _subscriptions.Values.AsParallel().ForAll(s => s.UpdateSubscriptionData());
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace AutoTrade.MarketData
                               .ForAll(kvp =>
                               {
                                   // update data for the subscription
-                                  kvp.Value.UpdateData(activeSubscriptions[kvp.Key]);
+                                  kvp.Value.UpdateSubscriptionData(activeSubscriptions[kvp.Key]);
 
                                   // start running the subscription
                                   kvp.Value.Start();
@@ -143,7 +143,7 @@ namespace AutoTrade.MarketData
             if (!_subscriptions.ContainsKey(subscriptionId))
                 _subscriptions.Add(subscriptionId, _subscriptionFactory.CreateSubscription(subscriptionData));
             else
-                _subscriptions[subscriptionId].UpdateData(subscriptionData);
+                _subscriptions[subscriptionId].UpdateSubscriptionData(subscriptionData);
 
             // start the subscription
             _subscriptions[subscriptionId].Start();

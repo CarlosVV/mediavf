@@ -9,11 +9,11 @@ namespace AutoTrade.MarketData.Yahoo
         /// <summary>
         /// Instantiates a <see cref="YahooMarketDataModule"/>
         /// </summary>
-        /// <param name="unityContainer"></param>
+        /// <param name="container"></param>
         /// <param name="assemblyConfigurationManager"></param>
-        public YahooMarketDataModule(IUnityContainer unityContainer,
+        public YahooMarketDataModule(IUnityContainer container,
             IAssemblyConfigurationManager assemblyConfigurationManager)
-            : base(unityContainer, assemblyConfigurationManager)
+            : base(container, assemblyConfigurationManager)
         {
         }
     }

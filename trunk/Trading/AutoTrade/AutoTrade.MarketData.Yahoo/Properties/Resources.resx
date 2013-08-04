@@ -142,10 +142,10 @@
     <value>CSV does not have the correct number of columns.</value>
   </data>
   <data name="FailedToRetrieveFromAllProvidersMessage" xml:space="preserve">
-    <value>Failed to retrieve data from all registered Yahoo market data providers.</value>
+    <value>Failed to retrieve {0} data from all registered Yahoo market data providers.</value>
   </data>
   <data name="FailedToRetrieveFromProviderMessageFormat" xml:space="preserve">
-    <value>An error occurred retrieving data from the following provider type: {0}.</value>
+    <value>An error occurred retrieving {0} data from the following provider type: {1}.</value>
   </data>
   <data name="InvalidCsvFormatMessageFormat" xml:space="preserve">
     <value>An error occurred parsing the CSV response: {0}</value>

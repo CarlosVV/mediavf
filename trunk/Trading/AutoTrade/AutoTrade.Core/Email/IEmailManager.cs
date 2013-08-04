@@ -8,7 +8,8 @@ namespace AutoTrade.Core.Email
         /// Search an email account
         /// </summary>
         /// <param name="searchCriteria"></param>
+        /// <param name="processMessages"></param>
         /// <returns></returns>
-        IEnumerable<IEmail> Search(EmailSearchCriteria searchCriteria);
+        IEnumerable<IEmail> Search(EmailSearchCriteria searchCriteria, bool processMessages = true);
     }
 }

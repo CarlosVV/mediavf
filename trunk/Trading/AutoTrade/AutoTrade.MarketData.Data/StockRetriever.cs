@@ -5,7 +5,7 @@ using AutoTrade.Core.StockData;
 
 namespace AutoTrade.MarketData.Data
 {
-    class StockRetriever : IStockRetriever
+    public class StockRetriever : IStockRetriever
     {
         #region Fields
 
@@ -13,11 +13,6 @@ namespace AutoTrade.MarketData.Data
         /// The repository
         /// </summary>
         private readonly IMarketDataRepository _marketDataRepository;
-
-        /// <summary>
-        /// The stock data provider
-        /// </summary>
-        private readonly IStockDataProvider _stockDataProvider;
 
         #endregion
 
@@ -27,11 +22,9 @@ namespace AutoTrade.MarketData.Data
         /// Instantiates a <see cref="StockRetriever"/>
         /// </summary>
         /// <param name="marketDataRepository"></param>
-        /// <param name="stockDataProvider"></param>
-        public StockRetriever(IMarketDataRepository marketDataRepository, IStockDataProvider stockDataProvider)
+        public StockRetriever(IMarketDataRepository marketDataRepository)
         {
             _marketDataRepository = marketDataRepository;
-            _stockDataProvider = stockDataProvider;
         }
 
         #endregion
@@ -41,10 +34,13 @@ namespace AutoTrade.MarketData.Data
         /// <summary>
         /// Gets stocks by their symbols
         /// </summary>
+        /// <param name="stockDataProvider"></param>
         /// <param name="symbols"></param>
         /// <returns></returns>
-        public IEnumerable<Stock> GetStocks(IEnumerable<string> symbols)
+        public IEnumerable<Stock> GetStocks(IStockDataProvider stockDataProvider, IEnumerable<string> symbols)
         {
+            if (stockDataProvider == null) throw new ArgumentNullException("stockDataProvider");
+
             // check that symbols were provided
             if (symbols == null) return new List<Stock>();
 
@@ -60,7 +56,7 @@ namespace AutoTrade.MarketData.Data
             // get data for stocks that are missing
             if (missingStocks.Count > 0)
             {
-                var newStocks = _stockDataProvider.GetStockData(missingStocks).Select(CreateStock);
+                var newStocks = stockDataProvider.GetStockData(missingStocks).Select(CreateStock);
 
                 // get data for missing stocks and insert it to the repository
                 foreach (var newStock in newStocks)

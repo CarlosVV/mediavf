@@ -15,5 +15,7 @@ C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.csproj.GenerateResource.Cache
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.dll
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.pdb
-C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.csprojResolveAssemblyReference.cache
 C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\ImapX.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\obj\Debug\AutoTrade.Core.csprojResolveAssemblyReference.cache
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\S22.Imap.dll
+C:\Users\Evan\Projects\Trading\AutoTrade\AutoTrade.Core\bin\Debug\S22.Imap.xml

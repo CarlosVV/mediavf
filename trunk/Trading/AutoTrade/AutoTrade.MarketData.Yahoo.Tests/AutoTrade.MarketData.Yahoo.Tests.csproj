@@ -81,9 +81,9 @@
       <Project>{562005A5-00BD-44B3-AB9F-77615E46A678}</Project>
       <Name>AutoTrade.MarketData.Yahoo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AutoTrade.MarketData\AutoTrade.MarketData.Collection.csproj">
+    <ProjectReference Include="..\AutoTrade.MarketData\AutoTrade.MarketData.csproj">
       <Project>{05415541-66F1-49DA-B271-BB0B04EC396B}</Project>
-      <Name>AutoTrade.MarketData.Collection</Name>
+      <Name>AutoTrade.MarketData</Name>
     </ProjectReference>
     <ProjectReference Include="..\AutoTrade.Tests\AutoTrade.Tests.csproj">
       <Project>{51977e8c-20f6-4313-a9a8-a2d03f64db17}</Project>

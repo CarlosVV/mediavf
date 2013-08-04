@@ -11,7 +11,7 @@ namespace AutoTrade.Core.Modularity
         /// <summary>
         /// The unity container
         /// </summary>
-        private readonly IUnityContainer _unityContainer;
+        private readonly IUnityContainer _container;
 
         /// <summary>
         /// The assembly configuration manager
@@ -25,12 +25,21 @@ namespace AutoTrade.Core.Modularity
         /// <summary>
         /// Instantiates a <see cref="ConfigurableModule"/>
         /// </summary>
-        /// <param name="unityContainer"></param>
+        /// <param name="container"></param>
         /// <param name="assemblyConfigurationManager"></param>
-        protected ConfigurableModule(IUnityContainer unityContainer, IAssemblyConfigurationManager assemblyConfigurationManager)
+        protected ConfigurableModule(IUnityContainer container, IAssemblyConfigurationManager assemblyConfigurationManager)
         {
             _assemblyConfigurationManager = assemblyConfigurationManager;
-            _unityContainer = unityContainer;
+            _container = container;
+        }
+
+        #endregion
+
+        #region Properties
+
+        protected IUnityContainer Container
+        {
+            get { return _container; }
         }
 
         #endregion
@@ -48,7 +57,7 @@ namespace AutoTrade.Core.Modularity
 
             // add registrations to container
             if (assemblyConfiguration != null)
-                assemblyConfiguration.Registrations.AddRegistrationsToContainer(_unityContainer);
+                assemblyConfiguration.Registrations.AddRegistrationsToContainer(_container);
         }
 
         #endregion

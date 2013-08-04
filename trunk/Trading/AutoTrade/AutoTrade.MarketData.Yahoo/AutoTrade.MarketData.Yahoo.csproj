@@ -70,7 +70,7 @@
     <Compile Include="Csv\Exceptions\NoCsvTagsProvidedException.cs" />
     <Compile Include="Csv\ICsvResultTranslator.cs" />
     <Compile Include="Csv\ICsvUrlProvider.cs" />
-    <Compile Include="Exceptions\FailedToRetrieveQuotesException.cs" />
+    <Compile Include="Exceptions\FailedToRetrieveDataException.cs" />
     <Compile Include="Exceptions\QueryUrlNotProvidedException.cs" />
     <Compile Include="Exceptions\NoSymbolsProvidedException.cs" />
     <Compile Include="Exceptions\QueryResultsAreEmptyException.cs" />
@@ -108,17 +108,12 @@
     <Compile Include="Yql\IYqlPropertyMapper.cs" />
     <Compile Include="Yql\YqlMarketDataProvider.cs" />
     <Compile Include="Yql\YqlPropertyMapperFactory.cs" />
-    <Compile Include="Yql\YqlStockDataProvider.cs" />
     <Compile Include="Yql\YqlUrlProvider.cs" />
     <Compile Include="Yql\YqlQueryProvider.cs" />
     <Compile Include="Yql\Exceptions\YqlResponseNodeMissingException.cs" />
     <Compile Include="Yql\YqlResultTranslator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AutoTrade.Core.StockData\AutoTrade.Core.StockData.csproj">
-      <Project>{b3cfa6d8-fc30-4955-bbec-1b8fa4bcf77b}</Project>
-      <Name>AutoTrade.Core.StockData</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AutoTrade.Core\AutoTrade.Core.csproj">
       <Project>{7F9BF6A2-D154-44D8-9966-07312970279A}</Project>
       <Name>AutoTrade.Core</Name>
@@ -127,9 +122,9 @@
       <Project>{a1ce9bd6-8dd7-492b-bed4-e8e408b95674}</Project>
       <Name>AutoTrade.MarketData.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AutoTrade.MarketData\AutoTrade.MarketData.Collection.csproj">
+    <ProjectReference Include="..\AutoTrade.MarketData\AutoTrade.MarketData.csproj">
       <Project>{05415541-66f1-49da-b271-bb0b04ec396b}</Project>
-      <Name>AutoTrade.MarketData.Collection</Name>
+      <Name>AutoTrade.MarketData</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

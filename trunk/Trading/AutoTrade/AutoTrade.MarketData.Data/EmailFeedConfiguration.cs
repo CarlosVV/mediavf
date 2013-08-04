@@ -48,5 +48,9 @@ namespace AutoTrade.MarketData.Data
         public string Protocol { get; set; }
     	[DataMember]
         public string Name { get; set; }
+    	[DataMember]
+        public Nullable<System.DateTime> LastChecked { get; set; }
+    	[DataMember]
+        public Nullable<int> PreviousEmailLoadDays { get; set; }
     }
 }

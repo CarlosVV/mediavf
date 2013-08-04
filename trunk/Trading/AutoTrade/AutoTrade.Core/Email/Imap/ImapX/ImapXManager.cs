@@ -2,9 +2,9 @@
 using ImapX;
 using System.Collections.Generic;
 
-namespace AutoTrade.Core.Email
+namespace AutoTrade.Core.Email.Imap.ImapX
 {
-    public class ImapManager : IEmailManager
+    public class ImapXManager : IEmailManager
     {
         #region Fields
 
@@ -38,14 +38,14 @@ namespace AutoTrade.Core.Email
         #region Constructors
 
         /// <summary>
-        /// Instantiates a <see cref="ImapManager"/>
+        /// Instantiates a <see cref="ImapXManager"/>
         /// </summary>
         /// <param name="host"></param>
         /// <param name="port"></param>
         /// <param name="useSsl"></param>
         /// <param name="userName"></param>
         /// <param name="password"></param>
-        public ImapManager(string host, int port, bool useSsl, string userName, string password)
+        public ImapXManager(string host, int port, bool useSsl, string userName, string password)
         {
             _host = host;
             _port = port;
@@ -62,8 +62,9 @@ namespace AutoTrade.Core.Email
         /// Searches the ac
         /// </summary>
         /// <param name="searchCriteria"></param>
+        /// <param name="processMessages"></param>
         /// <returns></returns>
-        public IEnumerable<IEmail> Search(EmailSearchCriteria searchCriteria)
+        public IEnumerable<IEmail> Search(EmailSearchCriteria searchCriteria, bool processMessages = true)
         {
             // create client
             var client = new ImapClient(_host, _port, _useSsl);
@@ -95,6 +96,9 @@ namespace AutoTrade.Core.Email
                     // add results of search
                     results.AddRange(SearchFolder(folder, searchCriteria));
                 }
+
+                // download messages if indicated
+                if (processMessages) results.ForEach(m => m.Download());
             }
             finally
             {
@@ -113,16 +117,13 @@ namespace AutoTrade.Core.Email
         /// <returns></returns>
         private static IEnumerable<IEmail> SearchFolder(Folder folder, EmailSearchCriteria searchCriteria)
         {
-            // select the folder
-            folder.Select();
-
             // create query
             var searchQuery = BuildSearch(searchCriteria);
 
             // if query was created, run it and return results
             return !string.IsNullOrWhiteSpace(searchQuery) ?
-                (IEnumerable<IEmail>)folder.Search(searchQuery, false).Select(m => new ImapMessage(m)) :
-                new List<IEmail>();
+                folder.Search(searchQuery, false).Select(m => new ImapXMessage(m)) :
+                folder.Messages.Select(m => new ImapXMessage(m));
         }
 
         /// <summary>
@@ -137,11 +138,14 @@ namespace AutoTrade.Core.Email
             if (!string.IsNullOrWhiteSpace(searchCriteria.From))
                 clauses.Add(string.Format("FROM \"{0}\"", searchCriteria.From));
 
-            if (searchCriteria.ReceivedBefore.HasValue)
-                clauses.Add(string.Format("BEFORE \"{0}\"", searchCriteria.ReceivedBefore.Value));
+            if (searchCriteria.After.HasValue)
+                clauses.Add(string.Format("BEFORE \"{0}\"", searchCriteria.After.Value));
 
-            if (searchCriteria.ReceivedAfter.HasValue)
-                clauses.Add(string.Format("SINCE \"{0}\"", searchCriteria.ReceivedAfter.Value));
+            if (searchCriteria.Since.HasValue)
+                clauses.Add(string.Format("SINCE \"{0}\"", searchCriteria.Since.Value));
+
+            if (searchCriteria.Unread.HasValue)
+                clauses.Add(searchCriteria.Unread.Value ? "UNSEEN" : "SEEN");
 
             if (searchCriteria.SubjectKeywords != null && searchCriteria.SubjectKeywords.Any())
                 clauses.Add(string.Format("OR \"{0}\"", string.Join(" ", searchCriteria.SubjectKeywords.Select(k => string.Format("SUBJECT {0}", k)))));

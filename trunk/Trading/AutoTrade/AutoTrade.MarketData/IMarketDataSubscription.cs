@@ -12,12 +12,12 @@ namespace AutoTrade.MarketData
         /// <summary>
         /// Updates data for a subscription
         /// </summary>
-        void UpdateData();
+        void UpdateSubscriptionData();
 
         /// <summary>
         /// Updates the data of the subscriptionData
         /// </summary>
-        void UpdateData(Subscription subscriptionData);
+        void UpdateSubscriptionData(Subscription subscriptionData);
 
         /// <summary>
         /// Starts regular updates of data

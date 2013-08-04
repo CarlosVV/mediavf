@@ -1,6 +1,6 @@
 ﻿using AutoTrade.Core.Email;
 
-namespace AutoTrade.MarketData.EmailAlerts.PennyPicks
+namespace AutoTrade.MarketData.EmailAlerts
 {
     public interface IEmailStockParser
     {

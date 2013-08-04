@@ -90,9 +90,9 @@
       <Project>{7f9bf6a2-d154-44d8-9966-07312970279a}</Project>
       <Name>AutoTrade.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AutoTrade.MarketData\AutoTrade.MarketData.Collection.csproj">
+    <ProjectReference Include="..\AutoTrade.MarketData\AutoTrade.MarketData.csproj">
       <Project>{05415541-66f1-49da-b271-bb0b04ec396b}</Project>
-      <Name>AutoTrade.MarketData.Collection</Name>
+      <Name>AutoTrade.MarketData</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

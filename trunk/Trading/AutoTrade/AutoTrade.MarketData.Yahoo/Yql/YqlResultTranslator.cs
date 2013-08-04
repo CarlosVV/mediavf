@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml;
 using AutoTrade.Core.Modularity.Configuration.Xml;
 using AutoTrade.Core.StockData;
@@ -17,6 +18,11 @@ namespace AutoTrade.MarketData.Yahoo.Yql
         /// The XPath used to access the quote elements in the response
         /// </summary>
         private const string QuoteXPath = "//results/quote";
+
+        /// <summary>
+        /// The XPath used to access the stock elements in the response
+        /// </summary>
+        private const string StockXPath = "//results/stock";
 
         /// <summary>
         /// The name of the symbol attribute for a quote
@@ -117,10 +123,10 @@ namespace AutoTrade.MarketData.Yahoo.Yql
             CheckForErrors(xmlDoc);
 
             // if no quote elements were found, return an empty list
-            var quoteElements = xmlDoc.SelectNodes(QuoteXPath);
+            var stockElements = xmlDoc.SelectNodes(StockXPath);
 
             // convert quote elements to quotes
-            return quoteElements != null ? quoteElements.Cast<XmlElement>().Select(TranslateToStockData) : new List<StockData>();
+            return stockElements != null ? stockElements.Cast<XmlElement>().Select(TranslateToStockData) : new List<StockData>();
         }
 
         /// <summary>
@@ -155,7 +161,7 @@ namespace AutoTrade.MarketData.Yahoo.Yql
             var innerText = javaScriptNode.ExtractInnerTextFromCData();
 
             // if the text contains the YQL table blocked message, return it
-            return innerText.Contains(_settings.YqlTableBlockedMessage) ? innerText : string.Empty;
+            return Regex.IsMatch(innerText, _settings.YqlTableBlockedRegex) ? innerText : string.Empty;
         }
 
         /// <summary>

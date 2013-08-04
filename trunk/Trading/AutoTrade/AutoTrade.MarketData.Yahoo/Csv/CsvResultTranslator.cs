@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoTrade.Core;
+using AutoTrade.Core.StockData;
 using AutoTrade.MarketData.Data;
 using AutoTrade.MarketData.Yahoo.Csv.Exceptions;
 using AutoTrade.MarketData.Yahoo.Exceptions;
@@ -41,6 +42,28 @@ namespace AutoTrade.MarketData.Yahoo.Csv
         /// <param name="response"></param>
         /// <returns></returns>
         public IEnumerable<StockQuote> TranslateResultsToQuotes(string response)
+        {                
+            return TranslateResults(response, () => new StockQuote { QuoteDateTime = DateTime.Now });
+        }
+
+        /// <summary>
+        /// Translates the results of a CSV query to StockData
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
+        public IEnumerable<StockData> TranslateResultsToStockData(string response)
+        {
+            return TranslateResults(response, () => new StockData());
+        }
+
+        /// <summary>
+        /// Translates results of a query to a collection of items
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="response"></param>
+        /// <param name="createItem"></param>
+        /// <returns></returns>
+        public IEnumerable<T> TranslateResults<T>(string response, Func<T> createItem)
         {
             // check that the response is not empty
             if (string.IsNullOrWhiteSpace(response))
@@ -52,8 +75,8 @@ namespace AutoTrade.MarketData.Yahoo.Csv
             // get the mappings of properties to column indexes
             var columnPropertyMappings = _columnProvider.GetProperties();
 
-            // create quotes from data
-            return parsedResponse.Select(row => CreateQuoteFromRow(row, columnPropertyMappings));
+            // create stock data from data
+            return parsedResponse.Select(row => CreateItemFromRow(createItem(), row, columnPropertyMappings));
         }
 
         /// <summary>
@@ -89,15 +112,14 @@ namespace AutoTrade.MarketData.Yahoo.Csv
         /// <summary>
         /// Creates a stock quote from a row in the CSV
         /// </summary>
+        /// <param name="item"></param>
         /// <param name="values"></param>
         /// <param name="columnPropertyMappings"></param>
         /// <returns></returns>
-        private static StockQuote CreateQuoteFromRow(IList<string> values,
+        private static T CreateItemFromRow<T>(T item,
+            IList<string> values,
             IReadOnlyDictionary<int, string> columnPropertyMappings)
         {
-            // create new quote
-            var quote = new StockQuote { QuoteDateTime = DateTime.Now };
-
             // go through all values that are mapped to a property and populate the property from the value in the list
             for (var i = 0; i < values.Count; i++)
             {
@@ -111,30 +133,30 @@ namespace AutoTrade.MarketData.Yahoo.Csv
                 if (string.IsNullOrWhiteSpace(propertyName)) continue;
 
                 // populate property with value from list
-                PopulatePropertyWithValue(quote, columnPropertyMappings[i], values[i]);
+                PopulatePropertyWithValue(item, columnPropertyMappings[i], values[i]);
             }
 
-            return quote;
+            return item;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="quote"></param>
+        /// <param name="item"></param>
         /// <param name="propertyName"></param>
         /// <param name="value"></param>
-        private static void PopulatePropertyWithValue(StockQuote quote, string propertyName, string value)
+        private static void PopulatePropertyWithValue<T>(T item, string propertyName, string value)
         {
             // trim quotes on text fields
             if (!string.IsNullOrWhiteSpace(value))
                 value = value.Trim('"');
 
             // get the property
-            var property = quote.GetType().GetProperty(propertyName);
+            var property = typeof(T).GetProperty(propertyName);
 
             // if the property was found, set its value
             if (property != null)
-                property.SetValue(quote, value.ConvertTo(property.PropertyType), null);
+                property.SetValue(item, value.ConvertTo(property.PropertyType), null);
         }
 
         #endregion

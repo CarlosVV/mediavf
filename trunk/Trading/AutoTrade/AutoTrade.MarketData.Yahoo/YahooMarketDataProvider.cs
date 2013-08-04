@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoTrade.Core;
+using AutoTrade.Core.StockData;
 using AutoTrade.MarketData.Data;
 using AutoTrade.MarketData.Yahoo.Exceptions;
 using AutoTrade.MarketData.Yahoo.Properties;
@@ -8,8 +10,18 @@ using log4net;
 
 namespace AutoTrade.MarketData.Yahoo
 {
-    public class YahooMarketDataProvider : IMarketDataProvider
+    [Name(Yahoo)]
+    public class YahooMarketDataProvider : IMarketDataProvider, IStockDataProvider
     {
+        #region Constants
+
+        /// <summary>
+        /// The name of the provider
+        /// </summary>
+        private const string Yahoo = "Yahoo";
+
+        #endregion
+
         #region Fields
 
         /// <summary>
@@ -62,7 +74,31 @@ namespace AutoTrade.MarketData.Yahoo
                 }
             }
 
-            throw new FailedToRetrieveQuotesException();
+            throw new FailedToRetrieveDataException<StockQuote>();
+        }
+
+        /// <summary>
+        /// Gets stock data for a collection of symbols
+        /// </summary>
+        /// <param name="symbols"></param>
+        /// <returns></returns>
+        public IEnumerable<StockData> GetStockData(IEnumerable<string> symbols)
+        {
+            foreach (var provider in _providers.OrderBy(p => p.Precedence))
+            {
+                try
+                {
+                    return provider.GetStockData(symbols);
+                }
+                catch (Exception ex)
+                {
+                    _logger.Warn(
+                        string.Format(Resources.FailedToRetrieveFromProviderMessageFormat, provider.GetType().FullName), ex);
+
+                }
+            }
+
+            throw new FailedToRetrieveDataException<StockData>();
         }
 
         #endregion

@@ -36,6 +36,11 @@ namespace AutoTrade.MarketData.EmailAlerts
         private readonly IEmailManagerFactory _emailManagerFactory;
 
         /// <summary>
+        /// The factory for creating repositories
+        /// </summary>
+        private readonly IMarketDataRepositoryFactory _marketDataRepositoryFactory;
+
+        /// <summary>
         /// The configuration for the feed
         /// </summary>
         private readonly EmailFeedConfiguration _emailFeedConfiguration;
@@ -63,18 +68,37 @@ namespace AutoTrade.MarketData.EmailAlerts
         /// Instantiates an <see cref="EmailFeed"/>
         /// </summary>
         /// <param name="emailManagerFactory"></param>
+        /// <param name="marketDataRepositoryFactory"></param>
         /// <param name="emailFeedConfiguration"></param>
-        public EmailFeed(IEmailManagerFactory emailManagerFactory, EmailFeedConfiguration emailFeedConfiguration)
+        public EmailFeed(IEmailManagerFactory emailManagerFactory,
+            IMarketDataRepositoryFactory marketDataRepositoryFactory,
+            EmailFeedConfiguration emailFeedConfiguration)
         {
             // set config
             _emailManagerFactory = emailManagerFactory;
+            _marketDataRepositoryFactory = marketDataRepositoryFactory;
             _emailFeedConfiguration = emailFeedConfiguration;
 
             // create email manager
             _emailManager = _emailFeedConfiguration.CreateEmailManager(_emailManagerFactory);
 
+            // set last polled time
+            _lastPolled = _emailFeedConfiguration.LastChecked;
+
             // create timer
-            _pollingTimer = new Timer(RetrieveNewEmails);
+            _pollingTimer = new Timer(obj => RetrieveNewEmails());
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the last time the email account was polled
+        /// </summary>
+        public DateTime? LastPolled
+        {
+            get { return _lastPolled; }
         }
 
         #endregion
@@ -86,6 +110,9 @@ namespace AutoTrade.MarketData.EmailAlerts
         /// </summary>
         public void Start()
         {
+            // retrieve new emails immediately
+            RetrieveRecentEmails();
+
             // start polling
             _pollingTimer.Change(_emailFeedConfiguration.PollingInterval, _emailFeedConfiguration.PollingInterval);
         }
@@ -100,21 +127,54 @@ namespace AutoTrade.MarketData.EmailAlerts
         }
 
         /// <summary>
+        /// Retrieves recent emails
+        /// </summary>
+        private void RetrieveRecentEmails()
+        {
+            // check that 
+            if (_emailFeedConfiguration.PreviousEmailLoadDays.HasValue)
+            {
+                var previousEmailLoadDays = _emailFeedConfiguration.PreviousEmailLoadDays.Value;
+
+                // create criteria for search
+                var searchCriteria = _emailFeedConfiguration.CreateSearchCriteria();
+
+                // set the since using the number of days from config
+                searchCriteria.Since = DateTime.Now - TimeSpan.FromDays(previousEmailLoadDays);
+
+                // retrieve old emails
+                RetrieveEmails(searchCriteria);
+            }
+            else
+                RetrieveNewEmails();
+        }
+
+        /// <summary>
         /// Retrieves new emails
         /// </summary>
-        /// <param name="state"></param>
-        private void RetrieveNewEmails(object state)
+        private void RetrieveNewEmails()
         {
             // create criteria for search
             var searchCriteria = _emailFeedConfiguration.CreateSearchCriteria();
-            searchCriteria.ReceivedAfter = _lastPolled;
+            searchCriteria.Unread = true;
 
+            // retrieve emails that match criteria
+            RetrieveEmails(searchCriteria);
+        }
+
+        /// <summary>
+        /// Retrieves emails based on search criteria
+        /// </summary>
+        /// <param name="searchCriteria"></param>
+        private void RetrieveEmails(EmailSearchCriteria searchCriteria)
+        {
             // perform search
             var newEmails = _emailManager.Search(searchCriteria);
             var newEmailList = newEmails as IList<IEmail> ?? newEmails.ToList();
 
             // set polling time
-            _lastPolled = DateTime.Now;
+            using (var repository = _marketDataRepositoryFactory.CreateRepository())
+                _lastPolled = repository.UpdateEmailFeedLastPolled(_emailFeedConfiguration.ID);
 
             // if any new emails were found, raise event
             if (newEmailList.Count > 0)

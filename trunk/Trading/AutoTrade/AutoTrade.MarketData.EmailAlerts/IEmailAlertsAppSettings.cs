@@ -1,18 +1,15 @@
 ﻿namespace AutoTrade.MarketData.EmailAlerts
 {
-    interface IEmailAlertsConfiguration
+    interface IEmailAlertsAppSettings
     {
         /// <summary>
         /// Gets the name of the PennyPicks feed
         /// </summary>
         string PennyPicksFeedName { get; }
-    }
 
-    class EmailAlertsConfiguration : IEmailAlertsConfiguration
-    {
         /// <summary>
-        /// Gets the name of the PennyPicks feed
+        /// Gets the name of the PennyPicks stock data provider
         /// </summary>
-        public string PennyPicksFeedName { get; private set; }
+        string PennyPicksStockDataProviderName { get; }
     }
 }

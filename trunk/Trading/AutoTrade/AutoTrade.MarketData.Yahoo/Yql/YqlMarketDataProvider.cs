@@ -9,11 +9,11 @@ namespace AutoTrade.MarketData.Yahoo.Yql
         /// </summary>
         /// <param name="urlProvider"></param>
         /// <param name="webRequestExecutor"></param>
-        /// <param name="quotesResultTranslator"></param>
+        /// <param name="resultTranslator"></param>
         public YqlMarketDataProvider(IYqlUrlProvider urlProvider,
             IWebRequestExecutor webRequestExecutor,
-            IYqlResultTranslator quotesResultTranslator)
-            : base(urlProvider, webRequestExecutor, quotesResultTranslator)
+            IYqlResultTranslator resultTranslator)
+            : base(urlProvider, webRequestExecutor, resultTranslator, resultTranslator)
         {
         }
 

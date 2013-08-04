@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AutoTrade.Core.Modularity;
 
 namespace AutoTrade.MarketData.Data
 {
-    public partial interface IMarketDataRepository : IModuleDataRepository
+    public partial interface IMarketDataRepository : IModuleDataRepository, IDisposable
     {
         /// <summary>
         /// Gets all subscriptions
@@ -24,5 +25,11 @@ namespace AutoTrade.MarketData.Data
         /// <param name="subscriptionId"></param>
         /// <returns></returns>
         IEnumerable<Stock> GetStaticStocksForSubscription(int subscriptionId);
+
+        /// <summary>
+        /// Updates the last polled time for an email feed
+        /// </summary>
+        /// <param name="emailFeedId"></param>
+        DateTime UpdateEmailFeedLastPolled(int emailFeedId);
     }
 }

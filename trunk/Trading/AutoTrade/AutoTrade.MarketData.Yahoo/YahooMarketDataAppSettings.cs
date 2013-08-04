@@ -27,12 +27,12 @@ namespace AutoTrade.MarketData.Yahoo
         /// <summary>
         /// The name of the setting that provides the message returned by a YQL query that indicates the table is blocked
         /// </summary>
-        private const string YqlTableBlockedMessageSettingName = "YqlTableBlockedMessage";
+        private const string YqlTableBlockedMessageSettingName = "YqlTableBlockedRegex";
 
         /// <summary>
         /// The default message indicating that a YQL table is blocked
         /// </summary>
-        private const string DefaultYqlTableBlockedMessage = "The current table 'yahoo.finance.quotes' has been blocked.";
+        private const string DefaultYqlTableBlockedMessage = "The current table .* has been blocked";
 
         /// <summary>
         /// The name of the setting for getting the YQL query for getting stock data
@@ -81,7 +81,7 @@ namespace AutoTrade.MarketData.Yahoo
         /// <summary>
         /// The format for the url to execute YQL queries
         /// </summary>
-        private readonly string _yqlTableBlockedMessage;
+        private readonly string _yqlTableBlockedRegex;
 
         /// <summary>
         /// The YQL query for retrieving stock data
@@ -124,7 +124,7 @@ namespace AutoTrade.MarketData.Yahoo
                 _yqlIncludeDiagnostics = assemblyConfig.Settings.GetSetting(IncludeDiagnosticsSettingName, true);
 
                 // get flag indicating whether or not to include diagnostics data in the results of a YQL query
-                _yqlTableBlockedMessage =
+                _yqlTableBlockedRegex =
                     assemblyConfig.Settings.GetSetting(YqlTableBlockedMessageSettingName,
                                                        DefaultYqlTableBlockedMessage);
 
@@ -148,7 +148,7 @@ namespace AutoTrade.MarketData.Yahoo
                 // use defaults for all settings
                 _yqlUrlFormat = DefaultYqlEndpoint;
                 _yqlIncludeDiagnostics = true;
-                _yqlTableBlockedMessage = DefaultYqlTableBlockedMessage;
+                _yqlTableBlockedRegex = DefaultYqlTableBlockedMessage;
                 _csvUrlFormat = DefaultCsvEndpoint;
             }
         }
@@ -176,9 +176,9 @@ namespace AutoTrade.MarketData.Yahoo
         /// <summary>
         /// Gets the message indicating the YQL table is blocked
         /// </summary>
-        public string YqlTableBlockedMessage
+        public string YqlTableBlockedRegex
         {
-            get { return _yqlTableBlockedMessage; }
+            get { return _yqlTableBlockedRegex; }
         }
 
         /// <summary>

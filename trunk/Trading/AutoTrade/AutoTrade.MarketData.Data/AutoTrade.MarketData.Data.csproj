@@ -53,6 +53,7 @@
       <DependentUpon>MarketDataRepository.tt</DependentUpon>
     </Compile>
     <Compile Include="IMarketDataRepository.cs" />
+    <Compile Include="IMarketDataRepositoryFactory.cs" />
     <Compile Include="Industry.cs">
       <DependentUpon>MarketDataRepository.tt</DependentUpon>
     </Compile>
@@ -73,6 +74,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="MarketDataRepository.ext.cs" />
+    <Compile Include="MarketDataRepositoryFactory.cs" />
     <Compile Include="Module.cs">
       <DependentUpon>MarketDataRepository.tt</DependentUpon>
     </Compile>
@@ -127,10 +129,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AutoTrade.Core.StockData\AutoTrade.Core.StockData.csproj">
-      <Project>{B3CFA6D8-FC30-4955-BBEC-1B8FA4BCF77B}</Project>
-      <Name>AutoTrade.Core.StockData</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AutoTrade.Core\AutoTrade.Core.csproj">
       <Project>{7f9bf6a2-d154-44d8-9966-07312970279a}</Project>
       <Name>AutoTrade.Core</Name>

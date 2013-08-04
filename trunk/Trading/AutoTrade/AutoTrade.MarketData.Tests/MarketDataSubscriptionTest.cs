@@ -21,7 +21,10 @@ namespace AutoTrade.MarketData.Tests
             var logger = A.Fake<ILog>();
             var marketDataProvider = A.Fake<IMarketDataProvider>();
             var stockListProvider = A.Fake<IStockListProvider>();
+            var marketDataRepositoryFactory = A.Fake<IMarketDataRepositoryFactory>();
             var marketDataRepository = A.Fake<IMarketDataRepository>();
+
+            A.CallTo(() => marketDataRepositoryFactory.CreateRepository()).Returns(marketDataRepository);
 
             var stockQuoteSet = A.Fake<IDbSet<StockQuote>>();
             marketDataRepository.StockQuotes = stockQuoteSet;
@@ -53,7 +56,7 @@ namespace AutoTrade.MarketData.Tests
 
             // create subscriptionData
             var marketDataSubscription =
-                new MarketDataSubscription(logger, marketDataRepository, marketDataProvider, stockListProvider, subscription);
+                new MarketDataSubscription(logger, marketDataRepositoryFactory, marketDataProvider, stockListProvider, subscription);
 
             // call get latest data
             marketDataSubscription.InvokeMethod("GetLatestData");
