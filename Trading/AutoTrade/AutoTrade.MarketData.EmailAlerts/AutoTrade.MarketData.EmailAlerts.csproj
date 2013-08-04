@@ -56,15 +56,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmailAlertsAppSettings.cs" />
     <Compile Include="EmailAlertsModule.cs" />
     <Compile Include="EmailEventArgs.cs" />
     <Compile Include="EmailFeed.cs" />
     <Compile Include="EmailFeedConfigurationExtensions.cs" />
     <Compile Include="EmailFeedFactory.cs" />
-    <Compile Include="IEmailAlertsConfiguration.cs" />
+    <Compile Include="IEmailAlertsAppSettings.cs" />
     <Compile Include="IEmailFeed.cs" />
     <Compile Include="IEmailFeedFactory.cs" />
-    <Compile Include="PennyPicks\IEmailStockParser.cs" />
+    <Compile Include="IEmailStockParser.cs" />
     <Compile Include="PennyPicks\PennyPicksEmailStockParser.cs" />
     <Compile Include="PennyPicks\PennyPicksEmailStockProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,10 +77,6 @@
     <Compile Include="UnsupportedEmailProtocolException.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AutoTrade.Core.StockData\AutoTrade.Core.StockData.csproj">
-      <Project>{b3cfa6d8-fc30-4955-bbec-1b8fa4bcf77b}</Project>
-      <Name>AutoTrade.Core.StockData</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AutoTrade.Core\AutoTrade.Core.csproj">
       <Project>{7F9BF6A2-D154-44D8-9966-07312970279A}</Project>
       <Name>AutoTrade.Core</Name>
@@ -88,9 +85,9 @@
       <Project>{A1CE9BD6-8DD7-492B-BED4-E8E408B95674}</Project>
       <Name>AutoTrade.MarketData.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AutoTrade.MarketData\AutoTrade.MarketData.Collection.csproj">
+    <ProjectReference Include="..\AutoTrade.MarketData\AutoTrade.MarketData.csproj">
       <Project>{05415541-66F1-49DA-B271-BB0B04EC396B}</Project>
-      <Name>AutoTrade.MarketData.Collection</Name>
+      <Name>AutoTrade.MarketData</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +103,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist $(SolutionDir)AutoTrade.MarketData.CollectionService\bin\$(Configuration)\Modules mkdir $(SolutionDir)AutoTrade.MarketData.CollectionService\bin\$(Configuration)\Modules
+xcopy /e /y /r $(TargetPath) $(SolutionDir)AutoTrade.MarketData.CollectionService\bin\$(Configuration)\Modules
+xcopy /e /y /r $(TargetPath).config $(SolutionDir)AutoTrade.MarketData.CollectionService\bin\$(Configuration)\Modules</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

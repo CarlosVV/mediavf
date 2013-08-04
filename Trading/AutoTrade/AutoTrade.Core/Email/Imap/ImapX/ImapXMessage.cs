@@ -1,8 +1,8 @@
 ﻿using ImapX;
 
-namespace AutoTrade.Core.Email
+namespace AutoTrade.Core.Email.Imap.ImapX
 {
-    internal class ImapMessage : IEmail
+    internal class ImapXMessage : IEmail
     {
         #region Fields
 
@@ -16,10 +16,10 @@ namespace AutoTrade.Core.Email
         #region Constructors
 
         /// <summary>
-        /// Instantiates a <see cref="ImapMessage"/>
+        /// Instantiates a <see cref="ImapXMessage"/>
         /// </summary>
         /// <param name="message"></param>
-        public ImapMessage(Message message)
+        public ImapXMessage(Message message)
         {
             _message = message;
         }

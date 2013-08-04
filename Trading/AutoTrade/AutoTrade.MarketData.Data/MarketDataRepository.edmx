@@ -87,6 +87,8 @@
           <Property Name="BodyKeywords" Type="nvarchar" />
           <Property Name="PollingInterval" Type="time" Nullable="false" />
           <Property Name="EmailLifetime" Type="time" Nullable="false" />
+          <Property Name="LastChecked" Type="datetime" />
+          <Property Name="PreviousEmailLoadDays" Type="int" />
           <Property Name="Created" Type="datetime" Nullable="false" />
           <Property Name="Modified" Type="datetime" Nullable="false" />
         </EntityType>
@@ -567,6 +569,8 @@
           <Property Type="String" Name="Folder" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Protocol" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastChecked" Precision="3" />
+          <Property Type="Int32" Name="PreviousEmailLoadDays" />
         </EntityType>
         <EntityType Name="Industry">
           <Key>
@@ -719,6 +723,8 @@
           <EntitySetMapping Name="EmailFeedConfigurations">
             <EntityTypeMapping TypeName="AutoTradeModel.EmailFeedConfiguration">
               <MappingFragment StoreEntitySet="EmailFeedConfiguration">
+                <ScalarProperty Name="PreviousEmailLoadDays" ColumnName="PreviousEmailLoadDays" />
+                <ScalarProperty Name="LastChecked" ColumnName="LastChecked" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Protocol" ColumnName="Protocol" />
                 <ScalarProperty Name="Folder" ColumnName="Folder" />

@@ -35,7 +35,7 @@ namespace AutoTrade.MarketData.EmailAlerts
 
             // compare protocol
             if (string.CompareOrdinal(protocol, ImapProtocol) == 0)
-                return factory.CreateImapManager(emailFeedConfiguration.Host,
+                return factory.CreateEmailManager(emailFeedConfiguration.Host,
                                                  ImapPort,
                                                  true,
                                                  emailFeedConfiguration.UserName,
@@ -55,8 +55,8 @@ namespace AutoTrade.MarketData.EmailAlerts
             {
                 Folder = emailFeedConfiguration.Folder,
                 From = emailFeedConfiguration.From,
-                ReceivedAfter = emailFeedConfiguration.After,
-                ReceivedBefore = emailFeedConfiguration.Before,
+                Since = emailFeedConfiguration.After,
+                After = emailFeedConfiguration.Before,
                 BodyKeywords = !string.IsNullOrWhiteSpace(emailFeedConfiguration.BodyKeywords)
                                    ? emailFeedConfiguration.BodyKeywords.Split(new[] { "|" },
                                                                                 StringSplitOptions.RemoveEmptyEntries)

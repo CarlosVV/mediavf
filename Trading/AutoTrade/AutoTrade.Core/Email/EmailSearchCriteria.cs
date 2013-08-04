@@ -26,13 +26,18 @@ namespace AutoTrade.Core.Email
         public IEnumerable<string> BodyKeywords { get; set; }
 
         /// <summary>
+        /// Gets or sets flag inidicating whether to return only unread messages
+        /// </summary>
+        public bool? Unread { get; set; }
+
+        /// <summary>
         /// Gets or sets the date after which the email must have been sent
         /// </summary>
-        public DateTime? ReceivedAfter { get; set; }
+        public DateTime? Since { get; set; }
 
         /// <summary>
         /// Gets or sets the date before which the email must have been sent
         /// </summary>
-        public DateTime? ReceivedBefore { get; set; }
+        public DateTime? After { get; set; }
     }
 }

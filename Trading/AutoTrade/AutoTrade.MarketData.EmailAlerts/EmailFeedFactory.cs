@@ -8,24 +8,41 @@ namespace AutoTrade.MarketData.EmailAlerts
 {
     class EmailFeedFactory : IEmailFeedFactory
     {
+        #region Fields
+
         /// <summary>
         /// The email manager factory
         /// </summary>
         private readonly IEmailManagerFactory _emailManagerFactory;
 
         /// <summary>
+        /// The factory for creating repositories
+        /// </summary>
+        private readonly IMarketDataRepositoryFactory _repositoryFactory;
+
+        /// <summary>
         /// The mapping of feed configurations by name
         /// </summary>
         private Dictionary<string, EmailFeedConfiguration> _configurations;
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         /// Instantiates an <see cref="EmailFeedFactory"/>
         /// </summary>
         /// <param name="emailManagerFactory"></param>
-        public EmailFeedFactory(IEmailManagerFactory emailManagerFactory)
+        /// <param name="repositoryFactory"></param>
+        public EmailFeedFactory(IEmailManagerFactory emailManagerFactory, IMarketDataRepositoryFactory repositoryFactory)
         {
             _emailManagerFactory = emailManagerFactory;
+            _repositoryFactory = repositoryFactory;
         }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Adds configurations to the factory
@@ -46,7 +63,9 @@ namespace AutoTrade.MarketData.EmailAlerts
         {
             if (!_configurations.ContainsKey(feedName)) throw new ArgumentException(string.Format("Feed not found: {0}", feedName));
 
-            return new EmailFeed(_emailManagerFactory, _configurations[feedName]);
+            return new EmailFeed(_emailManagerFactory, _repositoryFactory, _configurations[feedName]);
         }
+
+        #endregion
     }
 }

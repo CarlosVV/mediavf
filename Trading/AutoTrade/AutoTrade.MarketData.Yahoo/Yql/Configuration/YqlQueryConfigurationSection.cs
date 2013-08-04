@@ -73,7 +73,7 @@ namespace AutoTrade.MarketData.Yahoo.Yql.Configuration
             // instantiate dictionary
             PropertyMappings = xmlElement.ChildNodes
                                          .OfType<XmlElement>()
-                                         .ToDictionary(e => Type.GetType(e.GetAttributeValue(TypeAttributeName)),
+                                         .ToDictionary(e => e.GetTypeFromAttribute(TypeAttributeName),
                                                        e => e.ChildNodes.OfType<XmlElement>().Select(e2 => new YqlPropertyMappingElement(e2)));
         }
 

@@ -36,11 +36,13 @@ namespace AutoTrade.Core.UnityExtensions
         /// <typeparam name="TMapTo"></typeparam>
         /// <param name="unityContainer"></param>
         /// <param name="lifetimeManager"></param>
-        public static void RegisterTypeIfMissing<T, TMapTo>(this IUnityContainer unityContainer, LifetimeManager lifetimeManager)
+        public static void RegisterTypeIfMissing<T, TMapTo>(this IUnityContainer unityContainer,
+                                                            LifetimeManager lifetimeManager,
+                                                            params InjectionMember[] injectionMembers)
             where TMapTo : T
         {
             if (unityContainer.Registrations.All(r => r.RegisteredType != typeof (T)))
-                unityContainer.RegisterType<T, TMapTo>(lifetimeManager);
+                unityContainer.RegisterType<T, TMapTo>(lifetimeManager, injectionMembers);
         }
 
         /// <summary>
@@ -51,11 +53,14 @@ namespace AutoTrade.Core.UnityExtensions
         /// <param name="unityContainer"></param>
         /// <param name="name"></param>
         /// <param name="lifetimeManager"></param>
-        public static void RegisterTypeIfMissing<T, TMapTo>(this IUnityContainer unityContainer, string name, LifetimeManager lifetimeManager)
+        public static void RegisterTypeIfMissing<T, TMapTo>(this IUnityContainer unityContainer,
+                                                            string name,
+                                                            LifetimeManager lifetimeManager,
+                                                            params  InjectionMember[] injectionMembers)
             where TMapTo : T
         {
             if (unityContainer.Registrations.All(r => r.Name != name && r.RegisteredType != typeof(T)))
-                unityContainer.RegisterType<T, TMapTo>(name, lifetimeManager);
+                unityContainer.RegisterType<T, TMapTo>(name, lifetimeManager, injectionMembers);
         }
 
         /// <summary>
@@ -65,13 +70,15 @@ namespace AutoTrade.Core.UnityExtensions
         /// <param name="mapToType"></param>
         /// <param name="lifetimeManager"></param>
         /// <param name="registeredType"></param>
+        /// <param name="injectionMembers"></param>
         public static void RegisterTypeIfMissing(this IUnityContainer unityContainer,
-            Type registeredType,
-            Type mapToType,
-            LifetimeManager lifetimeManager)
+                                                 Type registeredType,
+                                                 Type mapToType,
+                                                 LifetimeManager lifetimeManager,
+                                                 params InjectionMember[] injectionMembers)
         {
             if (unityContainer.Registrations.All(r => r.RegisteredType != registeredType))
-                unityContainer.RegisterType(registeredType, mapToType, lifetimeManager);
+                unityContainer.RegisterType(registeredType, mapToType, lifetimeManager, injectionMembers);
         }
 
         /// <summary>
@@ -83,13 +90,14 @@ namespace AutoTrade.Core.UnityExtensions
         /// <param name="lifetimeManager"></param>
         /// <param name="registeredType"></param>
         public static void RegisterTypeIfMissing(this IUnityContainer unityContainer,
-            Type registeredType,
-            Type mapToType,
-            string name,
-            LifetimeManager lifetimeManager)
+                                                 Type registeredType,
+                                                 Type mapToType,
+                                                 string name,
+                                                 LifetimeManager lifetimeManager,
+                                                 params InjectionMember[] injectionMembers)
         {
             if (unityContainer.Registrations.All(r => r.Name != name || r.RegisteredType != registeredType))
-                unityContainer.RegisterType(registeredType, mapToType, name, lifetimeManager);
+                unityContainer.RegisterType(registeredType, mapToType, name, lifetimeManager, injectionMembers);
         }
     }
 }

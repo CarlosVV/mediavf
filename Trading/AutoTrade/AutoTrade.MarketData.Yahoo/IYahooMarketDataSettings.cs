@@ -15,7 +15,7 @@
         /// <summary>
         /// Gets the message returned by a YQL query indicating the table is blocked
         /// </summary>
-        string YqlTableBlockedMessage { get; }
+        string YqlTableBlockedRegex { get; }
 
         /// <summary>
         /// Gets the YQL for selecting stock data

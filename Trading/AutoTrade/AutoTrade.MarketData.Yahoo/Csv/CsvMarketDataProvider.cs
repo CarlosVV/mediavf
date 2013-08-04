@@ -9,11 +9,11 @@ namespace AutoTrade.MarketData.Yahoo.Csv
         /// </summary>
         /// <param name="urlProvider"></param>
         /// <param name="webRequestExecutor"></param>
-        /// <param name="quotesResultTranslator"></param>
+        /// <param name="resultTranslator"></param>
         public CsvMarketDataProvider(ICsvUrlProvider urlProvider,
             IWebRequestExecutor webRequestExecutor,
-            ICsvResultTranslator quotesResultTranslator)
-            : base(urlProvider, webRequestExecutor, quotesResultTranslator)
+            ICsvResultTranslator resultTranslator)
+            : base(urlProvider, webRequestExecutor, resultTranslator, resultTranslator)
         {   
         }
 

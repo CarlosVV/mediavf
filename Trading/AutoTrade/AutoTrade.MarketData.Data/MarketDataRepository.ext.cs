@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using AutoTrade.Core.Modularity;
@@ -48,6 +49,31 @@ namespace AutoTrade.MarketData.Data
         public IEnumerable<Stock> GetStaticStocksForSubscription(int subscriptionId)
         {
             return SubscriptionsQuery.Where(s => s.ID == subscriptionId).Include("Stocks").SelectMany(s => s.Stocks);
+        }
+
+        /// <summary>
+        /// Updates the last polled time for an email feed
+        /// </summary>
+        /// <param name="emailFeedId"></param>
+        public DateTime UpdateEmailFeedLastPolled(int emailFeedId)
+        {
+            // last checked time is now
+            var lastChecked = DateTime.Now;
+
+            // get the feed data
+            var emailFeedConfig = EmailFeedConfigurationsQuery.FirstOrDefault(ef => ef.ID == emailFeedId);
+
+            // check that the feed data was found
+            if (emailFeedConfig != null)
+            {
+                // set the last checked time
+                emailFeedConfig.LastChecked = lastChecked;
+
+                // save changes
+                SaveChanges();
+            }
+
+            return lastChecked;
         }
     }
 }
