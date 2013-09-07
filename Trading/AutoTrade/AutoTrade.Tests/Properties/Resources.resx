@@ -121,7 +121,7 @@
     <value>Multiple methods matching the given signature were found. Type = {0}, Method = {1}</value>
   </data>
   <data name="FieldCannotBeCastFormat" xml:space="preserve">
-    <value>Field {0} on type {1} cannot be cast as {2}.</value>
+    <value>Field {0} of type {1} on type {2} cannot be cast as {3}.</value>
   </data>
   <data name="FieldCannotBeSetFormat" xml:space="preserve">
     <value>Field {0} on type {1} cannot be set from an object of type {2}.</value>

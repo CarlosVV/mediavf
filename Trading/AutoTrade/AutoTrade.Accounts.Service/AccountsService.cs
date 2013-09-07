@@ -28,6 +28,7 @@ namespace AutoTrade.Accounts.Service
         /// Instantiates an <see cref="AccountsService"/>
         /// </summary>
         /// <param name="repositoryFactory"></param>
+        /// <param name="sessionManager"></param>
         public AccountsService(IAccountRepositoryFactory repositoryFactory, ISessionManager sessionManager)
         {
             _repositoryFactory = repositoryFactory;

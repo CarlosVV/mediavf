@@ -1,7 +1,7 @@
 ﻿using System;
 using AutoTrade.Accounts.Properties;
 
-namespace AutoTrade.Accounts
+namespace AutoTrade.Accounts.Sessions
 {
     public class ExistingSessionException : Exception
     {

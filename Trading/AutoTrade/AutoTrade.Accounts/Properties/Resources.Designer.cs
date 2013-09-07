@@ -88,11 +88,11 @@ namespace AutoTrade.Accounts.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type {0} is not a valid account sync manager. Ensure that the type name is valid, the assembly for the type is loaded, and that the type implements the ITransactionProcessor interface..
+        ///   Looks up a localized string similar to Type {0} is not a valid account transaction processor. Ensure that the type name is valid, the assembly for the type is loaded, and that the type implements the ITransactionProcessor interface..
         /// </summary>
-        internal static string InvalidSyncManagerTypeMessage {
+        internal static string InvalidTransactionProcessorTypeMessage {
             get {
-                return ResourceManager.GetString("InvalidSyncManagerTypeMessage", resourceCulture);
+                return ResourceManager.GetString("InvalidTransactionProcessorTypeMessage", resourceCulture);
             }
         }
         

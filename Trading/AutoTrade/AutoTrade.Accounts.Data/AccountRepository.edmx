@@ -70,7 +70,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="SynchronizationManagerType" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="TransactionProcessorType" Type="nvarchar" Nullable="false" MaxLength="500" />
           <Property Name="Created" Type="datetime" Nullable="false" />
           <Property Name="Modified" Type="datetime" Nullable="false" />
         </EntityType>
@@ -248,10 +248,10 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="SynchronizationManagerType" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
           <NavigationProperty Name="Accounts" Relationship="AutoTrade.AccountsModel.FK_Account_AccountType" FromRole="AccountType" ToRole="Account" />
+          <Property Type="String" Name="TransactionProcessorType" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Account_AccountType">
           <End Type="AutoTrade.AccountsModel.AccountType" Role="AccountType" Multiplicity="1" />
@@ -321,9 +321,9 @@
           <EntitySetMapping Name="AccountTypes">
             <EntityTypeMapping TypeName="AutoTrade.AccountsModel.AccountType">
               <MappingFragment StoreEntitySet="AccountType">
+                <ScalarProperty Name="TransactionProcessorType" ColumnName="TransactionProcessorType" />
                 <ScalarProperty Name="Modified" ColumnName="Modified" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
-                <ScalarProperty Name="SynchronizationManagerType" ColumnName="SynchronizationManagerType" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

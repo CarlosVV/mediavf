@@ -360,8 +360,9 @@ namespace AutoTrade.Tests
             // check that types match
             if (!fieldType.IsAssignableFrom(field.FieldType))
                 throw new InvalidOperationException(string.Format(Resources.FieldCannotBeCastFormat,
-                    type.FullName,
                     fieldName,
+                    field.FieldType,
+                    type.FullName,
                     fieldType));
 
             return field;

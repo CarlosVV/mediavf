@@ -1,5 +1,4 @@
 ﻿using AutoTrade.Accounts.Data;
-using AutoTrade.Accounts.Managers;
 
 namespace AutoTrade.Accounts
 {

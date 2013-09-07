@@ -21,9 +21,9 @@ namespace AutoTrade.Accounts.Data
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public string SynchronizationManagerType { get; set; }
         public System.DateTime Created { get; set; }
         public System.DateTime Modified { get; set; }
+        public string TransactionProcessorType { get; set; }
     
         public virtual ICollection<Account> Accounts { get; set; }
     }
