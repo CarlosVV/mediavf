@@ -1,13 +1,17 @@
 ﻿using System;
 using AutoTrade.Accounts.Data;
-using AutoTrade.Accounts.Managers;
 using AutoTrade.Accounts.Properties;
 
-namespace AutoTrade.Accounts
+namespace AutoTrade.Accounts.Managers
 {
     public class AccountManagerFactory : IAccountManagerFactory
     {
         #region Fields
+
+        /// <summary>
+        /// The settings for account management
+        /// </summary>
+        private readonly IAccountManagementSettings _settings;
 
         /// <summary>
         /// The repository factory
@@ -21,9 +25,11 @@ namespace AutoTrade.Accounts
         /// <summary>
         /// Instantiates an <see cref="AccountManagerFactory"/>
         /// </summary>
+        /// <param name="settings"></param>
         /// <param name="repositoryFactory"></param>
-        public AccountManagerFactory(IAccountRepositoryFactory repositoryFactory)
+        public AccountManagerFactory(IAccountManagementSettings settings, IAccountRepositoryFactory repositoryFactory)
         {
+            _settings = settings;
             _repositoryFactory = repositoryFactory;
         }
 
@@ -46,10 +52,10 @@ namespace AutoTrade.Accounts
                 throw new ArgumentException(string.Format(Resources.AccountTypeNotLoadedMessage, account.Name));
 
             // create sync manager
-            var syncManager = CreateAccountSyncManager(account.AccountType);
+            var transactionProcessor = CreateTransactionProcessor(account.AccountType);
 
             // create account manager
-            return new AccountManager(syncManager, _repositoryFactory, account);
+            return new AccountManager(_settings, transactionProcessor, _repositoryFactory, account);
         }
         
         /// <summary>
@@ -57,16 +63,16 @@ namespace AutoTrade.Accounts
         /// </summary>
         /// <param name="accountType"></param>
         /// <returns></returns>
-        private static ITransactionProcessor CreateAccountSyncManager(AccountType accountType)
+        private static ITransactionProcessor CreateTransactionProcessor(AccountType accountType)
         {
             // try to get the sync manager type for the account
-            var syncManagerType = Type.GetType(accountType.SynchronizationManagerType);
+            var transactionProcessorType = Type.GetType(accountType.TransactionProcessorType);
 
             // check if sync manager type is valid
-            if (syncManagerType == null || !typeof(ITransactionProcessor).IsAssignableFrom(syncManagerType))
-                throw new InvalidSyncManagerTypeException(accountType.SynchronizationManagerType);
+            if (transactionProcessorType == null || !typeof(ITransactionProcessor).IsAssignableFrom(transactionProcessorType))
+                throw new InvalidTransactionProcessorTypeException(accountType.TransactionProcessorType);
 
-            return Activator.CreateInstance(syncManagerType) as ITransactionProcessor;
+            return Activator.CreateInstance(transactionProcessorType) as ITransactionProcessor;
         }
 
         #endregion

@@ -1,8 +1,7 @@
 ﻿using System.Linq;
 using AutoTrade.Accounts.Data;
-using AutoTrade.Accounts.Managers;
 
-namespace AutoTrade.Accounts
+namespace AutoTrade.Accounts.Managers
 {
     public class AccountManagerProvider : IAccountManagerProvider
     {

@@ -117,8 +117,13 @@ namespace AutoTrade.Accounts.Sessions
                 }
 
                 // if no errors occurred, commit the transaction 
-                if (!errorOccurred)
-                    transactionScope.Complete();
+                if (errorOccurred) return;
+
+                // complete the transaction
+                transactionScope.Complete();
+
+                // clear the actions for the session
+                _pendingActions.Clear();
             }
         }
 

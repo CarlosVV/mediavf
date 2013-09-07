@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AutoTrade.Accounts.Data
@@ -81,6 +82,41 @@ namespace AutoTrade.Accounts.Data
 
             // return the id
             return transaction.Id;
+        }
+
+        /// <summary>
+        /// Gets pending transactions for an account
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public Account GetAccountWithTransactions(int accountId)
+        {
+            return AccountTransactionsQuery.Where(a => a.AccountId == accountId &&
+                                                       (a.StatusId == (int) TransactionStatusType.Pending ||
+                                                        a.StatusId == (int) TransactionStatusType.Cancelled ||
+                                                        a.StatusId == (int) TransactionStatusType.Completed))
+                                           .Select(a => a.Account)
+                                           .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Updates an account's balance
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="balance"></param>
+        public void UpdateAccountBalance(int accountId, decimal balance)
+        {
+            // get the account
+            var account = AccountsQuery.FirstOrDefault(a => a.Id == accountId);
+
+            // if account not found, throw an exception
+            if (account == null) throw new AccountNotFoundException(accountId);
+
+            // set the account balance
+            account.Balance = balance;
+
+            // save the changes
+            SaveChanges();
         }
     }
 }

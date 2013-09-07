@@ -52,6 +52,7 @@
     <Compile Include="AccountFundReservation.cs">
       <DependentUpon>AccountRepository.tt</DependentUpon>
     </Compile>
+    <Compile Include="AccountNotFoundException.cs" />
     <Compile Include="AccountRepository.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

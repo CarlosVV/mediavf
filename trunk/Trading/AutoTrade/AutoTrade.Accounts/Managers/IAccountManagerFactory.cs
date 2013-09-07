@@ -1,7 +1,6 @@
 ﻿using AutoTrade.Accounts.Data;
-using AutoTrade.Accounts.Managers;
 
-namespace AutoTrade.Accounts
+namespace AutoTrade.Accounts.Managers
 {
     public interface IAccountManagerFactory
     {

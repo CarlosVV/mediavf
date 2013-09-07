@@ -1,6 +1,6 @@
 using System;
 
-namespace AutoTrade.Accounts
+namespace AutoTrade.Accounts.Data
 {
     public class AccountNotFoundException : Exception
     {

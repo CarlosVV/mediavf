@@ -9,6 +9,11 @@ namespace AutoTrade.Accounts.Managers
         #region Fields
 
         /// <summary>
+        /// The settings for managing accounts
+        /// </summary>
+        private readonly IAccountManagementSettings _settings;
+
+        /// <summary>
         /// Manages synchronization between data maintained for the account remotely and locally
         /// </summary>
         private readonly ITransactionProcessor _transactionProcessor;
@@ -23,6 +28,11 @@ namespace AutoTrade.Accounts.Managers
         /// </summary>
         private Account _account;
 
+        /// <summary>
+        /// The lock to regulate accessing the account
+        /// </summary>
+        private readonly object _accessLock = new object();
+
         #endregion
 
         #region Constructors
@@ -30,16 +40,35 @@ namespace AutoTrade.Accounts.Managers
         /// <summary>
         /// Instantiates an <see cref="AccountManager"/>
         /// </summary>
+        /// <param name="settings"></param>
         /// <param name="transactionProcessor"></param>
         /// <param name="repositoryFactory"></param>
         /// <param name="account"></param>
-        public AccountManager(ITransactionProcessor transactionProcessor,
+        public AccountManager(IAccountManagementSettings settings,
+            ITransactionProcessor transactionProcessor,
             IAccountRepositoryFactory repositoryFactory,
             Account account)
         {
+            _settings = settings;
             _transactionProcessor = transactionProcessor;
             _repositoryFactory = repositoryFactory;
             _account = account;
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the currently available balance, excluding reserved funds
+        /// </summary>
+        public decimal AvailableBalance
+        {
+            get
+            {
+                lock (_accessLock)
+                    return _account.Balance - _account.FundReservations.Sum(fr => fr.Amount);
+            }
         }
 
         #endregion
@@ -53,7 +82,8 @@ namespace AutoTrade.Accounts.Managers
         /// <returns></returns>
         public bool HasSufficient(decimal amount)
         {
-            return _account.Balance - amount >= _account.MinimumRequiredBalance;
+            lock (_accessLock)
+                return AvailableBalance - amount >= _account.MinimumRequiredBalance;
         }
 
         /// <summary>
@@ -65,8 +95,9 @@ namespace AutoTrade.Accounts.Managers
         /// <returns></returns>
         public void Reserve(Guid reservationKey, decimal amount, TimeSpan? timeToReserve = null)
         {
-            using (var repository = _repositoryFactory.CreateRepository())
-                repository.CreateFundReservation(_account.Id, reservationKey, amount, timeToReserve);
+            lock (_accessLock)
+                using (var repository = _repositoryFactory.CreateRepository())
+                    repository.CreateFundReservation(_account.Id, reservationKey, amount, timeToReserve);
         }
 
         /// <summary>
@@ -75,8 +106,9 @@ namespace AutoTrade.Accounts.Managers
         /// <param name="reservationKey"></param>
         public void Release(Guid reservationKey)
         {
-            using (var repository = _repositoryFactory.CreateRepository())
-                repository.ReleaseFundReservation(reservationKey);
+            lock (_accessLock)
+                using (var repository = _repositoryFactory.CreateRepository())
+                    repository.ReleaseFundReservation(reservationKey);
         }
 
         /// <summary>
@@ -89,8 +121,9 @@ namespace AutoTrade.Accounts.Managers
             if (amount <= 0m) throw new InvalidDepositAmountException(amount);
 
             // create transaction that finalizes now
-            using (var repository = _repositoryFactory.CreateRepository())
-                repository.CreateTransaction(_account.Id, amount);
+            lock (_accessLock)
+                using (var repository = _repositoryFactory.CreateRepository())
+                    repository.CreateTransaction(_account.Id, amount);
         }
 
         /// <summary>
@@ -104,8 +137,9 @@ namespace AutoTrade.Accounts.Managers
             amount = Math.Abs(amount);
 
             // create transaction to remove funds that finalizes now
-            using (var repository = _repositoryFactory.CreateRepository())
-                repository.CreateTransaction(_account.Id, amount);
+            lock (_accessLock)
+                using (var repository = _repositoryFactory.CreateRepository())
+                    repository.CreateTransaction(_account.Id, -amount);
         }
 
         /// <summary>
@@ -113,49 +147,77 @@ namespace AutoTrade.Accounts.Managers
         /// </summary>
         public void ProcessTransactions()
         {
-            using (var repository = _repositoryFactory.CreateRepository())
+            lock (_accessLock)
             {
-                // get the latest account data
-                var account =
-                    repository.AccountsQuery.Include("AccountTransactions").FirstOrDefault(a => a.Id == _account.Id);
+                using (var repository = _repositoryFactory.CreateRepository())
+                {
+                    // get the latest transaction data
+                    var account = repository.GetAccountWithTransactions(_account.Id);
 
-                // if the account was not found, throw an exception
-                if (account == null) throw new AccountNotFoundException(_account.Id);
+                    // update account data
+                    _account = account;
+                    
+                    // get the collection of transactions to process
+                    var transactionsToProcess = _account.Transactions
+                                                        .Where(t => t.StatusId == (int) TransactionStatusType.Pending &&
+                                                                    t.FinalizationDateTime <= DateTime.Now)
+                                                        .ToList();
 
-                // update pending transactions
-                foreach (var pendingTransaction in account.Transactions.Where(t => t.StatusId == (int)TransactionStatusType.Pending))
-                    UpdateBalanceFromPendingTransaction(account, pendingTransaction);
+                    // set transactions to in progress
+                    transactionsToProcess.ForEach(t => t.StatusId = (int) TransactionStatusType.InProgress);
 
-                // remove completed/canceled transactions
-                foreach (
-                    var completedTransaction in
-                        account.Transactions.Where(
-                            t =>
-                            t.StatusId == (int) TransactionStatusType.Completed ||
-                            t.StatusId == (int) TransactionStatusType.Cancelled))
-                    repository.AccountTransactions.Remove(completedTransaction);
+                    // save the changes
+                    repository.SaveChanges();
 
-                // update the account
-                _account = account;
+                    // update pending transactions
+                    _account.Balance += transactionsToProcess.Sum(t => UpdateBalanceFromPendingTransaction(t));
+
+                    // remove completed/canceled transactions
+                    foreach (
+                        var completedTransaction in
+                            _account.Transactions.Where(
+                                t =>
+                                DateTime.Now - t.FinalizationDateTime >= _settings.FinalizedTransactionLifetime &&
+                                (t.StatusId == (int) TransactionStatusType.Completed ||
+                                 t.StatusId == (int) TransactionStatusType.Cancelled)).ToList())
+                    {
+                        // remove from account
+                        _account.Transactions.Remove(completedTransaction);
+
+                        // mark for deletion in repository
+                        repository.AccountTransactions.Remove(completedTransaction);
+                    }
+
+                    // save changes made to the account
+                    repository.SaveChanges();
+                }
             }
         }
 
         /// <summary>
         /// Updates the balance for the account from pending transactions
         /// </summary>
-        /// <param name="account"></param>
         /// <param name="transaction"></param>
-        private void UpdateBalanceFromPendingTransaction(Account account,
-            AccountTransaction transaction)
+        private decimal UpdateBalanceFromPendingTransaction(AccountTransaction transaction)
         {
-            // process the transaction
-            _transactionProcessor.ProcessTransaction(transaction);
+            try
+            {
+                // process the transaction
+                _transactionProcessor.ProcessTransaction(transaction);
 
-            // update the balance
-            account.Balance += transaction.Amount;
+                // set the status on the transaction to completed
+                transaction.StatusId = (int)TransactionStatusType.Completed;
 
-            // set the status on the transaction to completed
-            transaction.StatusId = (int)TransactionStatusType.Completed;
+                // return the amount for the transaction
+                return transaction.Amount;
+            }
+            catch
+            {
+                // mark as failed
+                transaction.StatusId = (int) TransactionStatusType.Failed;
+
+                return 0;
+            }
         }
 
         #endregion

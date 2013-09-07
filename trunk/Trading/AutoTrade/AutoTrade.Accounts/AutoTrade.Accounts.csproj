@@ -45,16 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Managers\AccountManagementSettings.cs" />
     <Compile Include="Managers\AccountManager.cs" />
     <Compile Include="Managers\AccountManagerFactory.cs" />
     <Compile Include="Managers\AccountManagerProvider.cs" />
-    <Compile Include="Managers\AccountNotFoundException.cs" />
+    <Compile Include="Managers\IAccountManagementSettings.cs" />
     <Compile Include="Managers\IAccountManager.cs" />
     <Compile Include="Managers\IAccountManagerFactory.cs" />
     <Compile Include="Managers\IAccountManagerProvider.cs" />
     <Compile Include="ITransactionProcessor.cs" />
     <Compile Include="Managers\InvalidDepositAmountException.cs" />
-    <Compile Include="Managers\InvalidSyncManagerTypeException.cs" />
+    <Compile Include="Managers\InvalidTransactionProcessorTypeException.cs" />
     <Compile Include="Sessions\ExistingSessionException.cs" />
     <Compile Include="Sessions\ISession.cs" />
     <Compile Include="Sessions\ISessionFactory.cs" />
@@ -74,6 +75,10 @@
     <ProjectReference Include="..\AutoTrade.Accounts.Data\AutoTrade.Accounts.Data.csproj">
       <Project>{2E5F1493-C6E2-4E36-9AB5-B9C2E70C559C}</Project>
       <Name>AutoTrade.Accounts.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AutoTrade.Core\AutoTrade.Core.csproj">
+      <Project>{7F9BF6A2-D154-44D8-9966-07312970279A}</Project>
+      <Name>AutoTrade.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
