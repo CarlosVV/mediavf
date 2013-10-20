@@ -9,6 +9,6 @@ namespace AutoTrade.Accounts.Managers
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        IAccountManager CreateAccountManager(Account account);
+        IAccountManager CreateAccountManager(CashAccount account);
     }
 }

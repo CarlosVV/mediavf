@@ -26,7 +26,7 @@ namespace AutoTrade.Accounts.Managers
         /// <summary>
         /// The account data
         /// </summary>
-        private Account _account;
+        private CashAccount _account;
 
         /// <summary>
         /// The lock to regulate accessing the account
@@ -47,7 +47,7 @@ namespace AutoTrade.Accounts.Managers
         public AccountManager(IAccountManagementSettings settings,
             ITransactionProcessor transactionProcessor,
             IAccountRepositoryFactory repositoryFactory,
-            Account account)
+            CashAccount account)
         {
             _settings = settings;
             _transactionProcessor = transactionProcessor;
@@ -185,7 +185,7 @@ namespace AutoTrade.Accounts.Managers
                         _account.Transactions.Remove(completedTransaction);
 
                         // mark for deletion in repository
-                        repository.AccountTransactions.Remove(completedTransaction);
+                        repository.CashAccountTransactions.Remove(completedTransaction);
                     }
 
                     // save changes made to the account
@@ -198,7 +198,7 @@ namespace AutoTrade.Accounts.Managers
         /// Updates the balance for the account from pending transactions
         /// </summary>
         /// <param name="transaction"></param>
-        private decimal UpdateBalanceFromPendingTransaction(AccountTransaction transaction)
+        private decimal UpdateBalanceFromPendingTransaction(CashAccountTransaction transaction)
         {
             try
             {

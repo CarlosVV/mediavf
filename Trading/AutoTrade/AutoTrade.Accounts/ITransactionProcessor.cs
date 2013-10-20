@@ -8,6 +8,6 @@ namespace AutoTrade.Accounts
         /// Processes a transaction
         /// </summary>
         /// <param name="transaction"></param>
-        void ProcessTransaction(AccountTransaction transaction);
+        void ProcessTransaction(CashAccountTransaction transaction);
     }
 }

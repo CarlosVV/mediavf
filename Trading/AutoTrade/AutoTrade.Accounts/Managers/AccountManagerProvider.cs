@@ -44,9 +44,9 @@ namespace AutoTrade.Accounts.Managers
         public IAccountManager GetManagerForAccount(int accountId)
         {
             // get the account
-            Account account;
+            CashAccount account;
             using (var repository = _accountRepositoryFactory.CreateRepository())
-                account = repository.AccountsQuery.FirstOrDefault(a => a.Id == accountId);
+                account = repository.CashAccountsQuery.FirstOrDefault(a => a.Id == accountId);
 
             // throw exception indicating the account was not found
             if (account == null) throw new AccountNotFoundException(accountId);

@@ -5,6 +5,7 @@ using AutoTrade.Core;
 using AutoTrade.MarketData.Data;
 using AutoTrade.MarketData.Exceptions;
 using AutoTrade.MarketData.Properties;
+using AutoTrade.MarketData.Publication;
 using log4net;
 
 namespace AutoTrade.MarketData
@@ -33,6 +34,11 @@ namespace AutoTrade.MarketData
         /// </summary>
         private readonly IEnumerable<IStockListProvider> _stockListProviders;
 
+        /// <summary>
+        /// The publisher factory
+        /// </summary>
+        private readonly IPublisherFactory _publisherFactory;
+
         #endregion
 
         #region Constructors
@@ -44,15 +50,18 @@ namespace AutoTrade.MarketData
         /// <param name="repositoryFactory"></param>
         /// <param name="marketDataProviders"></param>
         /// <param name="stockListProviders"></param>
+        /// <param name="publisherFactory"></param>
         public SubscriptionFactory(ILog logger,
             IMarketDataRepositoryFactory repositoryFactory,
             IEnumerable<IMarketDataProvider> marketDataProviders,
-            IEnumerable<IStockListProvider> stockListProviders)
+            IEnumerable<IStockListProvider> stockListProviders,
+            IPublisherFactory publisherFactory)
         {
             _logger = logger;
             _repositoryFactory = repositoryFactory;
             _marketDataProviders = marketDataProviders;
             _stockListProviders = stockListProviders;
+            _publisherFactory = publisherFactory;
         }
 
         #endregion
@@ -73,6 +82,7 @@ namespace AutoTrade.MarketData
                 _repositoryFactory,
                 GetDataProvider(subscription),
                 GetStockListProvider(subscription),
+                _publisherFactory.CreatePublisher<NewQuotesData>(),
                 subscription);
         }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace AutoTrade.Accounts.Data
@@ -17,7 +16,7 @@ namespace AutoTrade.Accounts.Data
         public void CreateFundReservation(int accountId, Guid reservationKey, decimal amount, TimeSpan? expiresIn = null)
         {
             // create fund reservation
-            var fundReservation = new AccountFundReservation
+            var fundReservation = new CashAccountFundReservation
                 {
                     AccountId = accountId,
                     ReservationKey = reservationKey.ToString(),
@@ -28,7 +27,7 @@ namespace AutoTrade.Accounts.Data
                 };
 
             // add to db set
-            AccountFundReservations.Add(fundReservation);
+            CashAccountFundReservations.Add(fundReservation);
 
             // save changes in repository
             SaveChanges();
@@ -42,13 +41,13 @@ namespace AutoTrade.Accounts.Data
         public void ReleaseFundReservation(Guid reservationKey)
         {
             // get the reservation
-            var reservation = AccountFundReservations.FirstOrDefault(r => r.ReservationKey == reservationKey.ToString());
+            var reservation = CashAccountFundReservations.FirstOrDefault(r => r.ReservationKey == reservationKey.ToString());
 
             // if reservation was not found, it doesn't exist - just return
             if (reservation == null) return;
 
             // remove the reservation
-            AccountFundReservations.Remove(reservation);
+            CashAccountFundReservations.Remove(reservation);
 
             // save changes
             SaveChanges();
@@ -64,7 +63,7 @@ namespace AutoTrade.Accounts.Data
         public int CreateTransaction(int accountId, decimal amount, TimeSpan? finalizeIn = null)
         {
             // create fund reservation
-            var transaction = new AccountTransaction
+            var transaction = new CashAccountTransaction
                 {
                     AccountId = accountId,
                     StatusId = (int)TransactionStatusType.Pending,
@@ -75,7 +74,7 @@ namespace AutoTrade.Accounts.Data
                 };
 
             // add to db set
-            AccountTransactions.Add(transaction);
+            CashAccountTransactions.Add(transaction);
 
             // save changes in repository
             SaveChanges();
@@ -89,14 +88,14 @@ namespace AutoTrade.Accounts.Data
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public Account GetAccountWithTransactions(int accountId)
+        public CashAccount GetAccountWithTransactions(int accountId)
         {
-            return AccountTransactionsQuery.Where(a => a.AccountId == accountId &&
-                                                       (a.StatusId == (int) TransactionStatusType.Pending ||
-                                                        a.StatusId == (int) TransactionStatusType.Cancelled ||
-                                                        a.StatusId == (int) TransactionStatusType.Completed))
-                                           .Select(a => a.Account)
-                                           .FirstOrDefault();
+            return CashAccountTransactionsQuery.Where(a => a.AccountId == accountId &&
+                                                           (a.StatusId == (int) TransactionStatusType.Pending ||
+                                                            a.StatusId == (int) TransactionStatusType.Cancelled ||
+                                                            a.StatusId == (int) TransactionStatusType.Completed))
+                                               .Select(a => a.CashAccount)
+                                               .FirstOrDefault();
         }
 
         /// <summary>
@@ -107,7 +106,7 @@ namespace AutoTrade.Accounts.Data
         public void UpdateAccountBalance(int accountId, decimal balance)
         {
             // get the account
-            var account = AccountsQuery.FirstOrDefault(a => a.Id == accountId);
+            var account = CashAccountsQuery.FirstOrDefault(a => a.Id == accountId);
 
             // if account not found, throw an exception
             if (account == null) throw new AccountNotFoundException(accountId);

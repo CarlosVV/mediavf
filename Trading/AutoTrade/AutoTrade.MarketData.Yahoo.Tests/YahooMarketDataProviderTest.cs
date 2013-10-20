@@ -45,7 +45,7 @@ namespace AutoTrade.MarketData.Yahoo.Tests
             A.CallTo(() => marketDataProvider1.GetQuotes(stocks)).MustHaveHappened();
             A.CallTo(() => marketDataProvider2.GetQuotes(stocks)).MustHaveHappened();
 
-            A.CallTo(() => logger.WarnFormat(A<string>.Ignored, A<Exception>.Ignored)).MustHaveHappened();
+            A.CallTo(() => logger.Warn(A<string>.Ignored, A<Exception>.Ignored)).MustHaveHappened();
 
             // check that quotes returned are the same as the quotes returned by the result translator
             actualQuotes.Should().OnlyContain(q => expectedQuotes.Contains(q));

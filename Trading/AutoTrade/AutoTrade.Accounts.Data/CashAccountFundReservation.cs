@@ -12,16 +12,16 @@ namespace AutoTrade.Accounts.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class TransactionStatus
+    public partial class CashAccountFundReservation
     {
-        public TransactionStatus()
-        {
-            this.Transactions = new HashSet<AccountTransaction>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
+        public int AccountId { get; set; }
+        public string ReservationKey { get; set; }
+        public decimal Amount { get; set; }
+        public Nullable<System.DateTime> Expiration { get; set; }
+        public System.DateTime Created { get; set; }
+        public System.DateTime Modified { get; set; }
     
-        public virtual ICollection<AccountTransaction> Transactions { get; set; }
+        public virtual CashAccount CashAccount { get; set; }
     }
 }

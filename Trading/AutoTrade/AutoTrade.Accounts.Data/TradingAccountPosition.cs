@@ -12,17 +12,15 @@ namespace AutoTrade.Accounts.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class AccountTransaction
+    public partial class TradingAccountPosition
     {
-        public int Id { get; set; }
-        public int AccountId { get; set; }
-        public int StatusId { get; set; }
-        public decimal Amount { get; set; }
+        public int TradingAccountId { get; set; }
+        public string Symbol { get; set; }
+        public int Quantity { get; set; }
+        public Nullable<decimal> LatestMarketValue { get; set; }
         public System.DateTime Created { get; set; }
         public System.DateTime Modified { get; set; }
-        public System.DateTime FinalizationDateTime { get; set; }
     
-        public virtual Account Account { get; set; }
-        public virtual TransactionStatus TransactionStatus { get; set; }
+        public virtual TradingAccount TradingAccount { get; set; }
     }
 }

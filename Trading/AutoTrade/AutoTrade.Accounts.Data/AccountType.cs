@@ -16,15 +16,15 @@ namespace AutoTrade.Accounts.Data
     {
         public AccountType()
         {
-            this.Accounts = new HashSet<Account>();
+            this.CashAccounts = new HashSet<CashAccount>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
+        public string TransactionProcessorType { get; set; }
         public System.DateTime Created { get; set; }
         public System.DateTime Modified { get; set; }
-        public string TransactionProcessorType { get; set; }
     
-        public virtual ICollection<Account> Accounts { get; set; }
+        public virtual ICollection<CashAccount> CashAccounts { get; set; }
     }
 }

@@ -42,7 +42,7 @@ namespace AutoTrade.Accounts.Managers
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        public IAccountManager CreateAccountManager(Account account)
+        public IAccountManager CreateAccountManager(CashAccount account)
         {
             // check that the account is not null
             if (account == null) throw new ArgumentNullException("account");

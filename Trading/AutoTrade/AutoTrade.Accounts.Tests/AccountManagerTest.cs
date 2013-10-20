@@ -32,7 +32,7 @@ namespace AutoTrade.Accounts.Tests
         /// <summary>
         /// The account for the manager
         /// </summary>
-        private Account _account;
+        private CashAccount _account;
 
         /// <summary>
         /// The fake repository
@@ -63,7 +63,7 @@ namespace AutoTrade.Accounts.Tests
 
             A.CallTo(() => _repositoryFactory.CreateRepository()).Returns(_repository);
 
-            _account = new Account();
+            _account = new CashAccount();
 
             _accountManager = new AccountManager(_settings, _transactionProcessor, _repositoryFactory, _account);
         }
@@ -208,14 +208,14 @@ namespace AutoTrade.Accounts.Tests
         public void ProcessTransactions_ShouldRemoveOldCancelledTransaction()
         {
             // create old cancelled transaction
-            var oldCancelledTransaction = new AccountTransaction
+            var oldCancelledTransaction = new CashAccountTransaction
                 {
                     FinalizationDateTime = DateTime.Now.AddDays(-10),
                     StatusId = (int) TransactionStatusType.Cancelled
                 };
 
             // create account with old transaction
-            var account = new Account { Transactions = new Collection<AccountTransaction> { oldCancelledTransaction } };
+            var account = new CashAccount { Transactions = new Collection<CashAccountTransaction> { oldCancelledTransaction } };
 
             // return account when retrieving from the repository
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).Returns(account);
@@ -227,7 +227,7 @@ namespace AutoTrade.Accounts.Tests
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).MustHaveHappened();
 
             // account should have been updated
-            var newAccount = _accountManager.GetFieldValue<Account>("_account");
+            var newAccount = _accountManager.GetFieldValue<CashAccount>("_account");
             newAccount.Should().Be(account);
 
             // check that transactions are as expected
@@ -241,14 +241,14 @@ namespace AutoTrade.Accounts.Tests
         public void ProcessTransactions_ShouldRemoveOldCompletedTransaction()
         {
             // create old cancelled transaction
-            var oldCompletedTransaction = new AccountTransaction
+            var oldCompletedTransaction = new CashAccountTransaction
                 {
                     FinalizationDateTime = DateTime.Now.AddDays(-10),
                     StatusId = (int) TransactionStatusType.Completed
                 };
 
             // create account with old transaction
-            var account = new Account { Transactions = new Collection<AccountTransaction> { oldCompletedTransaction } };
+            var account = new CashAccount { Transactions = new Collection<CashAccountTransaction> { oldCompletedTransaction } };
 
             // return account when retrieving from the repository
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).Returns(account);
@@ -260,7 +260,7 @@ namespace AutoTrade.Accounts.Tests
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).MustHaveHappened();
 
             // account should have been updated
-            var newAccount = _accountManager.GetFieldValue<Account>("_account");
+            var newAccount = _accountManager.GetFieldValue<CashAccount>("_account");
             newAccount.Should().Be(account);
 
             // check that transactions are as expected
@@ -274,14 +274,14 @@ namespace AutoTrade.Accounts.Tests
         public void ProcessTransactions_ShouldNotRemoveNewCancelledTransaction()
         {
             // create new cancelled transaction
-            var newCancelledTransaction = new AccountTransaction
+            var newCancelledTransaction = new CashAccountTransaction
                 {
                     FinalizationDateTime = DateTime.Now.AddDays(-2),
                     StatusId = (int) TransactionStatusType.Cancelled
                 };
 
             // create account with old transaction
-            var account = new Account { Transactions = new Collection<AccountTransaction> { newCancelledTransaction } };
+            var account = new CashAccount { Transactions = new Collection<CashAccountTransaction> { newCancelledTransaction } };
 
             // return account when retrieving from the repository
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).Returns(account);
@@ -293,7 +293,7 @@ namespace AutoTrade.Accounts.Tests
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).MustHaveHappened();
 
             // account should have been updated
-            var newAccount = _accountManager.GetFieldValue<Account>("_account");
+            var newAccount = _accountManager.GetFieldValue<CashAccount>("_account");
             newAccount.Should().Be(account);
 
             // check that transactions are as expected
@@ -307,14 +307,14 @@ namespace AutoTrade.Accounts.Tests
         public void ProcessTransactions_ShouldNotRemoveNewCompletedTransaction()
         {
             // create new cancelled transaction
-            var newCompletedTransaction = new AccountTransaction
+            var newCompletedTransaction = new CashAccountTransaction
             {
                 FinalizationDateTime = DateTime.Now.AddDays(-1),
                 StatusId = (int)TransactionStatusType.Completed
             };
 
             // create account with old transaction
-            var account = new Account { Transactions = new Collection<AccountTransaction> { newCompletedTransaction } };
+            var account = new CashAccount { Transactions = new Collection<CashAccountTransaction> { newCompletedTransaction } };
 
             // return account when retrieving from the repository
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).Returns(account);
@@ -326,7 +326,7 @@ namespace AutoTrade.Accounts.Tests
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).MustHaveHappened();
 
             // account should have been updated
-            var newAccount = _accountManager.GetFieldValue<Account>("_account");
+            var newAccount = _accountManager.GetFieldValue<CashAccount>("_account");
             newAccount.Should().Be(account);
 
             // check that transactions are as expected
@@ -340,7 +340,7 @@ namespace AutoTrade.Accounts.Tests
         public void ProcessTransactions_ShouldProcessPastDuePendingTransactionAndUpdateBalance()
         {
             // create new cancelled transaction
-            var pastDuePendingTransaction = new AccountTransaction
+            var pastDuePendingTransaction = new CashAccountTransaction
                 {
                     Amount = -100,
                     FinalizationDateTime = DateTime.Now.AddDays(-2),
@@ -348,7 +348,7 @@ namespace AutoTrade.Accounts.Tests
                 };
 
             // create account with old transaction
-            var account = new Account { Balance = 500, Transactions = new Collection<AccountTransaction> { pastDuePendingTransaction } };
+            var account = new CashAccount { Balance = 500, Transactions = new Collection<CashAccountTransaction> { pastDuePendingTransaction } };
 
             // return account when retrieving from the repository
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).Returns(account);
@@ -360,7 +360,7 @@ namespace AutoTrade.Accounts.Tests
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).MustHaveHappened();
 
             // account should have been updated
-            var newAccount = _accountManager.GetFieldValue<Account>("_account");
+            var newAccount = _accountManager.GetFieldValue<CashAccount>("_account");
             newAccount.Should().Be(account);
 
             // ensure the transaction was processed
@@ -380,7 +380,7 @@ namespace AutoTrade.Accounts.Tests
         public void ProcessTransactions_ShouldProcessDuePendingTransactionAndUpdateBalance()
         {
             // create new cancelled transaction
-            var duePendingTransaction = new AccountTransaction
+            var duePendingTransaction = new CashAccountTransaction
             {
                 Amount = 500,
                 FinalizationDateTime = DateTime.Now.AddMinutes(-1),
@@ -388,7 +388,7 @@ namespace AutoTrade.Accounts.Tests
             };
 
             // create account with old transaction
-            var account = new Account { Balance = 500, Transactions = new Collection<AccountTransaction> { duePendingTransaction } };
+            var account = new CashAccount { Balance = 500, Transactions = new Collection<CashAccountTransaction> { duePendingTransaction } };
 
             // return account when retrieving from the repository
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).Returns(account);
@@ -400,7 +400,7 @@ namespace AutoTrade.Accounts.Tests
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).MustHaveHappened();
 
             // account should have been updated
-            var newAccount = _accountManager.GetFieldValue<Account>("_account");
+            var newAccount = _accountManager.GetFieldValue<CashAccount>("_account");
             newAccount.Should().Be(account);
 
             // ensure the transaction was processed
@@ -420,7 +420,7 @@ namespace AutoTrade.Accounts.Tests
         public void ProcessTransactions_ShouldNotProcessPendingTransactionBeforeDate()
         {
             // create new cancelled transaction
-            var pendingTransaction = new AccountTransaction
+            var pendingTransaction = new CashAccountTransaction
             {
                 Amount = 500,
                 FinalizationDateTime = DateTime.Now.AddDays(1),
@@ -428,7 +428,7 @@ namespace AutoTrade.Accounts.Tests
             };
 
             // create account with old transaction
-            var account = new Account { Balance = 500, Transactions = new Collection<AccountTransaction> { pendingTransaction } };
+            var account = new CashAccount { Balance = 500, Transactions = new Collection<CashAccountTransaction> { pendingTransaction } };
 
             // return account when retrieving from the repository
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).Returns(account);
@@ -440,7 +440,7 @@ namespace AutoTrade.Accounts.Tests
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).MustHaveHappened();
 
             // account should have been updated
-            var newAccount = _accountManager.GetFieldValue<Account>("_account");
+            var newAccount = _accountManager.GetFieldValue<CashAccount>("_account");
             newAccount.Should().Be(account);
 
             // ensure the transaction was processed
@@ -460,7 +460,7 @@ namespace AutoTrade.Accounts.Tests
         public void ProcessTransactions_ShouldNotProcessInProgressTransaction()
         {
             // create new cancelled transaction
-            var inProgressTransaction = new AccountTransaction
+            var inProgressTransaction = new CashAccountTransaction
             {
                 Amount = 500,
                 FinalizationDateTime = DateTime.Now.AddDays(-1),
@@ -468,7 +468,7 @@ namespace AutoTrade.Accounts.Tests
             };
 
             // create account with old transaction
-            var account = new Account { Balance = 500, Transactions = new Collection<AccountTransaction> { inProgressTransaction } };
+            var account = new CashAccount { Balance = 500, Transactions = new Collection<CashAccountTransaction> { inProgressTransaction } };
 
             // return account when retrieving from the repository
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).Returns(account);
@@ -480,7 +480,7 @@ namespace AutoTrade.Accounts.Tests
             A.CallTo(() => _repository.GetAccountWithTransactions(A<int>.Ignored)).MustHaveHappened();
 
             // account should have been updated
-            var newAccount = _accountManager.GetFieldValue<Account>("_account");
+            var newAccount = _accountManager.GetFieldValue<CashAccount>("_account");
             newAccount.Should().Be(account);
 
             // ensure the transaction was processed

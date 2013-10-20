@@ -10,6 +10,8 @@ namespace AutoTrade.Core.Tests
     public class ImapManagerTest
     {
         [TestMethod]
+        [TestCategory("Integration")]
+        [Ignore]
         public void ImapXSearch_GmailShouldReturnResults()
         {
             var imapManager = new ImapXManager("imap.gmail.com", 993, true, "evanverneyfink", "Asmo36de");
@@ -20,6 +22,8 @@ namespace AutoTrade.Core.Tests
         }
 
         [TestMethod]
+        [TestCategory("Integration")]
+        [Ignore]
         public void S22Search_GmailShouldReturnResults()
         {
             var imapManager = new S22ImapManager("imap.gmail.com", 993, true, "evanverneyfink", "Asmo36de");
