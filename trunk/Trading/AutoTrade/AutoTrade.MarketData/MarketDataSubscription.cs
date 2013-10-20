@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Globalization;
+using System.Linq;
 using System.Threading;
 using AutoTrade.MarketData.Data;
 using AutoTrade.MarketData.Properties;
+using AutoTrade.MarketData.Publication;
 using log4net;
 
 namespace AutoTrade.MarketData
@@ -31,6 +34,16 @@ namespace AutoTrade.MarketData
         private readonly IStockListProvider _stockListProvider;
 
         /// <summary>
+        /// The publisher for new quotes data
+        /// </summary>
+        private readonly IPublisher<NewQuotesData> _quotesPublisher;
+
+        /// <summary>
+        /// The data for the subscription
+        /// </summary>
+        private Subscription _subscriptionData;
+
+        /// <summary>
         /// The lock for regulating access to subscriptionData data
         /// </summary>
         private readonly object _subscriptionDataLock = new object();
@@ -39,11 +52,6 @@ namespace AutoTrade.MarketData
         /// The timer to perform periodic updates of data
         /// </summary>
         private readonly Timer _timer;
-
-        /// <summary>
-        /// The data for the subscription
-        /// </summary>
-        private Subscription _subscriptionData;
 
         #endregion
 
@@ -56,11 +64,13 @@ namespace AutoTrade.MarketData
         /// <param name="repositoryFactory">The repository to store and retrieve market data</param>
         /// <param name="marketDataProvider">The provider for refreshing market data</param>
         /// <param name="stockListProvider">The provider for lists of stocks for which to retrieve data</param>
+        /// <param name="quotesPublisher"></param>
         /// <param name="subscriptionData">The subscriptionData data for determining</param>
         public MarketDataSubscription(ILog logger,
             IMarketDataRepositoryFactory repositoryFactory,
             IMarketDataProvider marketDataProvider,
             IStockListProvider stockListProvider,
+            IPublisher<NewQuotesData> quotesPublisher,
             Subscription subscriptionData)
         {
             // perform null checks
@@ -78,6 +88,7 @@ namespace AutoTrade.MarketData
             _repositoryFactory = repositoryFactory;
             _marketDataProvider = marketDataProvider;
             _stockListProvider = stockListProvider;
+            _quotesPublisher = quotesPublisher;
             _subscriptionData = subscriptionData;
 
             // set up timer
@@ -224,6 +235,14 @@ namespace AutoTrade.MarketData
                                 // save
                                 repository.SaveChanges();
                             }
+
+                            // if a publisher was provided, publish new quote data
+                            if (_quotesPublisher != null)
+                                _quotesPublisher.Publish(new NewQuotesData
+                                    {
+                                        SubscriptionId = _subscriptionData.ID.ToString(CultureInfo.InvariantCulture),
+                                        Quotes = quotes.ToList()
+                                    });
                         }
                     }
                     catch (Exception exception)

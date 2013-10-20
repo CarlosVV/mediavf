@@ -79,6 +79,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Publication\IPublisher.cs" />
+    <Compile Include="Publication\IPublisherFactory.cs" />
+    <Compile Include="Publication\NewQuotesData.cs" />
+    <Compile Include="Publication\PublicationData.cs" />
+    <Compile Include="Publication\QueuePublisher.cs" />
+    <Compile Include="Publication\QueuePublisherFactory.cs" />
     <Compile Include="StaticStockListProvider.cs" />
     <Compile Include="SubscriptionFactory.cs" />
     <Compile Include="SubscriptionManager.cs" />

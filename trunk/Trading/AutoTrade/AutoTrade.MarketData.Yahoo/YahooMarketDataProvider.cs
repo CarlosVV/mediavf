@@ -69,7 +69,9 @@ namespace AutoTrade.MarketData.Yahoo
                 catch (Exception ex)
                 {
                     _logger.Warn(
-                        string.Format(Resources.FailedToRetrieveFromProviderMessageFormat,provider.GetType().FullName), ex);
+                        string.Format(Resources.FailedToRetrieveFromProviderMessageFormat,
+                                      typeof (StockQuote),
+                                      provider.GetType().FullName), ex);
 
                 }
             }

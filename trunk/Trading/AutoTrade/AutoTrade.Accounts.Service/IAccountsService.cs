@@ -14,21 +14,21 @@ namespace AutoTrade.Accounts.Service
         /// Gets all accounts
         /// </summary>
         /// <returns></returns>
-        IEnumerable<Account> GetAccounts();
+        IEnumerable<CashAccount> GetAccounts();
 
         /// <summary>
         /// Gets an account by its name
         /// </summary>
         /// <param name="accountName"></param>
         /// <returns></returns>
-        Account GetAccountByName(string accountName);
+        CashAccount GetAccountByName(string accountName);
 
         /// <summary>
         /// Gets an account by its id
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        Account GetAccount(int accountId);
+        CashAccount GetAccount(int accountId);
 
         #endregion
 

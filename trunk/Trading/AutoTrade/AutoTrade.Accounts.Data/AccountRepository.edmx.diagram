@@ -4,16 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="03935e04554f47ac95a78efbeb7d483d" Name="Diagram1">
-        <EntityTypeShape EntityType="AutoTrade.AccountsModel.Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AutoTrade.AccountsModel.AccountFundReservation" Width="1.5" PointX="0.5" PointY="3.875" />
-        <EntityTypeShape EntityType="AutoTrade.AccountsModel.AccountTransaction" Width="1.5" PointX="3.25" PointY="0.75" />
-        <EntityTypeShape EntityType="AutoTrade.AccountsModel.TransactionStatus" Width="1.75" PointX="5.75" PointY="1" />
+      <Diagram DiagramId="03935e04554f47ac95a78efbeb7d483d" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="AutoTrade.AccountsModel.AccountType" Width="1.5" PointX="3.125" PointY="0.5" />
+        <EntityTypeShape EntityType="AutoTrade.AccountsModel.Broker" Width="1.5" PointX="3" PointY="7.625" />
+        <EntityTypeShape EntityType="AutoTrade.AccountsModel.CashAccount" Width="1.5" PointX="0.5" PointY="2.25" />
+        <EntityTypeShape EntityType="AutoTrade.AccountsModel.CashAccountFundReservation" Width="1.5" PointX="3" PointY="3.75" />
+        <EntityTypeShape EntityType="AutoTrade.AccountsModel.CashAccountTransaction" Width="1.5" PointX="6" PointY="1.75" />
+        <EntityTypeShape EntityType="AutoTrade.AccountsModel.TradingAccount" Width="1.5" PointX="0.5" PointY="8.5" />
+        <EntityTypeShape EntityType="AutoTrade.AccountsModel.TradingAccountPosition" Width="1.5" PointX="3" PointY="11.25" />
+        <EntityTypeShape EntityType="AutoTrade.AccountsModel.TradingAccountTransaction" Width="1.5" PointX="5.875" PointY="8.5" />
+        <EntityTypeShape EntityType="AutoTrade.AccountsModel.TransactionStatu" Width="1.5" PointX="8.75" PointY="5.875" />
+        <AssociationConnector Association="AutoTrade.AccountsModel.FK_Account_AccountType" />
+        <AssociationConnector Association="AutoTrade.AccountsModel.FK_TradingAccount_Broker" />
         <AssociationConnector Association="AutoTrade.AccountsModel.FK_AccountFundReservations_Account" />
         <AssociationConnector Association="AutoTrade.AccountsModel.FK_AccountTransaction_Account" />
+        <AssociationConnector Association="AutoTrade.AccountsModel.FK_TradingAccount_CashAccount" />
         <AssociationConnector Association="AutoTrade.AccountsModel.FK_AccountTransaction_TransactionStatus" />
-        <EntityTypeShape EntityType="AutoTrade.AccountsModel.AccountType" Width="1.5" PointX="2.625" PointY="4" />
-        <AssociationConnector Association="AutoTrade.AccountsModel.FK_Account_AccountType" />
+        <AssociationConnector Association="AutoTrade.AccountsModel.FK_TradingAccountPosition_TradingAccountPosition" />
+        <AssociationConnector Association="AutoTrade.AccountsModel.FK_TradingAccountTransaction_TradingAccount" />
+        <AssociationConnector Association="AutoTrade.AccountsModel.FK_TradingAccountTransaction_TransactionStatus" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

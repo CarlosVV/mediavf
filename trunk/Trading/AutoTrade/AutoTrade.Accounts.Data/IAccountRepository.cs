@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace AutoTrade.Accounts.Data
 {
@@ -36,7 +35,7 @@ namespace AutoTrade.Accounts.Data
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        Account GetAccountWithTransactions(int accountId);
+        CashAccount GetAccountWithTransactions(int accountId);
 
         /// <summary>
         /// Updates the balance for an account

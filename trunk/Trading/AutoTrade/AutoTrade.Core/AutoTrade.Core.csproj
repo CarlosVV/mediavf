@@ -62,6 +62,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
@@ -97,6 +98,11 @@
     <Compile Include="Modularity\Configuration\Xml\AssemblyConfigurationRegistrations.cs" />
     <Compile Include="Modularity\Configuration\IAssemblyConfigurationFactory.cs" />
     <Compile Include="Modularity\Configuration\Xml\XmlNodeExtensions.cs" />
+    <Compile Include="Msmq\IMessageQueue.cs" />
+    <Compile Include="Msmq\IMessageQueueFactory.cs" />
+    <Compile Include="Msmq\MessageFormatter.cs" />
+    <Compile Include="Msmq\MessageQueue.cs" />
+    <Compile Include="Msmq\MessageQueueFactory.cs" />
     <Compile Include="NameAttribute.cs" />
     <Compile Include="Serialization\DataContractResolverAttribute.cs" />
     <Compile Include="Serialization\MessageLoggerBehavior.cs" />

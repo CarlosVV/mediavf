@@ -63,8 +63,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="YahooMarketDataProviderTest.cs" />
-    <Compile Include="YqlResultTranslatorTest.cs" />
-    <Compile Include="YqlProviderTest.cs" />
     <Compile Include="YqlExecutorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -12,24 +12,26 @@ namespace AutoTrade.Accounts.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Account
+    public partial class CashAccount
     {
-        public Account()
+        public CashAccount()
         {
-            this.FundReservations = new HashSet<AccountFundReservation>();
-            this.Transactions = new HashSet<AccountTransaction>();
+            this.FundReservations = new HashSet<CashAccountFundReservation>();
+            this.Transactions = new HashSet<CashAccountTransaction>();
+            this.TradingAccounts = new HashSet<TradingAccount>();
         }
     
         public int Id { get; set; }
+        public int AccountTypeId { get; set; }
         public string Name { get; set; }
+        public decimal MinimumRequiredBalance { get; set; }
         public decimal Balance { get; set; }
         public System.DateTime Created { get; set; }
         public System.DateTime Modified { get; set; }
-        public int AccountTypeId { get; set; }
-        public decimal MinimumRequiredBalance { get; set; }
     
-        public virtual ICollection<AccountFundReservation> FundReservations { get; set; }
-        public virtual ICollection<AccountTransaction> Transactions { get; set; }
         public virtual AccountType AccountType { get; set; }
+        public virtual ICollection<CashAccountFundReservation> FundReservations { get; set; }
+        public virtual ICollection<CashAccountTransaction> Transactions { get; set; }
+        public virtual ICollection<TradingAccount> TradingAccounts { get; set; }
     }
 }

@@ -15,20 +15,32 @@ namespace AutoTrade.Accounts.Data
     
     public partial interface IAccountRepository
     {
-        IDbSet<Account> Accounts { get; set; }
-        DbQuery<Account> AccountsQuery { get; }
-    
-        IDbSet<AccountFundReservation> AccountFundReservations { get; set; }
-        DbQuery<AccountFundReservation> AccountFundReservationsQuery { get; }
-    
-        IDbSet<AccountTransaction> AccountTransactions { get; set; }
-        DbQuery<AccountTransaction> AccountTransactionsQuery { get; }
-    
-        IDbSet<TransactionStatus> TransactionStatuses { get; set; }
-        DbQuery<TransactionStatus> TransactionStatusesQuery { get; }
-    
         IDbSet<AccountType> AccountTypes { get; set; }
         DbQuery<AccountType> AccountTypesQuery { get; }
+    
+        IDbSet<Broker> Brokers { get; set; }
+        DbQuery<Broker> BrokersQuery { get; }
+    
+        IDbSet<CashAccount> CashAccounts { get; set; }
+        DbQuery<CashAccount> CashAccountsQuery { get; }
+    
+        IDbSet<CashAccountFundReservation> CashAccountFundReservations { get; set; }
+        DbQuery<CashAccountFundReservation> CashAccountFundReservationsQuery { get; }
+    
+        IDbSet<CashAccountTransaction> CashAccountTransactions { get; set; }
+        DbQuery<CashAccountTransaction> CashAccountTransactionsQuery { get; }
+    
+        IDbSet<TradingAccount> TradingAccounts { get; set; }
+        DbQuery<TradingAccount> TradingAccountsQuery { get; }
+    
+        IDbSet<TradingAccountPosition> TradingAccountPositions { get; set; }
+        DbQuery<TradingAccountPosition> TradingAccountPositionsQuery { get; }
+    
+        IDbSet<TradingAccountTransaction> TradingAccountTransactions { get; set; }
+        DbQuery<TradingAccountTransaction> TradingAccountTransactionsQuery { get; }
+    
+        IDbSet<TransactionStatu> TransactionStatus { get; set; }
+        DbQuery<TransactionStatu> TransactionStatusQuery { get; }
     
     
     	int SaveChanges();
@@ -46,15 +58,23 @@ namespace AutoTrade.Accounts.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public IDbSet<Account> Accounts { get; set; }
-        public DbQuery<Account> AccountsQuery { get { return Accounts as DbQuery<Account>; } }
-        public IDbSet<AccountFundReservation> AccountFundReservations { get; set; }
-        public DbQuery<AccountFundReservation> AccountFundReservationsQuery { get { return AccountFundReservations as DbQuery<AccountFundReservation>; } }
-        public IDbSet<AccountTransaction> AccountTransactions { get; set; }
-        public DbQuery<AccountTransaction> AccountTransactionsQuery { get { return AccountTransactions as DbQuery<AccountTransaction>; } }
-        public IDbSet<TransactionStatus> TransactionStatuses { get; set; }
-        public DbQuery<TransactionStatus> TransactionStatusesQuery { get { return TransactionStatuses as DbQuery<TransactionStatus>; } }
         public IDbSet<AccountType> AccountTypes { get; set; }
         public DbQuery<AccountType> AccountTypesQuery { get { return AccountTypes as DbQuery<AccountType>; } }
+        public IDbSet<Broker> Brokers { get; set; }
+        public DbQuery<Broker> BrokersQuery { get { return Brokers as DbQuery<Broker>; } }
+        public IDbSet<CashAccount> CashAccounts { get; set; }
+        public DbQuery<CashAccount> CashAccountsQuery { get { return CashAccounts as DbQuery<CashAccount>; } }
+        public IDbSet<CashAccountFundReservation> CashAccountFundReservations { get; set; }
+        public DbQuery<CashAccountFundReservation> CashAccountFundReservationsQuery { get { return CashAccountFundReservations as DbQuery<CashAccountFundReservation>; } }
+        public IDbSet<CashAccountTransaction> CashAccountTransactions { get; set; }
+        public DbQuery<CashAccountTransaction> CashAccountTransactionsQuery { get { return CashAccountTransactions as DbQuery<CashAccountTransaction>; } }
+        public IDbSet<TradingAccount> TradingAccounts { get; set; }
+        public DbQuery<TradingAccount> TradingAccountsQuery { get { return TradingAccounts as DbQuery<TradingAccount>; } }
+        public IDbSet<TradingAccountPosition> TradingAccountPositions { get; set; }
+        public DbQuery<TradingAccountPosition> TradingAccountPositionsQuery { get { return TradingAccountPositions as DbQuery<TradingAccountPosition>; } }
+        public IDbSet<TradingAccountTransaction> TradingAccountTransactions { get; set; }
+        public DbQuery<TradingAccountTransaction> TradingAccountTransactionsQuery { get { return TradingAccountTransactions as DbQuery<TradingAccountTransaction>; } }
+        public IDbSet<TransactionStatu> TransactionStatus { get; set; }
+        public DbQuery<TransactionStatu> TransactionStatusQuery { get { return TransactionStatus as DbQuery<TransactionStatu>; } }
     }
 }

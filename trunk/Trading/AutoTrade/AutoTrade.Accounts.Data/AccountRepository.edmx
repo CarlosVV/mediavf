@@ -6,29 +6,73 @@
     <edmx:StorageModels>
     <Schema Namespace="AutoTrade.AccountsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="AutoTradeAccountsModelStoreContainer">
-          <EntitySet Name="Account" EntityType="AutoTrade.AccountsModel.Store.Account" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="AccountFundReservations" EntityType="AutoTrade.AccountsModel.Store.AccountFundReservations" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="AccountTransaction" EntityType="AutoTrade.AccountsModel.Store.AccountTransaction" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AccountType" EntityType="AutoTrade.AccountsModel.Store.AccountType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Broker" EntityType="AutoTrade.AccountsModel.Store.Broker" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CashAccount" EntityType="AutoTrade.AccountsModel.Store.CashAccount" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CashAccountFundReservations" EntityType="AutoTrade.AccountsModel.Store.CashAccountFundReservations" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CashAccountTransaction" EntityType="AutoTrade.AccountsModel.Store.CashAccountTransaction" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TradingAccount" EntityType="AutoTrade.AccountsModel.Store.TradingAccount" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TradingAccountPosition" EntityType="AutoTrade.AccountsModel.Store.TradingAccountPosition" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TradingAccountTransaction" EntityType="AutoTrade.AccountsModel.Store.TradingAccountTransaction" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TransactionStatus" EntityType="AutoTrade.AccountsModel.Store.TransactionStatus" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Account_AccountType" Association="AutoTrade.AccountsModel.Store.FK_Account_AccountType">
             <End Role="AccountType" EntitySet="AccountType" />
-            <End Role="Account" EntitySet="Account" />
+            <End Role="CashAccount" EntitySet="CashAccount" />
           </AssociationSet>
           <AssociationSet Name="FK_AccountFundReservations_Account" Association="AutoTrade.AccountsModel.Store.FK_AccountFundReservations_Account">
-            <End Role="Account" EntitySet="Account" />
-            <End Role="AccountFundReservations" EntitySet="AccountFundReservations" />
+            <End Role="CashAccount" EntitySet="CashAccount" />
+            <End Role="CashAccountFundReservations" EntitySet="CashAccountFundReservations" />
           </AssociationSet>
           <AssociationSet Name="FK_AccountTransaction_Account" Association="AutoTrade.AccountsModel.Store.FK_AccountTransaction_Account">
-            <End Role="Account" EntitySet="Account" />
-            <End Role="AccountTransaction" EntitySet="AccountTransaction" />
+            <End Role="CashAccount" EntitySet="CashAccount" />
+            <End Role="CashAccountTransaction" EntitySet="CashAccountTransaction" />
           </AssociationSet>
           <AssociationSet Name="FK_AccountTransaction_TransactionStatus" Association="AutoTrade.AccountsModel.Store.FK_AccountTransaction_TransactionStatus">
             <End Role="TransactionStatus" EntitySet="TransactionStatus" />
-            <End Role="AccountTransaction" EntitySet="AccountTransaction" />
+            <End Role="CashAccountTransaction" EntitySet="CashAccountTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TradingAccount_Broker" Association="AutoTrade.AccountsModel.Store.FK_TradingAccount_Broker">
+            <End Role="Broker" EntitySet="Broker" />
+            <End Role="TradingAccount" EntitySet="TradingAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TradingAccount_CashAccount" Association="AutoTrade.AccountsModel.Store.FK_TradingAccount_CashAccount">
+            <End Role="CashAccount" EntitySet="CashAccount" />
+            <End Role="TradingAccount" EntitySet="TradingAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TradingAccountPosition_TradingAccountPosition" Association="AutoTrade.AccountsModel.Store.FK_TradingAccountPosition_TradingAccountPosition">
+            <End Role="TradingAccount" EntitySet="TradingAccount" />
+            <End Role="TradingAccountPosition" EntitySet="TradingAccountPosition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TradingAccountTransaction_TradingAccount" Association="AutoTrade.AccountsModel.Store.FK_TradingAccountTransaction_TradingAccount">
+            <End Role="TradingAccount" EntitySet="TradingAccount" />
+            <End Role="TradingAccountTransaction" EntitySet="TradingAccountTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TradingAccountTransaction_TransactionStatus" Association="AutoTrade.AccountsModel.Store.FK_TradingAccountTransaction_TransactionStatus">
+            <End Role="TransactionStatus" EntitySet="TransactionStatus" />
+            <End Role="TradingAccountTransaction" EntitySet="TradingAccountTransaction" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Account">
+        <EntityType Name="AccountType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="TransactionProcessorType" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Broker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CashAccount">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -40,7 +84,7 @@
           <Property Name="Created" Type="datetime" Nullable="false" />
           <Property Name="Modified" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="AccountFundReservations">
+        <EntityType Name="CashAccountFundReservations">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -52,7 +96,7 @@
           <Property Name="Created" Type="datetime" Nullable="false" />
           <Property Name="Modified" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="AccountTransaction">
+        <EntityType Name="CashAccountTransaction">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -64,13 +108,42 @@
           <Property Name="Created" Type="datetime" Nullable="false" />
           <Property Name="Modified" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="AccountType">
+        <EntityType Name="TradingAccount">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="TransactionProcessorType" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="CashAccountId" Type="int" Nullable="false" />
+          <Property Name="BrokerId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TradingAccountPosition">
+          <Key>
+            <PropertyRef Name="TradingAccountId" />
+            <PropertyRef Name="Symbol" />
+          </Key>
+          <Property Name="TradingAccountId" Type="int" Nullable="false" />
+          <Property Name="Symbol" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="LatestMarketValue" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TradingAccountTransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TradingAccountId" Type="int" Nullable="false" />
+          <Property Name="Symbol" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Direction" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Nullable="false" Precision="20" Scale="4" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="SettleOn" Type="datetime" Nullable="false" />
           <Property Name="Created" Type="datetime" Nullable="false" />
           <Property Name="Modified" Type="datetime" Nullable="false" />
         </EntityType>
@@ -83,49 +156,109 @@
         </EntityType>
         <Association Name="FK_Account_AccountType">
           <End Role="AccountType" Type="AutoTrade.AccountsModel.Store.AccountType" Multiplicity="1" />
-          <End Role="Account" Type="AutoTrade.AccountsModel.Store.Account" Multiplicity="*" />
+          <End Role="CashAccount" Type="AutoTrade.AccountsModel.Store.CashAccount" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AccountType">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Account">
+            <Dependent Role="CashAccount">
               <PropertyRef Name="AccountTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AccountFundReservations_Account">
-          <End Role="Account" Type="AutoTrade.AccountsModel.Store.Account" Multiplicity="1" />
-          <End Role="AccountFundReservations" Type="AutoTrade.AccountsModel.Store.AccountFundReservations" Multiplicity="*" />
+          <End Role="CashAccount" Type="AutoTrade.AccountsModel.Store.CashAccount" Multiplicity="1" />
+          <End Role="CashAccountFundReservations" Type="AutoTrade.AccountsModel.Store.CashAccountFundReservations" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Account">
+            <Principal Role="CashAccount">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="AccountFundReservations">
+            <Dependent Role="CashAccountFundReservations">
               <PropertyRef Name="AccountId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AccountTransaction_Account">
-          <End Role="Account" Type="AutoTrade.AccountsModel.Store.Account" Multiplicity="1" />
-          <End Role="AccountTransaction" Type="AutoTrade.AccountsModel.Store.AccountTransaction" Multiplicity="*" />
+          <End Role="CashAccount" Type="AutoTrade.AccountsModel.Store.CashAccount" Multiplicity="1" />
+          <End Role="CashAccountTransaction" Type="AutoTrade.AccountsModel.Store.CashAccountTransaction" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Account">
+            <Principal Role="CashAccount">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="AccountTransaction">
+            <Dependent Role="CashAccountTransaction">
               <PropertyRef Name="AccountId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AccountTransaction_TransactionStatus">
           <End Role="TransactionStatus" Type="AutoTrade.AccountsModel.Store.TransactionStatus" Multiplicity="1" />
-          <End Role="AccountTransaction" Type="AutoTrade.AccountsModel.Store.AccountTransaction" Multiplicity="*" />
+          <End Role="CashAccountTransaction" Type="AutoTrade.AccountsModel.Store.CashAccountTransaction" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TransactionStatus">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="AccountTransaction">
+            <Dependent Role="CashAccountTransaction">
               <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TradingAccount_Broker">
+          <End Role="Broker" Type="AutoTrade.AccountsModel.Store.Broker" Multiplicity="1" />
+          <End Role="TradingAccount" Type="AutoTrade.AccountsModel.Store.TradingAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Broker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TradingAccount">
+              <PropertyRef Name="BrokerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TradingAccount_CashAccount">
+          <End Role="CashAccount" Type="AutoTrade.AccountsModel.Store.CashAccount" Multiplicity="1" />
+          <End Role="TradingAccount" Type="AutoTrade.AccountsModel.Store.TradingAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CashAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TradingAccount">
+              <PropertyRef Name="CashAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TradingAccountPosition_TradingAccountPosition">
+          <End Role="TradingAccount" Type="AutoTrade.AccountsModel.Store.TradingAccount" Multiplicity="1" />
+          <End Role="TradingAccountPosition" Type="AutoTrade.AccountsModel.Store.TradingAccountPosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TradingAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TradingAccountPosition">
+              <PropertyRef Name="TradingAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TradingAccountTransaction_TradingAccount">
+          <End Role="TradingAccount" Type="AutoTrade.AccountsModel.Store.TradingAccount" Multiplicity="1" />
+          <End Role="TradingAccountTransaction" Type="AutoTrade.AccountsModel.Store.TradingAccountTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TradingAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TradingAccountTransaction">
+              <PropertyRef Name="TradingAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TradingAccountTransaction_TransactionStatus">
+          <End Role="TransactionStatus" Type="AutoTrade.AccountsModel.Store.TransactionStatus" Multiplicity="1" />
+          <End Role="TradingAccountTransaction" Type="AutoTrade.AccountsModel.Store.TradingAccountTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TradingAccountTransaction">
+              <PropertyRef Name="Status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -134,57 +267,104 @@
     <edmx:ConceptualModels>
       <Schema Namespace="AutoTrade.AccountsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AccountRepository" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Accounts" EntityType="AutoTrade.AccountsModel.Account" />
-          <EntitySet Name="AccountFundReservations" EntityType="AutoTrade.AccountsModel.AccountFundReservation" />
-          <EntitySet Name="AccountTransactions" EntityType="AutoTrade.AccountsModel.AccountTransaction" />
-          <EntitySet Name="TransactionStatuses" EntityType="AutoTrade.AccountsModel.TransactionStatus" />
-          <AssociationSet Name="FK_AccountFundReservations_Account" Association="AutoTrade.AccountsModel.FK_AccountFundReservations_Account">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="AccountFundReservation" EntitySet="AccountFundReservations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AccountTransaction_Account" Association="AutoTrade.AccountsModel.FK_AccountTransaction_Account">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="AccountTransaction" EntitySet="AccountTransactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AccountTransaction_TransactionStatus" Association="AutoTrade.AccountsModel.FK_AccountTransaction_TransactionStatus">
-            <End Role="TransactionStatu" EntitySet="TransactionStatuses" />
-            <End Role="AccountTransaction" EntitySet="AccountTransactions" />
-          </AssociationSet>
           <EntitySet Name="AccountTypes" EntityType="AutoTrade.AccountsModel.AccountType" />
+          <EntitySet Name="Brokers" EntityType="AutoTrade.AccountsModel.Broker" />
+          <EntitySet Name="CashAccounts" EntityType="AutoTrade.AccountsModel.CashAccount" />
+          <EntitySet Name="CashAccountFundReservations" EntityType="AutoTrade.AccountsModel.CashAccountFundReservation" />
+          <EntitySet Name="CashAccountTransactions" EntityType="AutoTrade.AccountsModel.CashAccountTransaction" />
+          <EntitySet Name="TradingAccounts" EntityType="AutoTrade.AccountsModel.TradingAccount" />
+          <EntitySet Name="TradingAccountPositions" EntityType="AutoTrade.AccountsModel.TradingAccountPosition" />
+          <EntitySet Name="TradingAccountTransactions" EntityType="AutoTrade.AccountsModel.TradingAccountTransaction" />
+          <EntitySet Name="TransactionStatus" EntityType="AutoTrade.AccountsModel.TransactionStatu" />
           <AssociationSet Name="FK_Account_AccountType" Association="AutoTrade.AccountsModel.FK_Account_AccountType">
             <End Role="AccountType" EntitySet="AccountTypes" />
-            <End Role="Account" EntitySet="Accounts" />
+            <End Role="CashAccount" EntitySet="CashAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TradingAccount_Broker" Association="AutoTrade.AccountsModel.FK_TradingAccount_Broker">
+            <End Role="Broker" EntitySet="Brokers" />
+            <End Role="TradingAccount" EntitySet="TradingAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountFundReservations_Account" Association="AutoTrade.AccountsModel.FK_AccountFundReservations_Account">
+            <End Role="CashAccount" EntitySet="CashAccounts" />
+            <End Role="CashAccountFundReservation" EntitySet="CashAccountFundReservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountTransaction_Account" Association="AutoTrade.AccountsModel.FK_AccountTransaction_Account">
+            <End Role="CashAccount" EntitySet="CashAccounts" />
+            <End Role="CashAccountTransaction" EntitySet="CashAccountTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TradingAccount_CashAccount" Association="AutoTrade.AccountsModel.FK_TradingAccount_CashAccount">
+            <End Role="CashAccount" EntitySet="CashAccounts" />
+            <End Role="TradingAccount" EntitySet="TradingAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountTransaction_TransactionStatus" Association="AutoTrade.AccountsModel.FK_AccountTransaction_TransactionStatus">
+            <End Role="TransactionStatu" EntitySet="TransactionStatus" />
+            <End Role="CashAccountTransaction" EntitySet="CashAccountTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TradingAccountPosition_TradingAccountPosition" Association="AutoTrade.AccountsModel.FK_TradingAccountPosition_TradingAccountPosition">
+            <End Role="TradingAccount" EntitySet="TradingAccounts" />
+            <End Role="TradingAccountPosition" EntitySet="TradingAccountPositions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TradingAccountTransaction_TradingAccount" Association="AutoTrade.AccountsModel.FK_TradingAccountTransaction_TradingAccount">
+            <End Role="TradingAccount" EntitySet="TradingAccounts" />
+            <End Role="TradingAccountTransaction" EntitySet="TradingAccountTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TradingAccountTransaction_TransactionStatus" Association="AutoTrade.AccountsModel.FK_TradingAccountTransaction_TransactionStatus">
+            <End Role="TransactionStatu" EntitySet="TransactionStatus" />
+            <End Role="TradingAccountTransaction" EntitySet="TradingAccountTransactions" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Account">
+        <EntityType Name="AccountType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Balance" Type="Decimal" Nullable="false" Precision="20" Scale="4" />
-          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="FundReservations" Relationship="AutoTrade.AccountsModel.FK_AccountFundReservations_Account" FromRole="Account" ToRole="AccountFundReservation" />
-          <NavigationProperty Name="Transactions" Relationship="AutoTrade.AccountsModel.FK_AccountTransaction_Account" FromRole="Account" ToRole="AccountTransaction" />
-          <Property Type="Int32" Name="AccountTypeId" Nullable="false" />
-          <NavigationProperty Name="AccountType" Relationship="AutoTrade.AccountsModel.FK_Account_AccountType" FromRole="Account" ToRole="AccountType" />
-          <Property Type="Decimal" Name="MinimumRequiredBalance" Nullable="false" Precision="20" Scale="4" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TransactionProcessorType" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CashAccounts" Relationship="AutoTrade.AccountsModel.FK_Account_AccountType" FromRole="AccountType" ToRole="CashAccount" />
         </EntityType>
-        <EntityType Name="AccountFundReservation">
+        <EntityType Name="Broker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TradingAccounts" Relationship="AutoTrade.AccountsModel.FK_TradingAccount_Broker" FromRole="Broker" ToRole="TradingAccount" />
+        </EntityType>
+        <EntityType Name="CashAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="AccountTypeId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="MinimumRequiredBalance" Nullable="false" Precision="20" Scale="4" />
+          <Property Type="Decimal" Name="Balance" Nullable="false" Precision="20" Scale="4" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AccountType" Relationship="AutoTrade.AccountsModel.FK_Account_AccountType" FromRole="CashAccount" ToRole="AccountType" />
+          <NavigationProperty Name="FundReservations" Relationship="AutoTrade.AccountsModel.FK_AccountFundReservations_Account" FromRole="CashAccount" ToRole="CashAccountFundReservation" />
+          <NavigationProperty Name="Transactions" Relationship="AutoTrade.AccountsModel.FK_AccountTransaction_Account" FromRole="CashAccount" ToRole="CashAccountTransaction" />
+          <NavigationProperty Name="TradingAccounts" Relationship="AutoTrade.AccountsModel.FK_TradingAccount_CashAccount" FromRole="CashAccount" ToRole="TradingAccount" />
+        </EntityType>
+        <EntityType Name="CashAccountFundReservation">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="AccountId" Nullable="false" />
+          <Property Type="String" Name="ReservationKey" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="Amount" Nullable="false" Precision="20" Scale="4" />
+          <Property Type="DateTime" Name="Expiration" Precision="3" />
           <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Account" Relationship="AutoTrade.AccountsModel.FK_AccountFundReservations_Account" FromRole="AccountFundReservation" ToRole="Account" />
-          <Property Type="DateTime" Name="Expiration" Precision="3" />
-          <Property Type="String" Name="ReservationKey" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CashAccount" Relationship="AutoTrade.AccountsModel.FK_AccountFundReservations_Account" FromRole="CashAccountFundReservation" ToRole="CashAccount" />
         </EntityType>
-        <EntityType Name="AccountTransaction">
+        <EntityType Name="CashAccountTransaction">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -192,117 +372,235 @@
           <Property Type="Int32" Name="AccountId" Nullable="false" />
           <Property Type="Int32" Name="StatusId" Nullable="false" />
           <Property Type="Decimal" Name="Amount" Nullable="false" Precision="20" Scale="4" />
+          <Property Type="DateTime" Name="FinalizationDateTime" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Account" Relationship="AutoTrade.AccountsModel.FK_AccountTransaction_Account" FromRole="AccountTransaction" ToRole="Account" />
-          <NavigationProperty Name="TransactionStatus" Relationship="AutoTrade.AccountsModel.FK_AccountTransaction_TransactionStatus" FromRole="AccountTransaction" ToRole="TransactionStatu" />
-          <Property Type="DateTime" Name="FinalizationDateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CashAccount" Relationship="AutoTrade.AccountsModel.FK_AccountTransaction_Account" FromRole="CashAccountTransaction" ToRole="CashAccount" />
+          <NavigationProperty Name="TransactionStatus" Relationship="AutoTrade.AccountsModel.FK_AccountTransaction_TransactionStatus" FromRole="CashAccountTransaction" ToRole="TransactionStatu" />
         </EntityType>
-        <EntityType Name="TransactionStatus">
+        <EntityType Name="TradingAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CashAccountId" Nullable="false" />
+          <Property Type="Int32" Name="BrokerId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Enabled" Nullable="false" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Broker" Relationship="AutoTrade.AccountsModel.FK_TradingAccount_Broker" FromRole="TradingAccount" ToRole="Broker" />
+          <NavigationProperty Name="CashAccount" Relationship="AutoTrade.AccountsModel.FK_TradingAccount_CashAccount" FromRole="TradingAccount" ToRole="CashAccount" />
+          <NavigationProperty Name="Positions" Relationship="AutoTrade.AccountsModel.FK_TradingAccountPosition_TradingAccountPosition" FromRole="TradingAccount" ToRole="TradingAccountPosition" />
+          <NavigationProperty Name="Transactions" Relationship="AutoTrade.AccountsModel.FK_TradingAccountTransaction_TradingAccount" FromRole="TradingAccount" ToRole="TradingAccountTransaction" />
+        </EntityType>
+        <EntityType Name="TradingAccountPosition">
+          <Key>
+            <PropertyRef Name="TradingAccountId" />
+            <PropertyRef Name="Symbol" />
+          </Key>
+          <Property Type="Int32" Name="TradingAccountId" Nullable="false" />
+          <Property Type="String" Name="Symbol" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Quantity" Nullable="false" />
+          <Property Type="Decimal" Name="LatestMarketValue" Precision="20" Scale="4" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TradingAccount" Relationship="AutoTrade.AccountsModel.FK_TradingAccountPosition_TradingAccountPosition" FromRole="TradingAccountPosition" ToRole="TradingAccount" />
+        </EntityType>
+        <EntityType Name="TradingAccountTransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="TradingAccountId" Nullable="false" />
+          <Property Type="String" Name="Symbol" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Direction" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Quantity" Nullable="false" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="20" Scale="4" />
+          <Property Type="Int32" Name="Status" Nullable="false" />
+          <Property Type="DateTime" Name="SettleOn" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TradingAccount" Relationship="AutoTrade.AccountsModel.FK_TradingAccountTransaction_TradingAccount" FromRole="TradingAccountTransaction" ToRole="TradingAccount" />
+          <NavigationProperty Name="TransactionStatus" Relationship="AutoTrade.AccountsModel.FK_TradingAccountTransaction_TransactionStatus" FromRole="TradingAccountTransaction" ToRole="TransactionStatu" />
+        </EntityType>
+        <EntityType Name="TransactionStatu">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Transactions" Relationship="AutoTrade.AccountsModel.FK_AccountTransaction_TransactionStatus" FromRole="TransactionStatu" ToRole="AccountTransaction" />
+          <NavigationProperty Name="CashAccountTransactions" Relationship="AutoTrade.AccountsModel.FK_AccountTransaction_TransactionStatus" FromRole="TransactionStatu" ToRole="CashAccountTransaction" />
+          <NavigationProperty Name="TradingAccountTransactions" Relationship="AutoTrade.AccountsModel.FK_TradingAccountTransaction_TransactionStatus" FromRole="TransactionStatu" ToRole="TradingAccountTransaction" />
         </EntityType>
-        <Association Name="FK_AccountFundReservations_Account">
-          <End Type="AutoTrade.AccountsModel.Account" Role="Account" Multiplicity="1" />
-          <End Type="AutoTrade.AccountsModel.AccountFundReservation" Role="AccountFundReservation" Multiplicity="*" />
+        <Association Name="FK_Account_AccountType">
+          <End Type="AutoTrade.AccountsModel.AccountType" Role="AccountType" Multiplicity="1" />
+          <End Type="AutoTrade.AccountsModel.CashAccount" Role="CashAccount" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Account">
+            <Principal Role="AccountType">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="AccountFundReservation">
+            <Dependent Role="CashAccount">
+              <PropertyRef Name="AccountTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TradingAccount_Broker">
+          <End Type="AutoTrade.AccountsModel.Broker" Role="Broker" Multiplicity="1" />
+          <End Type="AutoTrade.AccountsModel.TradingAccount" Role="TradingAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Broker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TradingAccount">
+              <PropertyRef Name="BrokerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountFundReservations_Account">
+          <End Type="AutoTrade.AccountsModel.CashAccount" Role="CashAccount" Multiplicity="1" />
+          <End Type="AutoTrade.AccountsModel.CashAccountFundReservation" Role="CashAccountFundReservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CashAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CashAccountFundReservation">
               <PropertyRef Name="AccountId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AccountTransaction_Account">
-          <End Type="AutoTrade.AccountsModel.Account" Role="Account" Multiplicity="1" />
-          <End Type="AutoTrade.AccountsModel.AccountTransaction" Role="AccountTransaction" Multiplicity="*" />
+          <End Type="AutoTrade.AccountsModel.CashAccount" Role="CashAccount" Multiplicity="1" />
+          <End Type="AutoTrade.AccountsModel.CashAccountTransaction" Role="CashAccountTransaction" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Account">
+            <Principal Role="CashAccount">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="AccountTransaction">
+            <Dependent Role="CashAccountTransaction">
               <PropertyRef Name="AccountId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TradingAccount_CashAccount">
+          <End Type="AutoTrade.AccountsModel.CashAccount" Role="CashAccount" Multiplicity="1" />
+          <End Type="AutoTrade.AccountsModel.TradingAccount" Role="TradingAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CashAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TradingAccount">
+              <PropertyRef Name="CashAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AccountTransaction_TransactionStatus">
-          <End Type="AutoTrade.AccountsModel.TransactionStatus" Role="TransactionStatu" Multiplicity="1" />
-          <End Type="AutoTrade.AccountsModel.AccountTransaction" Role="AccountTransaction" Multiplicity="*" />
+          <End Type="AutoTrade.AccountsModel.TransactionStatu" Role="TransactionStatu" Multiplicity="1" />
+          <End Type="AutoTrade.AccountsModel.CashAccountTransaction" Role="CashAccountTransaction" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TransactionStatu">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="AccountTransaction">
+            <Dependent Role="CashAccountTransaction">
               <PropertyRef Name="StatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="AccountType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Accounts" Relationship="AutoTrade.AccountsModel.FK_Account_AccountType" FromRole="AccountType" ToRole="Account" />
-          <Property Type="String" Name="TransactionProcessorType" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <Association Name="FK_Account_AccountType">
-          <End Type="AutoTrade.AccountsModel.AccountType" Role="AccountType" Multiplicity="1" />
-          <End Type="AutoTrade.AccountsModel.Account" Role="Account" Multiplicity="*" />
+        <Association Name="FK_TradingAccountPosition_TradingAccountPosition">
+          <End Type="AutoTrade.AccountsModel.TradingAccount" Role="TradingAccount" Multiplicity="1" />
+          <End Type="AutoTrade.AccountsModel.TradingAccountPosition" Role="TradingAccountPosition" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AccountType">
+            <Principal Role="TradingAccount">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Account">
-              <PropertyRef Name="AccountTypeId" />
+            <Dependent Role="TradingAccountPosition">
+              <PropertyRef Name="TradingAccountId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_TradingAccountTransaction_TradingAccount">
+          <End Type="AutoTrade.AccountsModel.TradingAccount" Role="TradingAccount" Multiplicity="1" />
+          <End Type="AutoTrade.AccountsModel.TradingAccountTransaction" Role="TradingAccountTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TradingAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TradingAccountTransaction">
+              <PropertyRef Name="TradingAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TradingAccountTransaction_TransactionStatus">
+          <End Type="AutoTrade.AccountsModel.TransactionStatu" Role="TransactionStatu" Multiplicity="1" />
+          <End Type="AutoTrade.AccountsModel.TradingAccountTransaction" Role="TradingAccountTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionStatu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TradingAccountTransaction">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AutoTradeAccountsModelStoreContainer" CdmEntityContainer="AccountRepository">
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="AutoTrade.AccountsModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="MinimumRequiredBalance" ColumnName="MinimumRequiredBalance" />
-                <ScalarProperty Name="AccountTypeId" ColumnName="AccountTypeId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Balance" ColumnName="Balance" />
-                <ScalarProperty Name="Created" ColumnName="Created" />
+          <EntitySetMapping Name="AccountTypes">
+            <EntityTypeMapping TypeName="AutoTrade.AccountsModel.AccountType">
+              <MappingFragment StoreEntitySet="AccountType">
                 <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="TransactionProcessorType" ColumnName="TransactionProcessorType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AccountFundReservations">
-            <EntityTypeMapping TypeName="AutoTrade.AccountsModel.AccountFundReservation">
-              <MappingFragment StoreEntitySet="AccountFundReservations">
-                <ScalarProperty Name="ReservationKey" ColumnName="ReservationKey" />
-                <ScalarProperty Name="Expiration" ColumnName="Expiration" />
+          <EntitySetMapping Name="Brokers">
+            <EntityTypeMapping TypeName="AutoTrade.AccountsModel.Broker">
+              <MappingFragment StoreEntitySet="Broker">
                 <ScalarProperty Name="Modified" ColumnName="Modified" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CashAccounts">
+            <EntityTypeMapping TypeName="AutoTrade.AccountsModel.CashAccount">
+              <MappingFragment StoreEntitySet="CashAccount">
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="MinimumRequiredBalance" ColumnName="MinimumRequiredBalance" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AccountTypeId" ColumnName="AccountTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CashAccountFundReservations">
+            <EntityTypeMapping TypeName="AutoTrade.AccountsModel.CashAccountFundReservation">
+              <MappingFragment StoreEntitySet="CashAccountFundReservations">
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Expiration" ColumnName="Expiration" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ReservationKey" ColumnName="ReservationKey" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AccountTransactions">
-            <EntityTypeMapping TypeName="AutoTrade.AccountsModel.AccountTransaction">
-              <MappingFragment StoreEntitySet="AccountTransaction">
-                <ScalarProperty Name="FinalizationDateTime" ColumnName="FinalizationDateTime" />
+          <EntitySetMapping Name="CashAccountTransactions">
+            <EntityTypeMapping TypeName="AutoTrade.AccountsModel.CashAccountTransaction">
+              <MappingFragment StoreEntitySet="CashAccountTransaction">
                 <ScalarProperty Name="Modified" ColumnName="Modified" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="FinalizationDateTime" ColumnName="FinalizationDateTime" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
@@ -310,20 +608,50 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TransactionStatuses">
-            <EntityTypeMapping TypeName="AutoTrade.AccountsModel.TransactionStatus">
-              <MappingFragment StoreEntitySet="TransactionStatus">
+          <EntitySetMapping Name="TradingAccounts">
+            <EntityTypeMapping TypeName="AutoTrade.AccountsModel.TradingAccount">
+              <MappingFragment StoreEntitySet="TradingAccount">
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BrokerId" ColumnName="BrokerId" />
+                <ScalarProperty Name="CashAccountId" ColumnName="CashAccountId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AccountTypes">
-            <EntityTypeMapping TypeName="AutoTrade.AccountsModel.AccountType">
-              <MappingFragment StoreEntitySet="AccountType">
-                <ScalarProperty Name="TransactionProcessorType" ColumnName="TransactionProcessorType" />
+          <EntitySetMapping Name="TradingAccountPositions">
+            <EntityTypeMapping TypeName="AutoTrade.AccountsModel.TradingAccountPosition">
+              <MappingFragment StoreEntitySet="TradingAccountPosition">
                 <ScalarProperty Name="Modified" ColumnName="Modified" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LatestMarketValue" ColumnName="LatestMarketValue" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="TradingAccountId" ColumnName="TradingAccountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TradingAccountTransactions">
+            <EntityTypeMapping TypeName="AutoTrade.AccountsModel.TradingAccountTransaction">
+              <MappingFragment StoreEntitySet="TradingAccountTransaction">
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="SettleOn" ColumnName="SettleOn" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="TradingAccountId" ColumnName="TradingAccountId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionStatus">
+            <EntityTypeMapping TypeName="AutoTrade.AccountsModel.TransactionStatu">
+              <MappingFragment StoreEntitySet="TransactionStatus">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

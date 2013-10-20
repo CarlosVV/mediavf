@@ -43,10 +43,10 @@ namespace AutoTrade.Accounts.Service
         /// Gets all accounts
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Account> GetAccounts()
+        public IEnumerable<CashAccount> GetAccounts()
         {
             using (var repository = _repositoryFactory.CreateRepository())
-                return repository.AccountsQuery.ToList();
+                return repository.CashAccountsQuery.ToList();
         }
 
         /// <summary>
@@ -54,10 +54,10 @@ namespace AutoTrade.Accounts.Service
         /// </summary>
         /// <param name="accountName"></param>
         /// <returns></returns>
-        public Account GetAccountByName(string accountName)
+        public CashAccount GetAccountByName(string accountName)
         {
             using (var repository = _repositoryFactory.CreateRepository())
-                return repository.AccountsQuery.FirstOrDefault(a => a.Name == accountName);
+                return repository.CashAccountsQuery.FirstOrDefault(a => a.Name == accountName);
         }
 
         /// <summary>
@@ -65,10 +65,10 @@ namespace AutoTrade.Accounts.Service
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public Account GetAccount(int accountId)
+        public CashAccount GetAccount(int accountId)
         {
             using (var repository = _repositoryFactory.CreateRepository())
-                return repository.AccountsQuery.FirstOrDefault(a => a.Id == accountId);
+                return repository.CashAccountsQuery.FirstOrDefault(a => a.Id == accountId);
         }
 
         #endregion

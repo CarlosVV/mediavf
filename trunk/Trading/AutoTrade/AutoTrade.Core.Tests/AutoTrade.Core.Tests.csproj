@@ -42,6 +42,8 @@
       <HintPath>..\packages\FluentAssertions.2.0.1\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
@@ -59,6 +61,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ImapManagerTest.cs" />
+    <Compile Include="MessageQueueTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

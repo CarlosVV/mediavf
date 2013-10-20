@@ -34,7 +34,9 @@ namespace AutoTrade.MarketData.Tests
             var updateIntervalTime = TimeSpan.FromMilliseconds(int.MaxValue);
             var subscription = new Subscription
                 {
-                    UpdateInterval = new DateTime(1900, 1, 1, updateIntervalTime.Hours, updateIntervalTime.Minutes, updateIntervalTime.Seconds)
+                    UpdateInterval = new DateTime(1900, 1, 1, updateIntervalTime.Hours, updateIntervalTime.Minutes, updateIntervalTime.Seconds),
+                    TimeOfDayStart = new DateTime(1900, 1, 1, 0, 0, 0),
+                    TimeOfDayEnd = new DateTime(1900, 1, 1, 23, 59, 59, 999)
                 };
 
             // create fake return value
@@ -50,19 +52,19 @@ namespace AutoTrade.MarketData.Tests
 
             // handle calls to fakes
             A.CallTo(() => stockListProvider.GetStocks(subscription)).Returns(stocks);
-            A.CallTo(() => marketDataProvider.GetQuotes(subscription.Stocks)).Returns(stockQuotes);
+            A.CallTo(() => marketDataProvider.GetQuotes(stocks)).Returns(stockQuotes);
             A.CallTo(() => stockQuoteSet.Add(A<StockQuote>.Ignored))
              .Invokes((StockQuote quote) => repositoryQuotes.Add(quote));
 
             // create subscriptionData
             var marketDataSubscription =
-                new MarketDataSubscription(logger, marketDataRepositoryFactory, marketDataProvider, stockListProvider, subscription);
+                new MarketDataSubscription(logger, marketDataRepositoryFactory, marketDataProvider, stockListProvider, null, subscription);
 
             // call get latest data
-            marketDataSubscription.InvokeMethod("GetLatestData");
+            marketDataSubscription.InvokeMethod("GetLatestQuotes");
 
             // ensure call to get data was made
-            A.CallTo(() => marketDataProvider.GetQuotes(subscription.Stocks)).MustHaveHappened();
+            A.CallTo(() => marketDataProvider.GetQuotes(stocks)).MustHaveHappened();
             
             // ensure call to store data was made
             A.CallTo(() => stockQuoteSet.Add(A<StockQuote>.Ignored)).MustHaveHappened(Repeated.Exactly.Times(3));
